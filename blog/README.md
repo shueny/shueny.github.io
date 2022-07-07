@@ -1,110 +1,54 @@
-# Gatsby Starter Ghost
+<p align="center">
+  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
+    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Gatsby minimal TypeScript starter
+</h1>
 
-A starter template to build lightning fast websites with [Ghost](https://ghost.org/) & [Gatsby](https://gatsbyjs.org)
+## 🚀 Quick start
 
-**Demo:** https://gatsby.ghost.org/
+1.  **Create a Gatsby site.**
 
-&nbsp;
+    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
 
-![gatsby-starter-ghost](https://user-images.githubusercontent.com/120485/50913567-8ab8e380-142c-11e9-9e78-de02ded12fc6.jpg)
+    ```shell
+    # create a new Gatsby site using the minimal TypeScript starter
+    npm init gatsby
+    ```
 
-&nbsp;
+2.  **Start developing.**
 
+    Navigate into your new site’s directory and start it up.
 
-# Installing
+    ```shell
+    cd my-gatsby-site/
+    npm run develop
+    ```
 
-```bash
-# With Gatsby CLI
-gatsby new gatsby-starter-ghost https://github.com/TryGhost/gatsby-starter-ghost.git
-```
+3.  **Open the code and start customizing!**
 
-```bash
-# From Source
-git clone https://github.com/TryGhost/gatsby-starter-ghost.git
-cd gatsby-starter-ghost
-```
+    Your site is now running at http://localhost:8000!
 
-Then install dependencies
+    Edit `src/pages/index.tsx` to see your site update in real-time!
 
-```bash
-yarn
-```
+4.  **Learn more**
 
-&nbsp;
+    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-# Running
+    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-Start the development server. You now have a Gatsby site pulling content from headless Ghost.
+    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-```bash
-gatsby develop
-```
+    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-By default, the starter will populate content from a default Ghost install located at https://gatsby.ghost.io.
+    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-To use your own install, you will need to edit the `.ghost.json` config file with your credentials. Change the `apiUrl` value to the URL of your Ghost site. For Ghost(Pro) customers, this is the Ghost URL ending in `.ghost.io`, and for people using the self-hosted version of Ghost, it's the same URL used to access your site.
+    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-Next, update the `contentApiKey` value to a key associated with the Ghost site. A key can be provided by creating an integration within Ghost Admin. Navigate to Integrations and click "Add new integration". Name the integration appropriately and click create.
+## 🚀 Quick start (Gatsby Cloud)
 
-Finally, configure your desired URL in `siteConfig.js`, so links (e. g. canonical links) are generated correctly. You can also update other default values, such as `postsPerPage` in this file.
+Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
-To use this starter without issues, your Ghost installation needs to be at least on version `2.10.0`.
-
-The default Ghost version that is used for this starter is `5.x`. If your Ghost installation is on a lower version, you will need to pass in a `version` property in your `.ghost.json` settings:
-
-**Ghost >=2.10.0 <5.0.0**
-```json
-{
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0",
-    "version": "v4.0"
-}
-```
-
-**Ghost >=5.0.0**
-```json
-{
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
-}
-```
-
-&nbsp;
-
-# Deploying with Netlify
-
-The starter contains three config files specifically for deploying with Netlify. A `netlify.toml` file for build settings, a `/static/_headers` file with default security headers set for all routes, and `/static/_redirects` to set Netlify custom domain redirects.
-
-To deploy to your Netlify account, hit the button below.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/TryGhost/gatsby-starter-ghost)
-
-Content API Keys are generally not considered to be sensitive information, they exist so that they can be changed in the event of abuse; so most people commit it directly to their `.ghost.json` config file. If you prefer to keep this information out of your repository you can remove this config and set [Netlify ENV variables](https://www.netlify.com/docs/continuous-deployment/#build-environment-variables) for production builds instead.
-
-Once deployed, you can set up a [Ghost + Netlify Integration](https://ghost.org/integrations/netlify/) to use deploy hooks from Ghost to trigger Netlify rebuilds. That way, any time data changes in Ghost, your site will rebuild on Netlify.
-
-&nbsp;
-
-# Optimising
-
-You can disable the default Ghost Handlebars Theme front-end by enabling the `Make this site private` flag within your Ghost settings. This enables password protection in front of the Ghost install and sets `<meta name="robots" content="noindex" />` so your Gatsby front-end becomes the source of truth for SEO.
-
-&nbsp;
-
-# Extra options
-
-```bash
-# Run a production build, locally
-gatsby build
-
-# Serve a production build, locally
-gatsby serve
-```
-
-Gatsby `develop` uses the `development` config in `.ghost.json` - while Gatsby `build` uses the `production` config.
-
-&nbsp;
-
-# Copyright & License
-
-Copyright (c) 2013-2022 Ghost Foundation - Released under the [MIT license](LICENSE).
+[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
