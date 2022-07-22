@@ -1,0 +1,15 @@
+{
+  "_app": {
+    "navigation": {
+      "about-me": "About Me",
+      "lang": {
+        "en": "English",
+        "zh": "繁體中文"
+      }
+    },
+    "footer": {
+      "copy-right": "Copyright © 2022 Shueny Wang. All rights reserved.",
+      "legal": "Legal Policies & Privacy"
+    }
+  }
+}

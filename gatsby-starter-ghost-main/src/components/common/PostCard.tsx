@@ -6,6 +6,7 @@ import { faStopwatch } from '@fortawesome/free-solid-svg-icons'
 import { Tags } from '@tryghost/helpers-gatsby'
 
 const PostCard = ({ post }) => {
+  console.log('PostCard:', post)
   const url = `/${post.slug}/`
   console.log('PostCard:', post)
   const {
@@ -44,7 +45,7 @@ const PostCard = ({ post }) => {
         <div className="post-card-footer-left"></div>
         <div className="post-card-footer-right">
           <FontAwesomeIcon icon={faStopwatch} size="1x" />
-          <text>{readingTime.text}</text>
+          <span>{readingTime.text}</span>
         </div>
       </footer>
     </Link>

@@ -1,9 +1,9 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
-import { StaticImage, getImage } from 'gatsby-plugin-image'
+import { StaticImage, getImage, GatsbyImage } from 'gatsby-plugin-image'
 import { Link, StaticQuery, graphql } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import Header from './Header'
 
 // import { Navigation } from '.'
 import config from '../../utils/siteConfig'
@@ -22,15 +22,19 @@ import '../../styles/app.css'
 const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
   console.log(data)
   const site = data.site.siteMetadata
-  console.log(site)
-  const cover_image = getImage(site.coverImage)
+  const images = data.allImageSharp.edges
+  console.log(site, images)
+  // const cover_image = getImage(site.coverImage)
   const twitterUrl = site.twitter
     ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}`
     : null
   const facebookUrl = site.facebook
     ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
     : null
-
+  const _findCoverImage = images.find(({ node }) =>
+    node.resize.originalName.includes('cover-image'),
+  )
+  console.log('cover-image:', _findCoverImage)
   return (
     <>
       <Helmet>
@@ -42,8 +46,8 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
       <div className="viewport">
         <div className="viewport-top">
           {/* The main header section on top of the screen */}
-          <header className="site-head">
-            <div className="container">
+          <Header>
+            <div className="w-full container z-10 mx-auto">
               <div className="site-mast">
                 <div className="site-mast-left">
                   <Link to="/">
@@ -122,12 +126,93 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                 </div>
               </nav>
             </div>
-            <StaticImage
-              src={`../images/${cover_image}`}
-              alt={`${site.title} ${site.description}`}
-              imgStyle={{ border: 'solid 1px #ddd', borderRadius: 10 }}
+          </Header>
+          {/* <header className="site-head relative">
+            <GatsbyImage
+              className="absolute top-0 z-0"
+              image={_findCoverImage.node.gatsbyImageData}
+              alt={site.title}
             />
-          </header>
+            <div className="w-full container z-10 mx-auto">
+              <div className="site-mast">
+                <div className="site-mast-left">
+                  <Link to="/">
+                    {site.logo ? (
+                      <img
+                        className="site-logo"
+                        src={site.logo}
+                        alt={site.title}
+                      />
+                    ) : (
+                      <GatsbyImage
+                        image={data.siteTitleMeta}
+                        alt={site.title}
+                      />
+                    )}
+                  </Link>
+                </div>
+                <div className="site-mast-right">
+                  {site.twitter && (
+                    <a
+                      href={twitterUrl || ''}
+                      className="site-nav-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        className="site-nav-icon"
+                        src="/images/icons/twitter.svg"
+                        alt="Twitter"
+                      />
+                    </a>
+                  )}
+                  {site.facebook && (
+                    <a
+                      href={facebookUrl || ''}
+                      className="site-nav-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        className="site-nav-icon"
+                        src="/images/icons/facebook.svg"
+                        alt="Facebook"
+                      />
+                    </a>
+                  )}
+                  <a
+                    className="site-nav-item"
+                    href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      className="site-nav-icon"
+                      src="/images/icons/rss.svg"
+                      alt="RSS Feed"
+                    />
+                  </a>
+                </div>
+              </div>
+              {isHome ? (
+                <div className="site-banner">
+                  <h1 className="site-banner-title">{site.title}</h1>
+                  <p className="site-banner-desc">{site.description}</p>
+                </div>
+              ) : null}
+              <nav className="site-nav">
+                <div className="site-nav-left">
+                  {/* The navigation items as setup in Ghost */}
+          {/* <Navigation data={site.navigation} navClass="site-nav-item" />
+                </div>
+                <div className="site-nav-right">
+                  <Link className="site-nav-button" to="/about">
+                    About
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          </header> */}
 
           <main className="site-main">
             {/* All the main content gets inserted here, index.js, post.js */}
@@ -202,6 +287,28 @@ const DefaultLayoutSettingsQuery = (props) => (
               archived
               createdAt
               updatedAt
+            }
+          }
+        }
+        allImageSharp {
+          edges {
+            node {
+              id
+              resize {
+                src
+                originalName
+              }
+              gatsbyImageData
+              fluid {
+                base64
+                tracedSVG
+                srcWebp
+                srcSetWebp
+                originalImg
+                originalName
+                src
+                srcSet
+              }
             }
           }
         }

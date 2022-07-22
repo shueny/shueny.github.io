@@ -6,6 +6,10 @@ const path = require(`path`)
 const config = require(`./src/utils/siteConfig`)
 const generateRSSFeed = require(`./src/utils/rss/generate-feed`)
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 // let ghostConfig;
 
 // try {
@@ -111,12 +115,6 @@ module.exports = {
           `gatsby-remark-reading-time`,
           // ...
         ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-material-ui`,
-      options: {
-        pathToEmotionCacheProps: `src/emotion-cache-props`,
       },
     },
     // {
