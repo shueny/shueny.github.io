@@ -28,7 +28,7 @@ const Home: NextPage = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-red-50">
+      <main className="">
         <KVTyper data={data['typer']} />
       </main>
 

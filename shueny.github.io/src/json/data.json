@@ -2,7 +2,7 @@
   "typer": {
     "title": "title",
     "description": ["description_1", "description_2"],
-    "imgPicBg": "cover-typer",
+    "imgPicBg": "bg-cover-typer",
     "imgName": "/images/logo-name.png"
   }
 }
