@@ -5,15 +5,15 @@ import dataJson from '../../json/data.json'
 import { MouseLink } from '../mouse'
 import { IKVTyperProps } from './type'
 
-const KVTyper = ({ data }: any) => {
-  const { t, i18n } = useTranslation(['typer'])
+const KVTyper = ({ data }: IKVTyperProps) => {
+  const { t } = useTranslation(['typer'])
   const description_sentence = useMemo(() => {
     return data.description.map((text: string) => t(text))
   }, [data.description, t])
 
   return (
     <div
-      id="kvTyper"
+      id="top"
       className="w-full h-screen kv-typer bg-cover-typer bg-cover text-white-emphasis"
     >
       <div className="h-full w-full flex flex-wrap items-center justify-center">
