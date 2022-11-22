@@ -11,7 +11,9 @@ $ yarn
 ### Local Development
 
 ```
-$ yarn start
+$ yarn start -- --port 3005
+or
+$ npm run start -- --port 3005
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
