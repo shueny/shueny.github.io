@@ -1,8 +1,0 @@
-{
-  "typer": {
-    "title": "title",
-    "description": ["description_1", "description_2"],
-    "imgPicBg": "bg-cover-typer",
-    "imgName": "/images/logo-name.png"
-  }
-}
