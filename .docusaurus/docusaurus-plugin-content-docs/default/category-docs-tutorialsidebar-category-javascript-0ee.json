@@ -1,0 +1,12 @@
+{
+  "title": "Javascript",
+  "description": "take notes about Javsscript",
+  "slug": "/category/javascript",
+  "permalink": "/docs/category/javascript",
+  "navigation": {
+    "next": {
+      "title": "[JS] What is \"Event Loop\"?",
+      "permalink": "/docs/javascript/js-event-loop"
+    }
+  }
+}
