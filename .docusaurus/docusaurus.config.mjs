@@ -13,6 +13,7 @@ export default {
   "favicon": "img/favicon.ico",
   "organizationName": "shueny",
   "projectName": "shueny.github.io",
+  "deploymentBranch": "gh-page",
   "i18n": {
     "defaultLocale": "en",
     "locales": [
