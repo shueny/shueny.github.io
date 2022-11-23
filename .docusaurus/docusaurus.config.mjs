@@ -7,7 +7,7 @@ export default {
   "title": "Shueny's note",
   "tagline": "Dinosaurs are cool",
   "url": "https://shueny.github.io",
-  "baseUrl": "/",
+  "baseUrl": "/zh-Hans/",
   "onBrokenLinks": "throw",
   "onBrokenMarkdownLinks": "warn",
   "favicon": "img/favicon.ico",
