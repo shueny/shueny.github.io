@@ -6,7 +6,7 @@
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/intro",
-  "permalink": "/zh-Hans/docs/intro",
+  "permalink": "/docs/intro",
   "draft": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
   "tags": [],
@@ -18,10 +18,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "[JS] What is \"Event Loop\"?",
-    "permalink": "/zh-Hans/docs/javascript/js-event-loop"
+    "permalink": "/docs/javascript/js-event-loop"
   },
   "next": {
     "title": "Tutorial - Basics",
-    "permalink": "/zh-Hans/docs/category/tutorial---basics"
+    "permalink": "/docs/category/tutorial---basics"
   }
 }

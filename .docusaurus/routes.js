@@ -3,152 +3,187 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/zh-Hans/blog',
-    component: ComponentCreator('/zh-Hans/blog', 'd39'),
+    path: '/__docusaurus/debug',
+    component: ComponentCreator('/__docusaurus/debug', '229'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/archive',
-    component: ComponentCreator('/zh-Hans/blog/archive', 'a21'),
+    path: '/__docusaurus/debug/config',
+    component: ComponentCreator('/__docusaurus/debug/config', 'fe1'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/first-blog-post',
-    component: ComponentCreator('/zh-Hans/blog/first-blog-post', '177'),
+    path: '/__docusaurus/debug/content',
+    component: ComponentCreator('/__docusaurus/debug/content', '489'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/long-blog-post',
-    component: ComponentCreator('/zh-Hans/blog/long-blog-post', '438'),
+    path: '/__docusaurus/debug/globalData',
+    component: ComponentCreator('/__docusaurus/debug/globalData', '3a5'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/mdx-blog-post',
-    component: ComponentCreator('/zh-Hans/blog/mdx-blog-post', 'c79'),
+    path: '/__docusaurus/debug/metadata',
+    component: ComponentCreator('/__docusaurus/debug/metadata', 'e75'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/tags',
-    component: ComponentCreator('/zh-Hans/blog/tags', 'd07'),
+    path: '/__docusaurus/debug/registry',
+    component: ComponentCreator('/__docusaurus/debug/registry', '6c7'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/tags/docusaurus',
-    component: ComponentCreator('/zh-Hans/blog/tags/docusaurus', 'ae3'),
+    path: '/__docusaurus/debug/routes',
+    component: ComponentCreator('/__docusaurus/debug/routes', 'b44'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/tags/facebook',
-    component: ComponentCreator('/zh-Hans/blog/tags/facebook', 'e2d'),
+    path: '/blog',
+    component: ComponentCreator('/blog', '219'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/tags/hello',
-    component: ComponentCreator('/zh-Hans/blog/tags/hello', 'd94'),
+    path: '/blog/archive',
+    component: ComponentCreator('/blog/archive', 'e9c'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/tags/hola',
-    component: ComponentCreator('/zh-Hans/blog/tags/hola', 'bc8'),
+    path: '/blog/first-blog-post',
+    component: ComponentCreator('/blog/first-blog-post', '0cd'),
     exact: true
   },
   {
-    path: '/zh-Hans/blog/welcome',
-    component: ComponentCreator('/zh-Hans/blog/welcome', 'f39'),
+    path: '/blog/long-blog-post',
+    component: ComponentCreator('/blog/long-blog-post', '953'),
     exact: true
   },
   {
-    path: '/zh-Hans/markdown-page',
-    component: ComponentCreator('/zh-Hans/markdown-page', 'e1e'),
+    path: '/blog/mdx-blog-post',
+    component: ComponentCreator('/blog/mdx-blog-post', 'e04'),
     exact: true
   },
   {
-    path: '/zh-Hans/docs',
-    component: ComponentCreator('/zh-Hans/docs', 'a7b'),
+    path: '/blog/tags',
+    component: ComponentCreator('/blog/tags', 'bc5'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/docusaurus',
+    component: ComponentCreator('/blog/tags/docusaurus', 'dc8'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/facebook',
+    component: ComponentCreator('/blog/tags/facebook', '829'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/hello',
+    component: ComponentCreator('/blog/tags/hello', '1fe'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/hola',
+    component: ComponentCreator('/blog/tags/hola', '19f'),
+    exact: true
+  },
+  {
+    path: '/blog/welcome',
+    component: ComponentCreator('/blog/welcome', 'aff'),
+    exact: true
+  },
+  {
+    path: '/markdown-page',
+    component: ComponentCreator('/markdown-page', '969'),
+    exact: true
+  },
+  {
+    path: '/docs',
+    component: ComponentCreator('/docs', '865'),
     routes: [
       {
-        path: '/zh-Hans/docs/category/javascript',
-        component: ComponentCreator('/zh-Hans/docs/category/javascript', 'db2'),
+        path: '/docs/category/javascript',
+        component: ComponentCreator('/docs/category/javascript', 'bb0'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/category/tutorial---basics',
-        component: ComponentCreator('/zh-Hans/docs/category/tutorial---basics', 'b17'),
+        path: '/docs/category/tutorial---basics',
+        component: ComponentCreator('/docs/category/tutorial---basics', 'd44'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/category/tutorial---extras',
-        component: ComponentCreator('/zh-Hans/docs/category/tutorial---extras', '4d0'),
+        path: '/docs/category/tutorial---extras',
+        component: ComponentCreator('/docs/category/tutorial---extras', 'f09'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/intro',
-        component: ComponentCreator('/zh-Hans/docs/intro', '457'),
+        path: '/docs/intro',
+        component: ComponentCreator('/docs/intro', 'aed'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/javascript/js-event-loop',
-        component: ComponentCreator('/zh-Hans/docs/javascript/js-event-loop', '27f'),
+        path: '/docs/javascript/js-event-loop',
+        component: ComponentCreator('/docs/javascript/js-event-loop', 'f60'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-basics/congratulations',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-basics/congratulations', '34e'),
+        path: '/docs/tutorial-basics/congratulations',
+        component: ComponentCreator('/docs/tutorial-basics/congratulations', '793'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-basics/create-a-blog-post',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-basics/create-a-blog-post', '09c'),
+        path: '/docs/tutorial-basics/create-a-blog-post',
+        component: ComponentCreator('/docs/tutorial-basics/create-a-blog-post', '68e'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-basics/create-a-document',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-basics/create-a-document', '16a'),
+        path: '/docs/tutorial-basics/create-a-document',
+        component: ComponentCreator('/docs/tutorial-basics/create-a-document', 'c2d'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-basics/create-a-page',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-basics/create-a-page', '89c'),
+        path: '/docs/tutorial-basics/create-a-page',
+        component: ComponentCreator('/docs/tutorial-basics/create-a-page', 'f44'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-basics/deploy-your-site',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-basics/deploy-your-site', '493'),
+        path: '/docs/tutorial-basics/deploy-your-site',
+        component: ComponentCreator('/docs/tutorial-basics/deploy-your-site', 'e46'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-basics/markdown-features',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-basics/markdown-features', '51d'),
+        path: '/docs/tutorial-basics/markdown-features',
+        component: ComponentCreator('/docs/tutorial-basics/markdown-features', '4b7'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-extras/manage-docs-versions',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-extras/manage-docs-versions', 'd22'),
+        path: '/docs/tutorial-extras/manage-docs-versions',
+        component: ComponentCreator('/docs/tutorial-extras/manage-docs-versions', 'fdd'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
       {
-        path: '/zh-Hans/docs/tutorial-extras/translate-your-site',
-        component: ComponentCreator('/zh-Hans/docs/tutorial-extras/translate-your-site', 'dbb'),
+        path: '/docs/tutorial-extras/translate-your-site',
+        component: ComponentCreator('/docs/tutorial-extras/translate-your-site', '2d7'),
         exact: true,
         sidebar: "tutorialSidebar"
       }
     ]
   },
   {
-    path: '/zh-Hans/',
-    component: ComponentCreator('/zh-Hans/', '196'),
+    path: '/',
+    component: ComponentCreator('/', 'f45'),
     exact: true
   },
   {

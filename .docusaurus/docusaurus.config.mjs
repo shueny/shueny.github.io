@@ -7,13 +7,12 @@ export default {
   "title": "Shueny's note",
   "tagline": "Dinosaurs are cool",
   "url": "https://shueny.github.io",
-  "baseUrl": "/zh-Hans/",
+  "baseUrl": "/",
   "onBrokenLinks": "throw",
   "onBrokenMarkdownLinks": "warn",
   "favicon": "img/favicon.ico",
   "organizationName": "shueny",
   "projectName": "shueny.github.io",
-  "deploymentBranch": "gh-page",
   "i18n": {
     "defaultLocale": "en",
     "locales": [
