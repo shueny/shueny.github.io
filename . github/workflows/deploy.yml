@@ -30,5 +30,8 @@ jobs:
         with:
           github_token: ${{ secrets.GH_PAGES_DEPLOY }}
           # Build output to publish to the `gh-pages` branch:
-          publish_dir: ./build
-          publish_branch: gh_page
+          # publish_dir: ./build
+          # publish_branch: gh-pages
+          BRANCH: gh-pages
+          FOLDER: build
+          BUILD_SCRIPT: npm install && npm run build
