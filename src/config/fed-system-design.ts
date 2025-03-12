@@ -23,11 +23,11 @@ export const fedConfig: FedConfig = {
     },
     {
       title: 'Questions',
-      href: '/astro-blog/docs/fed-system-design/questions',
+      href: '/docs/fed-system-design/questions',
       items: [
         {
           title: 'Poll Widget',
-          href: '/astro-blog/docs/fed-system-design/poll-widget',
+          href: '/docs/fed-system-design/poll-widget',
         },
         // {
         //   title: 'Components',

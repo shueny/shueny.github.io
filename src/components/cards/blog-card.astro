@@ -11,7 +11,7 @@ const post = Astro.props;
 
 <article class="group space-y-4">
   <a
-    href={`/astro-blog/blog/${post.slug}/`}
+    href={`/blog/${post.slug}/`}
     class="flex h-52 group-hover:-translate-y-2 group-hover:shadow-xl transition duration-300"
   >
     <Image
@@ -27,7 +27,7 @@ const post = Astro.props;
 
   <div class="flex items-center justify-between">
     <a
-      href={`/astro-blog/blog/category/${post.data.category}`}
+      href={`/blog/category/${post.data.category}`}
       transition:name={"badge-cat-" + post.slug}
     >
       <Badge radius="md" className="capitalize">
@@ -43,7 +43,7 @@ const post = Astro.props;
   </div>
 
   <div>
-    <a href={`/astro-blog/blog/${post.slug}/`} class="group-hover:underline">
+    <a href={`/blog/${post.slug}/`} class="group-hover:underline">
       <h2
         class="font-heading text-xl md:text-2xl leading-snug line-clamp-3"
         transition:name={"title-" + post.slug}

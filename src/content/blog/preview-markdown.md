@@ -62,7 +62,7 @@ Something a wise person once told me about typography is:
 It's probably important that images look okay here by default as well:
 
 <Image
-  src="/astro-blog/images/blog/placeholder-1.jpg"
+  src="/images/blog/placeholder-1.jpg"
   width="960"
   height="480"
   alt="Image"
@@ -118,7 +118,7 @@ module.exports = {
   },
   variants: {},
   plugins: [],
-}
+};
 ```
 
 Hopefully that looks good enough to you.
