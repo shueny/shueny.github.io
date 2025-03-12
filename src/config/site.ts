@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
   name: 'Shueny',
   description:
     'Website built using Astro v4 & shadcn/ui. Inspired by shadcn/taxonomy.',
-  url: 'https://shueny.github.io/astro-blog',
+  url: 'https://shueny.github.io/',
   ogImage: 'https://astro-nomy.vercel.app/og.jpg',
   links: {
     instagram: 'https://www.instagram.com/shueny_wang/',

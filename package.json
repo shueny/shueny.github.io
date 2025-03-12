@@ -2,7 +2,7 @@
   "name": "astro-nomy",
   "type": "module",
   "version": "0.1.0",
-  "homepage": "https://shueny.github.io/astro-blog",
+  "homepage": "https://shueny.github.io/",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

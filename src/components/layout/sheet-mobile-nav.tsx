@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { siteConfig } from "@/config/site";
-import { Icons } from "@/icons";
-import type { MainNavItem, SidebarNavItem } from "@/types";
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { siteConfig } from '@/config/site';
+import { Icons } from '@/icons';
+import type { MainNavItem, SidebarNavItem } from '@/types';
 
 interface SheetMobileProps {
   mainNavItems?: MainNavItem[];
@@ -42,7 +42,7 @@ export function SheetMobileNav({
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">
-        <a href="/astro-blog" className="flex items-center">
+        <a href="/" className="flex items-center">
           <Icons.slogo className="mr-2 size-8" />
           <span className="font-bold">{siteConfig.name}</span>
         </a>
@@ -58,7 +58,7 @@ export function SheetMobileNav({
                         href={item.href}
                         className="text-muted-foreground"
                         onClick={() =>
-                          item.href.startsWith("/#")
+                          item.href.startsWith('/#')
                             ? setOpen(false)
                             : undefined
                         }
@@ -87,7 +87,7 @@ export function SheetMobileNav({
                           {subItem.href ? (
                             <a
                               href={subItem.href}
-                              target={subItem?.external ? "_blank" : undefined}
+                              target={subItem?.external ? '_blank' : undefined}
                               className="text-muted-foreground"
                             >
                               {subItem.title}
