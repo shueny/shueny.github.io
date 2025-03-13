@@ -1,4 +1,4 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
+const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -14,8 +14,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', ...fontFamily.sans],
-        heading: ['CalSans Semibold', ...fontFamily.sans],
+        sans: ['Nunito', 'Lato', ...fontFamily.sans],
+        heading: ['Nunito', 'Lato', ...fontFamily.sans],
       },
       height: {
         18: '4.5rem',
@@ -79,8 +79,12 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'text-reveal':
+          'text-reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards',
+        'text-reveal-content':
+          'text-reveal-content 1s cubic-bezier(0.77, 0, 0.175, 1) forwards',
       },
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
-}
+};

@@ -9,17 +9,22 @@ import {
 
 export type Icon = LucideIcon;
 
+type IconProps = LucideProps & {
+  className?: string;
+};
+
 export const Icons = {
   flame: Flame,
   calendar: Calendar,
   tv: Tv2,
   clock: Clock,
-  logo: ({ ...props }: LucideProps) => (
+  logo: ({ className, ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
       viewBox="0 0 24 24"
+      className={className}
       {...props}
     >
       <path
@@ -30,10 +35,12 @@ export const Icons = {
       />
     </svg>
   ),
-  slogo: ({ ...props }: LucideProps) => (
+  slogo: ({ className, ...props }: IconProps) => (
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
       width="2rem" height="2rem" viewBox="0 0 104 104"
-      preserveAspectRatio="xMidYMid meet">
+      preserveAspectRatio="xMidYMid meet"
+      className={className}
+      {...props}>
 
       <g transform="translate(0.000000,104) scale(0.100000,-0.1)"
       fill="currentColor" stroke="none">
