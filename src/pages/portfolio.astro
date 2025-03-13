@@ -1,155 +1,295 @@
 ---
 import MainLayout from "@/layouts/main-layout.astro";
 import { Image } from "astro:assets";
-import { hobbies } from "@/config/about.ts";
+import { hobbies } from "@/config/about";
 import { Button } from "@/components/ui/button";
 import { Icon } from "astro-icon/components";
+import type { Portfolio } from "@/lib/types/portfolio";
+import { graphqlRequest } from '@/lib/graphql/client';
+import SplitText from "@/components/ui/split-text";
+import TypeWriter from "@/components/ui/type-writer";
+
+const SECTION_ITEMS = [
+  { id: "about", text: "About" },
+  { id: "skills", text: "Skills" },
+  { id: "projects", text: "Works" },
+  { id: "work-experiences", text: "Work Experiences" },
+  { id: "education", text: "Education" },
+  { id: "sepcial-experiences", text: "Special Experiences" },
+];
+
+const query = `
+  query GetPortfolio {
+    portfolio {
+      greeting {
+        name
+        hiIm
+        jobTitle
+        hobbies
+        email
+        portfolioUrl
+      }
+      summary
+      skills {
+        technical
+        soft
+        languages
+      }
+      workExperiences {
+        company
+        position
+        period
+        description
+        technologies
+      }
+      specialExperiences {
+        title
+        description
+        date
+        image
+      }
+    }
+  }
+`;
+
+let data;
+let error;
+
+try {
+  const result = await graphqlRequest<{ portfolio: Portfolio }>(
+    query,
+    {},
+    Astro.url.origin
+  );
+  data = result.data;
+  console.log('API Response:', JSON.stringify(result, null, 2));
+} catch (e) {
+  error = e;
+  console.error('GraphQL Error:', e);
+}
 ---
+<!-- 
+{error && (
+  <pre class="p-4 bg-red-100 text-red-700 overflow-auto">
+    Error: {JSON.stringify(error, null, 2)}
+  </pre>
+)}
+
+{!error && !data && (
+  <div class="p-4">Loading...</div>
+)}
+
+{data && (
+  <pre class="p-4 bg-gray-100 overflow-auto">
+    {JSON.stringify(data, null, 2)}
+  </pre>
+)} -->
 
 <MainLayout title="Portfolio" description="Shueny's experiences">
-  <section class="space-y-5">
+  <div class="parallax-container">
     <section
-      class="relative container max-w-screen-md mb-28 mt-16 sm:mt-20 lg:mt-28"
+      id="greeting"
+      class="parallax-section relative container max-w-none w-full min-h-[calc(100vh - 3rem)] md:min-h-[calc(100vh - 3rem)] greeting"
+      data-speed="0.5"
     >
-      <div class="flex h-full flex-col justify-between">
-        <div class="grid gap-8 sm:grid-cols-2">
-          <div>
-            <h1 class="text-4xl font-heading text-foreground">Shueny</h1>
-            <p class="text-base text-muted-foreground mt-0.5">
-              Senior Frontend Developer
-            </p>
-          </div>
-          <div>
-            <p class="mb-12 text-base text-muted-foreground">
-              Hi there! I'm Shueny, a web dev enthusiast with a passion for
-              user interfaces.
-              <br />
-              What's up with you?
-            </p>
-            <div class="flex items-center gap-3">
-              <Button className="rounded-xl">
-                <Icon name="lucide:mail" class="mr-2 size-4" />
-                <a href="mailto:shuen29@gmail.com">Talk with me</a>
-              </Button>
+      <div 
+        class="absolute inset-0 w-full h-[calc(100vh-2.75rem)] z-0"
+        style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('/images/section1-bg.jpg') no-repeat center center; background-size: cover;"
+      />
 
-              <Button variant="outline" className="rounded-xl">
-                <Icon name="lucide:briefcase" class="mr-2.5 size-4" />
-                <a href="https://mickasmt.com/" target="_blank">My works</a>
-              </Button>
-            </div>
-          </div>
+      <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 font-lato">
+          <SplitText 
+            text={`${data?.portfolio.greeting.hiIm} ${data?.portfolio.greeting.name}`}
+            className="text-3xl md:text-5xl font-bold font-lato"
+            delay={50}
+            animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+            animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+            client:load
+          />
+        </h1>
+        <p class="text-2xl md:text-3xl text-gray-400">
+          <TypeWriter 
+            texts={[
+              data?.portfolio.greeting.jobTitle || '',
+              data?.portfolio.greeting.hobbies || ''
+            ]}
+            typingSpeed={80}
+            deletingSpeed={40}
+            pauseBetween={2000}
+            delay={1500}
+            client:load
+          />
+        </p>
+      </div>
+
+      <a href="#skills" class="absolute left-1/2 transform -translate-x-1/2 z-10" style="bottom: 80px;">
+        <div class="block h-10 w-7 border-2 border-white rounded-2xl relative">
+          <div 
+            class="absolute left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#efefef] rounded-full animate-dot"
+            style="animation: dot-animation .8s ease-in-out infinite;"
+          />
         </div>
+      </a>
+    </section>
+
+    <section 
+      class="parallax-section container max-w-screen-md skills"
+      data-speed="0.3"
+      id="about"
+    >
+      <div class="grid grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        about me
       </div>
     </section>
 
-    <div
-      class="relative z-10 flex flex-col justify-center overflow-hidden lg:overflow-visible pb-16"
+    <section 
+      class="parallax-section container max-w-screen-md skills"
+      data-speed="0.3"
+      id="skills"
     >
-      <div
-        class="mx-auto flex w-max -translate-x-[15%] justify-center lg:w-full lg:translate-x-0"
-      >
-        <div
-          class="relative z-10 mx-auto max-w-4xl px-4 md:max-w-6xl md:px-12 lg:max-w-5xl lg:px-6 xl:max-w-[80rem] xl:px-6 2xl:px-0"
-        >
-          <div class="grid grid-cols-4 items-center gap-4 md:gap-6">
-            {/* First Column */}
-            <div class="space-y-4 md:space-y-6">
-              <Image
-                class="h-full w-auto object-cover overflow-hidden rounded-xl"
-                src={hobbies[0].image}
-                alt={hobbies[0].alt}
-                width={800}
-                height={1226}
-                loading="eager"
-              />
-              <div class="h-52 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[1].image}
-                  alt={hobbies[1].alt}
-                  width={800}
-                  height={1334}
-                />
-              </div>
-            </div>
-
-            {/* Second Column */}
-            <div class="space-y-4 md:space-y-6">
-              <div class="h-48 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[2].image}
-                  alt={hobbies[2].alt}
-                  width={800}
-                  height={983}
-                  loading="eager"
-                />
-              </div>
-              <Image
-                class="rounded-xl"
-                src={hobbies[3].image}
-                alt={hobbies[3].alt}
-                width={800}
-                height={1108}
-                loading="eager"
-              />
-              <div class="relative h-48 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[4].image}
-                  alt={hobbies[4].alt}
-                  width={1260}
-                  height={750}
-                />
-              </div>
-            </div>
-
-            {/* Third Column */}
-            <div class="space-y-4 md:space-y-6">
-              <div class="h-56 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[5].image}
-                  alt={hobbies[5].alt}
-                  width={800}
-                  height={1334}
-                  loading="eager"
-                />
-              </div>
-              <div class="h-80 w-full overflow-hidden rounded-xl xl:h-[28rem]">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[6].image}
-                  alt={hobbies[6].alt}
-                  width={801}
-                  height={2477}
-                />
-              </div>
-            </div>
-
-            {/* Fourth Column */}
-            <div class="space-y-4 md:space-y-6">
-              <div class="overflow-hidden rounded-xl bg-white">
-                <Image
-                  src={hobbies[7].image}
-                  alt={hobbies[7].alt}
-                  width={800}
-                  height={900}
-                  loading="eager"
-                />
-              </div>
-              <div class="overflow-hidden rounded-xl bg-white">
-                <Image
-                  src={hobbies[8].image}
-                  alt={hobbies[8].alt}
-                  width={800}
-                  height={900}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="grid grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        skills
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section 
+      class="parallax-section container max-w-screen-md projects"
+      data-speed="0.4"
+      id="projects"
+    >
+      <div class="grid grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        projects
+      </div>
+    </section>
+
+    <section 
+      class="parallax-section container max-w-screen-md work-experiences"
+      data-speed="0.2"
+      id="work-experiences"
+    >
+      <div class="grid grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        work-experiences
+      </div>
+    </section>
+
+    <section 
+      class="parallax-section container max-w-screen-md education"
+      data-speed="0.2"
+      id="education"
+    >
+      <div class="grid grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        education
+      </div>
+    </section>
+
+    <section 
+      class="parallax-section container max-w-screen-md special-experiences"
+      data-speed="0.3"
+      id="sepcial-experiences"
+    >
+      <div class="grid grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        special-experiences
+      </div>
+    </section>
+  </div>
+
+  <div class="hidden fixed right-4 top-[calc(2.75rem+1rem)] md:top-[calc(3rem+1rem)] md:flex flex-col gap-2 z-50">
+    {
+      SECTION_ITEMS.map((item) => (
+        <a
+          href={`#${item.id}`}
+          class="text-sm text-gray-500 hover:text-white dark:text-gray-400 dark:hover:text-white relative group transition-colors duration-200 text-right"
+        >
+          {item.text}
+          <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-white dark:bg-white group-hover:w-full transition-all duration-300 ease-out section-indicator" 
+                style="transform-origin: right"/>
+        </a>
+      ))
+    }
+  </div>
 </MainLayout>
+
+<style>
+  .parallax-container {
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .parallax-section {
+    position: relative;
+    min-height: calc(100vh - 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+  }
+
+  .greeting {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Add smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @keyframes dot-animation {
+    0% {
+      top: 25%;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: 75%;
+      opacity: 0;
+    }
+  }
+
+  .animate-dot {
+    animation: dot-animation 1.8s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+</style>
+
+<script>
+  // Intersection Observer for fade-in effect
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100', 'translate-y-0');
+        entry.target.classList.remove('opacity-0', 'translate-y-[50px]');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  // Observe all section content
+  document.querySelectorAll('.parallax-section > div').forEach((section) => {
+    observer.observe(section);
+  });
+
+  // Parallax scroll effect
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.parallax-section');
+    
+    sections.forEach(section => {
+      const speed = section.getAttribute('data-speed') || '0';
+      const yPos = -(window.pageYOffset * parseFloat(speed));
+      (section as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
+    });
+  });
+</script>
