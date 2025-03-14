@@ -1,13 +1,28 @@
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { portfolioData } from '../data/portfolio';
+import type { Portfolio } from '../types/portfolio';
+
+type PortfolioData = typeof portfolioData;
 
 const typeDefs = `#graphql
   type Greeting {
-    hiIm: String!
+    hi: String!
+    iam: String!
     name: String!
+    nameEn: String!
+    nameZh: String!
     jobTitle:  String!
     hobbies: String!
     email: String!
+    portfolioUrl: String!
+  }
+  
+  type Summary {
+    title: String!
+    list: [String!]!
+    email: String!
+    linkedin: String!
+    github: String!
     portfolioUrl: String!
   }
 
@@ -41,7 +56,7 @@ const typeDefs = `#graphql
 
   type Portfolio {
     greeting: Greeting!
-    summary: [String!]!
+    summary: Summary!
     education: [Education!]!
     skills: Skills!
     workExperiences: [WorkExperience!]!

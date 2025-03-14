@@ -2,14 +2,25 @@ import { z } from 'zod';
 
 export const GreetingSchema = z.object({
   name: z.string(),
-  hiIm: z.string(),
+  nameEn: z.string(),
+  nameZh: z.string(),
+  hi: z.string(),
+  iam: z.string(),
   jobTitle: z.string(),
   hobbies: z.string(),
   email: z.string().email(),
+  phone: z.string(),
   portfolioUrl: z.string().url(),
 });
 
-export const SummarySchema = z.array(z.string());
+export const SummarySchema = z.object({
+  title: z.string(),
+  list: z.array(z.string()),
+  email: z.string().email(),
+  linkedin: z.string().url(),
+  github: z.string().url(),
+  portfolioUrl: z.string().url(),
+});
 
 export const EducationSchema = z.array(
   z.object({
@@ -56,7 +67,6 @@ export const PortfolioSchema = z.object({
 
 export type Portfolio = z.infer<typeof PortfolioSchema>;
 
-// 添加 GraphQL 查詢結果的類型
 export type GraphQLResponse<T> = {
   data?: T;
   errors?: Array<{

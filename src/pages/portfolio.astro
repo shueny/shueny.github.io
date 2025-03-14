@@ -1,13 +1,14 @@
 ---
 import MainLayout from "@/layouts/main-layout.astro";
-import { Image } from "astro:assets";
-import { hobbies } from "@/config/about";
-import { Button } from "@/components/ui/button";
-import { Icon } from "astro-icon/components";
 import type { Portfolio } from "@/lib/types/portfolio";
 import { graphqlRequest } from '@/lib/graphql/client';
 import SplitText from "@/components/ui/split-text";
 import TypeWriter from "@/components/ui/type-writer";
+import { Spinner } from "@/components/ui/spinner";
+import { SocialIcons } from "@/components/ui/social-icons";
+import { Icons } from "@/icons";
+import { Toaster } from "@/components/ui/sonner";
+import ErrorHandler from "@/components/error-handler";
 
 const SECTION_ITEMS = [
   { id: "about", text: "About" },
@@ -23,13 +24,23 @@ const query = `
     portfolio {
       greeting {
         name
-        hiIm
+        nameEn
+        nameZh
+        hi
+        iam
         jobTitle
         hobbies
         email
         portfolioUrl
       }
-      summary
+      summary {
+        title
+        list
+        email
+        github
+        linkedin
+        portfolioUrl
+      }
       skills {
         technical
         soft
@@ -61,29 +72,37 @@ try {
     {},
     Astro.url.origin
   );
-  data = result.data;
-  console.log('API Response:', JSON.stringify(result, null, 2));
+  
+  if (result.errors) {
+    error = result.errors;
+    console.error('GraphQL Errors:', result.errors);
+  } else if (!result.data) {
+    error = new Error('No data received');
+    console.error('No data in response');
+  } else {
+    data = result.data.portfolio;
+    console.log('Received data:', data);
+  }
 } catch (e) {
   error = e;
-  console.error('GraphQL Error:', e);
+  console.error('Request Error:', e);
 }
+
+console.log({
+  url: Astro.url.origin,
+  query,
+  result: { data, error }
+});
 ---
-<!-- 
-{error && (
-  <pre class="p-4 bg-red-100 text-red-700 overflow-auto">
-    Error: {JSON.stringify(error, null, 2)}
-  </pre>
-)}
+
+<Toaster richColors closeButton position="top-right" />
+<ErrorHandler error={error} client:load />
 
 {!error && !data && (
-  <div class="p-4">Loading...</div>
+  <div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+    <Spinner className="w-8 h-8" />
+  </div>
 )}
-
-{data && (
-  <pre class="p-4 bg-gray-100 overflow-auto">
-    {JSON.stringify(data, null, 2)}
-  </pre>
-)} -->
 
 <MainLayout title="Portfolio" description="Shueny's experiences">
   <div class="parallax-container">
@@ -98,32 +117,38 @@ try {
       />
 
       <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
-        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 font-lato">
-          <SplitText 
-            text={`${data?.portfolio.greeting.hiIm} ${data?.portfolio.greeting.name}`}
-            className="text-3xl md:text-5xl font-bold font-lato"
-            delay={50}
-            animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-            animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
-            client:load
-          />
-        </h1>
-        <p class="text-2xl md:text-3xl text-gray-400">
-          <TypeWriter 
-            texts={[
-              data?.portfolio.greeting.jobTitle || '',
-              data?.portfolio.greeting.hobbies || ''
-            ]}
-            typingSpeed={80}
-            deletingSpeed={40}
-            pauseBetween={2000}
-            delay={1500}
-            client:load
-          />
-        </p>
+        {!data?.greeting ? (
+          <Spinner />
+        ) : (
+          <>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 font-lato">
+              <SplitText 
+                text={`${data.greeting.hi} ${data.greeting.iam} ${data.greeting.nameEn}`}
+                className="text-3xl md:text-5xl font-bold font-lato"
+                delay={50}
+                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                client:load
+              />
+            </h1>
+            <p class="text-2xl md:text-3xl text-gray-400">
+              <TypeWriter 
+                texts={[
+                  data?.greeting?.jobTitle,
+                  data?.greeting?.hobbies
+                ]}
+                typingSpeed={80}
+                deletingSpeed={40}
+                pauseBetween={2000}
+                delay={1500}
+                client:load
+              />
+            </p>
+          </>
+        )}
       </div>
 
-      <a href="#skills" class="absolute left-1/2 transform -translate-x-1/2 z-10" style="bottom: 80px;">
+      <a href="#about" class="absolute left-1/2 transform -translate-x-1/2 z-10" style="bottom: 80px;">
         <div class="block h-10 w-7 border-2 border-white rounded-2xl relative">
           <div 
             class="absolute left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#efefef] rounded-full animate-dot"
@@ -134,17 +159,53 @@ try {
     </section>
 
     <section 
-      class="parallax-section container max-w-screen-md skills"
+      class="parallax-section container max-w-screen-md md:max-w-screen-xl about"
       data-speed="0.3"
       id="about"
     >
-      <div class="grid grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
-        about me
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        <div>
+          {!data?.summary ? (
+            <div class="flex items-center justify-center h-full">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              <h2 class="text-4xl font-bold mb-4">{data.summary.title}</h2>
+              <h3 class="text-3xl mb-5">{`${data.greeting.hi} ${data.greeting.iam} ${data.greeting.nameEn}`}</h3>
+              <div class="text-gray-600 dark:text-gray-300">
+                <ul class="space-y-2">
+                  {data.summary.list.map((item: string) => (
+                    <li class="flex items-start">
+                      <span class="font-light text-gray-600 dark:text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="flex gap-4 mt-8">
+                  <div class="flex items-center gap-2">
+                    <a 
+                      href={`mailto:${data.summary.email}`}
+                      class="flex items-center gap-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                      aria-label="Send email"
+                    >
+                      <Icons.email />
+                      <span>{data.summary.email}</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="mt-8">
+                    <SocialIcons github={`${data.summary.github}`} linkedin={`${data.summary.linkedin}`} website={`${data.summary.portfolioUrl}`} />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+        <div></div>
       </div>
     </section>
 
     <section 
-      class="parallax-section container max-w-screen-md skills"
+      class="parallax-section container max-w-screen-lg skills"
       data-speed="0.3"
       id="skills"
     >
@@ -154,7 +215,7 @@ try {
     </section>
 
     <section 
-      class="parallax-section container max-w-screen-md projects"
+      class="parallax-section container max-w-screen-lg projects"
       data-speed="0.4"
       id="projects"
     >
@@ -164,7 +225,7 @@ try {
     </section>
 
     <section 
-      class="parallax-section container max-w-screen-md work-experiences"
+      class="parallax-section container max-w-screen-lg work-experiences"
       data-speed="0.2"
       id="work-experiences"
     >
@@ -174,7 +235,7 @@ try {
     </section>
 
     <section 
-      class="parallax-section container max-w-screen-md education"
+      class="parallax-section container max-w-screen-lg education"
       data-speed="0.2"
       id="education"
     >
@@ -184,7 +245,7 @@ try {
     </section>
 
     <section 
-      class="parallax-section container max-w-screen-md special-experiences"
+      class="parallax-section container max-w-screen-lg special-experiences"
       data-speed="0.3"
       id="sepcial-experiences"
     >
@@ -199,11 +260,13 @@ try {
       SECTION_ITEMS.map((item) => (
         <a
           href={`#${item.id}`}
-          class="text-sm text-gray-500 hover:text-white dark:text-gray-400 dark:hover:text-white relative group transition-colors duration-200 text-right"
+          class="text-sm text-gray-400 hover:text-gray-300 dark:text-gray-300 dark:hover:text-gray-300 relative group transition-colors duration-200 text-right"
         >
-          {item.text}
-          <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-white dark:bg-white group-hover:w-full transition-all duration-300 ease-out section-indicator" 
+          <span class="relative">{item.text}
+            <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-gray-300 dark:bg-white group-hover:w-full transition-all duration-300 ease-out section-indicator" 
                 style="transform-origin: right"/>
+          </span>
+          
         </a>
       ))
     }

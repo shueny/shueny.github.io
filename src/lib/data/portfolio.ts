@@ -1,17 +1,31 @@
 export const portfolioData = {
   greeting: {
     name: 'Shueny Wang',
-    hiIm: 'Hi, I am',
+    nameEn: 'Shueny Wang',
+    nameZh: '王舜瑩',
+    hi: 'Hi!',
+    iam: 'I am',
     jobTitle: 'Senior Frontend Developer',
     hobbies: 'Photography, Hiking and Travel-lover',
     email: 'shuen29@gmail.com',
     portfolioUrl: 'https://shueny.github.io/',
   },
-  summary: [
-    '8+ years of experience in frontend development',
-    'Specialized in React and TypeScript',
-    'Passionate about UI/UX design',
-  ],
+  summary: {
+    title: 'About Me.',
+    list: [
+      'I am a web designer and developer from Taiwan.',
+      '10 years of working experience in web development, including 7 years of experience in Frontend development and 3 years of experience as a designer.',
+      'Diverse background in e-commerce, B2B ERP systems, and security platforms.',
+      'Proficient in ReactJS, TypeScript, Next.js, and automated testing frameworks like Cypress and Playwright.',
+      'Proven track record in improving development efficiency, enhancing user experience, and delivering high-quality, scalable solutions.',
+      'Strong communicator and team player who thrives in collaborative environments and is passionate about continuous learning and sharing knowledge.',
+    ],
+    // phone: '+852 6180 0000',
+    email: 'shuen29@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/shueny-wang/',
+    github: 'https://github.com/shueny',
+    portfolioUrl: 'https://shueny.github.io/',
+  },
   education: [
     {
       school: 'Example University',
