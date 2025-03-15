@@ -42,9 +42,12 @@ const query = `
         portfolioUrl
       }
       skills {
-        technical
-        soft
-        languages
+        title
+        list {
+          title
+          icon
+          skills
+        }
       }
       workExperiences {
         company
@@ -161,6 +164,7 @@ console.log({
     <!-- About -->
     <section 
       class="parallax-section"
+      class="parallax-section section-layout bg-white dark:bg-gray-900"
       data-speed="0.3"
       id="about"
     >
@@ -211,8 +215,37 @@ console.log({
       data-speed="0.3"
       id="skills"
     >
-      <div class="container max-w-screen-md md:max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
-        skills
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold mb-2">{data?.skills.title}</h2>
+        </div>
+
+        {!data?.skills ? (
+          <div class="flex justify-center">
+            <Spinner />
+          </div>
+        ) : (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {
+              data.skills.list.map((category) => (
+              <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl">
+                <div class="flex items-center gap-4 mb-8">
+                  <h4 class="text-xl font-bold">{category.title}</h4>
+                </div>
+                <div class="mb-8">
+                  <div class="flex flex-wrap gap-2">
+                    {category.skills.map((skill: string) => (
+                      <span class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full">
+                        {skill}
+                      </span>
+                    ))}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        )}
       </div>
     </section>
 

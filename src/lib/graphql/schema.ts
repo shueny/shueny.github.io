@@ -33,10 +33,15 @@ const typeDefs = `#graphql
     description: String
   }
 
+  type SkillCategory {
+    title: String!
+    icon: String!
+    skills: [String!]!
+  }
+
   type Skills {
-    technical: [String!]!
-    soft: [String!]!
-    languages: [String!]!
+    title: String!
+    list: [SkillCategory!]!
   }
 
   type WorkExperience {
@@ -54,6 +59,12 @@ const typeDefs = `#graphql
     image: String
   }
 
+  type Language {
+    title: String!
+    icon: String!
+    skills: [String!]!
+  }
+
   type Portfolio {
     greeting: Greeting!
     summary: Summary!
@@ -61,6 +72,7 @@ const typeDefs = `#graphql
     skills: Skills!
     workExperiences: [WorkExperience!]!
     specialExperiences: [SpecialExperience!]!
+    languages: Language!
   }
 
   type Query {

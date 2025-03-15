@@ -31,10 +31,30 @@ export const EducationSchema = z.array(
   })
 );
 
-export const SkillsSchema = z.object({
-  technical: z.array(z.string()),
-  soft: z.array(z.string()),
-  languages: z.array(z.string()),
+const SkillCategorySchema = z.object({
+  title: z.string(),
+  icon: z.string(),
+  skills: z.array(z.string()),
+});
+
+// export const SkillsSchema = z.object({
+//   title: z.string(),
+//   webMobile: SkillCategorySchema,
+//   performance: SkillCategorySchema,
+//   uiux: SkillCategorySchema,
+//   versionControl: SkillCategorySchema,
+//   testing: SkillCategorySchema,
+// });
+
+const LanguageSchema = z.object({
+  title: z.string(),
+  icon: z.string(),
+  skills: z.array(z.string()),
+});
+
+export const SkillSetSchema = z.object({
+  title: z.string(),
+  list: z.array(SkillCategorySchema),
 });
 
 export const WorkExperienceSchema = z.array(
@@ -60,7 +80,7 @@ export const PortfolioSchema = z.object({
   greeting: GreetingSchema,
   summary: SummarySchema,
   education: EducationSchema,
-  skills: SkillsSchema,
+  skills: SkillSetSchema,
   workExperiences: WorkExperienceSchema,
   specialExperiences: SpecialExperienceSchema,
 });
