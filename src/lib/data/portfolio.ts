@@ -58,7 +58,7 @@ export const portfolioData = {
       },
       {
         title: 'Performance & SEO',
-        icon: 'desktop',
+        icon: 'analytics',
         skills: [
           'Google Analytics',
           'Google Tag Manager',
@@ -77,7 +77,7 @@ export const portfolioData = {
       },
       {
         title: 'Version Control & CI/CD',
-        icon: 'palette',
+        icon: 'branch',
         skills: [
           'Git',
           'GitHub',
@@ -88,7 +88,7 @@ export const portfolioData = {
       },
       {
         title: 'Testing & Automation',
-        icon: 'test',
+        icon: 'gears',
         skills: [
           'Cypress',
           'Playwright',
@@ -101,7 +101,7 @@ export const portfolioData = {
       },
       {
         title: 'Languages',
-        icon: 'language',
+        icon: 'global',
         skills: ['English', 'Mandarin'],
       },
     ],

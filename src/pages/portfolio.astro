@@ -9,6 +9,7 @@ import { SocialIcons } from "@/components/ui/social-icons";
 import { Icons } from "@/icons";
 import { Toaster } from "@/components/ui/sonner";
 import ErrorHandler from "@/components/error-handler";
+import { Icon } from "lucide-react";
 
 const SECTION_ITEMS = [
   { id: "aboutMe", text: "About" },
@@ -229,7 +230,15 @@ console.log({
             {
               data.skills.list.map((category) => (
               <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl">
-                <div class="flex items-center gap-4 mb-8">
+                <div class="flex flex-col items-center gap-4 mb-8">
+                  <div class="p-3 bg-gray-100 dark:bg-slate-700 text-slate-700 fill-current rounded-full w-12 h-12 flex items-center justify-center">
+                    {category.icon === 'desktop' && <Icons.desktop />}
+                    {category.icon === 'analytics' && <Icons.analytics />}
+                    {category.icon === 'palette' && <Icons.palette />}
+                    {category.icon === 'global' && <Icons.global />}
+                    {category.icon === 'branch' && <Icons.branch />}
+                    {category.icon === 'gears' && <Icons.gears/>}
+                  </div>
                   <h4 class="text-xl font-bold">{category.title}</h4>
                 </div>
                 <div class="mb-8">
