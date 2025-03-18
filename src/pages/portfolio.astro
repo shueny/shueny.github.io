@@ -9,7 +9,9 @@ import { SocialIcons } from "@/components/ui/social-icons";
 import { Icons } from "@/icons";
 import { Toaster } from "@/components/ui/sonner";
 import ErrorHandler from "@/components/error-handler";
-import { Icon } from "lucide-react";
+import PortfolioCarousel from "@/components/ui/portfolio-carousel";
+import ProjectsCard from "@/components/ui/projects-card";
+import { DialogDemo } from "@/components/ui/dialog-project";
 
 const SECTION_ITEMS = [
   { id: "aboutMe", text: "About" },
@@ -48,6 +50,16 @@ const query = `
           title
           icon
           skills
+        }
+      }
+      projects {
+        title
+        list {
+          title
+          description
+          image 
+          url
+          technologies
         }
       }
       workExperiences {
@@ -216,16 +228,15 @@ console.log({
       data-speed="0.3"
       id="skills"
     >
-      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-2">{data?.skills.title}</h2>
-        </div>
-
-        {!data?.skills ? (
+      {!data?.skills ? (
           <div class="flex justify-center">
             <Spinner />
           </div>
         ) : (
+        <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-2">{data?.skills.title}</h2>
+          </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             {
               data.skills.list.map((category) => (
@@ -254,8 +265,8 @@ console.log({
               ))
             }
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
 
     <!-- Projects -->
@@ -264,9 +275,19 @@ console.log({
       data-speed="0.4"
       id="projects"
     >
-      <div class="container max-w-screen-lg grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
-        projects
-      </div>
+      {!data?.skills ? (
+        <div class="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold mb-2">{data?.skills.title}</h2>
+        </div>
+        <ProjectsCard data={data.projects} client:load/>
+
+          {/* <PortfolioCarousel client:load data={data?.projects}/> */}
+        </div>)}
     </section>
 
     <!-- Work Experiences -->

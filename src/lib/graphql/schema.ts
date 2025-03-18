@@ -52,6 +52,19 @@ const typeDefs = `#graphql
     technologies: [String!]!
   }
 
+  type Project {
+    title: String!
+    description: [String!]!
+    image: String
+    url: String
+    technologies: [String!]!
+  }
+
+  type Projects {
+    title: String!
+    list: [Project!]!
+  }
+
   type SpecialExperience {
     title: String!
     description: String!
@@ -70,6 +83,7 @@ const typeDefs = `#graphql
     summary: Summary!
     education: [Education!]!
     skills: Skills!
+    projects: Projects!
     workExperiences: [WorkExperience!]!
     specialExperiences: [SpecialExperience!]!
     languages: Language!

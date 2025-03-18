@@ -76,11 +76,29 @@ export const SpecialExperienceSchema = z.array(
   })
 );
 
+export const ProjectSchema = z.object({
+  title: z.string(),
+  description: z.array(z.string()),
+  image: z.string().optional(),
+  url: z.string().url().optional(),
+  technologies: z.array(z.string()),
+});
+
+export type Project = z.infer<typeof ProjectSchema>;
+
+export const ProjectsSchema = z.object({
+  title: z.string(),
+  list: z.array(ProjectSchema),
+});
+
+export type Projects = z.infer<typeof ProjectsSchema>;
+
 export const PortfolioSchema = z.object({
   greeting: GreetingSchema,
   summary: SummarySchema,
   education: EducationSchema,
   skills: SkillSetSchema,
+  projects: ProjectsSchema,
   workExperiences: WorkExperienceSchema,
   specialExperiences: SpecialExperienceSchema,
 });
