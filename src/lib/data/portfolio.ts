@@ -172,7 +172,7 @@ export const portfolioData = {
       description: [
         'Led the automation of UI end-to-end testing with Cypress & TestRail, reducing manual testing time by 50% while improving product quality, delivery efficiency, and user satisfaction.',
         'Spearheaded a multilingual company website using Next.js, TypeScript, and i18n libraries, improving SEO and optimizing code. Achieved a 30% boost in rendering performance, faster page loads, and reduced server costs.',
-        'Led an incident management system using Python’s Wagtail CMS and GraphQL APIs, improving incident tracking within the VSOC (Vehicle Security Operation Center) platform.',
+        'Led a CMS system using Wagtail CMS and GraphQL with an AI-driven automation engine to parse and categorize incidents, reducing manual effort and improving data accuracy.',
         'Implemented a micro-frontend architecture using Nx to modularize large-scale applications, improving scalability and maintainability.',
         'Enhanced application performance and efficiency by implementing lazy loading, code splitting, and efficient API handling, reducing load times across the platform.',
       ],
@@ -233,6 +233,37 @@ export const portfolioData = {
         'Google Analytics',
         'Web Performance Optimization',
       ],
+    },
+    {
+      company: 'Skyway Travel Agency',
+      position: 'Web & Graphic Designer',
+      period: 'Sep. 2015 - Jul. 2016',
+      description: [
+        'Updated and maintained travel products on website',
+        'Designed banners and all of the travel routes products, like DM handbook...etc.',
+        'Planed and layout the exhibition',
+        'Contacted with printers or other manufacturers',
+      ],
+      technologies: [
+        'JavaScript',
+        'jQuery',
+        'HTML',
+        'CSS',
+        'Photoshop',
+        'Illustrator',
+      ],
+    },
+    {
+      company: 'TUKEEN Co., Ltd.',
+      position: 'Designer & Purchasing Assistant',
+      period: 'Oct. 2013 - Aug. 2015',
+      description: [
+        'CIS design',
+        'Products photography',
+        'Contacted with foreign customers by emails',
+        'Processed overseas order-related business',
+      ],
+      technologies: ['Photoshop', 'Illustrator'],
     },
   ],
   specialExperiences: [

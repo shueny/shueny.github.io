@@ -102,7 +102,7 @@ importers:
         specifier: ^8.5.2
         version: 8.5.2(react@18.3.1)
       framer-motion:
-        specifier: ^11.2.10
+        specifier: ^11.3.18
         version: 11.3.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       graphql:
         specifier: ^16.10.0
