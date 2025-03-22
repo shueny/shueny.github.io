@@ -111,13 +111,21 @@ export const navMenuConfig: NavMenuConfig = {
       title: 'Docs',
       items: [
         {
-          title: 'FED System Design',
-          href: '/astro-blog/docs/fed-system-design/system-design',
+          title: 'Shueny Resume',
+          href: '/files/shueny-resume.pdf',
           description:
-            'Learn useful techniques and how to approach the top front end system design questions, written by ex-interviewers at FAANG.',
+            'My resume with detailed work history, skills, projects and more.',
           image: defaultImg,
           launched: true,
         },
+        // {
+        //   title: 'FED System Design',
+        //   href: '/astro-blog/docs/fed-system-design/system-design',
+        //   description:
+        //     'Learn useful techniques and how to approach the top front end system design questions, written by ex-interviewers at FAANG.',
+        //   image: defaultImg,
+        //   launched: true,
+        // },
       ],
     },
   ],
