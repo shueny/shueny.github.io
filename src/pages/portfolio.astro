@@ -13,11 +13,12 @@ import PortfolioCarousel from "@/components/ui/portfolio-carousel";
 import ProjectsCard from "@/components/ui/projects-card";
 import { DialogDemo } from "@/components/ui/dialog-project";
 import Experience from "@/components/ui/experience";
-
+import TimelineElement from "@/components/ui/timeline";
+import SpecialExperiences from "@/components/ui/special-experiences";
 const SECTION_ITEMS = [
   { id: "aboutMe", text: "About" },
   { id: "skills", text: "Skills" },
-  { id: "projects", text: "Works" },
+  { id: "projects", text: "Projects" },
   { id: "work-experiences", text: "Work Experiences" },
   { id: "education", text: "Education" },
   { id: "sepcial-experiences", text: "Special Experiences" },
@@ -64,11 +65,17 @@ const query = `
         }
       }
       workExperiences {
-        company
-        position
+        name
+        title
         period
         description
         technologies
+      }
+      education {
+        name
+        title
+        period
+        description
       }
       specialExperiences {
         title
@@ -305,9 +312,9 @@ console.log({
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold mb-2">Work Experiences.</h2>
         </div>
-        <Experience data={data.workExperiences} client:load/>
-        </div>
-        )}
+        <TimelineElement data={data.workExperiences} client:load/>
+      </div>
+      )}
     </section>
 
     <!-- Education -->
@@ -316,14 +323,23 @@ console.log({
       data-speed="0.2"
       id="education"
     >
-    <div class="absolute w-full h-[200px] top-[-1rem] text-gray-100 fill:text-gray-100">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="currentColor">
-        <path fill="text-gray-100" fill-opacity="1" d="M0,180L24,180C48,180,96,180,144,163.3C192,147,240,113,288,103.3C336,93,384,107,432,123.3C480,140,528,160,576,146.7C624,133,672,87,720,76.7C768,67,816,93,864,116.7C912,140,960,160,1008,143.3C1056,127,1104,73,1152,73.3C1200,73,1248,127,1296,146.7C1344,167,1392,153,1416,146.7L1440,140L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"/>
-      </svg>
-    </div>
-      <div class="container max-w-screen-md md:max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
-        education
+      <div class="absolute w-full h-[200px] top-[-1rem] text-gray-100 fill:text-gray-100">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="currentColor">
+          <path fill="text-gray-100" fill-opacity="1" d="M0,180L24,180C48,180,96,180,144,163.3C192,147,240,113,288,103.3C336,93,384,107,432,123.3C480,140,528,160,576,146.7C624,133,672,87,720,76.7C768,67,816,93,864,116.7C912,140,960,160,1008,143.3C1056,127,1104,73,1152,73.3C1200,73,1248,127,1296,146.7C1344,167,1392,153,1416,146.7L1440,140L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"/>
+        </svg>
       </div>
+      {!data?.education ? (
+        <div class="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-2">Education.</h2>
+        </div>
+        <TimelineElement data={data.education} client:load/>
+      </div>
+      )}
     </section>
 
     <!-- Special Experiences -->
@@ -332,9 +348,18 @@ console.log({
       data-speed="0.3"
       id="sepcial-experiences"
     >
-      <div class="container max-w-screen-md md:max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
-        special-experiences
-      </div>
+      {!data?.specialExperiences ? (
+        <div class="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-2">{data?.skills.title}</h2>
+        </div>
+        <SpecialExperiences data={data.specialExperiences} client:load/>
+        </div>
+        )}
     </section>
   </div>
 

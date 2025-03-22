@@ -27,10 +27,10 @@ const typeDefs = `#graphql
   }
 
   type Education {
-    school: String!
-    degree: String!
+    name: String!
+    title: String!
     period: String!
-    description: String
+    description: [String!]!
   }
 
   type SkillCategory {
@@ -45,8 +45,8 @@ const typeDefs = `#graphql
   }
 
   type WorkExperience {
-    company: String!
-    position: String!
+    name: String!
+    title: String!
     period: String!
     description: [String!]!
     technologies: [String!]!
@@ -67,7 +67,7 @@ const typeDefs = `#graphql
 
   type SpecialExperience {
     title: String!
-    description: String!
+    description: [String!]!
     date: String!
     image: String
   }

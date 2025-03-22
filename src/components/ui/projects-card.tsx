@@ -39,11 +39,13 @@ export default function ProjectsCard({ data }: { data: Projects }) {
           <DialogTrigger asChild>
             <Card className="relative group col-span-1 transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg cursor-pointer">
               <CardContent className="flex flex-col gap-2 p-4">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full object-cover rounded-lg"
-                />
+                <div className="relative w-full h-[200px] object-cover rounded-lg flex items-center justify-center overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-auto h-full rounded-lg"
+                  />
+                </div>
                 <CardTitle className="font-light text-lg pt-2">
                   {project.title}
                 </CardTitle>

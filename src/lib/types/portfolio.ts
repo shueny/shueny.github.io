@@ -22,31 +22,17 @@ export const SummarySchema = z.object({
   portfolioUrl: z.string().url(),
 });
 
-export const EducationSchema = z.array(
-  z.object({
-    school: z.string(),
-    degree: z.string(),
-    period: z.string(),
-    description: z.string().optional(),
-  })
-);
-
-const SkillCategorySchema = z.object({
+export const TimelineSchema = z.object({
   title: z.string(),
-  icon: z.string(),
-  skills: z.array(z.string()),
+  name: z.string(),
+  period: z.string(),
+  description: z.array(z.string()),
+  technologies: z.array(z.string()).optional(),
 });
 
-// export const SkillsSchema = z.object({
-//   title: z.string(),
-//   webMobile: SkillCategorySchema,
-//   performance: SkillCategorySchema,
-//   uiux: SkillCategorySchema,
-//   versionControl: SkillCategorySchema,
-//   testing: SkillCategorySchema,
-// });
+export const EducationSchema = z.array(TimelineSchema);
 
-const LanguageSchema = z.object({
+const SkillCategorySchema = z.object({
   title: z.string(),
   icon: z.string(),
   skills: z.array(z.string()),
@@ -57,20 +43,12 @@ export const SkillSetSchema = z.object({
   list: z.array(SkillCategorySchema),
 });
 
-export const WorkExperienceSchema = z.array(
-  z.object({
-    company: z.string(),
-    position: z.string(),
-    period: z.string(),
-    description: z.array(z.string()),
-    technologies: z.array(z.string()),
-  })
-);
+export const WorkExperienceSchema = z.array(TimelineSchema);
 
 export const SpecialExperienceSchema = z.array(
   z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.array(z.string()),
     date: z.string(),
     image: z.string().optional(),
   })
@@ -92,6 +70,11 @@ export const ProjectsSchema = z.object({
 });
 
 export type Projects = z.infer<typeof ProjectsSchema>;
+
+export type SpecialExperiences = {
+  title?: string;
+  list: z.infer<typeof SpecialExperienceSchema>[number][];
+};
 
 export const PortfolioSchema = z.object({
   greeting: GreetingSchema,

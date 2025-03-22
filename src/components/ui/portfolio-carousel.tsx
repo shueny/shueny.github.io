@@ -7,12 +7,12 @@ import {
 } from '@/components/ui/carousel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import type { Projects } from '@/lib/types/portfolio';
+import type { Projects, SpecialExperiences } from '@/lib/types/portfolio';
 
 export default function PortfolioCarousel({
   data,
 }: {
-  data: Projects | undefined;
+  data: Projects | SpecialExperiences | undefined;
 }) {
   if (!data?.list?.length) return null;
 
@@ -25,7 +25,7 @@ export default function PortfolioCarousel({
       className="w-full"
     >
       <CarouselContent>
-        {data.list.map((project, index) => (
+        {data.list.map((project: any, index: number) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card>
@@ -40,11 +40,13 @@ export default function PortfolioCarousel({
                     alt={project.title}
                     className="w-full aspect-square object-cover rounded-lg"
                   />
-                  <div className="flex flex-col gap-2">
-                    <p className="text-sm text-gray-500 font-light">
-                      {project.technologies.join(', ')}
-                    </p>
-                  </div>
+                  {project.technologies && (
+                    <div className="flex flex-col gap-2">
+                      <p className="text-sm text-gray-500 font-light">
+                        {project.technologies.join(', ')}
+                      </p>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>

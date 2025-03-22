@@ -28,10 +28,22 @@ export const portfolioData = {
   },
   education: [
     {
-      school: 'Example University',
-      degree: 'Bachelor of Computer Science',
-      period: '2012-2016',
-      description: 'Focus on Web Development and User Interface Design',
+      name: 'Information and Learning Technology',
+      title: 'National University of Tainan',
+      period: 'Sep. 2009 - Sep. 2011',
+      description: [
+        'Applied information technology to teaching materials development and instructional design to improve teaching quality and learning outcomes.',
+        "Thesis: Developed a virtual museum tour system using Unity and 3D Max modeling, and evaluated the system's UI/UX and development techniques.",
+      ],
+    },
+    {
+      name: 'Computer Simulation & Design',
+      title: 'Shih Chien University',
+      period: 'Jun. 2009 - Sep. 2005',
+      description: [
+        'Web design, graphic design, animation design, computer programming, and databases.',
+        'Project: Created an e-commerce website using C# and databases.',
+      ],
     },
   ],
   skills: {
@@ -110,6 +122,28 @@ export const portfolioData = {
     title: 'Projects',
     list: [
       {
+        title: 'AI Job Scraper Integration',
+        description: [
+          'Developed an AI-powered job scraping tool that extracts job descriptions from various sources, summarizes key takeaways using Gemini AI, and stores the data in Google Sheets.',
+          'Integrated a personalized Story Bank to match job descriptions with relevant user experiences, helping users prepare for interviews efficiently.',
+          'Enhanced data retrieval with GraphQL and Google Sheets API, ensuring structured and easily accessible job data.',
+          "Built a web dashboard using Next.js and TailwindCSS to visualize job postings and their relevance to the user's skill set.",
+          'Implemented Google Calendar API to automatically schedule interviews and reminders based on job applications.',
+        ],
+        image: '/images/ai-with-excel.jpg',
+        url: 'https://github.com/shueny/autofill-google-sheets',
+        technologies: [
+          'Python',
+          'Google Gemini AI',
+          // 'GraphQL',
+          'Google Sheets API',
+          // "Next.js",
+          // "TailwindCSS",
+          // "MongoDB",
+          // "Google Maps API"
+        ],
+      },
+      {
         title: 'ToDo List',
         description: [
           'Vue Cli 3,Bootstrap,AwesomeFont,ES6',
@@ -166,8 +200,8 @@ export const portfolioData = {
   },
   workExperiences: [
     {
-      company: 'VicOne (Trend Micro)',
-      position: 'Senior Frontend Developer',
+      name: 'VicOne (Trend Micro)',
+      title: 'Senior Frontend Developer',
       period: 'Sep. 2021 - Mar. 2025',
       description: [
         'Led the automation of UI end-to-end testing with Cypress & TestRail, reducing manual testing time by 50% while improving product quality, delivery efficiency, and user satisfaction.',
@@ -187,8 +221,8 @@ export const portfolioData = {
       ],
     },
     {
-      company: 'Synttro',
-      position: 'Senior Frontend Developer',
+      name: 'Synttro',
+      title: 'Senior Frontend Developer',
       period: 'May 2020 - Sep. 2021',
       description: [
         'Led a UI/UX revamp across the web and mobile to enhance consistency and boost user adoption.',
@@ -199,8 +233,8 @@ export const portfolioData = {
       technologies: ['React', 'TypeScript', 'Puppeteer', 'Canvas API'],
     },
     {
-      company: 'Citiesocial',
-      position: 'Frontend Developer',
+      name: 'Citiesocial',
+      title: 'Frontend Developer',
       period: 'May 2018 - Aug. 2019',
       description: [
         'Designed Shopify-based e-commerce interfaces, boosting conversion rates by 40%.',
@@ -217,8 +251,8 @@ export const portfolioData = {
       ],
     },
     {
-      company: 'momo.com Inc.',
-      position: 'Engineer',
+      name: 'momo.com Inc.',
+      title: 'Engineer',
       period: 'Aug. 2016 - Mar. 2018',
       description: [
         'Led a UI enhancement for the shopping cart, improving user flow and increasing checkout efficiency.',
@@ -235,8 +269,8 @@ export const portfolioData = {
       ],
     },
     {
-      company: 'Skyway Travel Agency',
-      position: 'Web & Graphic Designer',
+      name: 'Skyway Travel Agency',
+      title: 'Web & Graphic Designer',
       period: 'Sep. 2015 - Jul. 2016',
       description: [
         'Updated and maintained travel products on website',
@@ -254,8 +288,8 @@ export const portfolioData = {
       ],
     },
     {
-      company: 'TUKEEN Co., Ltd.',
-      position: 'Designer & Purchasing Assistant',
+      name: 'TUKEEN Co., Ltd.',
+      title: 'Designer & Purchasing Assistant',
       period: 'Oct. 2013 - Aug. 2015',
       description: [
         'CIS design',
@@ -268,10 +302,59 @@ export const portfolioData = {
   ],
   specialExperiences: [
     {
-      title: 'Tech Conference Speaker',
-      description: 'Presented on Modern Frontend Architecture',
-      date: '2023',
-      image: '/images/conference.jpg',
+      title: 'TrendMicro Global AI Contest',
+      description: [
+        "Participated in TrendMicro's global AI competition",
+        "Conceptualized 'GrandKid', an AI companion concept for elderly emotional support",
+        'Developed a solution addressing social isolation among seniors',
+        'Created a conceptual design focusing on natural conversation capabilities',
+        'Presented the AI companion concept to contest judges',
+        'Gained valuable experience in AI conceptualization and problem-solving',
+      ],
+      date: 'Dec. 2023',
+      image: '/images/2023_AI_Contest.jpg',
+    },
+    {
+      title:
+        'Backpacking trip across Chile & Argentina with Antarctica (60 days)',
+      description: [
+        'Planned a comprehensive 60-day honeymoon self-guided tour across South America',
+        'Explored multiple destinations in Chile including Santiago, Valparaíso, and Patagonia',
+        'Traversed Argentina from Buenos Aires to Ushuaia, the southernmost city in the world',
+        'Embarked on an Antarctic expedition from Ushuaia, witnessing pristine polar landscapes',
+        'Hiked through Torres del Paine National Park and experienced Perito Moreno Glacier',
+        'Navigated local transportation systems across both countries, from buses to boats',
+        'Documented the journey through photography across three distinct geographic regions',
+        'Adapted travel plans during the beginning of the global pandemic situation',
+      ],
+      date: 'Feb. 2020 - Apr. 2020',
+      image: '/images/south-america-self-guided.jpg',
+    },
+    {
+      title: 'Wildlife Volunteer in Africa',
+      description: [
+        'Self-planned solo trip to Africa',
+        'Learned to identify different wild animals',
+        'Daily food preparation for wild animals',
+        'Observed and interacted with wild animals',
+        'Recognized different animal footprints and dung',
+      ],
+      date: '2013/5/31-2013/6/14',
+      image: '/images/africa_namibia.jpg',
+    },
+    {
+      title: 'Canada Working Holiday',
+      description: [
+        'From subtropical to arctic temperatures - experiencing extreme weather',
+        'Worked outdoors in the wilderness and at Banff National Park near Canmore',
+        'Utilized weekends for hiking nearby small mountains',
+        'Stayed in a car to witness the Northern Lights',
+        'Worked selling ice cream in Churchill to fund the journey',
+        'Observed polar bears and belugas in Churchill',
+        'Explored European culture in Montreal and enjoyed the European atmosphere',
+      ],
+      date: '2012/4-2013/2',
+      image: '/images/canada_northernlight.jpg',
     },
   ],
 };
