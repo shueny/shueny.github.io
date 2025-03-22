@@ -1,155 +1,509 @@
 ---
 import MainLayout from "@/layouts/main-layout.astro";
-import { Image } from "astro:assets";
-import { hobbies } from "@/config/about.ts";
-import { Button } from "@/components/ui/button";
-import { Icon } from "astro-icon/components";
+import type { Portfolio } from "@/lib/types/portfolio";
+import { graphqlRequest } from '@/lib/graphql/client';
+import SplitText from "@/components/ui/split-text";
+import TypeWriter from "@/components/ui/type-writer";
+import { Spinner } from "@/components/ui/spinner";
+import { SocialIcons } from "@/components/ui/social-icons";
+import { Icons } from "@/icons";
+import { Toaster } from "@/components/ui/sonner";
+import ErrorHandler from "@/components/error-handler";
+import PortfolioCarousel from "@/components/ui/portfolio-carousel";
+import ProjectsCard from "@/components/ui/projects-card";
+import { DialogDemo } from "@/components/ui/dialog-project";
+import Experience from "@/components/ui/experience";
+import TimelineElement from "@/components/ui/timeline";
+import SpecialExperiences from "@/components/ui/special-experiences";
+const SECTION_ITEMS = [
+  { id: "aboutMe", text: "About" },
+  { id: "skills", text: "Skills" },
+  { id: "projects", text: "Projects" },
+  { id: "work-experiences", text: "Work Experiences" },
+  { id: "education", text: "Education" },
+  { id: "sepcial-experiences", text: "Special Experiences" },
+];
+
+const query = `
+  query GetPortfolio {
+    portfolio {
+      greeting {
+        name
+        nameEn
+        nameZh
+        hi
+        iam
+        jobTitle
+        hobbies
+        email
+        portfolioUrl
+      }
+      summary {
+        title
+        list
+        email
+        github
+        linkedin
+        portfolioUrl
+      }
+      skills {
+        title
+        list {
+          title
+          icon
+          skills
+        }
+      }
+      projects {
+        title
+        list {
+          title
+          description
+          image 
+          url
+          technologies
+        }
+      }
+      workExperiences {
+        name
+        title
+        period
+        description
+        technologies
+      }
+      education {
+        name
+        title
+        period
+        description
+      }
+      specialExperiences {
+        title
+        description
+        date
+        image
+      }
+    }
+  }
+`;
+
+let data;
+let error;
+
+try {
+  const result = await graphqlRequest<{ portfolio: Portfolio }>(
+    query,
+    {},
+    Astro.url.origin
+  );
+  
+  if (result.errors) {
+    error = result.errors;
+    console.error('GraphQL Errors:', result.errors);
+  } else if (!result.data) {
+    error = new Error('No data received');
+    console.error('No data in response');
+  } else {
+    data = result.data.portfolio;
+    console.log('Received data:', data);
+  }
+} catch (e) {
+  error = e;
+  console.error('Request Error:', e);
+}
+
+console.log({
+  url: Astro.url.origin,
+  query,
+  result: { data, error }
+});
 ---
 
-<MainLayout title="Portfolio" description="Shueny's experiences">
-  <section class="space-y-5">
-    <section
-      class="relative container max-w-screen-md mb-28 mt-16 sm:mt-20 lg:mt-28"
-    >
-      <div class="flex h-full flex-col justify-between">
-        <div class="grid gap-8 sm:grid-cols-2">
-          <div>
-            <h1 class="text-4xl font-heading text-foreground">Shueny</h1>
-            <p class="text-base text-muted-foreground mt-0.5">
-              Senior Frontend Developer
-            </p>
-          </div>
-          <div>
-            <p class="mb-12 text-base text-muted-foreground">
-              Hi there! I'm Shueny, a web dev enthusiast with a passion for
-              user interfaces.
-              <br />
-              What's up with you?
-            </p>
-            <div class="flex items-center gap-3">
-              <Button className="rounded-xl">
-                <Icon name="lucide:mail" class="mr-2 size-4" />
-                <a href="mailto:shuen29@gmail.com">Talk with me</a>
-              </Button>
+<Toaster richColors closeButton position="top-right" />
+<ErrorHandler error={error} client:load />
 
-              <Button variant="outline" className="rounded-xl">
-                <Icon name="lucide:briefcase" class="mr-2.5 size-4" />
-                <a href="https://mickasmt.com/" target="_blank">My works</a>
-              </Button>
-            </div>
-          </div>
+{!error && !data && (
+  <div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+    <Spinner className="w-8 h-8" />
+  </div>
+)}
+
+<MainLayout title="Portfolio" description="Shueny's experiences">
+  <div class="parallax-container">
+    <section
+      id="greeting"
+      class="parallax-section relative container max-w-none w-full min-h-[calc(100vh - 3rem)] md:min-h-[calc(100vh - 3rem)] greeting"
+      data-speed="0.5"
+    >
+      <div 
+        class="absolute inset-0 w-full h-[calc(100vh-2.75rem)] z-0"
+        style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('/images/section1-bg.jpg') no-repeat center center; background-size: cover;"
+      />
+
+      <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
+        {!data?.greeting ? (
+          <Spinner />
+        ) : (
+          <>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 font-lato">
+              <SplitText 
+                text={`${data.greeting.hi} ${data.greeting.iam} ${data.greeting.nameEn}`}
+                className="text-3xl md:text-5xl font-bold font-lato"
+                delay={50}
+                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                client:load
+              />
+            </h1>
+            <p class="text-2xl md:text-3xl text-gray-400">
+              <TypeWriter 
+                texts={[
+                  data?.greeting?.jobTitle,
+                  data?.greeting?.hobbies
+                ]}
+                typingSpeed={80}
+                deletingSpeed={40}
+                pauseBetween={2000}
+                delay={1500}
+                client:load
+              />
+            </p>
+          </>
+        )}
+      </div>
+
+      <a href="#about" class="absolute left-1/2 transform -translate-x-1/2 z-10" style="bottom: 80px;">
+        <div class="block h-10 w-7 border-2 border-white rounded-2xl relative">
+          <div 
+            class="absolute left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#efefef] rounded-full animate-dot"
+            style="animation: dot-animation .8s ease-in-out infinite;"
+          />
         </div>
+      </a>
+    </section>
+
+    <!-- About -->
+    <section 
+      class="parallax-section"
+      class="parallax-section section-layout bg-white dark:bg-gray-900"
+      data-speed="0.3"
+      id="aboutMe"
+    >
+      <div class="container max-w-screen-md md:max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+        <div>
+          {!data?.summary ? (
+            <div class="flex items-center justify-center h-full">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              <h2 class="text-4xl md:text-5xl font-bold mb-4">{data.summary.title}</h2>
+              <h3 class="text-3xl mb-5">{`${data.greeting.hi} ${data.greeting.iam} ${data.greeting.nameEn}`}</h3>
+              <div class="text-gray-600 dark:text-gray-300">
+                <ul class="space-y-2">
+                  {data.summary.list.map((item: string) => (
+                    <li class="flex items-start">
+                      <span class="font-light text-gray-600 dark:text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="flex gap-4 mt-8">
+                  <div class="flex items-center gap-2">
+                    <a 
+                      href={`mailto:${data.summary.email}`}
+                      class="flex items-center gap-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                      aria-label="Send email"
+                    >
+                      <Icons.email />
+                      <span>{data.summary.email}</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="mt-8">
+                    <SocialIcons github={`${data.summary.github}`} linkedin={`${data.summary.linkedin}`} website={`${data.summary.portfolioUrl}`} />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+        <div></div>
       </div>
     </section>
 
-    <div
-      class="relative z-10 flex flex-col justify-center overflow-hidden lg:overflow-visible pb-16"
+    <!-- Skills -->
+    <section 
+      class="parallax-section bg-gray-100 dark:bg-gray-900"
+      data-speed="0.3"
+      id="skills"
     >
-      <div
-        class="mx-auto flex w-max -translate-x-[15%] justify-center lg:w-full lg:translate-x-0"
-      >
-        <div
-          class="relative z-10 mx-auto max-w-4xl px-4 md:max-w-6xl md:px-12 lg:max-w-5xl lg:px-6 xl:max-w-[80rem] xl:px-6 2xl:px-0"
-        >
-          <div class="grid grid-cols-4 items-center gap-4 md:gap-6">
-            {/* First Column */}
-            <div class="space-y-4 md:space-y-6">
-              <Image
-                class="h-full w-auto object-cover overflow-hidden rounded-xl"
-                src={hobbies[0].image}
-                alt={hobbies[0].alt}
-                width={800}
-                height={1226}
-                loading="eager"
-              />
-              <div class="h-52 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[1].image}
-                  alt={hobbies[1].alt}
-                  width={800}
-                  height={1334}
-                />
-              </div>
-            </div>
-
-            {/* Second Column */}
-            <div class="space-y-4 md:space-y-6">
-              <div class="h-48 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[2].image}
-                  alt={hobbies[2].alt}
-                  width={800}
-                  height={983}
-                  loading="eager"
-                />
-              </div>
-              <Image
-                class="rounded-xl"
-                src={hobbies[3].image}
-                alt={hobbies[3].alt}
-                width={800}
-                height={1108}
-                loading="eager"
-              />
-              <div class="relative h-48 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[4].image}
-                  alt={hobbies[4].alt}
-                  width={1260}
-                  height={750}
-                />
-              </div>
-            </div>
-
-            {/* Third Column */}
-            <div class="space-y-4 md:space-y-6">
-              <div class="h-56 overflow-hidden rounded-xl">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[5].image}
-                  alt={hobbies[5].alt}
-                  width={800}
-                  height={1334}
-                  loading="eager"
-                />
-              </div>
-              <div class="h-80 w-full overflow-hidden rounded-xl xl:h-[28rem]">
-                <Image
-                  class="w-full h-full object-cover"
-                  src={hobbies[6].image}
-                  alt={hobbies[6].alt}
-                  width={801}
-                  height={2477}
-                />
-              </div>
-            </div>
-
-            {/* Fourth Column */}
-            <div class="space-y-4 md:space-y-6">
-              <div class="overflow-hidden rounded-xl bg-white">
-                <Image
-                  src={hobbies[7].image}
-                  alt={hobbies[7].alt}
-                  width={800}
-                  height={900}
-                  loading="eager"
-                />
-              </div>
-              <div class="overflow-hidden rounded-xl bg-white">
-                <Image
-                  src={hobbies[8].image}
-                  alt={hobbies[8].alt}
-                  width={800}
-                  height={900}
-                />
-              </div>
-            </div>
+      {!data?.skills ? (
+          <div class="flex justify-center">
+            <Spinner />
+          </div>
+        ) : (
+        <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-2">{data?.skills.title}</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {
+              data.skills.list.map((category) => (
+              <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl">
+                <div class="flex flex-col items-center gap-4 mb-8">
+                  <div class="p-3 bg-gray-100 dark:bg-slate-700 text-slate-700 fill-current rounded-full w-12 h-12 flex items-center justify-center">
+                    {category.icon === 'desktop' && <Icons.desktop />}
+                    {category.icon === 'analytics' && <Icons.analytics />}
+                    {category.icon === 'palette' && <Icons.palette />}
+                    {category.icon === 'global' && <Icons.global />}
+                    {category.icon === 'branch' && <Icons.branch />}
+                    {category.icon === 'gears' && <Icons.gears/>}
+                  </div>
+                  <h4 class="text-xl font-bold">{category.title}</h4>
+                </div>
+                <div class="mb-8">
+                  <div class="flex flex-wrap gap-2">
+                    {category.skills.map((skill: string) => (
+                      <span class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full">
+                        {skill}
+                      </span>
+                    ))}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
+      )}
+    </section>
+
+    <!-- Projects -->
+    <section 
+      class="parallax-section"
+      data-speed="0.4"
+      id="projects"
+    >
+      {!data?.skills ? (
+        <div class="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-2">{data?.skills.title}</h2>
+        </div>
+        <ProjectsCard data={data.projects} client:load/>
+        </div>
+        )}
+    </section>
+
+    <!-- Work Experiences -->
+    <section 
+      class="parallax-section bg-gray-100 dark:bg-gray-900"
+      data-speed="0.2"
+      id="work-experiences"
+    >
+      {!data?.workExperiences ? (
+        <div class="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-2">Work Experiences.</h2>
+        </div>
+        <TimelineElement data={data.workExperiences} client:load/>
       </div>
-    </div>
-  </section>
+      )}
+    </section>
+
+    <!-- Education -->
+    <section 
+      class="parallax-section relative"
+      data-speed="0.2"
+      id="education"
+    >
+      <div class="absolute w-full h-[200px] top-[-1rem] text-gray-100 fill:text-gray-100">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" fill="currentColor">
+          <path fill="text-gray-100" fill-opacity="1" d="M0,180L24,180C48,180,96,180,144,163.3C192,147,240,113,288,103.3C336,93,384,107,432,123.3C480,140,528,160,576,146.7C624,133,672,87,720,76.7C768,67,816,93,864,116.7C912,140,960,160,1008,143.3C1056,127,1104,73,1152,73.3C1200,73,1248,127,1296,146.7C1344,167,1392,153,1416,146.7L1440,140L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"/>
+        </svg>
+      </div>
+      {!data?.education ? (
+        <div class="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-2">Education.</h2>
+        </div>
+        <TimelineElement data={data.education} client:load/>
+      </div>
+      )}
+    </section>
+
+    <!-- Special Experiences -->
+    <section 
+      class="parallax-section bg-gray-100 dark:bg-gray-900"
+      data-speed="0.3"
+      id="sepcial-experiences"
+    >
+      {!data?.specialExperiences ? (
+        <div class="flex justify-center">
+          <Spinner />
+        </div>
+      ) : (
+      <div class="container max-w-screen-md md:max-w-screen-xl py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-2">{data?.skills.title}</h2>
+        </div>
+        <SpecialExperiences data={data.specialExperiences} client:load/>
+        </div>
+        )}
+    </section>
+  </div>
+
+  <div class="hidden fixed right-4 top-[calc(2.75rem+1rem)] md:top-[calc(3rem+1rem)] md:flex flex-col gap-2 z-50">
+    {
+      SECTION_ITEMS.map((item) => (
+        <a
+          href={`#${item.id}`}
+          data-nav-item={item.id}
+          class="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200 text-right"
+        >
+          <span class="relative">{item.text}
+            <span class="underline absolute hover:w-full active:w-full -bottom-1 right-0 w-0 h-0.5 bg-gray-300 dark:bg-white group-hover:w-full transition-all duration-300 ease-out section-indicator" 
+                style="transform-origin: right"/>
+          </span>
+        </a>
+      ))
+    }
+  </div>
 </MainLayout>
+
+<style>
+  .parallax-container {
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .parallax-section {
+    position: relative;
+    min-height: calc(100vh - 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+  }
+
+  .greeting {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Add smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .timeline-container {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0.5px;
+    background-color: #e0e0e0;
+    transform: translateX(-50%);
+  }
+
+  @keyframes dot-animation {
+    0% {
+      top: 25%;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: 75%;
+      opacity: 0;
+    }
+  }
+
+  .animate-dot {
+    animation: dot-animation 1.8s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+</style>
+
+<script>
+  // Intersection Observer for fade-in effect
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100', 'translate-y-0');
+        entry.target.classList.remove('opacity-0', 'translate-y-[50px]');
+        console.log('Current section:',entry.target, entry.target.parentElement?.id);
+        
+        const sectionId = entry.target.parentElement?.id;
+        const navItem = document.querySelector(`[href="#${sectionId}"]`);
+        
+        document.querySelectorAll('[data-nav-item]').forEach(item => {
+          item.classList.remove('text-gray-300');
+          item.classList.add('text-gray-400');
+          // add class name for underline element
+          const underline = item.querySelector('.underline');
+          underline?.classList.remove('bg-gray-300','w-full');
+          underline?.classList.add('bg-gray-400');
+        });
+
+        if (navItem && sectionId !== 'greeting') {
+          // navItem.classList.remove('text-gray-400');
+          // navItem.classList.add('text-gray-300');
+          // add class name for underline element
+          const underline = navItem.querySelector('.underline');
+          underline?.classList.add('w-full');
+        }
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  // Observe all section content
+  document.querySelectorAll('.parallax-section > div').forEach((section) => {
+    observer.observe(section);
+    console.log('Current section:',section, section.id);
+  });
+
+  // Parallax scroll effect
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.parallax-section');
+
+    
+    sections.forEach(section => {
+      const speed = section.getAttribute('data-speed') || '0';
+      const yPos = -(window.pageYOffset * parseFloat(speed));
+      (section as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
+    });
+  });
+</script>

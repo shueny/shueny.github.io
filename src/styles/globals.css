@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -38,7 +39,7 @@
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
-    --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, .08);
+    --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08);
   }
 
   .dark {
@@ -50,7 +51,7 @@
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 80%;
 
-    --accent: 0, 0%, 100%, .09;
+    --accent: 0, 0%, 100%, 0.09;
     --accent-foreground: 0 0% 93%;
 
     --popover: 0 0% 4%;
@@ -74,15 +75,47 @@
     --ring: 0 0% 12%;
 
     --radius: 0.5rem;
-    --ds-shadow-border: 0 0 0 1px hsla(0, 0%, 100%, .145);
+    --ds-shadow-border: 0 0 0 1px hsla(0, 0%, 100%, 0.145);
   }
 }
 
 @layer base {
   @font-face {
-    font-family: 'CalSans Semibold';
-    src: url('/fonts/calsans-semibold.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'Lato';
+    src: url('/fonts/lato-thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Lato';
+    src: url('/fonts/lato-light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Lato';
+    src: url('/fonts/lato-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Lato';
+    src: url('/fonts/lato-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Lato';
+    src: url('/fonts/lato-black.ttf') format('truetype');
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
   }
@@ -121,8 +154,13 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground;
+    font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  h1 {
+    font-family: 'Lato', sans-serif;
   }
 
   /* Documentation part */
@@ -130,7 +168,7 @@
     @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4;
   }
 
-  .callout>* {
+  .callout > * {
     @apply my-0 !important;
   }
 
@@ -139,7 +177,7 @@
   }
 
   /* MdxComponent: For <code></code> with no parent <pre></pre> */
-  :not(pre)>code {
+  :not(pre) > code {
     @apply relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm bg-background text-foreground;
   }
 }
@@ -153,21 +191,23 @@
 }
 
 .bg_release_version {
-  background: linear-gradient(25deg,
-      #3a084e,
-      #5b0e81,
-      #bc4c9b,
-      #df7f4f) !important;
+  background: linear-gradient(
+    25deg,
+    #3a084e,
+    #5b0e81,
+    #bc4c9b,
+    #df7f4f
+  ) !important;
 }
 
 /* Vercel card style */
 .card_border {
-  box-shadow: var(--ds-shadow-border), 0 4px 6px rgba(0, 0, 0, .04);
-  transition: box-shadow .15s ease;
+  box-shadow: var(--ds-shadow-border), 0 4px 6px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.15s ease;
 }
 
 .card_border:hover {
-  box-shadow: var(--ds-shadow-border), 0 6px 14px rgba(0, 0, 0, .08);
+  box-shadow: var(--ds-shadow-border), 0 6px 14px rgba(0, 0, 0, 0.08);
 }
 
 .dark .card_border:hover {
@@ -182,9 +222,9 @@
 }
 
 [data-radix-scroll-area-viewport]::-webkit-scrollbar {
-  display: none
+  display: none;
 }
 
 .anime-grid {
-  @apply grid content-start [--column-gap:12px] sm:[--column-gap:14px] md:[--column-gap:18px] gap-x-[--column-gap] gap-y-8 md:gap-y-10 [--min-column-width:150px] [--max-column-count:7] [--total-gap-width:calc((var(--max-column-count)-1)*var(--column-gap))] [--max-column-width:calc((100%-var(--total-gap-width))/var(--max-column-count))] grid-cols-[repeat(auto-fill,minmax(max(var(--min-column-width),var(--max-column-width)),1fr))]
+  @apply grid content-start [--column-gap:12px] sm:[--column-gap:14px] md:[--column-gap:18px] gap-x-[--column-gap] gap-y-8 md:gap-y-10 [--min-column-width:150px] [--max-column-count:7] [--total-gap-width:calc((var(--max-column-count)-1)*var(--column-gap))] [--max-column-width:calc((100%-var(--total-gap-width))/var(--max-column-count))] grid-cols-[repeat(auto-fill,minmax(max(var(--min-column-width),var(--max-column-width)),1fr))];
 }

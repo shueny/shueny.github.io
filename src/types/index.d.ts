@@ -1,10 +1,13 @@
+import type { ImageMetadata } from 'astro';
+
 export type NavItem = {
   title: string;
   href: string;
   disabled?: boolean;
 };
+
 export type MenuItem = NavItem & {
-  image?: string;
+  image?: string | ImageMetadata;
   description?: string;
   launched?: boolean;
   external?: boolean;

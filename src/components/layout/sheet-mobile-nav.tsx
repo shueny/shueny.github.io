@@ -42,7 +42,7 @@ export function SheetMobileNav({
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex items-center space-x-2 ">
           <Icons.slogo className="mr-2 size-8" />
           <span className="font-bold">{siteConfig.name}</span>
         </a>
