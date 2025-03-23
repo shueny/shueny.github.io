@@ -117,6 +117,7 @@ try {
   error = e;
   console.error('Request Error:', e);
 }
+console.log(data?.summary);
 
 console.log({
   url: Astro.url.origin,
@@ -190,7 +191,6 @@ console.log({
 
     <!-- About -->
     <section 
-      class="parallax-section"
       class="parallax-section section-layout bg-white dark:bg-gray-900"
       data-speed="0.3"
       id="aboutMe"
@@ -361,7 +361,7 @@ console.log({
       ) : (
       <div class="container max-w-screen-md md:max-w-screen-xl py-20">
         <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-2">{data?.skills.title}</h2>
+          <h2 class="text-4xl md:text-5xl font-bold mb-2">Special Experiences.</h2>
         </div>
         <SpecialExperiences data={data.specialExperiences} client:load/>
         </div>
@@ -462,30 +462,33 @@ console.log({
 </style>
 
 <script>
-  // Intersection Observer for fade-in effect
+  // 修正 Intersection Observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        // 1. 確保透明度變更正確應用
         entry.target.classList.add('opacity-100', 'translate-y-0');
         entry.target.classList.remove('opacity-0', 'translate-y-[50px]');
-        console.log('Current section:',entry.target, entry.target.parentElement?.id);
         
-        const sectionId = entry.target.parentElement?.id;
-        const navItem = document.querySelector(`[href="#${sectionId}"]`);
+        // 2. 修復 section ID 獲取邏輯
+        const section = entry.target.closest('.parallax-section');
+        const sectionId = section?.id;
+        // console.log('Current section:', sectionId);
         
+        // 3. 正確獲取導航項目
+        const navItem = document.querySelector(`[data-nav-item="${sectionId}"]`);
+        
+        // 4. 重置所有導航項目
         document.querySelectorAll('[data-nav-item]').forEach(item => {
           item.classList.remove('text-gray-300');
           item.classList.add('text-gray-400');
-          // add class name for underline element
           const underline = item.querySelector('.underline');
-          underline?.classList.remove('bg-gray-300','w-full');
-          underline?.classList.add('bg-gray-400');
+          underline?.classList.remove('w-full');
         });
 
         if (navItem && sectionId !== 'greeting') {
-          // navItem.classList.remove('text-gray-400');
-          // navItem.classList.add('text-gray-300');
-          // add class name for underline element
+          navItem.classList.remove('text-gray-400');
+          navItem.classList.add('text-gray-300');
           const underline = navItem.querySelector('.underline');
           underline?.classList.add('w-full');
         }
@@ -495,21 +498,31 @@ console.log({
     threshold: 0.1
   });
 
-  // Observe all section content
-  document.querySelectorAll('.parallax-section > div').forEach((section) => {
+  // 修正觀察目標 - 直接觀察 section 元素
+  document.querySelectorAll('.parallax-section').forEach((section) => {
     observer.observe(section);
-    console.log('Current section:',section, section.id);
   });
 
-  // Parallax scroll effect
+  // Parallax scroll effect 保持不變
   window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('.parallax-section');
-
     
     sections.forEach(section => {
       const speed = section.getAttribute('data-speed') || '0';
       const yPos = -(window.pageYOffset * parseFloat(speed));
       (section as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
     });
+  });
+  
+  // 確保 About 區塊初始可見
+  document.addEventListener('DOMContentLoaded', () => {
+    const aboutSection = document.getElementById('aboutMe');
+    if (aboutSection) {
+      const aboutContent = aboutSection.querySelector('div');
+      if (aboutContent) {
+        aboutContent.classList.remove('opacity-0', 'translate-y-[50px]');
+        aboutContent.classList.add('opacity-100', 'translate-y-0');
+      }
+    }
   });
 </script>

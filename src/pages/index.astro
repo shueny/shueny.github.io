@@ -3,12 +3,14 @@ import ExampleGrid from "@/components/example-grid.astro";
 import PageHeader from "@/components/page-header.astro";
 import { navMenuConfig } from "@/config/nav-menu";
 import MainLayout from "@/layouts/main-layout.astro";
+import Portfolio from "./portfolio.astro";
 
 const examples = navMenuConfig.examplesNav[0].items;
 const pages = navMenuConfig?.pagesNav ?navMenuConfig?.pagesNav[0].items:[];
 ---
 
-<MainLayout title="">
+<Portfolio />
+<!-- <MainLayout title="">
   <div class="bg-background-200">
     <section class="container py-12">
       <PageHeader
@@ -16,8 +18,9 @@ const pages = navMenuConfig?.pagesNav ?navMenuConfig?.pagesNav[0].items:[];
         text="Differents pages and examples apps built with Astro v4.5, shadcn/ui & react js. Fully Open Source."
       />
 
-      {(pages||[]).length > 0 &&<ExampleGrid title="Pages" items={pages} />}
-      <ExampleGrid title="Examples Apps" items={examples} />
+      {(pages||[]).length > 0 &&<ExampleGrid title="Pages" items={pages} />} -->
+      
+      <!-- <ExampleGrid title="Examples Apps" items={examples} />
     </section>
   </div>
-</MainLayout>
+</MainLayout> -->
