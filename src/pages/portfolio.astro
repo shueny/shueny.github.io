@@ -15,6 +15,10 @@ import { DialogDemo } from "@/components/ui/dialog-project";
 import Experience from "@/components/ui/experience";
 import TimelineElement from "@/components/ui/timeline";
 import SpecialExperiences from "@/components/ui/special-experiences";
+
+// 啟用靜態生成
+export const prerender = true;
+
 const SECTION_ITEMS = [
   { id: "aboutMe", text: "About" },
   { id: "skills", text: "Skills" },
@@ -91,10 +95,12 @@ let data;
 let error;
 
 try {
+  // 添加靜態回退選項
   const result = await graphqlRequest<{ portfolio: Portfolio }>(
     query,
     {},
-    Astro.url.origin
+    Astro.url.origin,
+    { useStaticFallback: true } // 啟用靜態資料回退
   );
   
   if (result.errors) {
