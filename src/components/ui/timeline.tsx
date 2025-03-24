@@ -53,7 +53,7 @@ export default function TimelineElement({ data }: TimelineProps) {
           key={index}
           ref={(el) => (elementRefs.current[index] = el)}
           data-index={index}
-          className="relative pl-8 timeline-item before:absolute before:content-[''] before:w-2 before:h-2 before:bg-gray-500 before:top-2 before:left-[-20px] before:rounded-full after:absolute after:content-[''] after:w-px after:h-[calc(100%+2rem)] last:after:h-[100%] after:top-4 after:left-[-16px] after:bg-gray-500"
+          className="relative pl-8 timeline-item before:absolute before:content-[''] before:w-2 before:h-2 before:bg-gray-500 before:top-2 before:left-[11px] md:before:left-[-20px] before:rounded-full after:absolute after:content-[''] after:w-px after:h-[calc(100%+2rem)] last:after:h-[100%] after:top-4 after:left-[14px] md:after:left-[-16px] after:bg-gray-500"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
