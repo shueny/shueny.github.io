@@ -15,6 +15,7 @@ import { DialogDemo } from "@/components/ui/dialog-project";
 import Experience from "@/components/ui/experience";
 import TimelineElement from "@/components/ui/timeline";
 import SpecialExperiences from "@/components/ui/special-experiences";
+import { SectionNavigator } from "@/components/ui/section-navigator";
 
 // 啟用靜態生成
 export const prerender = true;
@@ -116,7 +117,7 @@ try {
   error = e;
   console.error('Request Error:', e);
 }
-console.log(data?.summary);
+// console.log(data?.summary);
 
 console.log({
   url: Astro.url.origin,
@@ -194,7 +195,7 @@ console.log({
       data-speed="0.3"
       id="aboutMe"
     >
-      <div class="container max-w-screen-md md:max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000">
+      <div class="container max-w-screen-md md:max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-4 transform translate-y-[50px] opacity-0 transition-all duration-1000 py-20">
         <div>
           {!data?.summary ? (
             <div class="flex items-center justify-center h-full">
@@ -376,22 +377,7 @@ console.log({
     </section>
   </div>
 
-  <div class="hidden fixed right-4 top-[calc(2.75rem+1rem)] md:top-[calc(3rem+1rem)] md:flex flex-col gap-2 z-50">
-    {
-      SECTION_ITEMS.map((item) => (
-        <a
-          href={`#${item.id}`}
-          data-nav-item={item.id}
-          class="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200 text-right"
-        >
-          <span class="relative">{item.text}
-            <span class="underline absolute hover:w-full active:w-full -bottom-1 right-0 w-0 h-0.5 bg-gray-300 dark:bg-white group-hover:w-full transition-all duration-300 ease-out section-indicator" 
-                style="transform-origin: right"/>
-          </span>
-        </a>
-      ))
-    }
-  </div>
+  <SectionNavigator items={SECTION_ITEMS} client:load />
 </MainLayout>
 
 <style>
@@ -410,8 +396,6 @@ console.log({
     justify-content: center;
     transform-style: preserve-3d;
   }
-
-
 
   .greeting {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -471,67 +455,73 @@ console.log({
 </style>
 
 <script>
-  // 修正 Intersection Observer
-  const observer = new IntersectionObserver((entries) => {
+  // 移除舊的觀察器代碼，整合為一個統一的觀察器
+  
+  // 創建統一的 IntersectionObserver
+  const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // 1. 確保透明度變更正確應用
-        entry.target.classList.add('opacity-100', 'translate-y-0');
-        entry.target.classList.remove('opacity-0', 'translate-y-[50px]');
+        const sectionId = entry.target.id;
         
-        // 2. 修復 section ID 獲取邏輯
-        const section = entry.target.closest('.parallax-section');
-        const sectionId = section?.id;
-        // console.log('Current section:', sectionId);
-        
-        // 3. 正確獲取導航項目
-        const navItem = document.querySelector(`[data-nav-item="${sectionId}"]`);
-        
-        // 4. 重置所有導航項目
-        document.querySelectorAll('[data-nav-item]').forEach(item => {
-          item.classList.remove('text-gray-300');
-          item.classList.add('text-gray-400');
-          const underline = item.querySelector('.underline');
-          underline?.classList.remove('w-full');
-        });
-
-        if (navItem && sectionId !== 'greeting') {
-          navItem.classList.remove('text-gray-400');
-          navItem.classList.add('text-gray-300');
-          const underline = navItem.querySelector('.underline');
-          underline?.classList.add('w-full');
+        const content = entry.target.querySelector('.container, div');
+        if (content) {
+          content.classList.add('opacity-100', 'translate-y-0');
+          content.classList.remove('opacity-0', 'translate-y-[50px]');
         }
+        
+        // 更新導航項目的活躍狀態
+        document.querySelectorAll('[data-nav-item]').forEach(item => {
+          const itemId = item.getAttribute('data-nav-item');
+          if (itemId === sectionId) {
+            item.classList.remove('text-gray-400');
+            item.classList.add('text-gray-300');
+            const underline = item.querySelector('.underline');
+            if (underline) underline.classList.add('w-full');
+          } else {
+            item.classList.remove('text-gray-300');
+            item.classList.add('text-gray-400');
+            const underline = item.querySelector('.underline');
+            if (underline) underline.classList.remove('w-full');
+          }
+        });
+        
+        // 發送自定義事件通知 SectionNavigator 組件
+        document.dispatchEvent(
+          new CustomEvent('sectionchange', { 
+            detail: { activeSection: sectionId } 
+          })
+        );
       }
     });
   }, {
-    threshold: 0.1
+    threshold: 0.15, // 降低閾值，使觀察更靈敏
+    rootMargin: '-5% 0px -5% 0px' // 調整邊距，使觀察範圍更合理
   });
-
-  // 修正觀察目標 - 直接觀察 section 元素
-  document.querySelectorAll('.parallax-section').forEach((section) => {
-    observer.observe(section);
-  });
-
-  // Parallax scroll effect 保持不變
-  window.addEventListener('scroll', () => {
+  
+  // 確保 DOM 載入完成後再註冊觀察器
+  document.addEventListener('DOMContentLoaded', () => {
+    // 觀察所有 section 元素
     const sections = document.querySelectorAll('.parallax-section');
     
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+      
+      if (section.id === 'aboutMe') {
+        const content = section.querySelector('.container');
+        if (content) {
+          content.classList.remove('opacity-0', 'translate-y-[50px]');
+          content.classList.add('opacity-100', 'translate-y-0');
+        }
+      }
+    });
+  });
+  
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.parallax-section');
     sections.forEach(section => {
       const speed = section.getAttribute('data-speed') || '0';
       const yPos = -(window.pageYOffset * parseFloat(speed));
       (section as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
     });
-  });
-  
-  // 確保 About 區塊初始可見
-  document.addEventListener('DOMContentLoaded', () => {
-    const aboutSection = document.getElementById('aboutMe');
-    if (aboutSection) {
-      const aboutContent = aboutSection.querySelector('div');
-      if (aboutContent) {
-        aboutContent.classList.remove('opacity-0', 'translate-y-[50px]');
-        aboutContent.classList.add('opacity-100', 'translate-y-0');
-      }
-    }
   });
 </script>
