@@ -42,21 +42,25 @@ export default function SpecialExperiences({ data }: SpecialExperiencesProps) {
   }, [visibleItems]);
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-32">
       {data.map((experience, index) => (
         <div
           key={index}
           ref={(el) => (experienceRefs.current[index] = el)}
           data-index={index}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start"
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
         >
           <motion.div
-            className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}
+            className={`${
+              index % 2 === 0
+                ? 'md:col-span-7 md:order-1'
+                : 'md:col-span-7 md:order-2'
+            }`}
             initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
             animate={visibleItems.includes(index) ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="image-container h-[300px] md:h-[600px] overflow-hidden rounded-lg shadow-lg">
+            <div className="image-container h-[300px] md:h-[500px] overflow-hidden rounded-lg shadow-lg">
               <img
                 src={experience.image}
                 alt={experience.title}
@@ -67,14 +71,18 @@ export default function SpecialExperiences({ data }: SpecialExperiencesProps) {
           </motion.div>
 
           <motion.div
-            className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}
+            className={`${
+              index % 2 === 0
+                ? 'md:col-span-5 md:order-2'
+                : 'md:col-span-5 md:order-1'
+            } self-start`}
             initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
             animate={visibleItems.includes(index) ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            <h4 className="text-2xl mb-2">{experience.title}</h4>
+            <h4 className="text-2xl font-bold mb-2">{experience.title}</h4>
             <p className="text-gray-500 mb-6">{experience.date}</p>
-            <hr className="my-4" />
+            <hr className="my-4 border-gray-200 dark:border-gray-700" />
             <ul className="space-y-3">
               {experience.description.map((item, itemIndex) => (
                 <motion.li
