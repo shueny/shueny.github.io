@@ -62,7 +62,7 @@ export const navMenuConfig: NavMenuConfig = {
       items: [
         {
           title: 'Local Chat System',
-          href: '/astro-blog/blog/local-chat/',
+          href: '/blog/local-chat/',
           description:
             'A local chat simulator for exams, built with TypeScript and React.',
           image: defaultImg,
@@ -70,14 +70,14 @@ export const navMenuConfig: NavMenuConfig = {
         },
         // {
         //   title: 'Docs',
-        //   href: '/astro-blog/docs/getting-started',
+        //   href: '/docs/getting-started',
         //   description:
         //     'A Markdown/MDX docs site built using Content Collections.',
         //   image: myImage2,
         // },
         // {
         //   title: 'Anime List',
-        //   href: '/astro-blog/animes',
+        //   href: '/animes',
         //   description:
         //     'Fetch anime content from an graphql endpoint. Tabs component.',
         //   image: myImage1,
@@ -85,7 +85,7 @@ export const navMenuConfig: NavMenuConfig = {
         // },
         // {
         //   title: 'Blog DB',
-        //   href: '/astro-blog/blog-db',
+        //   href: '/blog-db',
         //   description:
         //     'Blog built using Astro DB. With categories, views & likes.',
         //   // image: "/images/examples/blog-db.jpg",
@@ -93,14 +93,14 @@ export const navMenuConfig: NavMenuConfig = {
         // },
         // {
         //   title: 'Ecommerce',
-        //   href: '/astro-blog/products',
+        //   href: '/products',
         //   disabled: true,
         //   description: 'Ecommerce pages fetching data from an API.',
         //   // image: "/images/examples/ecommerce.jpg",
         // },
         // {
         //   title: 'Authentification',
-        //   href: '/astro-blog/auth',
+        //   href: '/auth',
         //   description: 'Implement an authentification using Astro DB & Lucia',
         //   // image: "/images/examples/auth.jpg",
         //   disabled: true,
@@ -120,7 +120,7 @@ export const navMenuConfig: NavMenuConfig = {
         },
         // {
         //   title: 'FED System Design',
-        //   href: '/astro-blog/docs/fed-system-design/system-design',
+        //   href: '/docs/fed-system-design/system-design',
         //   description:
         //     'Learn useful techniques and how to approach the top front end system design questions, written by ex-interviewers at FAANG.',
         //   image: defaultImg,
