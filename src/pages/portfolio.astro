@@ -95,12 +95,11 @@ let data;
 let error;
 
 try {
-  // 添加靜態回退選項
   const result = await graphqlRequest<{ portfolio: Portfolio }>(
     query,
     {},
     Astro.url.origin,
-    { useStaticFallback: true } // 啟用靜態資料回退
+    { useStaticFallback: true }
   );
   
   if (result.errors) {
@@ -179,7 +178,7 @@ console.log({
         )}
       </div>
 
-      <a href="#about" class="absolute left-1/2 transform -translate-x-1/2 z-10" style="bottom: 80px;">
+      <a href={`#${SECTION_ITEMS[0].id}`} class="absolute left-1/2 transform -translate-x-1/2 z-10" style="bottom: 80px;">
         <div class="block h-10 w-7 border-2 border-white rounded-2xl relative">
           <div 
             class="absolute left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#efefef] rounded-full animate-dot"
