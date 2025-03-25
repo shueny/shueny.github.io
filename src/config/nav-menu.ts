@@ -1,11 +1,12 @@
 import type { NavMenuConfig } from '@/types';
 
 import defaultImg from '../assets/images/default-cover.jpg';
-import myImage1 from '../assets/images/starlog-placeholder-1.jpg';
-import myImage2 from '../assets/images/starlog-placeholder-2.jpg';
 
 export const navMenuConfig: NavMenuConfig = {
-  links: [{ title: 'Portfolio', href: '/' }],
+  links: [
+    { title: 'Portfolio', href: '/' },
+    { title: 'Travel Blog', href: 'http://take-two.world/' },
+  ],
   // pagesNav: [
   // 	{
   // 		title: 'Pages',

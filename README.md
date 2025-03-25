@@ -1,39 +1,38 @@
-# Astro Starter Kit: Blog
+# Personal Website & Blog - Astro Project
 
-```sh
-npm create astro@latest -- --template blog
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+This is a personal portfolio and blog website developed with the Astro framework, fully statically generated and suitable for deployment on platforms like GitHub Pages.
+🚀 Features
+✅ Personal portfolio and work experience showcase
+✅ Blog system with Markdown and MDX support
+✅ Responsive design for desktop and mobile devices
+✅ Dark/light mode toggle
+✅ Dynamic navigation and parallax scrolling effects
+✅ High-performance static site generation
+✅ SEO-friendly with metadata and Open Graph tags
+✅ GraphQL integration with static data fallback
+✅ React component integration for interactive features
 
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
 ```text
-├── public/
+├── public/           # Static assets (images, fonts, etc.)
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
+│   ├── components/   # UI components
+│   │   ├── ui/       # General UI components
+│   │   └── layout/   # Layout-related components
+│   ├── config/       # Website configuration files
+│   ├── layouts/      # Page layout templates
+│   ├── lib/          # Utility functions and type definitions
+│   │   ├── data/     # Static data fallbacks
+│   │   ├── graphql/  # GraphQL client
+│   │   └── types/    # TypeScript type definitions
+│   ├── pages/        # Page routes
+│   ├── icons/        # Icon components
+│   └── styles/       # Global styles
+├── astro.config.mjs  # Astro configuration
+├── tailwind.config.js # Tailwind CSS configuration
 ├── package.json
 └── tsconfig.json
 ```
@@ -50,19 +49,22 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Command                    | Action                                             |
+| :------------------------- | :------------------------------------------------- |
+| `pnpm install`             | Install dependencies                               |
+| `pnpm run dev`             | Start local dev server at `localhost:4321`         |
+| `pnpm run build`           | Build production site to `./dist/`                 |
+| `pnpm run preview`         | Preview production build locally before deployment |
+| `pnpm run astro ...`       | Run Astro CLI commands                             |
+| `pnpm run astro -- --help` | Get help using the Astro CLI                       |
 
 ## 👀 Want to learn more?
 
 Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
-## Credit
+## 🧠 Future Development Plans
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+[ ] Add search functionality
+[ ] Integrate comment system
+[ ] Multi-language support
+[ ] Additional portfolio templates
