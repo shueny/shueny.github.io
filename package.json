@@ -36,8 +36,6 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@react-spring/web": "^9.7.5",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
     "astro": "^4.9.2",
     "astro-icon": "^1.1.0",
     "balance-text": "^3.3.1",
@@ -58,15 +56,24 @@
     "simple-stack-form": "^0.1.12",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@astrojs/check": "^0.9.0",
+    "@google/generative-ai": "^0.21.0",
+    "recharts": "^2.12.0",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "gh-pages": "^6.1.1",
     "mdast-util-toc": "^7.1.0",
     "remark": "^15.0.1",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "@types/node": "^25.0.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.3"
   }
 }

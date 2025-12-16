@@ -1,36 +1,24 @@
-const { fontFamily } = require('tailwindcss/defaultTheme');
-
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ['class'],
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+export default {
+  content: [
+    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    './src/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
-    container: {
-      center: true,
-      padding: '1rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
     extend: {
+      screens: {
+        xs: '475px',
+      },
       fontFamily: {
-        sans: ['Lato', ...fontFamily.sans],
-        heading: ['Lato', ...fontFamily.sans],
-      },
-      height: {
-        18: '4.5rem',
-      },
-      spacing: {
-        18: '4.5rem',
+        sans: ['Outfit', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: {
-          DEFAULT: 'hsl(var(--background))',
-          200: 'hsl(var(--background-200))',
-        },
+        background: 'hsl(var(--background))',
+        'background-200': 'hsl(var(--background-200))',
         foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
@@ -49,7 +37,7 @@ module.exports = {
           foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'hsla(var(--accent))',
+          DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
         popover: {
@@ -60,27 +48,40 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: 0 },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 0 },
-        },
+        // Keep your custom colors
+        'custom-primary': '#1c1917', // Stone 900
+        'custom-secondary': '#57534e', // Stone 600
+        'custom-accent': '#ea580c', // Orange 600 (Burnt Orange)
+        surface: '#fff7ed', // Orange 50 (Warm Cream)
+        surfaceDark: '#ffedd5', // Orange 100
+        'custom-muted': '#d6d3d1', // Stone 300
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        reveal: 'reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards',
+        float: 'float 6s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        shimmer: 'shimmer 2s infinite',
+      },
+      keyframes: {
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(60px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        reveal: {
+          '0%': { clipPath: 'inset(0 100% 0 0)' },
+          '100%': { clipPath: 'inset(0 0 0 0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [],
 };

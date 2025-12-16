@@ -1,0 +1,59 @@
+import React, { useState } from 'react'
+import ImpressumModal from './ImpressumModal'
+import PrivacyPolicyModal from './PrivacyPolicyModal'
+
+const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear()
+  const [showImpressum, setShowImpressum] = useState(false)
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
+
+  return (
+    <>
+      <footer className="bg-primary text-white border-t border-stone-800">
+        <div className="container mx-auto px-6 md:px-12 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-stone-400">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              <p>© {currentYear} Shueny. All Rights Reserved.</p>
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setShowImpressum(true)}
+                  className="hover:text-accent transition-colors duration-300 underline-offset-4 hover:underline"
+                >
+                  Impressum
+                </button>
+                <span className="text-stone-600">|</span>
+                <button
+                  onClick={() => setShowPrivacyPolicy(true)}
+                  className="hover:text-accent transition-colors duration-300 underline-offset-4 hover:underline"
+                >
+                  Privacy Policy
+                </button>
+              </div>
+            </div>
+            <div className="flex gap-6 text-xs font-mono">
+              <span className="hover:text-accent transition-colors cursor-default">
+                Designed with Gemini 2.5
+              </span>
+              <span className="hover:text-accent transition-colors cursor-default">
+                React 18
+              </span>
+              <span className="hover:text-accent transition-colors cursor-default">
+                Tailwind CSS
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <ImpressumModal
+        isOpen={showImpressum}
+        onClose={() => setShowImpressum(false)}
+      />
+      <PrivacyPolicyModal
+        isOpen={showPrivacyPolicy}
+        onClose={() => setShowPrivacyPolicy(false)}
+      />
+    </>
+  )
+}
+
+export default Footer

@@ -1,0 +1,96 @@
+---
+import '../styles/globals.css'
+
+interface Props {
+  title?: string
+  description?: string
+  children?: any
+}
+
+const {
+  title = 'Shueny.dev | Senior Frontend Engineer & AI Specialist',
+  description = 'Senior Frontend Engineer & UI/UX Specialist',
+} = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en" className="scroll-smooth snap-y snap-proximity scroll-pt-32">
+  <head>
+    <meta charSet="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body className="text-stone-900 antialiased overflow-x-hidden">
+    <slot />
+    {/* @ts-expect-error - is:global is a valid Astro directive */}
+    <style is:global>
+      /* Smooth Scrolling & Custom Selection */
+      ::selection {
+        background-color: #ea580c;
+        color: #ffffff;
+      }
+
+      body {
+        background-color: #fff7ed; /* Warm Cream Background */
+        color: #1c1917;
+        margin: 0;
+      }
+
+      /* Hide scrollbar for cleaner look but keep functionality */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #fdba74;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ea580c;
+      }
+
+      .text-outline {
+        -webkit-text-stroke: 2px #e7e5e4; /* Stone 200 */
+        color: transparent;
+      }
+
+      .text-outline-strong {
+        -webkit-text-stroke: 2px #d6d3d1;
+        color: transparent;
+      }
+
+      /* Hide scrollbar for horizontal scroll */
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Ensure container doesn't overflow */
+      .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .container {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+      }
+    </style>
+  </body>
+</html>

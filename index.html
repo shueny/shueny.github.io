@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth snap-y snap-proximity scroll-pt-32">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shueny.dev | Senior Frontend Engineer & AI Specialist</title>
+    <!-- Tailwind CSS for Preview Environment -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Global error handler to help debug "blank screen" issues
+      window.addEventListener('error', function (event) {
+        console.error('Global Error:', event.error)
+
+        // CRITICAL: Force remove the loader so user sees the error
+        const loadingEl = document.getElementById('initial-loader')
+        if (loadingEl) loadingEl.style.display = 'none'
+
+        const errorDiv = document.createElement('div')
+        errorDiv.style.cssText =
+          'position: fixed; top: 0; left: 0; width: 100%; background: #fee2e2; color: #991b1b; padding: 20px; z-index: 9999; font-family: monospace; border-bottom: 2px solid #ef4444; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);'
+        errorDiv.textContent =
+          'Application Error: ' +
+          (event.error?.message || event.message || 'Unknown Error')
+        document.body.appendChild(errorDiv)
+      })
+
+      // This config mirrors tailwind.config.js for the preview environment
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Outfit', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              primary: '#1c1917', // Stone 900
+              secondary: '#57534e', // Stone 600
+              accent: '#ea580c', // Orange 600 (Burnt Orange)
+              surface: '#fff7ed', // Orange 50 (Warm Cream)
+              surfaceDark: '#ffedd5', // Orange 100
+              muted: '#d6d3d1', // Stone 300
+            },
+            animation: {
+              'fade-in-up':
+                'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              reveal: 'reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards',
+              float: 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              shimmer: 'shimmer 2s infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(60px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              reveal: {
+                '0%': { clipPath: 'inset(0 100% 0 0)' },
+                '100%': { clipPath: 'inset(0 0 0 0)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              shimmer: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(100%)' },
+              },
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Smooth Scrolling & Custom Selection */
+      ::selection {
+        background-color: #ea580c;
+        color: #ffffff;
+      }
+
+      body {
+        background-color: #fff7ed; /* Warm Cream Background */
+        color: #1c1917;
+        margin: 0;
+      }
+
+      /* Hide scrollbar for cleaner look but keep functionality */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #fdba74;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ea580c;
+      }
+
+      .text-outline {
+        -webkit-text-stroke: 2px #e7e5e4; /* Stone 200 */
+        color: transparent;
+      }
+
+      .text-outline-strong {
+        -webkit-text-stroke: 2px #d6d3d1;
+        color: transparent;
+      }
+
+      /* Initial Loader Styles */
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        background-color: #fff7ed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      .loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #fed7aa;
+        border-top: 4px solid #ea580c;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 1rem;
+      }
+      .loader-text {
+        font-family: 'Outfit', sans-serif;
+        color: #ea580c;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        animation: pulse 2s infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.2.0?dev",
+          "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?dev",
+          "react-dom": "https://esm.sh/react-dom@18.2.0?dev",
+          "@google/generative-ai": "https://esm.sh/@google/generative-ai@0.21.0",
+          "lucide-react": "https://esm.sh/lucide-react@0.344.0"
+        }
+      }
+    </script>
+  </head>
+  <body class="text-stone-900 antialiased">
+    <!-- Initial Loading State -->
+    <div id="initial-loader">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Loading Portfolio</div>
+    </div>
+
+    <div id="root"></div>
+
+    <!-- Only one entry point needed. We rely on index.tsx to handle the app mounting. -->
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>
