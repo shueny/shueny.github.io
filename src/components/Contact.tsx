@@ -1,5 +1,5 @@
-import React from 'react'
-import { SectionId } from '../types'
+import React from 'react';
+import { SectionId } from '../types';
 
 const Contact: React.FC = () => {
   return (
@@ -27,13 +27,15 @@ const Contact: React.FC = () => {
 
         <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
           <a
-            href="mailto:shueny@example.com"
+            href="mailto:shuenyw@gmail.com"
             className="min-w-[200px] px-8 py-5 bg-accent text-white font-bold tracking-wide hover:bg-white hover:text-accent transition-all duration-300 rounded-full shadow-xl shadow-orange-900/20"
           >
             Start a Project
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/shueny-wang/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="min-w-[200px] px-8 py-5 bg-transparent border border-stone-700 text-white font-medium hover:border-accent hover:text-accent transition-all duration-300 rounded-full"
           >
             LinkedIn Profile
@@ -41,7 +43,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

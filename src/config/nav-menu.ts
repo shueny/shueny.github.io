@@ -113,7 +113,7 @@ export const navMenuConfig: NavMenuConfig = {
       items: [
         {
           title: 'Shueny Resume',
-          href: '/files/shueny-resume.pdf',
+          href: '/files/2025-12_Resume_ShuenyWang_FED.pdf',
           description:
             'My resume with detailed work history, skills, projects and more.',
           image: defaultImg,

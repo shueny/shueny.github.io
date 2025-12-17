@@ -1,7 +1,10 @@
 import React from 'react';
 import { SectionId } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section
       id={SectionId.HERO}
@@ -25,12 +28,8 @@ const Hero: React.FC = () => {
             className="uppercase tracking-widest text-[9px] sm:text-[10px] md:text-xs font-bold leading-tight"
             style={{ color: 'hsl(var(--accent))' }}
           >
-            <span className="hidden sm:inline">
-              Based in Achstetten | Open for Hybrid (Ulm) & Remote Projects
-            </span>
-            <span className="inline sm:hidden">
-              Achstetten | Hybrid & Remote
-            </span>
+            <span className="hidden sm:inline">{t.hero.location}</span>
+            <span className="inline sm:hidden">{t.hero.locationMobile}</span>
           </span>
         </div>
 
@@ -42,14 +41,14 @@ const Hero: React.FC = () => {
               className="block animate-fade-in-up font-extrabold"
               style={{ animationDelay: '0.15s' }}
             >
-              Senior Frontend
+              {t.hero.title1}
             </span>
             {/* Secondary line - Medium weight with gradient */}
             <span
               className="block text-transparent bg-clip-text bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 animate-fade-in-up font-bold mt-1 sm:mt-2"
               style={{ animationDelay: '0.3s' }}
             >
-              Engineer &
+              {t.hero.title2}
             </span>
             {/* Accent line - Highest emphasis with color */}
             <span
@@ -59,9 +58,9 @@ const Hero: React.FC = () => {
                 color: 'hsl(var(--accent))',
               }}
             >
-              AI Solutions{' '}
+              {t.hero.title3}{' '}
               <span className="font-serif italic font-normal text-primary">
-                Specialist
+                {t.hero.title3Suffix}
               </span>
             </span>
           </h1>
@@ -73,22 +72,8 @@ const Hero: React.FC = () => {
             className="w-full md:w-1/2 animate-fade-in-up"
             style={{ animationDelay: '0.6s' }}
           >
-            <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-secondary font-serif italic leading-relaxed font-medium">
-              "Bridging Design & Engineering with{' '}
-              <span
-                className="font-semibold not-italic"
-                style={{ color: 'hsl(var(--accent))' }}
-              >
-                React, Next.js
-              </span>
-              , and{' '}
-              <span
-                className="font-semibold not-italic"
-                style={{ color: 'hsl(var(--accent))' }}
-              >
-                Generative AI
-              </span>
-              ."
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-secondary font-sans leading-relaxed font-normal">
+              {t.hero.subtitle}
             </p>
           </div>
 
@@ -98,8 +83,7 @@ const Hero: React.FC = () => {
             style={{ animationDelay: '0.75s' }}
           >
             <p className="text-xs sm:text-sm md:text-base text-secondary leading-6 sm:leading-7 md:leading-8 font-light">
-              I help startups and enterprises build scalable design systems and
-              AI-enhanced applications that convert users into customers.
+              {t.hero.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
@@ -110,21 +94,21 @@ const Hero: React.FC = () => {
                 style={{ backgroundColor: 'hsl(var(--accent))' }}
               >
                 <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-                  View AI Projects
+                  {t.hero.ctaPrimary}
                 </span>
                 <div className="absolute inset-0 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left"></div>
               </a>
 
               {/* Secondary CTA - Refined interaction */}
               <a
-                href="#"
+                href="https://calendly.com/shuenyw/30min"
                 onClick={(e) => {
                   e.preventDefault();
                   alert('Integration with Calendly would open here.');
                 }}
                 className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-stone-300 text-primary text-xs sm:text-sm font-bold uppercase tracking-wider hover:border-accent hover:text-accent hover:bg-accent/5 transition-all duration-300 rounded-full text-center flex justify-center items-center bg-white hover:scale-105"
               >
-                Book Consultation
+                {t.hero.ctaSecondary}
               </a>
             </div>
           </div>
@@ -137,7 +121,7 @@ const Hero: React.FC = () => {
           className="text-[10px] uppercase tracking-widest mb-2 font-bold"
           style={{ color: 'hsl(var(--accent))' }}
         >
-          Scroll
+          {t.hero.scroll}
         </span>
         <div className="w-[1px] h-16 bg-gradient-to-b from-accent to-transparent"></div>
       </div>

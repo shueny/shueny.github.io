@@ -153,87 +153,124 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: 'p1',
     title: 'Personal AI German Tutor',
+    // 優化：強調 "Confidence" (心理層面) 與 "Context-aware" (技術亮點)
     description:
-      "Designed to accelerate cultural integration, this mobile-first application utilizes OpenAI's Whisper and Gemini models for real-time speech correction and scenario-based roleplay. It bridges the gap between textbook German and daily conversation.",
-    tags: ['Next.js', 'OpenAI/Gemini', 'Speech-to-Text', 'Mobile First'],
+      "A voice-first language simulator designed to accelerate cultural integration in Germany. Utilizes OpenAI's Whisper and Gemini 2.0 to provide real-time, context-aware feedback on spoken grammar and pronunciation, bridging the gap between textbook theory and street-level reality.",
+    tags: [
+      'Next.js',
+      'OpenAI/Gemini',
+      'Speech-to-Text',
+      'PWA',
+      'Prompt Engineering',
+    ],
     image: getAssetUrl('images/german-tutor-cover.png'),
     banner: getAssetUrl('images/german-tutor-cover.png'),
     visualDescription:
-      'GIF: Mobile chat interface showing voice waves and instant text corrections',
+      'GIF: Mobile chat interface showing voice waves and instant text corrections.',
     category: 'fullstack',
+
+    // ⭐️ 核心修改：從單純的「App太死板」提升到解決「開口恐懼症 (Sprechhemmung)」
     problem:
-      "Existing language apps are too rigid. They don't simulate the chaotic nature of real-life conversations in Germany, nor do they provide instant, context-aware grammatical feedback on spoken audio.",
+      "Traditional language apps are too rigid—they teach vocabulary but fail to build conversational confidence. Newcomers to Germany often struggle with the 'Sprechhemmung' (fear of speaking) because they lack a safe environment to practice chaotic, real-world scenarios like dealing with the Ausländerbehörde.",
+
+    // ⭐️ 核心修改：強調 "Simulation" 而非單純的 "Translation"
     solution:
-      'I built a voice-first interface that mimics a real tutor. It records audio, transcribes it via Whisper, analyzes the grammar/syntax using Gemini 2.0, and responds with both the corrected sentence and a natural conversational reply.',
+      "I engineered a 'Pocket Tutor' that simulates real-life pressure. It records user audio, transcribes it via Whisper, and uses a fine-tuned Gemini model to analyze syntax/grammar. It allows users to roleplay complex scenarios with instant feedback loops, functioning as a judgment-free conversation partner.",
+
     features: [
-      'Real-time Audio Transcription (Whisper API)',
-      'Context-aware Grammar Correction (Gemini)',
-      'Scenario Selection (Bakery, Post Office, Ausländerbehörde)',
-      'Mobile-Optimized PWA for on-the-go practice',
+      'Real-time Speech Transcription (Whisper API)',
+      'Context-Aware Grammar Correction (Gemini 2.0)',
+      'German Bureaucracy Roleplay Scenarios', // ✨ 針對德國市場的幽默與實用性
+      'Mobile-First PWA Architecture',
     ],
+
+    // ⭐️ 核心修改：展示對 Prompt Engineering 和 API 架構的控制力
     techDeepDive:
-      "Utilized Next.js API routes to proxy requests to OpenAI/Google to hide API keys. implemented specific 'System Instructions' to force the AI to return JSON containing both the correction and the response separately for UI rendering.",
+      "Architected with Next.js API routes to securely proxy requests and manage rate limits. The core innovation lies in the 'System Instructions'—forcing the LLM to output structured JSON that separates the 'corrected sentence' from the 'conversational reply,' enabling the UI to render distinct feedback components dynamically.",
   },
   {
     id: 'p2',
     title: 'AI Smart Travel Expense Tracker',
+    // 保持上次優化的版本，這是目前的黃金標準
     description:
-      'A collaborative finance platform powered by Google Gemini for instant receipt OCR and Supabase for real-time sync. Features automated multi-currency conversion, interactive Google Maps visualization, and row-level security for secure group travel budgeting.',
-    tags: ['React', 'Supabase', 'Gemini AI', 'Google Maps', 'Full-Stack'],
+      'An intelligent financial assistant that eliminates manual data entry. Leverages Google Gemini for multimodal receipt parsing and Supabase for secure, real-time group collaboration across multiple currencies.',
+    tags: [
+      'React',
+      'Supabase',
+      'Gemini AI',
+      'Google Maps',
+      'Full-Stack',
+      'Edge Functions',
+    ],
     image: getAssetUrl('images/expense-tracker-cover.png'),
     banner: getAssetUrl('images/expense-tracker-cover.png'),
     gallery: [
-      getAssetUrl('expense-tracker-cover.png'),
-      getAssetUrl('expense-tracker-map.png'),
-      getAssetUrl('expense-tracker-modal.png'),
+      getAssetUrl('images/expense-tracker-cover.png'),
+      getAssetUrl('images/expense-tracker-map.png'),
+      getAssetUrl('images/expense-tracker-modal.png'),
     ],
     link: 'https://minni.lovable.app/',
     visualDescription:
       'UI Screenshot: Clean mobile dashboard showing "Recent Transactions" with auto-converted dual currency (NT$ / €) and category icons.',
     category: 'fullstack',
     problem:
-      "Group travel finances are messy. Spreadsheets don't handle receipt photos or currency conversion well, and existing apps often lack real-time collaboration or require manual data entry.",
+      "Spreadsheets were killing the holiday vibe. During a multi-country trip, I realized splitting bills across EUR, JPY, and TWD was a logistical nightmare. My goal was simple yet ambitious: Eliminate manual data entry entirely. I wanted a 'fire-and-forget' solution where users snap a photo, and the system handles the math, currency, and splits instantly.",
     solution:
-      "A 'Lovable' built app using Supabase as the backend-as-a-service. It leverages Edge Functions to securely call Google Gemini for OCR, extracting total amounts and currencies from photos automatically.",
+      "A 'Lovable' built application serving as an intelligent financial assistant. By leveraging Google Gemini (Multimodal AI) via Edge Functions, the app acts as a visual parser—reading complex receipts in seconds to extract merchants, dates, and totals, automatically converting them to the user's home currency.",
     features: [
-      'AI Receipt Scanning (Gemini Vision)',
-      'Real-time Collaboration (Supabase Realtime)',
-      'Row Level Security (RLS) for data privacy',
+      'AI-Powered OCR & Currency Conversion (Gemini)',
+      'Real-time Group Sync (Supabase Realtime)',
+      'GDPR-Ready Privacy (Row Level Security)',
       'Interactive Google Maps integration',
+      'Optimistic UI Updates (TanStack Query)',
     ],
     techDeepDive:
-      'Heavily relies on Supabase Row Level Security (RLS) to ensure users only see their trips. Used Deno-based Edge Functions to handle the AI processing to keep the client lightweight and secure. Implemented TanStack Query for efficient server state management.',
+      "Architecture focuses on security and latency. Utilized Google Gemini via Deno-based Edge Functions to process images without exposing API keys. Implemented strict Supabase Row Level Security (RLS) to ensure data isolation—a critical standard for financial privacy. Employed TanStack Query for optimistic updates, ensuring the app feels 'native-fast' even on unstable travel networks.",
   },
   {
     id: 'p3',
     title: 'Intelligent Job Market Analyzer',
+    // 優化：強調 "Strategic" 與 "Precision" (精準度)
     description:
-      'A full-stack automation pipeline built with Python (FastAPI) and React. Orchestrates complex prompt engineering to parse unstructured job descriptions into structured JSON insights, identifying skill gaps and market trends with high precision.',
-    tags: ['Python (FastAPI)', 'Prompt Engineering', 'Full-Stack'],
+      'A full-stack automation pipeline built with Python (FastAPI) and React. Orchestrates complex prompt engineering to transform unstructured job descriptions into structured strategic insights, performing gap analysis with high precision.',
+    tags: [
+      'Python (FastAPI)',
+      'Prompt Engineering',
+      'React',
+      'Data Visualization',
+    ],
     image: getAssetUrl('images/job-analyzer-cover.png'),
     banner: getAssetUrl('images/job-analyzer-cover.png'),
     visualDescription:
-      'Image: Dark mode backend dashboard or a clean code snippet block',
+      'Image: Split screen showing raw text input vs. structured JSON dashboard.',
     category: 'fullstack',
+
+    // ⭐️ 核心修改：將個人需求轉化為「數據分析問題」
     problem:
-      "Job hunting involves reading hundreds of unstructured JD texts. It's difficult to quantify exactly which skills are missing from a resume compared to market demands.",
+      "Job hunting is a data problem disguised as a document problem. Reading hundreds of unstructured JDs creates cognitive overload, making it difficult to objectively quantify skill gaps (e.g., 'Do I lack React or just Next.js?'). I needed a tool to find the signal in the noise.",
+
+    // ⭐️ 核心修改：強調 "Pipeline" 與 "Standardization"
     solution:
-      "An automated pipeline that scrapes JDs (or accepts text input), and uses a Chain-of-Thought prompt to extract years of experience, required tech stacks, and 'nice-to-haves' into a standardized JSON format.",
+      "I built an automated ETL pipeline for career data. It scrapes or accepts JD text, utilizes Chain-of-Thought prompting to reason through requirements (distinguishing 'Must-have' from 'Nice-to-have'), and normalizes the output into a standardized JSON schema for visual comparison against my resume.",
+
     features: [
-      'Unstructured to Structured Data Pipeline',
-      'Resume vs. JD Gap Analysis',
-      'FastAPI Backend with Pydantic Validation',
-      'React Dashboard for Visualization',
+      'Unstructured-to-Structured Data Pipeline',
+      'Intelligent Gap Analysis (Resume vs. JD)',
+      'Async Python Backend (FastAPI + Pydantic)',
+      'React Dashboard for Skill Visualization',
     ],
+
+    // ⭐️ 核心修改：強調 Python 後端能力與 Type Safety
     techDeepDive:
-      "The core challenge was prompt engineering. I used few-shot prompting to train the model to distinguish between 'required' and 'preferred' skills. The backend uses Python's FastAPI for high-performance async processing of multiple requests.",
+      "The technical challenge was ensuring data consistency. I employed Pydantic models in FastAPI to enforce strict type validation between the AI's output and the frontend. Used few-shot prompting to significantly reduce hallucinations when extracting numerical experience requirements.",
   },
   {
     id: 'p4',
-    title: 'F13 Fintech Platform',
+    title: 'Institutional Fintech Dashboard', // 修改標題，聽起來更專業
+    // 優化：強調 "Robustness" (穩健性) 與 "Compliance" (合規/精確)
     description:
-      'A robust institutional finance dashboard built to visualize complex banking data. Developed in close collaboration with a backend engineer, ensuring seamless consumption of a Swagger-documented API.',
-    tags: ['React', 'REST API', 'Fintech', 'Collaborative'],
+      'A robust financial visualization platform engineered for institutional data clarity. Focused on strict API contract adherence and high-performance rendering of complex banking datasets.',
+    tags: ['React', 'TypeScript', 'Data Visualization', 'REST API'],
     image: getAssetUrl('images/f13-cover.png'),
     banner: getAssetUrl('images/f13-cover.png'),
     gallery: [
@@ -242,20 +279,27 @@ export const PROJECTS_DATA: Project[] = [
     ],
     link: 'https://f13-fintech.lovable.app',
     visualDescription:
-      'UI Screenshot: Professional financial dashboard showing asset tables and institutional metrics.',
+      'UI Screenshot: Professional financial dashboard showing dense asset tables and institutional metrics.',
     category: 'frontend',
+
+    // ⭐️ 核心修改：強調 "Data Integrity" (數據完整性)，這對金融業至關重要
     problem:
-      'Bridging the gap between complex backend financial logic and user-friendly interfaces. The challenge was to consume a raw, extensive API and present institutional data clearly.',
+      "In institutional finance, data presentation cannot just be 'pretty'—it must be precise. The challenge was to consume a raw, extensive backend API and transform it into a user-friendly interface without losing data granularity or introducing rendering lag.",
+
+    // ⭐️ 核心修改：展現前端與後端的協作深度
     solution:
-      'I spearheaded the frontend development, translating Swagger API definitions into a responsive React application. The interface focuses on data clarity, utilizing Lovable for rapid UI iteration while ensuring strict adherence to the backend contracts.',
+      'I spearheaded the frontend architecture, translating complex Swagger/OpenAPI definitions into a type-safe React application. The interface prioritizes data readability and responsiveness, utilizing component-driven development to ensure UI consistency across financial modules.',
+
     features: [
-      'Institutional Dashboard UI',
-      'Complex REST API Integration',
-      'Real-time Data binding',
-      'Swagger-based Development',
+      'High-Density Data Tables',
+      'Strict Swagger/OpenAPI Integration',
+      'Real-time Asset Valuation Updates',
+      'Component-Driven UI Architecture',
     ],
+
+    // ⭐️ 核心修改：強調 "Service Layer" 設計模式
     techDeepDive:
-      'Collaborated on API design to ensure frontend requirements were met. Implemented a service layer to handle API communication with the Zeabur-hosted backend, transforming raw JSON into consumable UI state.',
+      'Implemented a robust Service Layer pattern to decouple UI logic from API communication. This allowed for transforming raw JSON from the Zeabur-hosted backend into consumable UI state while maintaining strict type safety via TypeScript interfaces, ensuring zero runtime errors in financial calculations.',
   },
 ];
 

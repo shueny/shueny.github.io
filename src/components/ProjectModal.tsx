@@ -30,26 +30,26 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-      {/* Backdrop */}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4">
+      {/* Backdrop with blur effect */}
       <div
-        className="absolute inset-0 bg-stone-900/60 backdrop-blur-md transition-opacity animate-fade-in"
+        className="absolute inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity animate-fade-in"
         onClick={onClose}
       ></div>
 
       {/* Modal Container */}
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-y-auto flex flex-col animate-fade-in-up"
+        className="relative w-full max-w-5xl h-[100vh] sm:h-auto sm:max-h-[90vh] bg-[#FDFCF8] sm:rounded-2xl shadow-2xl overflow-y-auto flex flex-col animate-fade-in-up"
         style={{ animationDuration: '0.4s' }}
       >
-        {/* Close Button */}
+        {/* Close Button (Sticky) */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-stone-100 transition-colors"
+          className="fixed sm:absolute top-4 right-4 z-50 p-2 bg-white/90 backdrop-blur rounded-full hover:bg-stone-100 transition-colors shadow-sm border border-stone-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-stone-500"
+            className="h-6 w-6 text-stone-600"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -63,28 +63,28 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
           </svg>
         </button>
 
-        {/* Header / Hero */}
-        <div className="bg-surface p-8 sm:p-12 border-b border-orange-100 relative overflow-hidden">
-          {/* Decorative BG */}
-          <div className="absolute top-[-50%] right-[-10%] w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
-
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-4 text-accent">
-              {icon}
-              <span className="text-xs font-bold uppercase tracking-widest">
+        {/* 1. Header Section */}
+        <div className="bg-white px-8 pt-10 pb-8 border-b border-stone-100">
+          <div className="max-w-4xl mx-auto">
+            {/* Category & Icon */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-orange-600">{icon}</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-orange-600">
                 {project.category}
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-sans font-bold text-primary mb-4 leading-tight">
+            {/* Title */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-extrabold text-stone-900 mb-6 leading-tight">
               {project.title}
             </h2>
 
+            {/* Tags Row */}
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 bg-white text-stone-600 text-xs font-bold uppercase tracking-wider rounded border border-orange-100 shadow-sm"
+                  className="px-3 py-1 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-wider rounded border border-stone-200"
                 >
                   {tag}
                 </span>
@@ -93,146 +93,155 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
           </div>
         </div>
 
-        {/* Body Content */}
-        <div className="p-8 sm:p-12 grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Main Content (Left 2 cols) */}
-          <div className="md:col-span-2 space-y-10">
-            {/* The Challenge */}
-            <div className="prose prose-stone">
-              <h3 className="text-xl font-bold text-primary font-serif italic mb-3 flex items-center">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full mr-3"></span>
-                The Challenge
-              </h3>
-              <p className="text-stone-600 leading-relaxed">
-                {project.problem || project.description}
-              </p>
-            </div>
-
-            {/* The Solution */}
-            <div className="prose prose-stone">
-              <h3 className="text-xl font-bold text-primary font-serif italic mb-3 flex items-center">
-                <span className="w-1.5 h-1.5 bg-accent rounded-full mr-3"></span>
-                The Solution
-              </h3>
-              <p className="text-stone-600 leading-relaxed">
-                {project.solution || 'Solution details currently under NDA.'}
-              </p>
-            </div>
-
-            {/* Gallery / Screenshots */}
-            {project.gallery && project.gallery.length > 0 && (
-              <div className="space-y-4">
-                <h3 className="text-sm font-bold text-stone-400 uppercase tracking-widest border-b border-stone-100 pb-2">
-                  Visual Overview
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {project.gallery.map((img, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded-lg overflow-hidden border border-stone-100 shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      <img
-                        src={img}
-                        alt={`Screenshot ${idx + 1}`}
-                        className="w-full h-auto object-cover"
-                      />
-                    </div>
-                  ))}
+        {/* 2. Main Content Grid */}
+        <div className="flex-1 px-6 sm:px-12 py-10">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* LEFT COLUMN: Narrative & Tech (Span 8) */}
+            <div className="lg:col-span-8 space-y-12">
+              {/* The Challenge */}
+              {project.problem && (
+                <div className="prose prose-stone max-w-none">
+                  <h3 className="text-2xl font-serif italic font-bold text-stone-900 mb-4 flex items-center">
+                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
+                    The Challenge
+                  </h3>
+                  <p className="text-lg text-stone-600 leading-relaxed">
+                    {project.problem}
+                  </p>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Tech Deep Dive */}
-            <div className="bg-stone-50 p-6 rounded-xl border border-stone-200">
-              <h3 className="text-sm font-bold text-primary uppercase tracking-widest mb-3">
-                Technical Architecture
-              </h3>
-              <p className="text-stone-600 text-sm leading-relaxed font-mono">
-                {project.techDeepDive || 'Technical architecture details.'}
-              </p>
+              {/* The Solution */}
+              {project.solution && (
+                <div className="prose prose-stone max-w-none">
+                  <h3 className="text-2xl font-serif italic font-bold text-stone-900 mb-4 flex items-center">
+                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
+                    The Solution
+                  </h3>
+                  <p className="text-lg text-stone-600 leading-relaxed">
+                    {project.solution}
+                  </p>
+                </div>
+              )}
+
+              {/* Technical Architecture Block (Styled like Image 3) */}
+              {project.techDeepDive && (
+                <div className="mt-8 bg-stone-50 p-6 sm:p-8 rounded-xl border border-stone-200/60 shadow-sm relative overflow-hidden">
+                  {/* Decorative faint background code icon or pattern could go here */}
+                  <div className="relative z-10">
+                    <h3 className="text-sm font-bold text-stone-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                        />
+                      </svg>
+                      Technical Architecture
+                    </h3>
+                    <p className="text-stone-700 font-mono text-sm leading-7">
+                      {project.techDeepDive}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Image Gallery */}
+              {project.gallery && project.gallery.length > 0 && (
+                <div className="space-y-4 pt-4">
+                  <h3 className="text-sm font-bold text-stone-400 uppercase tracking-widest pb-2 border-b border-stone-100">
+                    Visual Overview
+                  </h3>
+                  <div className="grid grid-cols-1 gap-6">
+                    {project.gallery.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-lg overflow-hidden border border-stone-200 shadow-md group"
+                      >
+                        <img
+                          src={img}
+                          alt={`${project.title} Screenshot ${idx + 1}`}
+                          className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
 
-          {/* Sidebar (Right 1 col) */}
-          <div className="space-y-8">
-            {/* Key Features */}
-            <div>
-              <h3 className="text-sm font-bold text-stone-400 uppercase tracking-widest mb-4 border-b border-stone-100 pb-2">
-                Key Features
-              </h3>
-              <ul className="space-y-3">
-                {project.features?.map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-start text-sm text-stone-700"
-                  >
-                    <svg
-                      className="w-4 h-4 text-accent mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* RIGHT COLUMN: Sidebar (Span 4) */}
+            <div className="lg:col-span-4 space-y-10">
+              {/* Key Features List */}
+              {project.features && project.features.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-bold text-stone-400 uppercase tracking-widest mb-6 border-b border-stone-200 pb-3">
+                    Key Features
+                  </h3>
+                  <ul className="space-y-4">
+                    {project.features.map((feature, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-3 text-stone-700"
+                      >
+                        {/* Orange Checkmark */}
+                        <svg
+                          className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        <span className="text-sm font-medium leading-snug">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-            {/* Visuals Note */}
-            {!project.link && (
-              <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
-                <p className="text-xs text-orange-800 font-medium text-center">
-                  Live demo available upon request due to API costs.
+              {/* Call to Action Card */}
+              <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-lg shadow-stone-200/50 sticky top-8">
+                <h4 className="font-bold text-stone-900 mb-2">
+                  Interested in this stack?
+                </h4>
+                <p className="text-xs text-stone-500 mb-6 leading-relaxed">
+                  {project.link
+                    ? 'Check out the live application to see the performance optimizations in action.'
+                    : 'Due to API costs, a live demo is available upon request. Contact me for a walkthrough.'}
                 </p>
+
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center px-6 py-3 bg-stone-900 text-white text-sm font-bold uppercase tracking-wider rounded hover:bg-orange-600 transition-all duration-300 shadow-md hover:shadow-xl"
+                  >
+                    Launch Live App
+                  </a>
+                ) : (
+                  <button className="block w-full text-center px-6 py-3 bg-white text-stone-900 border-2 border-stone-900 text-sm font-bold uppercase tracking-wider rounded hover:bg-stone-900 hover:text-white transition-all duration-300">
+                    Contact for Demo
+                  </button>
+                )}
               </div>
-            )}
+            </div>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="bg-stone-50 px-8 py-6 border-t border-stone-200 flex justify-end gap-4 rounded-b-2xl">
-          <button
-            onClick={onClose}
-            className="px-6 py-2 text-sm font-bold text-stone-500 hover:text-stone-800 transition-colors"
-          >
-            Close
-          </button>
-
-          {project.link ? (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-2 bg-accent text-white text-sm font-bold uppercase tracking-wider rounded hover:bg-orange-700 transition-colors shadow-lg shadow-orange-500/20 flex items-center gap-2"
-            >
-              Launch Live App
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
-          ) : (
-            <button className="px-6 py-2 bg-primary text-white text-sm font-bold uppercase tracking-wider rounded hover:bg-stone-800 transition-colors shadow-lg shadow-stone-300">
-              Contact for Demo
-            </button>
-          )}
         </div>
       </div>
     </div>

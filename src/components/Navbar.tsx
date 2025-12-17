@@ -1,21 +1,40 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { SectionId } from '../types';
+import { FileText, Globe } from 'lucide-react';
+import { useLanguage, type Language } from '../contexts/LanguageContext';
 
 const Navbar: React.FC = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId | null>(null);
+  const [showLangMenu, setShowLangMenu] = useState(false);
 
   // Memoize nav links to prevent unnecessary re-renders
   const navLinks = useMemo(
     () => [
-      { label: 'Work', href: SectionId.PROJECTS },
-      { label: 'Services', href: SectionId.SERVICES },
-      { label: 'About', href: SectionId.ABOUT },
-      { label: 'Experience', href: SectionId.EXPERIENCE },
-      { label: 'Contact', href: SectionId.CONTACT },
+      { label: t.nav.work, href: SectionId.PROJECTS },
+      { label: t.nav.services, href: SectionId.SERVICES },
+      { label: t.nav.about, href: SectionId.ABOUT },
+      { label: t.nav.experience, href: SectionId.EXPERIENCE },
+      { label: t.nav.contact, href: SectionId.CONTACT },
     ],
-    []
+    [t]
   );
+
+  // Close language menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (showLangMenu) {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.language-switcher')) {
+          setShowLangMenu(false);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showLangMenu]);
 
   // Scroll spy implementation with Intersection Observer for better performance
   useEffect(() => {
@@ -121,29 +140,81 @@ const Navbar: React.FC = () => {
           </span>
         </a>
 
-        <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2 lg:gap-3 xl:gap-4 flex-shrink-0 overflow-x-auto scrollbar-hide max-w-full">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.href;
-            return (
-              <a
-                key={link.label}
-                href={`#${link.href}`}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-medium transition-colors px-0.5 sm:px-1 py-1 relative group font-sans whitespace-nowrap flex-shrink-0 ${
-                  isActive ? 'text-accent' : 'text-primary hover:text-accent'
-                }`}
-              >
-                {link.label}
-                <span
-                  className={`absolute -bottom-1 left-1/2 h-0.5 bg-accent transition-all duration-300 ${
-                    isActive
-                      ? 'w-full -translate-x-1/2'
-                      : 'w-0 group-hover:w-1/2 group-hover:-translate-x-1/2'
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-3 flex-shrink-0">
+          {/* Nav Links */}
+          <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2 lg:gap-3 xl:gap-4 overflow-x-auto scrollbar-hide">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+              return (
+                <a
+                  key={link.label}
+                  href={`#${link.href}`}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-medium transition-colors px-0.5 sm:px-1 py-1 relative group font-sans whitespace-nowrap flex-shrink-0 ${
+                    isActive ? 'text-accent' : 'text-primary hover:text-accent'
                   }`}
-                ></span>
-              </a>
-            );
-          })}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-1/2 h-0.5 bg-accent transition-all duration-300 ${
+                      isActive
+                        ? 'w-full -translate-x-1/2'
+                        : 'w-0 group-hover:w-1/2 group-hover:-translate-x-1/2'
+                    }`}
+                  ></span>
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Divider */}
+          <div className="hidden sm:block w-px h-5 bg-stone-300/50"></div>
+
+          {/* Download CV Button */}
+          <a
+            href="/files/2025-12_Resume_ShuenyWang_FED.pdf"
+            download
+            className="p-1.5 sm:p-2 text-stone-600 hover:text-accent transition-colors group relative"
+            title={t.common.downloadResume}
+          >
+            <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
+          </a>
+
+          {/* Language Switcher */}
+          <div className="relative language-switcher">
+            <button
+              onClick={() => setShowLangMenu(!showLangMenu)}
+              className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-medium text-stone-600 hover:text-accent transition-colors"
+              title={t.common.changeLanguage}
+            >
+              <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">{language}</span>
+            </button>
+
+            {/* Language Dropdown */}
+            {showLangMenu && (
+              <div className="absolute top-full right-0 mt-2 bg-white border border-stone-200 rounded-lg shadow-lg py-1 min-w-[100px] z-50">
+                {(['EN', 'DE', '繁'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => {
+                      setLanguage(lang);
+                      setShowLangMenu(false);
+                    }}
+                    className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                      language === lang
+                        ? 'text-accent font-semibold bg-orange-50'
+                        : 'text-stone-600 hover:bg-stone-50'
+                    }`}
+                  >
+                    {lang === 'EN' && 'English'}
+                    {lang === 'DE' && 'Deutsch'}
+                    {lang === '繁' && '繁體中文'}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>
