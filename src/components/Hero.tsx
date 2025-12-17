@@ -102,10 +102,8 @@ const Hero: React.FC = () => {
               {/* Secondary CTA - Refined interaction */}
               <a
                 href="https://calendly.com/shuenyw/30min"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert('Integration with Calendly would open here.');
-                }}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-stone-300 text-primary text-xs sm:text-sm font-bold uppercase tracking-wider hover:border-accent hover:text-accent hover:bg-accent/5 transition-all duration-300 rounded-full text-center flex justify-center items-center bg-white hover:scale-105"
               >
                 {t.hero.ctaSecondary}
