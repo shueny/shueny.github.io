@@ -1,4 +1,5 @@
 import React from 'react';
+// 引入新的 Icon: LayoutTemplate (代表 CMS/Wix), Component (代表 React/Vue)
 import { SectionId } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -7,8 +8,53 @@ const Services: React.FC = () => {
 
   const services = [
     {
+      // 1. Modern Frontend Architecture (含 React, Next, Vue, Nuxt)
+      // 重點：跨框架的架構能力
       title: t.services.service1Title,
       desc: t.services.service1Desc,
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-8 h-8"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      // 2. CMS & Rapid Deployment (含 Wix, Wordpress)
+      // 重點：快速上線、行銷導向、高性價比
+      title: t.services.service2Title,
+      desc: t.services.service2Desc,
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-8 h-8"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      // 3. AI & Automation (維持不變，高價值)
+      title: t.services.service3Title,
+      desc: t.services.service3Desc,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,46 +73,7 @@ const Services: React.FC = () => {
       ),
     },
     {
-      title: t.services.service2Title,
-      desc: t.services.service2Desc,
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 18"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: t.services.service3Title,
-      desc: t.services.service3Desc,
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
-          />
-        </svg>
-      ),
-    },
-    {
+      // 4. Consulting & Mentoring (維持不變，資深價值)
       title: t.services.service4Title,
       desc: t.services.service4Desc,
       icon: (
@@ -81,7 +88,7 @@ const Services: React.FC = () => {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"
+            d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
           />
         </svg>
       ),
@@ -94,28 +101,34 @@ const Services: React.FC = () => {
       className="py-24 bg-white border-b border-orange-100"
     >
       <div className="container mx-auto px-6 md:px-12">
-        <div className="mb-16">
-          <span className="uppercase tracking-widest text-xs font-bold block mb-4 text-primary">
-            {t.services.capabilities}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-6">
-            {t.services.title}
+        <div className="mb-16 max-w-2xl">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-[2px] w-8 bg-accent"></span>
+            <span className="text-accent uppercase tracking-widest text-xs font-bold">
+              {t.services.capabilities}
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-6 leading-tight">
+            {t.services.titlePart1}{' '}
+            <span className="font-serif italic text-accent">
+              {t.services.titlePart2}
+            </span>
           </h2>
+          <p className="text-secondary text-lg font-light leading-relaxed">
+            {t.services.subtitle}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group p-8 rounded-2xl bg-surface hover:bg-white border border-orange-100 hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-900/5"
+              className="group p-8 rounded-2xl bg-[#FDFCF8] hover:bg-white border border-stone-100 hover:border-orange-200 transition-all duration-300 hover:shadow-xl hover:shadow-orange-900/5"
             >
-              <div
-                className="mb-6 group-hover:scale-110 transition-transform duration-300"
-                style={{ color: 'hsl(var(--accent))' }}
-              >
+              <div className="mb-6 group-hover:scale-110 transition-transform duration-300 text-orange-500">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+              <h3 className="text-xl font-bold text-stone-900 mb-3 group-hover:text-orange-600 transition-colors">
                 {service.title}
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">

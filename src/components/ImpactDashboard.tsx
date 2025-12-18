@@ -1,72 +1,86 @@
 import React from 'react';
-import { SectionId } from '../types';
+import { useLanguage } from '../contexts/LanguageContext'; // 👈 確保這行有正確引入
 
 const ImpactDashboard: React.FC = () => {
-  const stats = [
+  const { t } = useLanguage();
+
+  // 將多語系資料映射為陣列，方便在下方用 .map 渲染
+  // 這樣寫法可以確保 Type 安全，且讓 JSX 保持乾淨
+  const metrics = [
     {
-      value: '50%',
-      label: 'QA Cycle Reduced',
-      sub: 'Cypress Automation',
+      value: t.impact.impact1Value, // e.g., "50%"
+      label: t.impact.impact1Title, // e.g., "Faster Time-to-Market"
+      subtext: t.impact.impact1Tag, // e.g., "AUTOMATED QA PIPELINES"
+      description: t.impact.impact1Desc, // 詳細說明
     },
     {
-      value: '80%',
-      label: 'Human Error Reduced',
-      sub: 'Nx Monorepo Structure',
+      value: t.impact.impact2Value, // e.g., "30%"
+      label: t.impact.impact2Title, // e.g., "Performance Boost"
+      subtext: t.impact.impact2Tag, // e.g., "MODULAR ARCHITECTURE"
+      description: t.impact.impact2Desc,
     },
     {
-      value: '40%',
-      label: 'Conversion Boost',
-      sub: 'UI/UX Optimization',
+      value: t.impact.impact3Value, // e.g., "40%"
+      label: t.impact.impact3Title, // e.g., "Conversion Uplift"
+      subtext: t.impact.impact3Tag, // e.g., "DATA-DRIVEN UX STRATEGY"
+      description: t.impact.impact3Desc,
     },
   ];
 
   return (
-    <section
-      id={SectionId.IMPACT}
-      className="py-24 bg-primary text-white relative overflow-hidden"
-    >
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
-
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-stone-800 pb-8">
-          <div className="max-w-xl">
-            <span
-              className="uppercase tracking-widest text-xs font-bold block mb-4"
-              style={{ color: 'hsl(var(--accent))' }}
-            >
-              Proven Results
-            </span>
-            <h2 className="text-4xl md:text-6xl font-sans font-bold text-white mb-2">
-              Impact{' '}
-              <span className="font-serif italic text-stone-400">
-                Dashboard
+    <section className="bg-[#1a1918] py-24 border-t border-stone-800">
+      <div className="container mx-auto px-6 md:px-12">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-[2px] w-8 bg-accent"></span>
+              <span className="text-accent uppercase tracking-widest text-xs font-bold">
+                {t.impact.tagline}
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-sans font-bold text-white mb-0 leading-tight">
+              {t.impact.titlePart1}{' '}
+              <span className="font-serif italic text-accent">
+                {t.impact.titlePart2}
               </span>
             </h2>
           </div>
-          <p className="text-stone-400 max-w-sm text-sm mt-4 md:mt-0 text-right">
-            Metrics from my tenure at VicOne, Synttro, and Citiesocial.
+
+          {/* Context Line: 增加信任感的小字 */}
+          <p className="text-stone-400 text-lg font-light max-w-md text-left md:text-right leading-relaxed">
+            {t.impact.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-stone-800">
-          {stats.map((stat, index) => (
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-800 border-b border-stone-800 md:border-b-0 pb-8 md:pb-0">
+          {metrics.map((metric, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center p-8 text-center group"
+              className="px-4 py-8 md:py-0 md:px-8 text-center group"
             >
-              <span className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-stone-600 mb-4 group-hover:to-accent transition-all duration-500 font-sans tracking-tight">
-                {stat.value}
-              </span>
-              <span className="text-xl font-bold text-white mb-2 block">
-                {stat.label}
-              </span>
-              <span
-                className="text-sm font-mono tracking-wide uppercase border border-stone-800 px-3 py-1 rounded-full"
-                style={{ color: 'hsl(var(--accent))' }}
-              >
-                {stat.sub}
-              </span>
+              {/* Value Number (漸層字效) */}
+              <div className="text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-stone-600 mb-4 group-hover:to-orange-500 transition-all duration-500 cursor-default">
+                {metric.value}
+              </div>
+
+              {/* Business Value Title */}
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                {metric.label}
+              </h3>
+
+              {/* Tech Methodology Tag (橘色膠囊樣式) */}
+              <div className="inline-block px-3 py-1 border border-stone-700 rounded-full bg-stone-900/50 mb-5">
+                <span className="text-[10px] font-bold tracking-[0.2em] text-orange-500 uppercase">
+                  {metric.subtext}
+                </span>
+              </div>
+
+              {/* Detailed Description (滑鼠移過去會更亮) */}
+              <p className="text-stone-500 text-sm max-w-xs mx-auto opacity-70 group-hover:opacity-100 transition-opacity duration-300 leading-relaxed">
+                {metric.description}
+              </p>
             </div>
           ))}
         </div>
