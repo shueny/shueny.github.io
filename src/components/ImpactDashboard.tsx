@@ -54,27 +54,32 @@ const ImpactDashboard: React.FC = () => {
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-800 border-b border-stone-800 md:border-b-0 pb-8 md:pb-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-800">
           {metrics.map((metric, index) => (
-            <div
-              key={index}
-              className="px-4 py-8 md:py-0 md:px-8 text-center group"
-            >
-              {/* Value Number (漸層字效) */}
-              <div className="text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-stone-600 mb-4 group-hover:to-orange-500 transition-all duration-500 cursor-default">
+            <div key={index} className="px-4 py-12 md:px-8 text-center group">
+              {/* Value Number (使用與原本一致的字體樣式) */}
+              <div
+                className={`text-7xl md:text-8xl font-black font-sans tracking-tight text-transparent bg-clip-text mb-6 transition-all duration-500 ${
+                  index === 2
+                    ? 'bg-gradient-to-b from-orange-400 to-orange-600 group-hover:from-orange-300 group-hover:to-orange-500'
+                    : 'bg-gradient-to-b from-white to-stone-600 group-hover:to-orange-500'
+                }`}
+              >
                 {metric.value}
               </div>
 
-              {/* Business Value Title */}
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+              {/* Business Value Title - 固定高度確保對齊 */}
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-4 min-h-[3.5rem] flex items-center justify-center">
                 {metric.label}
               </h3>
 
-              {/* Tech Methodology Tag (橘色膠囊樣式) */}
-              <div className="inline-block px-3 py-1 border border-stone-700 rounded-full bg-stone-900/50 mb-5">
-                <span className="text-[10px] font-bold tracking-[0.2em] text-orange-500 uppercase">
-                  {metric.subtext}
-                </span>
+              {/* Tech Methodology Tag (橘色膠囊樣式) - 固定高度確保對齊 */}
+              <div className="flex justify-center mb-6 min-h-[2rem]">
+                <div className="inline-flex items-center px-3 py-1 border border-stone-700 rounded-full bg-stone-900/50">
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-orange-500 uppercase">
+                    {metric.subtext}
+                  </span>
+                </div>
               </div>
 
               {/* Detailed Description (滑鼠移過去會更亮) */}
