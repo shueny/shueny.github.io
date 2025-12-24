@@ -287,10 +287,38 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 const ProjectsGrid: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
 
   const totalProjects = PROJECTS_DATA.length;
-  const VISIBLE_COUNT = 3;
-  const maxIndex = Math.max(0, totalProjects - VISIBLE_COUNT);
+  const maxIndex = Math.max(0, totalProjects - visibleCount);
+
+  // Handle responsive visible count
+  React.useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.innerWidth >= 1280) {
+        // xl and above
+        setVisibleCount(3);
+      } else if (window.innerWidth >= 768) {
+        // md to lg
+        setVisibleCount(2);
+      } else {
+        // mobile
+        setVisibleCount(1);
+      }
+    };
+
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
+
+  // Reset index when visible count changes
+  React.useEffect(() => {
+    const newMaxIndex = Math.max(0, totalProjects - visibleCount);
+    if (currentIndex > newMaxIndex) {
+      setCurrentIndex(newMaxIndex);
+    }
+  }, [visibleCount, totalProjects, currentIndex]);
 
   const goToIndex = (index: number) => {
     if (!totalProjects) return;
@@ -327,10 +355,10 @@ const ProjectsGrid: React.FC = () => {
           </p>
         </div>
 
-        {/* Slider Controls (desktop) */}
-        {totalProjects > VISIBLE_COUNT && (
+        {/* Slider Controls */}
+        {totalProjects > visibleCount && (
           <div className="mb-6 flex justify-end">
-            <div className="hidden md:flex gap-3">
+            <div className="flex gap-3">
               <button
                 type="button"
                 onClick={handlePrev}
@@ -361,18 +389,19 @@ const ProjectsGrid: React.FC = () => {
           </div>
         )}
 
-        {/* Slider window: show 3 cards, move by 1 with slide animation */}
+        {/* Slider window: responsive card count */}
         <div className="relative overflow-hidden -mx-4">
           <div
             className="flex transition-transform duration-500 ease-out"
             style={{
-              transform: `translateX(-${
-                currentIndex * (100 / VISIBLE_COUNT)
-              }%)`,
+              transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
             }}
           >
             {PROJECTS_DATA.map((project, index) => (
-              <div key={project.id} className="shrink-0 basis-1/3 px-4">
+              <div
+                key={project.id}
+                className="shrink-0 basis-full md:basis-1/2 xl:basis-1/3 px-4"
+              >
                 <ProjectCard
                   project={project}
                   index={index}

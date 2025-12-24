@@ -31,7 +31,7 @@ const ImpactDashboard: React.FC = () => {
     <section className="bg-[#1a1918] py-24 border-t border-stone-800">
       <div className="container mx-auto px-6 md:px-12">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
               <span className="h-[2px] w-8 bg-accent"></span>
@@ -48,7 +48,7 @@ const ImpactDashboard: React.FC = () => {
           </div>
 
           {/* Context Line: 增加信任感的小字 */}
-          <p className="text-stone-400 text-lg font-light max-w-md text-left md:text-right leading-relaxed">
+          <p className="text-stone-400 text-lg font-light  leading-relaxed">
             {t.impact.subtitle}
           </p>
         </div>

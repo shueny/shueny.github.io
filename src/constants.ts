@@ -4,6 +4,9 @@ import type {
   SkillData,
   Education,
   SpecialExperience,
+  EducationItem,
+  GlobalExperienceItem,
+  AboutSection,
 } from './types';
 
 // Inline helper to avoid import resolution issues across different build environments

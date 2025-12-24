@@ -1,63 +1,120 @@
 import React from 'react';
 import { SectionId } from '../types';
-import { EDUCATION_DATA, SPECIAL_EXPERIENCE_DATA } from '../constants';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const About: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
-    <section id={SectionId.ABOUT} className="py-24 bg-surface border-b border-orange-100">
+    // 使用與截圖一致的米色背景 bg-[#FDFCF8]
+    <section
+      id={SectionId.ABOUT}
+      className="py-24 bg-[#FDFCF8] border-b border-orange-100"
+    >
       <div className="container mx-auto px-6 md:px-12">
-        
-        {/* Intro */}
+        {/* --- 1. Header (完全還原 image_f9068d.png 風格) --- */}
         <div className="max-w-4xl mb-20">
-          <span className="text-accent uppercase tracking-widest text-xs font-bold block mb-4">The Person Behind the Pixels</span>
-          <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-8 leading-tight">
-            Design roots. Engineering mind. <br/>
-            <span className="font-serif italic text-accent">Global perspective.</span>
+          <span className="text-orange-600 uppercase tracking-widest text-xs font-bold block mb-4">
+            The Person Behind the Pixels
+          </span>
+          <h2 className="text-4xl md:text-5xl font-sans font-bold text-stone-900 mb-8 leading-tight">
+            {t.about.title} <br />
+            {/* 使用 Serif + Italic + Orange 呈現強調文字 */}
+            <span className="font-serif italic text-orange-600">
+              {t.about.subtitle}
+            </span>
           </h2>
-          <p className="text-secondary text-lg md:text-xl font-light leading-relaxed">
-            With a foundation in <strong className="font-medium text-primary">Graphic Design</strong> and a <strong className="font-medium text-primary">Master's in Learning Technology</strong>, I approach frontend development differently. I don't just implement designs; I understand the 'why' behind them. My journey from creative arts to rigorous engineering allows me to bridge the gap between design teams and developers, ensuring pixel-perfect execution with scalable architecture.
-          </p>
+          {/* Intro 文字，支援 HTML 粗體顯示 */}
+          <p
+            className="text-stone-600 text-lg md:text-xl font-light leading-relaxed [&>strong]:font-medium [&>strong]:text-stone-900"
+            dangerouslySetInnerHTML={{ __html: t.about.intro }}
+          />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16">
-          
-          {/* Education */}
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+          {/* --- 2. Education (加入論文與專題) --- */}
           <div>
-            <h3 className="text-2xl font-serif font-bold text-primary mb-8 flex items-center">
-              <span className="w-8 h-[1px] bg-accent mr-4"></span>
-              Education
+            <h3 className="text-2xl font-serif font-bold text-stone-900 mb-10 flex items-center">
+              <span className="w-8 h-[2px] bg-orange-500 mr-4"></span>
+              {t.about.educationTitle}
             </h3>
-            <div className="space-y-8">
-              {EDUCATION_DATA.map((edu, idx) => (
+            <div className="space-y-12">
+              {t.about.education.map((edu, idx) => (
                 <div key={idx} className="group">
-                  <h4 className="text-lg font-bold text-primary group-hover:text-accent transition-colors">{edu.degree}</h4>
-                  <p className="text-secondary font-serif italic mb-1">{edu.school}</p>
-                  <p className="text-xs font-mono text-stone-400 bg-white inline-block px-2 py-1 rounded border border-orange-100">{edu.period}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+                  <h4 className="text-xl font-bold text-stone-900 group-hover:text-orange-600 transition-colors">
+                    {edu.degree}
+                  </h4>
+                  <p className="text-stone-500 font-serif italic mb-3 text-lg">
+                    {edu.school}
+                  </p>
 
-          {/* Global Experience */}
-          <div>
-            <h3 className="text-2xl font-serif font-bold text-primary mb-8 flex items-center">
-              <span className="w-8 h-[1px] bg-accent mr-4"></span>
-              Global Footprint
-            </h3>
-            <div className="space-y-8">
-              {SPECIAL_EXPERIENCE_DATA.map((exp, idx) => (
-                <div key={idx} className="relative pl-6 border-l border-stone-200 hover:border-accent transition-colors duration-300">
-                  <div className="flex justify-between items-baseline mb-1">
-                    <h4 className="text-lg font-bold text-primary">{exp.title}</h4>
-                    <span className="text-xs font-mono text-stone-400">{exp.year}</span>
+                  {/* 年份 Badge：保持原本的小巧風格 */}
+                  <div className="mb-4">
+                    <span className="text-xs font-mono text-stone-400 bg-white inline-block px-2 py-1 rounded border border-orange-100">
+                      {edu.year}
+                    </span>
                   </div>
-                  {exp.location && <p className="text-sm text-accent font-medium mb-2">{exp.location}</p>}
-                  <p className="text-sm text-secondary leading-relaxed">{exp.description}</p>
+
+                  {/* 新增：論文/專題描述 (灰色文字，關鍵字加深) */}
+                  <p
+                    className="text-sm text-stone-600 leading-relaxed border-l-2 border-stone-100 pl-4 [&>strong]:text-stone-900 [&>strong]:font-medium"
+                    dangerouslySetInnerHTML={{ __html: edu.desc }}
+                  />
                 </div>
               ))}
             </div>
           </div>
 
+          {/* --- 3. Global Footprint (還原左側線條設計) --- */}
+          <div>
+            <h3 className="text-2xl font-serif font-bold text-stone-900 mb-10 flex items-center">
+              <span className="w-8 h-[2px] bg-orange-500 mr-4"></span>
+              {t.about.globalTitle}
+            </h3>
+            <div className="space-y-10">
+              {t.about.global.map((exp, idx) => (
+                <div
+                  key={idx}
+                  className={`relative pl-6 border-l-2 transition-all duration-300
+                    ${
+                      exp.highlight
+                        ? 'border-orange-500' // Highlight 項目 (獎項) 使用橘色線條
+                        : 'border-stone-200 hover:border-orange-300' // 一般項目維持灰色，Hover 變色
+                    }`}
+                >
+                  <div className="flex justify-between items-baseline mb-2">
+                    <h4
+                      className={`text-lg font-bold ${
+                        exp.highlight ? 'text-orange-600' : 'text-stone-900'
+                      }`}
+                    >
+                      {/* 如果有 Icon 就顯示，放在標題旁 */}
+                      {exp.icon && (
+                        <span className="mr-2 inline-block">{exp.icon}</span>
+                      )}
+                      {exp.title}
+                    </h4>
+                    <span className="text-xs font-mono text-stone-400 whitespace-nowrap ml-2">
+                      {exp.year}
+                    </span>
+                  </div>
+
+                  {/* Role & Location */}
+                  <p className="text-xs font-bold text-orange-600 uppercase tracking-widest mb-2">
+                    {exp.role}
+                    {exp.location && (
+                      <span className="text-stone-300 mx-2">|</span>
+                    )}
+                    {exp.location}
+                  </p>
+
+                  <p className="text-sm text-stone-600 leading-relaxed">
+                    {exp.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

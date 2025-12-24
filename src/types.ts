@@ -65,6 +65,7 @@ export interface ChatMessage {
 export enum SectionId {
   HERO = 'hero',
   SERVICES = 'services',
+  SKILLS = 'skills',
   IMPACT = 'impact',
   PROJECTS = 'projects',
   ABOUT = 'about',
@@ -105,4 +106,31 @@ export interface ImageMetadata {
   width: number;
   height: number;
   format: string;
+}
+
+export interface EducationItem {
+  degree: string;
+  school: string;
+  year: string;
+  desc: string; // 支援 HTML 字串
+}
+
+export interface GlobalExperienceItem {
+  title: string;
+  role: string;
+  year: string;
+  location?: string;
+  desc: string;
+  icon?: string; // e.g., "🏆", "🌎"
+  highlight?: boolean; // 用來標記 TrendMicro 這種重要獎項
+}
+
+export interface AboutSection {
+  title: string;
+  subtitle: string;
+  intro: string; // 支援 HTML
+  educationTitle: string;
+  globalTitle: string;
+  education: EducationItem[];
+  global: GlobalExperienceItem[];
 }

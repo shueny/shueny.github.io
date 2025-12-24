@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
       <div className="absolute top-[20%] left-[-10%] w-[30vw] h-[30vw] rounded-full bg-orange-100/30 blur-3xl pointer-events-none"></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10 h-full flex flex-col justify-center">
-        {/* Intro Tag - Optimized for mobile with refined animation */}
+        {/* Intro Tag */}
         <div
           className="flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8 md:mb-10 animate-fade-in-up"
           style={{ animationDelay: '0s' }}
@@ -33,24 +33,21 @@ const Hero: React.FC = () => {
           </span>
         </div>
 
-        {/* Macro Typography - Enhanced hierarchy and animation sequence */}
+        {/* Macro Typography */}
         <div className="relative mb-8 sm:mb-10 md:mb-12">
           <h1 className="text-[11vw] sm:text-[9vw] md:text-[7vw] lg:text-[6vw] leading-[0.95] sm:leading-[0.9] font-bold text-primary tracking-tighter font-sans mix-blend-multiply">
-            {/* Primary line - Strongest visual weight */}
             <span
               className="block animate-fade-in-up font-extrabold"
               style={{ animationDelay: '0.15s' }}
             >
               {t.hero.title1}
             </span>
-            {/* Secondary line - Medium weight with gradient */}
             <span
               className="block text-transparent bg-clip-text bg-gradient-to-r from-stone-500 via-stone-400 to-stone-500 animate-fade-in-up font-bold mt-1 sm:mt-2"
               style={{ animationDelay: '0.3s' }}
             >
               {t.hero.title2}
             </span>
-            {/* Accent line - Highest emphasis with color */}
             <span
               className="block animate-fade-in-up font-extrabold mt-1 sm:mt-2"
               style={{
@@ -67,7 +64,7 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 sm:gap-8 md:gap-12 border-t border-orange-200/60 pt-8 sm:pt-10 md:pt-12">
-          {/* Quote section - Enhanced typography hierarchy */}
+          {/* Quote section */}
           <div
             className="w-full md:w-1/2 animate-fade-in-up"
             style={{ animationDelay: '0.6s' }}
@@ -77,7 +74,7 @@ const Hero: React.FC = () => {
             </p>
           </div>
 
-          {/* CTA section - Refined spacing and animation */}
+          {/* CTA section */}
           <div
             className="w-full md:w-1/3 space-y-6 sm:space-y-8 animate-fade-in-up"
             style={{ animationDelay: '0.75s' }}
@@ -86,11 +83,14 @@ const Hero: React.FC = () => {
               {t.hero.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
-              {/* Primary CTA - Enhanced hover effects */}
+            {/* 👇 重點修改：按鈕容器的 Flex 邏輯 👇 */}
+            {/* 邏輯：手機(col) -> 平板(row) -> 筆電1250px(col) -> 大螢幕(row) */}
+            <div className="flex flex-col sm:flex-row md:flex-col xl:flex-row gap-3 sm:gap-4 w-full">
+              {/* Primary CTA */}
               <a
                 href={`#${SectionId.PROJECTS}`}
-                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 text-white text-xs sm:text-sm font-bold uppercase tracking-wider overflow-hidden shadow-lg shadow-orange-500/30 rounded-full text-center flex justify-center items-center transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/40 hover:scale-105"
+                // 👇 重點修改：按鈕寬度的響應式邏輯 (配合容器方向)
+                className="group relative w-full sm:w-auto md:w-full xl:w-auto px-6 sm:px-8 py-3.5 sm:py-4 text-white text-xs sm:text-sm font-bold uppercase tracking-wider overflow-hidden shadow-lg shadow-orange-500/30 rounded-full text-center flex justify-center items-center transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/40 hover:scale-105"
                 style={{ backgroundColor: 'hsl(var(--accent))' }}
               >
                 <span className="relative z-10 group-hover:text-white transition-colors duration-300">
@@ -99,12 +99,13 @@ const Hero: React.FC = () => {
                 <div className="absolute inset-0 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left"></div>
               </a>
 
-              {/* Secondary CTA - Refined interaction */}
+              {/* Secondary CTA */}
               <a
                 href="https://calendly.com/shuenyw/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-stone-300 text-primary text-xs sm:text-sm font-bold uppercase tracking-wider hover:border-accent hover:text-accent hover:bg-accent/5 transition-all duration-300 rounded-full text-center flex justify-center items-center bg-white hover:scale-105"
+                // 👇 重點修改：按鈕寬度的響應式邏輯
+                className="w-full sm:w-auto md:w-full xl:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-stone-300 text-primary text-xs sm:text-sm font-bold uppercase tracking-wider hover:border-accent hover:text-accent hover:bg-accent/5 transition-all duration-300 rounded-full text-center flex justify-center items-center bg-white hover:scale-105"
               >
                 {t.hero.ctaSecondary}
               </a>
@@ -113,7 +114,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator - Hidden on very small heights to prevent overlap */}
+      {/* Scroll Indicator */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 items-center animate-float opacity-60 hidden md:flex flex-col">
         <span
           className="text-[10px] uppercase tracking-widest mb-2 font-bold"

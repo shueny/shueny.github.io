@@ -14,6 +14,7 @@ const Navbar: React.FC = () => {
     () => [
       { label: t.nav.work, href: SectionId.PROJECTS },
       { label: t.nav.services, href: SectionId.SERVICES },
+      { label: t.nav.skills, href: SectionId.SKILLS },
       { label: t.nav.about, href: SectionId.ABOUT },
       { label: t.nav.experience, href: SectionId.EXPERIENCE },
       { label: t.nav.contact, href: SectionId.CONTACT },
@@ -110,10 +111,10 @@ const Navbar: React.FC = () => {
       <div
         className={`
         pointer-events-auto
-        flex items-center justify-between gap-1 sm:gap-2 px-2 sm:px-3 md:px-6 py-2 sm:py-3 transition-all duration-500 ease-out
+        flex items-center justify-between gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-3 transition-all duration-500 ease-out
         ${
           scrolled
-            ? 'w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-[680px] bg-white/70 backdrop-blur-xl shadow-lg shadow-orange-900/5 border border-white/40 rounded-full'
+            ? 'w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-[850px] lg:max-w-[950px] bg-white/70 backdrop-blur-xl shadow-lg shadow-orange-900/5 border border-white/40 rounded-full'
             : 'w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-7xl bg-transparent'
         }
       `}
@@ -140,9 +141,9 @@ const Navbar: React.FC = () => {
           </span>
         </a>
 
-        <div className="flex items-center gap-1 sm:gap-2 md:gap-3 flex-shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-2 lg:gap-3 flex-shrink-0 min-w-0">
           {/* Nav Links */}
-          <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2 lg:gap-3 xl:gap-4 overflow-x-auto scrollbar-hide">
+          <div className="flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 xl:gap-3 overflow-x-auto scrollbar-hide min-w-0 flex-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href;
               return (
@@ -150,7 +151,7 @@ const Navbar: React.FC = () => {
                   key={link.label}
                   href={`#${link.href}`}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-medium transition-colors px-0.5 sm:px-1 py-1 relative group font-sans whitespace-nowrap flex-shrink-0 ${
+                  className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs font-medium transition-colors px-0.5 sm:px-1 py-1 relative group font-sans whitespace-nowrap flex-shrink-0 ${
                     isActive ? 'text-accent' : 'text-primary hover:text-accent'
                   }`}
                 >
@@ -168,33 +169,33 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Divider */}
-          <div className="hidden sm:block w-px h-5 bg-stone-300/50"></div>
+          <div className="hidden sm:block w-px h-5 bg-stone-300/50 flex-shrink-0"></div>
 
           {/* Download CV Button */}
           <a
             href="/files/2025-12_Resume_ShuenyWang_FED.pdf"
             download
-            className="p-1.5 sm:p-2 text-stone-600 hover:text-accent transition-colors group relative"
+            className="p-1.5 sm:p-2 text-stone-600 hover:text-accent transition-colors group relative flex-shrink-0"
             title={t.common.downloadResume}
           >
             <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
           </a>
 
           {/* Language Switcher */}
-          <div className="relative language-switcher">
+          <div className="relative language-switcher flex-shrink-0">
             <button
               onClick={() => setShowLangMenu(!showLangMenu)}
-              className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-medium text-stone-600 hover:text-accent transition-colors"
+              className="flex items-center gap-1 px-1.5 sm:px-2 md:px-3 py-1.5 text-[10px] sm:text-xs font-medium text-stone-600 hover:text-accent transition-colors whitespace-nowrap"
               title={t.common.changeLanguage}
             >
-              <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
               <span className="hidden sm:inline">{language}</span>
             </button>
 
             {/* Language Dropdown */}
             {showLangMenu && (
               <div className="absolute top-full right-0 mt-2 bg-white border border-stone-200 rounded-lg shadow-lg py-1 min-w-[100px] z-50">
-                {(['EN', 'DE', '繁'] as const).map((lang) => (
+                {(['EN', 'DE', 'ZH'] as const).map((lang) => (
                   <button
                     key={lang}
                     onClick={() => {
@@ -209,7 +210,7 @@ const Navbar: React.FC = () => {
                   >
                     {lang === 'EN' && 'English'}
                     {lang === 'DE' && 'Deutsch'}
-                    {lang === '繁' && '繁體中文'}
+                    {lang === 'ZH' && '繁體中文'}
                   </button>
                 ))}
               </div>

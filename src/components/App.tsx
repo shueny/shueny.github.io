@@ -10,6 +10,7 @@ import ExperienceList from './ExperienceList';
 import Contact from './Contact';
 import Footer from './Footer';
 import CookieConsent from './CookieConsent';
+import TechStack from './TechStack';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <main>
           <Hero />
           <Services />
+          <TechStack />
           <ImpactDashboard />
           <ProjectsGrid />
           <About />
