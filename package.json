@@ -14,6 +14,7 @@
   },
   "packageManager": "pnpm@8.15.4",
   "dependencies": {
+    "@astrojs/check": "^0.9.0",
     "@astrojs/db": "^0.11.4",
     "@astrojs/mdx": "^2.3.1",
     "@astrojs/react": "^3.4.0",
@@ -21,6 +22,7 @@
     "@astrojs/sitemap": "^3.1.5",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^7.6.0",
+    "@google/generative-ai": "^0.21.0",
     "@graphql-tools/schema": "^10.0.21",
     "@hookform/resolvers": "^3.4.2",
     "@iconify-json/lucide": "^1.1.189",
@@ -36,6 +38,8 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@react-spring/web": "^9.7.5",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.2",
     "astro": "^4.9.2",
     "astro-icon": "^1.1.0",
     "balance-text": "^3.3.1",
@@ -52,28 +56,28 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.5",
+    "recharts": "^2.12.0",
     "sharp": "^0.33.4",
     "simple-stack-form": "^0.1.12",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.8",
-    "@astrojs/check": "^0.9.0",
-    "@google/generative-ai": "^0.21.0",
-    "recharts": "^2.12.0",
-    "typescript": "^5.2.2"
+    "three": "^0.182.0",
+    "typescript": "^5.2.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
-    "gh-pages": "^6.1.1",
-    "mdast-util-toc": "^7.1.0",
-    "remark": "^15.0.1",
-    "unist-util-visit": "^5.0.0",
     "@types/node": "^25.0.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.182.0",
     "autoprefixer": "^10.4.17",
+    "gh-pages": "^6.1.1",
+    "mdast-util-toc": "^7.1.0",
     "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.3"
+    "remark": "^15.0.1",
+    "tailwindcss": "^3.4.3",
+    "unist-util-visit": "^5.0.0"
   }
 }
