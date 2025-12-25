@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import type { Project } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ProjectModalProps {
   project: Project;
@@ -12,6 +13,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
   onClose,
   icon,
 }) => {
+  const { t } = useLanguage();
   // Prevent body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -103,7 +105,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                 <div className="prose prose-stone max-w-none">
                   <h3 className="text-2xl font-serif italic font-bold text-stone-900 mb-4 flex items-center">
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
-                    The Challenge
+                    {t.projectModal.theChallenge}
                   </h3>
                   <p className="text-lg text-stone-600 leading-relaxed">
                     {project.problem}
@@ -116,7 +118,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                 <div className="prose prose-stone max-w-none">
                   <h3 className="text-2xl font-serif italic font-bold text-stone-900 mb-4 flex items-center">
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
-                    The Solution
+                    {t.projectModal.theSolution}
                   </h3>
                   <p className="text-lg text-stone-600 leading-relaxed">
                     {project.solution}
@@ -144,7 +146,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                           d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                         />
                       </svg>
-                      Technical Architecture
+                      {t.projectModal.technicalArchitecture}
                     </h3>
                     <p className="text-stone-700 font-mono text-sm leading-7">
                       {project.techDeepDive}
@@ -157,7 +159,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               {project.gallery && project.gallery.length > 0 && (
                 <div className="space-y-4 pt-4">
                   <h3 className="text-sm font-bold text-stone-400 uppercase tracking-widest pb-2 border-b border-stone-100">
-                    Visual Overview
+                    {t.projectModal.visualOverview}
                   </h3>
                   <div className="grid grid-cols-1 gap-6">
                     {project.gallery.map((img, idx) => (
@@ -183,7 +185,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               {project.features && project.features.length > 0 && (
                 <div>
                   <h3 className="text-sm font-bold text-stone-400 uppercase tracking-widest mb-6 border-b border-stone-200 pb-3">
-                    Key Features
+                    {t.projectModal.keyFeatures}
                   </h3>
                   <ul className="space-y-4">
                     {project.features.map((feature, idx) => (
@@ -222,7 +224,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                 <p className="text-xs text-stone-500 mb-6 leading-relaxed">
                   {project.link
                     ? 'Check out the live application to see the performance optimizations in action.'
-                    : 'Due to API costs, a live demo is available upon request. Contact me for a walkthrough.'}
+                    : t.projectModal.liveDemoNote}
                 </p>
 
                 {project.link ? (
@@ -232,11 +234,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     rel="noopener noreferrer"
                     className="block w-full text-center px-6 py-3 bg-stone-900 text-white text-sm font-bold uppercase tracking-wider rounded hover:bg-orange-600 transition-all duration-300 shadow-md hover:shadow-xl"
                   >
-                    Launch Live App
+                    {t.projectModal.launchLiveApp}
                   </a>
                 ) : (
                   <button className="block w-full text-center px-6 py-3 bg-white text-stone-900 border-2 border-stone-900 text-sm font-bold uppercase tracking-wider rounded hover:bg-stone-900 hover:text-white transition-all duration-300">
-                    Contact for Demo
+                    {t.projectModal.contactForDemo}
                   </button>
                 )}
               </div>

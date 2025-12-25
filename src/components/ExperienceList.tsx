@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { EXPERIENCE_DATA } from '../constants';
 import { SectionId } from '../types';
 import SkillsChart from './SkillsChart';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ExperienceList: React.FC = () => {
+  const { t } = useLanguage();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+
+  // Use translated experience data
+  const experienceData = t.experience.items;
 
   const toggleExpanded = (id: string) => {
     setExpandedItems((prev) => {
@@ -30,16 +34,14 @@ const ExperienceList: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="sticky top-32">
               <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-8 tracking-tight">
-                Professional
+                {t.experience.titlePart1}
                 <br />
                 <span className="font-serif italic text-accent">
-                  Trajectory
+                  {t.experience.titlePart2}
                 </span>
               </h2>
               <p className="text-secondary mb-12 leading-relaxed font-light text-lg">
-                Over two decades of navigating the evolving landscape of web
-                technology. From jQuery spaghetti code to modern React
-                ecosystems, I've led teams through it all.
+                {t.experience.description}
               </p>
               <div className="transform hover:scale-[1.02] transition-transform duration-500">
                 <SkillsChart />
@@ -49,7 +51,7 @@ const ExperienceList: React.FC = () => {
 
           {/* Timeline List */}
           <div className="lg:col-span-7 space-y-0 pt-8">
-            {EXPERIENCE_DATA.map((exp) => {
+            {experienceData.map((exp) => {
               const isExpanded = expandedItems.has(exp.id);
               const hasMoreAchievements =
                 exp.achievements.length > INITIAL_ACHIEVEMENTS_COUNT;
@@ -84,7 +86,7 @@ const ExperienceList: React.FC = () => {
                   <div className="bg-surface p-6 border border-orange-100 rounded-lg hover:shadow-md transition-shadow duration-300">
                     <div className="flex items-center justify-between mb-4">
                       <p className="text-xs font-bold uppercase tracking-widest text-accent">
-                        Key Achievements
+                        {t.experience.keyAchievements}
                       </p>
                       {hasMoreAchievements && (
                         <button

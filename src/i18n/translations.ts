@@ -89,11 +89,6 @@ export interface Translations {
     analysis2Title: string;
     analysis2Desc: string;
   };
-  projects: {
-    sectionTitle: string;
-    sectionSubtitle: string;
-    viewCaseStudy: string;
-  };
   about: {
     title: string;
     subtitle: string;
@@ -103,13 +98,67 @@ export interface Translations {
     education: EducationItem[];
     global: GlobalExperienceItem[];
   };
+  experience: {
+    titlePart1: string; // "Professional"
+    titlePart2: string; // "Trajectory"
+    description: string;
+    keyAchievements: string;
+    items: Array<{
+      id: string;
+      role: string;
+      company: string;
+      period: string;
+      description: string;
+      achievements: string[];
+    }>;
+  };
   contact: {
-    title: string;
+    tagline: string; // "Available for hire"
+    titlePart1: string; // "Let's create"
+    titlePart2: string; // "impact."
     subtitle: string;
-    namePlaceholder: string;
-    emailPlaceholder: string;
-    messagePlaceholder: string;
-    sendButton: string;
+    startProject: string;
+    linkedinProfile: string;
+  };
+  footer: {
+    copyright: string;
+    allRightsReserved: string;
+    impressum: string;
+    privacyPolicy: string;
+    designedWith: string;
+  };
+  cookieConsent: {
+    title: string;
+    description: string;
+    customize: string;
+    rejectAll: string;
+    acceptAll: string;
+    cookieSettings: string;
+    necessaryCookies: string;
+    necessaryCookiesDesc: string;
+    alwaysActive: string;
+    analyticsCookies: string;
+    analyticsCookiesDesc: string;
+    savePreferences: string;
+    cancel: string;
+  };
+  projectModal: {
+    close: string;
+    theChallenge: string;
+    theSolution: string;
+    technicalArchitecture: string;
+    keyFeatures: string;
+    visualOverview: string;
+    liveDemoNote: string;
+    contactForDemo: string;
+    launchLiveApp: string;
+  };
+  projects: {
+    label: string; // "Innovation & Impact"
+    titlePart1: string; // "Featured"
+    titlePart2: string; // "AI & Web Solutions"
+    subtitle: string;
+    viewCaseStudy: string;
   };
   common: {
     downloadResume: string;
@@ -222,9 +271,86 @@ export const translations: Record<Language, Translations> = {
       analysis2Desc:
         'Evaluated system architecture and proposed scalability improvements.',
     },
+    experience: {
+      titlePart1: 'Professional',
+      titlePart2: 'Trajectory',
+      description:
+        "Over two decades of navigating the evolving landscape of web technology. From jQuery spaghetti code to modern React ecosystems, I've led teams through it all.",
+      keyAchievements: 'Key Achievements',
+      items: [
+        {
+          id: 'exp1',
+          role: 'Senior Front-End Engineer',
+          company: 'VicOne (Trend Micro)',
+          period: 'Sep 2021 - Mar 2025',
+          description:
+            'Delivering cybersecurity software and services for the automotive industry. Specializing in micro-frontends, AI integration, and automated testing.',
+          achievements: [
+            'Automated UI end-to-end testing using Cypress and TestRail, reducing QA cycle time by 50%.',
+            'Implemented B2B VSOC platform using Nx monorepo, reducing human error rates by 80%.',
+            'Built multilingual websites (Next.js/i18n), improving render speed by 30% and SEO.',
+            'Integrated Azure OpenAI into Wagtail CMS for auto-parsing source URLs.',
+            'Refactored legacy apps into modular micro-frontends using Nx, React, and Vitest.',
+          ],
+        },
+        {
+          id: 'exp2',
+          role: 'Senior Front-End Engineer',
+          company: 'Synttro',
+          period: 'May 2020 - Sep 2021',
+          description:
+            'Developed team collaboration CMS systems for the B2B construction industry.',
+          achievements: [
+            'Developed a drag-and-drop form builder with React DnD and schema validation.',
+            'Built digital signature approval flows with canvas-based sketch input.',
+            'Enhanced collaboration efficiency by 60% through a custom B2B system.',
+            'Automated E2E tests with Puppeteer achieving over 80% test coverage.',
+          ],
+        },
+        {
+          id: 'exp3',
+          role: 'Front-End Developer',
+          company: 'Citiesocial',
+          period: 'May 2018 - Aug 2019',
+          description:
+            'Online selection shop established by Shopify. Focused on e-commerce optimization.',
+          achievements: [
+            'Designed Shopify interfaces boosting conversion rates by 10%.',
+            'Optimized SEO strategies securing first-page rankings (10% traffic boost).',
+            'Reduced activity page launch time from 1 week to 1 day via templates.',
+            'Integrated Hotjar and GA/GTM for data-driven UI optimizations.',
+          ],
+        },
+        {
+          id: 'exp4',
+          role: 'Engineer',
+          company: 'MOMO (Fubon Multimedia)',
+          period: 'Aug 2016 - Mar 2018',
+          description: 'Leading online retail company in Taiwan.',
+          achievements: [
+            'Refactored desktop and mobile homepage interfaces for accessibility.',
+            'Leveraged GA data to personalize search results and suggestions.',
+            'Improved SEO rankings to top 3 by optimizing metadata and keywords.',
+          ],
+        },
+        {
+          id: 'exp5',
+          role: 'Graphic & Web Designer',
+          company: 'Skyway Inc. & TUKEEN Inc.',
+          period: '2013 - 2016',
+          description: 'Design background foundation.',
+          achievements: [
+            'Maintained websites and optimized UI for SMEs.',
+            'Managed photography, branding, and exhibition materials.',
+          ],
+        },
+      ],
+    },
     projects: {
-      sectionTitle: 'AI & Web Solutions',
-      sectionSubtitle:
+      label: 'Innovation & Impact',
+      titlePart1: 'Featured',
+      titlePart2: 'AI & Web Solutions',
+      subtitle:
         'A selection of projects demonstrating cultural adaptation, business process automation, and deep technical capabilities.',
       viewCaseStudy: 'View Case Study',
     },
@@ -283,12 +409,48 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     contact: {
-      title: 'Get in Touch',
-      subtitle: "Let's discuss your next project",
-      namePlaceholder: 'Your Name',
-      emailPlaceholder: 'Your Email',
-      messagePlaceholder: 'Your Message',
-      sendButton: 'Send Message',
+      tagline: 'Available for hire',
+      titlePart1: "Let's create",
+      titlePart2: 'impact.',
+      subtitle:
+        'Open for strategic partnerships, product leadership roles, and technical consulting.',
+      startProject: 'Start a Project',
+      linkedinProfile: 'LinkedIn Profile',
+    },
+    footer: {
+      copyright: 'Shueny',
+      allRightsReserved: 'All Rights Reserved',
+      impressum: 'Impressum',
+      privacyPolicy: 'Privacy Policy',
+      designedWith: 'Designed with Gemini 2.5',
+    },
+    cookieConsent: {
+      title: 'Cookie Preferences',
+      description:
+        'We use cookies to enhance your browsing experience and analyze site traffic. You can choose to accept all cookies or customize your preferences.',
+      customize: 'Customize',
+      rejectAll: 'Reject All',
+      acceptAll: 'Accept All',
+      cookieSettings: 'Cookie Settings',
+      necessaryCookies: 'Necessary Cookies',
+      necessaryCookiesDesc: 'Required for the website to function properly',
+      alwaysActive: 'Always Active',
+      analyticsCookies: 'Analytics Cookies',
+      analyticsCookiesDesc:
+        'Help us understand how visitors interact with our website by collecting and reporting information anonymously (Google Analytics)',
+      savePreferences: 'Save Preferences',
+      cancel: 'Cancel',
+    },
+    projectModal: {
+      close: 'Close',
+      theChallenge: 'The Challenge',
+      theSolution: 'The Solution',
+      technicalArchitecture: 'Technical Architecture',
+      keyFeatures: 'Key Features',
+      visualOverview: 'Visual Overview',
+      liveDemoNote: 'Live demo available upon request due to API costs.',
+      contactForDemo: 'Contact for Demo',
+      launchLiveApp: 'Launch Live App',
     },
     common: {
       downloadResume: 'Download Resume',
@@ -398,9 +560,86 @@ export const translations: Record<Language, Translations> = {
       analysis2Desc:
         'Bewertung der Systemarchitektur und Vorschläge zur Verbesserung der Skalierbarkeit.',
     },
+    experience: {
+      titlePart1: 'Professional',
+      titlePart2: 'Trajectory',
+      description:
+        'Über zwei Jahrzehnte Erfahrung in der sich entwickelnden Landschaft der Web-Technologie. Von jQuery-Spaghetti-Code bis zu modernen React-Ökosystemen – ich habe Teams durch alles geführt.',
+      keyAchievements: 'Schlüsselerfolge',
+      items: [
+        {
+          id: 'exp1',
+          role: 'Senior Frontend-Entwickler',
+          company: 'VicOne (Trend Micro)',
+          period: 'Sep 2021 - Mär 2025',
+          description:
+            'Entwicklung von Cybersicherheitssoftware und -dienstleistungen für die Automobilindustrie. Spezialisiert auf Micro-Frontends, KI-Integration und automatisierte Tests.',
+          achievements: [
+            'Automatisierte UI-End-to-End-Tests mit Cypress und TestRail, Reduzierung der QA-Zykluszeit um 50%.',
+            'Implementierung einer B2B VSOC-Plattform mit Nx Monorepo, Reduzierung der menschlichen Fehlerrate um 80%.',
+            'Entwicklung mehrsprachiger Websites (Next.js/i18n), Verbesserung der Render-Geschwindigkeit um 30% und SEO.',
+            'Integration von Azure OpenAI in Wagtail CMS zur automatischen Analyse von Quell-URLs.',
+            'Refactoring von Legacy-Apps zu modularen Micro-Frontends mit Nx, React und Vitest.',
+          ],
+        },
+        {
+          id: 'exp2',
+          role: 'Senior Frontend-Entwickler',
+          company: 'Synttro',
+          period: 'Mai 2020 - Sep 2021',
+          description:
+            'Entwicklung von Team-Collaboration-CMS-Systemen für die B2B-Bauindustrie.',
+          achievements: [
+            'Entwicklung eines Drag-and-Drop-Formular-Builders mit React DnD und Schema-Validierung.',
+            'Entwicklung von digitalen Signatur-Genehmigungsabläufen mit Canvas-basierter Skizzen-Eingabe.',
+            'Steigerung der Zusammenarbeitseffizienz um 60% durch ein maßgeschneidertes B2B-System.',
+            'Automatisierung von E2E-Tests mit Puppeteer, Erreichung von über 80% Testabdeckung.',
+          ],
+        },
+        {
+          id: 'exp3',
+          role: 'Frontend-Entwickler',
+          company: 'Citiesocial',
+          period: 'Mai 2018 - Aug 2019',
+          description:
+            'Online-Auswahlshop, etabliert von Shopify. Fokus auf E-Commerce-Optimierung.',
+          achievements: [
+            'Entwicklung von Shopify-Oberflächen, Steigerung der Conversion-Rate um 10%.',
+            'Optimierung von SEO-Strategien, Sicherung von Rankings auf der ersten Seite (10% Traffic-Steigerung).',
+            'Reduzierung der Startzeit von Aktivitätsseiten von 1 Woche auf 1 Tag durch Templates.',
+            'Integration von Hotjar und GA/GTM für datengesteuerte UI-Optimierungen.',
+          ],
+        },
+        {
+          id: 'exp4',
+          role: 'Entwickler',
+          company: 'MOMO (Fubon Multimedia)',
+          period: 'Aug 2016 - Mär 2018',
+          description: 'Führendes Online-Einzelhandelsunternehmen in Taiwan.',
+          achievements: [
+            'Refactoring von Desktop- und Mobile-Homepage-Oberflächen für Barrierefreiheit.',
+            'Nutzung von GA-Daten zur Personalisierung von Suchergebnissen und Vorschlägen.',
+            'Verbesserung der SEO-Rankings auf Top 3 durch Optimierung von Metadaten und Keywords.',
+          ],
+        },
+        {
+          id: 'exp5',
+          role: 'Grafik- & Web-Designer',
+          company: 'Skyway Inc. & TUKEEN Inc.',
+          period: '2013 - 2016',
+          description: 'Design-Hintergrund-Grundlage.',
+          achievements: [
+            'Wartung von Websites und Optimierung der UI für KMU.',
+            'Verwaltung von Fotografie, Branding und Ausstellungsmaterialien.',
+          ],
+        },
+      ],
+    },
     projects: {
-      sectionTitle: 'KI & Web-Lösungen',
-      sectionSubtitle:
+      label: 'Innovation & Impact',
+      titlePart1: 'Featured',
+      titlePart2: 'KI & Web-Lösungen',
+      subtitle:
         'Eine Auswahl von Projekten, die kulturelle Anpassung, Geschäftsprozessautomatisierung und tiefe technische Fähigkeiten demonstrieren.',
       viewCaseStudy: 'Fallstudie ansehen',
     },
@@ -459,12 +698,49 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     contact: {
-      title: 'Kontakt aufnehmen',
-      subtitle: 'Lassen Sie uns über Ihr nächstes Projekt sprechen',
-      namePlaceholder: 'Ihr Name',
-      emailPlaceholder: 'Ihre E-Mail',
-      messagePlaceholder: 'Ihre Nachricht',
-      sendButton: 'Nachricht senden',
+      tagline: 'Verfügbar für Aufträge',
+      titlePart1: 'Lassen Sie uns',
+      titlePart2: 'Wirkung erzielen.',
+      subtitle:
+        'Offen für strategische Partnerschaften, Produktleitungsrollen und technische Beratung.',
+      startProject: 'Projekt starten',
+      linkedinProfile: 'LinkedIn Profil',
+    },
+    footer: {
+      copyright: 'Shueny',
+      allRightsReserved: 'Alle Rechte vorbehalten',
+      impressum: 'Impressum',
+      privacyPolicy: 'Datenschutzerklärung',
+      designedWith: 'Entworfen mit Gemini 2.5',
+    },
+    cookieConsent: {
+      title: 'Cookie-Einstellungen',
+      description:
+        'Wir verwenden Cookies, um Ihr Browsing-Erlebnis zu verbessern und den Website-Traffic zu analysieren. Sie können alle Cookies akzeptieren oder Ihre Einstellungen anpassen.',
+      customize: 'Anpassen',
+      rejectAll: 'Alle ablehnen',
+      acceptAll: 'Alle akzeptieren',
+      cookieSettings: 'Cookie-Einstellungen',
+      necessaryCookies: 'Notwendige Cookies',
+      necessaryCookiesDesc:
+        'Erforderlich für die ordnungsgemäße Funktion der Website',
+      alwaysActive: 'Immer aktiv',
+      analyticsCookies: 'Analyse-Cookies',
+      analyticsCookiesDesc:
+        'Helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem sie Informationen anonym sammeln und melden (Google Analytics)',
+      savePreferences: 'Einstellungen speichern',
+      cancel: 'Abbrechen',
+    },
+    projectModal: {
+      close: 'Schließen',
+      theChallenge: 'Die Herausforderung',
+      theSolution: 'Die Lösung',
+      technicalArchitecture: 'Technische Architektur',
+      keyFeatures: 'Hauptfunktionen',
+      visualOverview: 'Visuelle Übersicht',
+      liveDemoNote: 'Live-Demo auf Anfrage verfügbar aufgrund von API-Kosten.',
+      contactForDemo: 'Demo anfragen',
+      launchLiveApp: 'Live-App öffnen',
     },
     common: {
       downloadResume: 'Lebenslauf herunterladen',
@@ -564,9 +840,84 @@ export const translations: Record<Language, Translations> = {
       analysis2Title: '架構評估',
       analysis2Desc: '評估系統架構並提出可擴展性改進方案。',
     },
+    experience: {
+      titlePart1: '專業',
+      titlePart2: '職涯軌跡',
+      description:
+        '超過二十年的網頁技術演進歷程。從 jQuery 的混亂代碼到現代 React 生態系統，我帶領團隊走過這一切。',
+      keyAchievements: '關鍵成就',
+      items: [
+        {
+          id: 'exp1',
+          role: '資深前端工程師',
+          company: 'VicOne (趨勢科技)',
+          period: '2021年9月 - 2025年3月',
+          description:
+            '為汽車產業提供網路安全軟體與服務。專精於微前端架構、AI 整合與自動化測試。',
+          achievements: [
+            '使用 Cypress 與 TestRail 自動化 UI 端對端測試，將 QA 週期時間減少 50%。',
+            '使用 Nx monorepo 實作 B2B VSOC 平台，將人為錯誤率降低 80%。',
+            '建置多語系網站（Next.js/i18n），提升渲染速度 30% 並改善 SEO。',
+            '整合 Azure OpenAI 至 Wagtail CMS，實現來源 URL 自動解析。',
+            '使用 Nx、React 與 Vitest 將舊版應用程式重構為模組化微前端。',
+          ],
+        },
+        {
+          id: 'exp2',
+          role: '資深前端工程師',
+          company: 'Synttro',
+          period: '2020年5月 - 2021年9月',
+          description: '為 B2B 建築業開發團隊協作 CMS 系統。',
+          achievements: [
+            '開發拖放式表單建構器，使用 React DnD 與 schema 驗證。',
+            '建置數位簽名審核流程，支援畫布式手繪輸入。',
+            '透過客製化 B2B 系統，將協作效率提升 60%。',
+            '使用 Puppeteer 自動化 E2E 測試，達成超過 80% 測試覆蓋率。',
+          ],
+        },
+        {
+          id: 'exp3',
+          role: '前端開發工程師',
+          company: 'Citiesocial',
+          period: '2018年5月 - 2019年8月',
+          description: '以 Shopify 建立的線上選物店。專注於電商優化。',
+          achievements: [
+            '設計 Shopify 介面，將轉換率提升 10%。',
+            '優化 SEO 策略，確保首頁排名（流量提升 10%）。',
+            '透過模板化，將活動頁面上線時間從 1 週縮短至 1 天。',
+            '整合 Hotjar 與 GA/GTM，實現數據驅動的 UI 優化。',
+          ],
+        },
+        {
+          id: 'exp4',
+          role: '工程師',
+          company: 'MOMO（富邦媒體）',
+          period: '2016年8月 - 2018年3月',
+          description: '台灣領先的線上零售公司。',
+          achievements: [
+            '重構桌面與行動版首頁介面，提升無障礙性。',
+            '運用 GA 數據個人化搜尋結果與建議。',
+            '透過優化 metadata 與關鍵字，將 SEO 排名提升至前 3 名。',
+          ],
+        },
+        {
+          id: 'exp5',
+          role: '平面與網頁設計師',
+          company: 'Skyway Inc. & TUKEEN Inc.',
+          period: '2013 - 2016',
+          description: '設計背景基礎。',
+          achievements: [
+            '維護網站並為中小企業優化 UI。',
+            '管理攝影、品牌與展覽素材。',
+          ],
+        },
+      ],
+    },
     projects: {
-      sectionTitle: 'AI 與 Web 解決方案',
-      sectionSubtitle: '精選專案展示文化適應、業務流程自動化和深厚的技術能力。',
+      label: '創新與影響力',
+      titlePart1: '精選',
+      titlePart2: 'AI 與 Web 解決方案',
+      subtitle: '精選專案展示文化適應、業務流程自動化和深厚的技術能力。',
       viewCaseStudy: '查看案例研究',
     },
     about: {
@@ -624,12 +975,47 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     contact: {
-      title: '聯絡我',
-      subtitle: '讓我們討論您的下一個專案',
-      namePlaceholder: '您的姓名',
-      emailPlaceholder: '您的電子郵件',
-      messagePlaceholder: '您的訊息',
-      sendButton: '發送訊息',
+      tagline: '可接受委託',
+      titlePart1: '讓我們創造',
+      titlePart2: '影響力。',
+      subtitle: '開放戰略合作夥伴關係、產品領導職位和技術諮詢。',
+      startProject: '開始專案',
+      linkedinProfile: 'LinkedIn 檔案',
+    },
+    footer: {
+      copyright: 'Shueny',
+      allRightsReserved: '版權所有',
+      impressum: '法律聲明',
+      privacyPolicy: '隱私政策',
+      designedWith: '使用 Gemini 2.5 設計',
+    },
+    cookieConsent: {
+      title: 'Cookie 偏好設定',
+      description:
+        '我們使用 Cookie 來增強您的瀏覽體驗並分析網站流量。您可以選擇接受所有 Cookie 或自訂您的偏好設定。',
+      customize: '自訂',
+      rejectAll: '全部拒絕',
+      acceptAll: '全部接受',
+      cookieSettings: 'Cookie 設定',
+      necessaryCookies: '必要 Cookie',
+      necessaryCookiesDesc: '網站正常運作所必需',
+      alwaysActive: '始終啟用',
+      analyticsCookies: '分析 Cookie',
+      analyticsCookiesDesc:
+        '幫助我們了解訪客如何與網站互動，透過匿名收集和報告資訊（Google Analytics）',
+      savePreferences: '儲存偏好設定',
+      cancel: '取消',
+    },
+    projectModal: {
+      close: '關閉',
+      theChallenge: '挑戰',
+      theSolution: '解決方案',
+      technicalArchitecture: '技術架構',
+      keyFeatures: '關鍵功能',
+      visualOverview: '視覺概覽',
+      liveDemoNote: '由於 API 成本，可應要求提供即時演示。',
+      contactForDemo: '聯絡以取得演示',
+      launchLiveApp: '開啟即時應用',
     },
     common: {
       downloadResume: '下載履歷',

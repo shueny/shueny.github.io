@@ -1,7 +1,10 @@
 import React from 'react';
 import { SectionId } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section
       id={SectionId.CONTACT}
@@ -12,17 +15,16 @@ const Contact: React.FC = () => {
 
       <div className="container mx-auto px-6 md:px-12 text-center relative z-10">
         <span className="inline-block py-1 px-4 border border-stone-700 rounded-full text-xs uppercase tracking-widest text-stone-400 mb-8">
-          Available for hire
+          {t.contact.tagline}
         </span>
 
         <h2 className="text-5xl md:text-9xl font-serif font-bold mb-8 leading-[0.9] tracking-tight">
-          Let's create <br />
-          <span className="text-accent italic">impact.</span>
+          {t.contact.titlePart1} <br />
+          <span className="text-accent italic">{t.contact.titlePart2}</span>
         </h2>
 
         <p className="text-stone-400 max-w-xl mx-auto mb-16 text-lg font-light">
-          Open for strategic partnerships, product leadership roles, and
-          technical consulting.
+          {t.contact.subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-6 items-center">
@@ -30,7 +32,7 @@ const Contact: React.FC = () => {
             href="mailto:shuenyw@gmail.com"
             className="min-w-[200px] px-8 py-5 bg-accent text-white font-bold tracking-wide hover:bg-white hover:text-accent transition-all duration-300 rounded-full shadow-xl shadow-orange-900/20"
           >
-            Start a Project
+            {t.contact.startProject}
           </a>
           <a
             href="https://www.linkedin.com/in/shueny-wang/"
@@ -38,7 +40,7 @@ const Contact: React.FC = () => {
             rel="noopener noreferrer"
             className="min-w-[200px] px-8 py-5 bg-transparent border border-stone-700 text-white font-medium hover:border-accent hover:text-accent transition-all duration-300 rounded-full"
           >
-            LinkedIn Profile
+            {t.contact.linkedinProfile}
           </a>
         </div>
       </div>

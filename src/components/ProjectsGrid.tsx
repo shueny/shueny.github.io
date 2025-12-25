@@ -3,6 +3,7 @@ import { SectionId } from '../types';
 import type { Project } from '../types';
 import { PROJECTS_DATA } from '../constants';
 import ProjectModal from './ProjectModal';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // --- Helper Functions ---
 const getProjectIcon = (id: string) => {
@@ -101,6 +102,7 @@ interface ProjectCardProps {
   project: Project;
   index: number;
   onClick: (p: Project) => void;
+  viewCaseStudyText: string;
 }
 
 // Enhanced Skeleton component for image loading with refined animation
@@ -136,6 +138,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   index,
   onClick,
+  viewCaseStudyText,
 }) => {
   const [imgError, setImgError] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
@@ -256,7 +259,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             }}
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-accent transition-all duration-300 group/btn hover:gap-3 cursor-pointer relative z-10 pointer-events-auto"
           >
-            View Case Study
+            {viewCaseStudyText}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-3 w-3 transform transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:scale-110"
@@ -285,6 +288,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
 // --- Main Container ---
 const ProjectsGrid: React.FC = () => {
+  const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
@@ -340,18 +344,17 @@ const ProjectsGrid: React.FC = () => {
           <div className="flex items-center gap-3 mb-4">
             <span className="h-[2px] w-8 bg-accent"></span>
             <span className="text-accent uppercase tracking-widest text-xs font-bold">
-              Innovation & Impact
+              {t.projects.label}
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-6 leading-tight">
-            Featured{' '}
+            {t.projects.titlePart1}{' '}
             <span className="font-serif italic text-accent">
-              AI & Web Solutions
+              {t.projects.titlePart2}
             </span>
           </h2>
           <p className="text-secondary text-lg font-light leading-relaxed">
-            A selection of projects demonstrating cultural adaptation, business
-            process automation, and deep technical capabilities.
+            {t.projects.subtitle}
           </p>
         </div>
 
@@ -406,6 +409,7 @@ const ProjectsGrid: React.FC = () => {
                   project={project}
                   index={index}
                   onClick={setSelectedProject}
+                  viewCaseStudyText={t.projects.viewCaseStudy}
                 />
               </div>
             ))}

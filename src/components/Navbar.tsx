@@ -144,28 +144,28 @@ const Navbar: React.FC = () => {
         <div className="flex items-center gap-1 sm:gap-2 md:gap-2 lg:gap-3 flex-shrink-0 min-w-0">
           {/* Nav Links */}
           <div className="flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 xl:gap-3 overflow-x-auto scrollbar-hide min-w-0 flex-1">
-            {navLinks.map((link) => {
+          {navLinks.map((link) => {
               const isActive = activeSection === link.href;
-              return (
-                <a
-                  key={link.label}
-                  href={`#${link.href}`}
-                  onClick={(e) => handleNavClick(e, link.href)}
+            return (
+              <a
+                key={link.label}
+                href={`#${link.href}`}
+                onClick={(e) => handleNavClick(e, link.href)}
                   className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs font-medium transition-colors px-0.5 sm:px-1 py-1 relative group font-sans whitespace-nowrap flex-shrink-0 ${
                     isActive ? 'text-accent' : 'text-primary hover:text-accent'
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-1 left-1/2 h-0.5 bg-accent transition-all duration-300 ${
+                    isActive
+                      ? 'w-full -translate-x-1/2'
+                      : 'w-0 group-hover:w-1/2 group-hover:-translate-x-1/2'
                   }`}
-                >
-                  {link.label}
-                  <span
-                    className={`absolute -bottom-1 left-1/2 h-0.5 bg-accent transition-all duration-300 ${
-                      isActive
-                        ? 'w-full -translate-x-1/2'
-                        : 'w-0 group-hover:w-1/2 group-hover:-translate-x-1/2'
-                    }`}
-                  ></span>
-                </a>
+                ></span>
+              </a>
               );
-            })}
+          })}
           </div>
 
           {/* Divider */}

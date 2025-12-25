@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -6,6 +7,7 @@ interface CookiePreferences {
 }
 
 const CookieConsent: React.FC = () => {
+  const { t } = useLanguage();
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>({
@@ -124,12 +126,10 @@ const CookieConsent: React.FC = () => {
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-primary mb-2">
-                    Cookie Preferences
+                    {t.cookieConsent.title}
                   </h3>
                   <p className="text-sm text-secondary leading-relaxed">
-                    We use cookies to enhance your browsing experience and
-                    analyze site traffic. You can choose to accept all cookies
-                    or customize your preferences.
+                    {t.cookieConsent.description}
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
@@ -137,20 +137,20 @@ const CookieConsent: React.FC = () => {
                     onClick={() => setShowSettings(true)}
                     className="px-6 py-2.5 border-2 border-stone-300 text-primary text-sm font-bold uppercase tracking-wider hover:border-accent hover:text-accent transition-all duration-300 rounded-full whitespace-nowrap"
                   >
-                    Customize
+                    {t.cookieConsent.customize}
                   </button>
                   <button
                     onClick={handleRejectAll}
                     className="px-6 py-2.5 bg-stone-100 text-primary text-sm font-bold uppercase tracking-wider hover:bg-stone-200 transition-all duration-300 rounded-full whitespace-nowrap"
                   >
-                    Reject All
+                    {t.cookieConsent.rejectAll}
                   </button>
                   <button
                     onClick={handleAcceptAll}
                     className="px-6 py-2.5 text-white text-sm font-bold uppercase tracking-wider hover:bg-orange-700 transition-all duration-300 rounded-full shadow-lg shadow-orange-500/20 whitespace-nowrap"
                     style={{ backgroundColor: 'hsl(var(--accent))' }}
                   >
-                    Accept All
+                    {t.cookieConsent.acceptAll}
                   </button>
                 </div>
               </div>
@@ -169,7 +169,7 @@ const CookieConsent: React.FC = () => {
           <div className="relative w-full max-w-2xl bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-stone-200 p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-primary">
-                Cookie Settings
+                {t.cookieConsent.cookieSettings}
               </h2>
               <button
                 onClick={() => setShowSettings(false)}
@@ -198,14 +198,14 @@ const CookieConsent: React.FC = () => {
                 <div className="flex items-center justify-between mb-2">
                   <div>
                     <h3 className="font-bold text-primary">
-                      Necessary Cookies
+                      {t.cookieConsent.necessaryCookies}
                     </h3>
                     <p className="text-sm text-secondary">
-                      Required for the website to function properly
+                      {t.cookieConsent.necessaryCookiesDesc}
                     </p>
                   </div>
                   <div className="px-4 py-2 bg-stone-100 rounded-full text-xs font-bold text-stone-600">
-                    Always Active
+                    {t.cookieConsent.alwaysActive}
                   </div>
                 </div>
               </div>
@@ -215,12 +215,10 @@ const CookieConsent: React.FC = () => {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex-1">
                     <h3 className="font-bold text-primary mb-1">
-                      Analytics Cookies
+                      {t.cookieConsent.analyticsCookies}
                     </h3>
                     <p className="text-sm text-secondary">
-                      Help us understand how visitors interact with our website
-                      by collecting and reporting information anonymously
-                      (Google Analytics)
+                      {t.cookieConsent.analyticsCookiesDesc}
                     </p>
                   </div>
                   <button
@@ -246,13 +244,13 @@ const CookieConsent: React.FC = () => {
                   className="flex-1 px-6 py-3 text-white text-sm font-bold uppercase tracking-wider hover:bg-orange-700 transition-all duration-300 rounded-full shadow-lg shadow-orange-500/20"
                   style={{ backgroundColor: 'hsl(var(--accent))' }}
                 >
-                  Save Preferences
+                  {t.cookieConsent.savePreferences}
                 </button>
                 <button
                   onClick={() => setShowSettings(false)}
                   className="px-6 py-3 border-2 border-stone-300 text-primary text-sm font-bold uppercase tracking-wider hover:border-accent hover:text-accent transition-all duration-300 rounded-full"
                 >
-                  Cancel
+                  {t.cookieConsent.cancel}
                 </button>
               </div>
             </div>
