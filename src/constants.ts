@@ -209,8 +209,8 @@ export const PROJECTS_DATA: Project[] = [
     banner: getAssetUrl('images/expense-tracker-cover.png'),
     gallery: [
       getAssetUrl('images/expense-tracker-cover.png'),
-      getAssetUrl('images/expense-tracker-map.png'),
-      getAssetUrl('images/expense-tracker-modal.png'),
+      getAssetUrl('images/expense-tracker-app.png'),
+      // getAssetUrl('images/expense-tracker-modal.png'),
     ],
     link: 'https://minni.lovable.app/',
     visualDescription:
