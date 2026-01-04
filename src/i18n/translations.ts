@@ -855,11 +855,12 @@ export const translations: Record<Language, Translations> = {
           description:
             '為汽車產業提供網路安全軟體與服務。專精於微前端架構、AI 整合與自動化測試。',
           achievements: [
+            '架構可擴展的 Monorepo（使用 Nx）：透過 Nx 整合多個前端專案，實作 Computation Caching，將 CI/CD 建置時間縮短 40%，並透過 Shared Libraries 統一跨產品的 UI 規範，減少 30% 的重複程式碼。',
+            '確定性狀態管理：在複雜的非同步資料流場景中引入 XState，解決了傳統 useEffect 難以維護的 Race Conditions，將該模組的 Bug Report 率降低至接近零。',
             '使用 Cypress 與 TestRail 自動化 UI 端對端測試，將 QA 週期時間減少 50%。',
-            '使用 Nx monorepo 實作 B2B VSOC 平台，將人為錯誤率降低 80%。',
             '建置多語系網站（Next.js/i18n），提升渲染速度 30% 並改善 SEO。',
             '整合 Azure OpenAI 至 Wagtail CMS，實現來源 URL 自動解析。',
-            '使用 Nx、React 與 Vitest 將舊版應用程式重構為模組化微前端。',
+            '將舊版應用程式重構為模組化微前端，提升可擴展性與可維護性，同時降低部署風險。',
           ],
         },
         {

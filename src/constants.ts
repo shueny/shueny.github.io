@@ -92,11 +92,12 @@ export const EXPERIENCE_DATA: Experience[] = [
     description:
       'Delivering cybersecurity software and services for the automotive industry. Specializing in micro-frontends, AI integration, and automated testing.',
     achievements: [
+      'Architected a Scalable Monorepo with Nx: Integrated multiple frontend projects through Nx, implemented Computation Caching to reduce CI/CD build time by 40%, and unified cross-product UI standards via Shared Libraries, eliminating 30% of duplicate code.',
+      'Deterministic State Management: Introduced XState in complex asynchronous data flow scenarios, resolving Race Conditions that were difficult to maintain with traditional useEffect patterns, reducing bug report rates for that module to near zero.',
       'Automated UI end-to-end testing using Cypress and TestRail, reducing QA cycle time by 50%.',
-      'Implemented B2B VSOC platform using Nx monorepo, reducing human error rates by 80%.',
       'Built multilingual websites (Next.js/i18n), improving render speed by 30% and SEO.',
       'Integrated Azure OpenAI into Wagtail CMS for auto-parsing source URLs.',
-      'Refactored legacy apps into modular micro-frontends using Nx, React, and Vitest.',
+      'Refactored legacy apps into modular micro-frontends, improving scalability and maintainability while reducing deployment risks.',
     ],
   },
   {
