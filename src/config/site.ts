@@ -3,9 +3,12 @@ import type { SidebarNavItem, SiteConfig } from '@/types';
 export const siteConfig: SiteConfig = {
   name: 'Shueny',
   description:
-    'Website built using Astro v4 & shadcn/ui. Inspired by shadcn/taxonomy.',
+    '專精於 React、Nx 架構與效能優化的資深前端工程師。',
   url: 'https://shueny.github.io/',
-  ogImage: 'https://astro-nomy.vercel.app/og.jpg',
+  ogImage: 'https://shueny.github.io/og-image.png',
+  author: 'Shueny Wang',
+  twitter: '@shueny',
+  locale: 'zh_TW',
   links: {
     instagram: 'https://www.instagram.com/shueny_wang/',
     github: 'https://github.com/shueny',

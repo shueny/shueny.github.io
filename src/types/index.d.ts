@@ -36,6 +36,9 @@ export type SiteConfig = {
   description: string;
   url: string;
   ogImage: string;
+  author?: string;
+  twitter?: string;
+  locale?: string;
   links: {
     linkedin: string;
     instagram: string;

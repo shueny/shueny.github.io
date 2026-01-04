@@ -6,15 +6,34 @@ import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import MainLayout from "./main-layout.astro";
+import { siteConfig } from "@/config/site";
 
 type Props = CollectionEntry<"blog">;
 
 const slug = Astro.props.slug;
 const { title, description, pubDate, updatedDate, cover, category } =
   Astro.props.data;
+
+// Format dates for SEO
+const publishedTime = pubDate.toISOString();
+const modifiedTime = updatedDate ? updatedDate.toISOString() : publishedTime;
+
+// Construct full image URL for Open Graph
+const imageURL = cover.startsWith("http") 
+  ? cover 
+  : new URL(cover, Astro.site).toString();
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout 
+  title={title} 
+  description={description}
+  image={imageURL}
+  type="article"
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  author={siteConfig.author || siteConfig.name}
+  tags={[category]}
+>
   <div class="relative container max-w-screen-md py-10">
     <button
       onclick="history.back()"

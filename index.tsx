@@ -13,13 +13,19 @@ const root = ReactDOM.createRoot(rootElement);
 const AppWithLoaderHandler = () => {
   useEffect(() => {
     // Remove the pre-loader when the React app mounts
-    const loader = document.getElementById('initial-loader');
-    if (loader) {
-      loader.style.opacity = '0';
-      setTimeout(() => {
-        loader.remove();
-      }, 500); // Wait for transition
-    }
+    // Use requestAnimationFrame to batch DOM operations and avoid forced reflow
+    requestAnimationFrame(() => {
+      const loader = document.getElementById('initial-loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        // Use requestAnimationFrame for removal to batch with other DOM operations
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            loader.remove();
+          }, 500); // Wait for transition
+        });
+      }
+    });
   }, []);
 
   return <App />;

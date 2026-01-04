@@ -15,13 +15,44 @@ import { Icon } from "astro-icon/components";
 type Props = {
   title: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+  noindex?: boolean;
+  nofollow?: boolean;
   mainClass?: string;
 };
 
-const { title, description, mainClass } = Astro.props;
+const { 
+  title, 
+  description, 
+  image,
+  type,
+  publishedTime,
+  modifiedTime,
+  author,
+  tags,
+  noindex,
+  nofollow,
+  mainClass 
+} = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout 
+  title={title} 
+  description={description}
+  image={image}
+  type={type}
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  author={author}
+  tags={tags}
+  noindex={noindex}
+  nofollow={nofollow}
+>
   <Header className="border-b">
     <!-- if using only normals links  -->
     <!-- <MainNav items={marketingConfig.mainNav} slot="left-header" />

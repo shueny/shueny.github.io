@@ -4,6 +4,7 @@ import BlogCard from "@/components/cards/blog-card.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 import { capitalizer } from "@/lib/utils";
 import { getCollection } from "astro:content";
+import { siteConfig } from "@/config/site";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
@@ -28,7 +29,8 @@ const { posts } = Astro.props;
 
 <MainLayout
   title={`${capitalizer(category)} | Blog`}
-  description={`All posts for ${category} category`}
+  description={`Browse all ${category} articles and posts by Shueny Wang. Discover insights on ${category} topics in web development and AI.`}
+  image={`${siteConfig.url}images/share-meta.png`}
 >
   <section class="container py-10">
     <BlogHeader title={`Posts by ${category} category`} />

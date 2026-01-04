@@ -1,30 +1,78 @@
 ---
 import '../styles/globals.css'
+import { SEO } from "astro-seo";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   title?: string
   description?: string
+  image?: string
   children?: any
 }
 
 const {
-  title = 'Shueny.dev | Senior Frontend Engineer & AI Specialist',
-  description = 'Senior Frontend Engineer & UI/UX Specialist',
-} = Astro.props
+  title = "Shueny - Senior Frontend Engineer",
+  description = "專精於 React、Nx 架構與效能優化的資深前端工程師。",
+  image = siteConfig.ogImage,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = image.startsWith("http") 
+  ? image 
+  : new URL(image, Astro.site).toString();
 ---
 
 <!DOCTYPE html>
-<html lang="en" className="scroll-smooth snap-y snap-proximity scroll-pt-32">
+<html lang="zh-TW" className="scroll-smooth snap-y snap-proximity scroll-pt-32">
   <head>
     <meta charSet="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-      rel="stylesheet"
+    
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalURL.toString()}
+      openGraph={{
+        basic: {
+          title: "Shueny's Portfolio",
+          type: "website",
+          image: imageURL,
+          url: Astro.url.toString(),
+        },
+        image: {
+          url: imageURL,
+          alt: title,
+        },
+        optional: {
+          description: description,
+          siteName: siteConfig.name,
+          locale: siteConfig.locale || "zh_TW",
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        site: siteConfig.twitter,
+        creator: siteConfig.twitter,
+      }}
     />
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <!-- Load Google Fonts asynchronously to avoid render-blocking -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body className="text-stone-900 antialiased overflow-x-hidden">
     <slot />

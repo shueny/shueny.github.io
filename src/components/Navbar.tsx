@@ -87,19 +87,22 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
-  // Memoized click handler
+  // Memoized click handler - optimized to avoid forced reflow
   const handleNavClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       e.preventDefault();
       const element = document.getElementById(href);
       if (element) {
         const offset = 80; // Account for navbar height
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        // Use requestAnimationFrame to batch DOM reads and avoid forced reflow
+        requestAnimationFrame(() => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
         });
       }
     },

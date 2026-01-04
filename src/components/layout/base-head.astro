@@ -2,11 +2,19 @@
 import { siteConfig } from "@/config/site";
 import "@/styles/globals.css";
 import { ViewTransitions } from "astro:transitions";
+import { SEO } from "astro-seo";
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+  noindex?: boolean;
+  nofollow?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -14,8 +22,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
   description = siteConfig.description,
-  image = "/images/share-meta.png",
+  image = siteConfig.ogImage,
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  author = siteConfig.author || siteConfig.name,
+  tags = [],
+  noindex = false,
+  nofollow = false,
 } = Astro.props;
+
+// Construct full image URL
+const imageURL = image.startsWith("http") 
+  ? image 
+  : new URL(image, Astro.site).toString();
+
+// Default title for homepage
+const defaultTitle = "Shueny - Senior Frontend Engineer";
+const pageTitle = title 
+  ? title.includes("Shueny") || title.includes(siteConfig.name)
+    ? title
+    : `${title} | ${siteConfig.name}`
+  : defaultTitle;
 ---
 
 <!-- Global Metadata -->
@@ -33,7 +61,14 @@ const {
 <link rel="manifest" href="https://shueny.github.io/site.webmanifest" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
+<!-- Preconnect to Google Fonts for faster loading (early DNS resolution) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- DNS prefetch for font CDN -->
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+<!-- Font preloads for critical fonts -->
 <link
   rel="preload"
   href="/fonts/calsans-semibold.woff2"
@@ -42,28 +77,85 @@ const {
   crossorigin
 />
 
-<!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+<!-- Load Google Fonts asynchronously to avoid render-blocking -->
+<!-- Using improved async loading with fallback -->
+<link
+  rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+</noscript>
+<!-- Fallback for browsers that don't support onload on link tags -->
+<script is:inline>
+  (function() {
+    var link = document.querySelector('link[rel="preload"][as="style"][href*="fonts.googleapis.com"]');
+    if (link && !link.onload) {
+      var fallback = document.createElement('link');
+      fallback.rel = 'stylesheet';
+      fallback.href = link.href;
+      document.head.appendChild(fallback);
+    }
+  })();
+</script>
 
-<!-- Primary Meta Tags -->
-<title>{title ? `${title} | Shueny Wang` : "Shueny Wang"}</title>
-<meta name="title" content={title ? `${title} | Shueny Blogger` : "Shueny Blogger"} />
-<meta name="description" content={description} />
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
-<meta name="google-site-verification" content="XJZuarIE-FwHruVx1m1r9e96aPCtrRbzphkkUU0-G1I" />
+<!-- SEO Component -->
+<SEO
+  title={pageTitle}
+  description={description}
+  canonical={canonicalURL.toString()}
+  openGraph={{
+    basic: {
+      title: title || "Shueny's Portfolio",
+      type: type,
+      image: imageURL,
+      url: Astro.url.toString(),
+    },
+    image: {
+      url: imageURL,
+      alt: title || siteConfig.name,
+    },
+    optional: {
+      description: description,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale || "zh_TW",
+      ...(publishedTime && { publishedTime }),
+      ...(modifiedTime && { modifiedTime }),
+      ...(author && { author }),
+      ...(tags.length > 0 && { tags }),
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    site: siteConfig.twitter,
+    creator: siteConfig.twitter,
+  }}
+  extend={{
+    link: [
+      {
+        rel: "canonical",
+        href: canonicalURL.toString(),
+      },
+    ],
+    meta: [
+      {
+        name: "author",
+        content: author,
+      },
+      {
+        name: "google-site-verification",
+        content: "XJZuarIE-FwHruVx1m1r9e96aPCtrRbzphkkUU0-G1I",
+      },
+      ...(noindex ? [{ name: "robots", content: "noindex" }] : []),
+      ...(nofollow ? [{ name: "robots", content: "nofollow" }] : []),
+    ],
+  }}
+/>
 
 <!-- Dark mode with prevent flickering flash between navigations -->
 <script is:inline>

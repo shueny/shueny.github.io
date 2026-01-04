@@ -3,11 +3,16 @@ import BlogHeader from "@/components/blog-header.astro";
 import BlogCard from "@/components/cards/blog-card.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 import { getPosts } from "@/lib/fetchers";
+import { siteConfig } from "@/config/site";
 
 const posts = await getPosts();
 ---
 
-<MainLayout title="Static Blog">
+<MainLayout 
+  title="Blog" 
+  description="Read the latest articles about web development, AI integration, and frontend engineering from Shueny Wang."
+  image={`${siteConfig.url}images/share-meta.png`}
+>
   <section class="container py-10">
     <BlogHeader title="Blog" />
 
