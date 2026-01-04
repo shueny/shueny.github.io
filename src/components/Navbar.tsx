@@ -1,15 +1,22 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { SectionId } from '../types';
 import { FileText, Globe } from 'lucide-react';
-import { useLanguage, type Language } from '../contexts/LanguageContext';
+import { useLanguage, LanguageProvider } from '../contexts/LanguageContext';
 
-const Navbar: React.FC = () => {
+const NavbarContent: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId | null>(null);
   const [showLangMenu, setShowLangMenu] = useState(false);
+  // 用於判斷目前是否在 Blog 頁面 (Active 狀態用)
+  const [currentPath, setCurrentPath] = useState('');
 
-  // Memoize nav links to prevent unnecessary re-renders
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentPath(window.location.pathname);
+    }
+  }, []);
+
   const navLinks = useMemo(
     () => [
       { label: t.nav.work, href: SectionId.PROJECTS },
@@ -17,12 +24,15 @@ const Navbar: React.FC = () => {
       { label: t.nav.skills, href: SectionId.SKILLS },
       { label: t.nav.about, href: SectionId.ABOUT },
       { label: t.nav.experience, href: SectionId.EXPERIENCE },
+      // 👇 新增 Blog 連結 (放在 Contact 之前)
+      // 如果您的語系檔 (t.nav) 還沒加入 blog 翻譯，暫時先用字串 'Blog'
+      { label: 'Blog', href: '/blog' },
       { label: t.nav.contact, href: SectionId.CONTACT },
     ],
     [t]
   );
 
-  // Close language menu when clicking outside
+  // ... (Click Outside 的 useEffect 保持不變) ...
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (showLangMenu) {
@@ -32,12 +42,29 @@ const Navbar: React.FC = () => {
         }
       }
     };
-
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
   }, [showLangMenu]);
 
-  // Scroll spy implementation with Intersection Observer for better performance
+  // ... (Hash Scroll 的 useEffect 保持不變) ...
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          setActiveSection(id as SectionId);
+        }, 100);
+      }
+    }
+  }, []);
+
+  // ... (Scroll Observer 的 useEffect 保持不變) ...
   useEffect(() => {
     const sections = Object.values(SectionId);
     const observerOptions = {
@@ -45,20 +72,13 @@ const Navbar: React.FC = () => {
       rootMargin: '-20% 0px -70% 0px',
       threshold: 0,
     };
-
     const observers: IntersectionObserver[] = [];
-    const sectionElements: Map<SectionId, Element> = new Map();
-
-    // Create observers for each section
     sections.forEach((sectionId) => {
       const element = document.getElementById(sectionId);
       if (element) {
-        sectionElements.set(sectionId, element);
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(sectionId);
-            }
+            if (entry.isIntersecting) setActiveSection(sectionId);
           });
         }, observerOptions);
         observer.observe(element);
@@ -66,45 +86,39 @@ const Navbar: React.FC = () => {
       }
     });
 
-    // Fallback: handle scroll for hero section (at top of page)
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-
-      // If at top, set hero as active
-      if (window.scrollY < 100) {
+      if (
+        window.scrollY < 100 &&
+        window.location.pathname === '/' &&
+        !window.location.hash
+      ) {
         setActiveSection(SectionId.HERO);
       }
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-
-    // Initial check
     handleScroll();
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       observers.forEach((observer) => observer.disconnect());
     };
   }, []);
 
-  // Memoized click handler - optimized to avoid forced reflow
+  // ... (handleNavClick 保持不變) ...
   const handleNavClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-      e.preventDefault();
       const element = document.getElementById(href);
       if (element) {
-        const offset = 80; // Account for navbar height
-        // Use requestAnimationFrame to batch DOM reads and avoid forced reflow
+        e.preventDefault();
+        const offset = 80;
         requestAnimationFrame(() => {
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         });
       }
+      // 如果 element 不存在 (例如點擊 Blog 或在 Blog 頁點擊 Projects)，
+      // 就不會執行 preventDefault，讓瀏覽器執行原本的跳轉 (href)
     },
     []
   );
@@ -123,7 +137,7 @@ const Navbar: React.FC = () => {
       `}
       >
         <a
-          href="#hero"
+          href="/"
           onClick={(e) => handleNavClick(e, SectionId.HERO)}
           className="group flex items-center gap-1 sm:gap-2 flex-shrink-0"
         >
@@ -145,36 +159,47 @@ const Navbar: React.FC = () => {
         </a>
 
         <div className="flex items-center gap-1 sm:gap-2 md:gap-2 lg:gap-3 flex-shrink-0 min-w-0">
-          {/* Nav Links */}
           <div className="flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 xl:gap-3 overflow-x-auto scrollbar-hide min-w-0 flex-1">
-          {navLinks.map((link) => {
-              const isActive = activeSection === link.href;
-            return (
-              <a
-                key={link.label}
-                href={`#${link.href}`}
-                onClick={(e) => handleNavClick(e, link.href)}
+            {navLinks.map((link) => {
+              // 👇 1. 判斷是否為跨頁連結 (Blog)
+              const isPageLink = link.href.startsWith('/');
+
+              // 👇 2. 建構正確的 href
+              // 如果是 Blog -> '/blog'
+              // 如果是 Section -> '/#projects'
+              const finalHref = isPageLink ? link.href : `/#${link.href}`;
+
+              // 👇 3. 判斷 Active 狀態
+              // 如果是 Blog -> 檢查網址路徑是否包含 '/blog'
+              // 如果是 Section -> 檢查 activeSection 狀態
+              const isActive = isPageLink
+                ? currentPath.startsWith(link.href)
+                : activeSection === link.href;
+
+              return (
+                <a
+                  key={link.label}
+                  href={finalHref}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs font-medium transition-colors px-0.5 sm:px-1 py-1 relative group font-sans whitespace-nowrap flex-shrink-0 ${
                     isActive ? 'text-accent' : 'text-primary hover:text-accent'
-                }`}
-              >
-                {link.label}
-                <span
-                  className={`absolute -bottom-1 left-1/2 h-0.5 bg-accent transition-all duration-300 ${
-                    isActive
-                      ? 'w-full -translate-x-1/2'
-                      : 'w-0 group-hover:w-1/2 group-hover:-translate-x-1/2'
                   }`}
-                ></span>
-              </a>
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-1/2 h-0.5 bg-accent transition-all duration-300 ${
+                      isActive
+                        ? 'w-full -translate-x-1/2'
+                        : 'w-0 group-hover:w-1/2 group-hover:-translate-x-1/2'
+                    }`}
+                  ></span>
+                </a>
               );
-          })}
+            })}
           </div>
 
-          {/* Divider */}
           <div className="hidden sm:block w-px h-5 bg-stone-300/50 flex-shrink-0"></div>
 
-          {/* Download CV Button */}
           <a
             href="/files/2025-12_Resume_ShuenyWang_FED.pdf"
             download
@@ -184,7 +209,6 @@ const Navbar: React.FC = () => {
             <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
           </a>
 
-          {/* Language Switcher */}
           <div className="relative language-switcher flex-shrink-0">
             <button
               onClick={() => setShowLangMenu(!showLangMenu)}
@@ -195,7 +219,6 @@ const Navbar: React.FC = () => {
               <span className="hidden sm:inline">{language}</span>
             </button>
 
-            {/* Language Dropdown */}
             {showLangMenu && (
               <div className="absolute top-full right-0 mt-2 bg-white border border-stone-200 rounded-lg shadow-lg py-1 min-w-[100px] z-50">
                 {(['EN', 'DE', 'ZH'] as const).map((lang) => (
@@ -222,6 +245,14 @@ const Navbar: React.FC = () => {
         </div>
       </div>
     </nav>
+  );
+};
+
+const Navbar: React.FC = () => {
+  return (
+    <LanguageProvider>
+      <NavbarContent />
+    </LanguageProvider>
   );
 };
 

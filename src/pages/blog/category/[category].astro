@@ -2,20 +2,21 @@
 import BlogHeader from "@/components/blog-header.astro";
 import BlogCard from "@/components/cards/blog-card.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+import "@/styles/globals.css";
 import { capitalizer } from "@/lib/utils";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { siteConfig } from "@/config/site";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
   const uniqueCategories = [
-    ...new Set(allPosts.map((post) => post.data.category).flat()),
+    ...new Set(allPosts.map((post: CollectionEntry<'blog'>) => post.data.category).flat()),
   ];
 
   return uniqueCategories.map((category) => {
     const filteredPosts = allPosts
-      .filter((post) => post.data.category.includes(category))
-      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+      .filter((post: CollectionEntry<'blog'>) => post.data.category === category)
+      .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     return {
       params: { category },
       props: { posts: filteredPosts },
@@ -25,15 +26,24 @@ export async function getStaticPaths() {
 
 const { category } = Astro.params;
 const { posts } = Astro.props;
+
+if (!category) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Category not found'
+  });
+}
+
+const categoryName = category as string;
 ---
 
 <MainLayout
-  title={`${capitalizer(category)} | Blog`}
-  description={`Browse all ${category} articles and posts by Shueny Wang. Discover insights on ${category} topics in web development and AI.`}
+  title={`${capitalizer(categoryName)} | Blog`}
+  description={`Browse all ${categoryName} articles and posts by Shueny Wang. Discover insights on ${categoryName} topics in web development and AI.`}
   image={`${siteConfig.url}images/share-meta.png`}
 >
   <section class="container py-10">
-    <BlogHeader title={`Posts by ${category} category`} />
+    <BlogHeader title={`Posts by ${categoryName} category`} />
 
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9 md:gap-y-16 lg:gap-x-8"

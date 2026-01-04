@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import ImpressumModal from './ImpressumModal';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage, LanguageProvider } from '../contexts/LanguageContext'; // 👈 1. 確保引入 LanguageProvider
 
-const Footer: React.FC = () => {
-  const { t } = useLanguage();
+// 2. 將原本的 Footer 邏輯改名為 "FooterContent"
+const FooterContent: React.FC = () => {
+  const { t } = useLanguage(); // 這裡可以安全使用 hook，因為外層有 Provider
   const currentYear = new Date().getFullYear();
   const [showImpressum, setShowImpressum] = useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
@@ -58,6 +59,15 @@ const Footer: React.FC = () => {
         onClose={() => setShowPrivacyPolicy(false)}
       />
     </>
+  );
+};
+
+// 3. 匯出包裹好的組件
+const Footer: React.FC = () => {
+  return (
+    <LanguageProvider>
+      <FooterContent />
+    </LanguageProvider>
   );
 };
 

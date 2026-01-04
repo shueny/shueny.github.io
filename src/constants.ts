@@ -13,7 +13,8 @@ import type {
 const getAssetUrl = (filename: string): string => {
   if (!filename) return '';
   // Astro uses import.meta.env.BASE_URL
-  const baseUrl = import.meta.env.BASE_URL ?? '/';
+  // Type assertion needed because TypeScript doesn't recognize Astro's env types in this context
+  const baseUrl = (import.meta as any).env?.BASE_URL ?? '/';
 
   // Clean up input path (remove leading slash)
   const cleanName = filename.replace(/^\//, '');

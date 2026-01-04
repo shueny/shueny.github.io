@@ -1,88 +1,96 @@
 ---
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { cn, formatDate } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import MainLayout from "./main-layout.astro";
-import { siteConfig } from "@/config/site";
+import { Image } from "astro:assets";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import "@/styles/globals.css";
 
-type Props = CollectionEntry<"blog">;
+type Props = CollectionEntry<"blog">["data"] & {
+  slug?: string;
+};
 
+const { title, description, pubDate, updatedDate, cover, category } = Astro.props;
 const slug = Astro.props.slug;
-const { title, description, pubDate, updatedDate, cover, category } =
-  Astro.props.data;
 
-// Format dates for SEO
-const publishedTime = pubDate.toISOString();
-const modifiedTime = updatedDate ? updatedDate.toISOString() : publishedTime;
-
-// Construct full image URL for Open Graph
-const imageURL = cover.startsWith("http") 
-  ? cover 
-  : new URL(cover, Astro.site).toString();
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
-<MainLayout 
-  title={title} 
-  description={description}
-  image={imageURL}
-  type="article"
-  publishedTime={publishedTime}
-  modifiedTime={modifiedTime}
-  author={siteConfig.author || siteConfig.name}
-  tags={[category]}
->
-  <div class="relative container max-w-screen-md py-10">
-    <button
-      onclick="history.back()"
-      class={cn(
-        buttonVariants({ variant: "ghost" }),
-        "absolute left-[-200px] top-10 hidden xl:inline-flex text-muted-foreground"
-      )}
-      transition:animate="slide"
-    >
-      <Icon name="lucide:chevron-left" class="mr-2 size-4" />
-      {" "}Back
-    </button>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} | Shueny</title>
+    <meta name="description" content={description} />
+    
+    {/* Fonts */}
+    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+    <link href="[https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500&display=swap](https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500&display=swap)" rel="stylesheet">
+  </head>
+  
+  <body class="bg-surface text-custom-primary font-sans antialiased selection:bg-orange-100 selection:text-custom-accent">
+    
+    <Navbar client:load />
 
-    <article class="prose dark:prose-invert max-w-none">
-      <a
-        href={`/blog/category/${category}`}
-        transition:name={`badge-cat-${slug}`}
-      >
-        <Badge radius="md">
-          {category}
-        </Badge>
-      </a>
-      <Image
-        class="rounded-xl overflow-hidden my-6"
-        width={720}
-        height={360}
-        src={cover}
-        alt={title}
-        transition:name={`img-${slug}`}
-      />
-      <div class="flex items-center justify-between">
-        <span
-          class="font-medium text-muted-foreground"
-          transition:name={`date-${slug}`}
-        >
-          {formatDate(pubDate)}
-          {
-            updatedDate && (
-              <span>- Last updated on {formatDate(updatedDate)}</span>
-            )
-          }
-        </span>
-      </div>
-      <h1 class="font-heading text-4xl my-4" transition:name={`title-${slug}`}>
-        {title}
-      </h1>
-      <p>{description}</p>
-      <hr class="my-6" />
-      <slot />
-    </article>
-  </div>
-</MainLayout>
+    <main class="pt-32 pb-24 min-h-screen">
+      <article>
+        {/* Header (與原本保持一致) */}
+        <div class="container mx-auto px-6 md:px-12 max-w-4xl text-center mb-16 animate-fade-in-up">
+          <div class="flex items-center justify-center gap-3 mb-6">
+            <span class="h-[1px] w-8 bg-custom-accent/40"></span>
+            <span class="text-xs font-bold tracking-[0.2em] text-custom-accent uppercase">
+              {category} • {formattedDate}
+            </span>
+            <span class="h-[1px] w-8 bg-custom-accent/40"></span>
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-custom-primary leading-tight mb-8" transition:name={`title-${slug}`}>
+            {title}
+          </h1>
+          {cover && (
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-custom-primary/5 mt-8 border border-stone-100" transition:name={`img-${slug}`}>
+              <Image class="w-full h-full object-cover" width={1200} height={630} src={cover} alt={title} />
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div class="container mx-auto px-6 md:px-12 max-w-3xl animate-fade-in-up delay-100">
+          <div class="
+            prose prose-lg max-w-none
+            prose-headings:font-serif prose-headings:font-bold prose-headings:text-custom-primary
+            prose-p:text-custom-secondary prose-p:leading-relaxed prose-p:font-light
+            prose-strong:text-custom-primary prose-strong:font-semibold
+            prose-a:text-custom-accent prose-a:no-underline hover:prose-a:text-custom-accent/80 prose-a:transition-colors
+            prose-blockquote:border-l-custom-accent prose-blockquote:bg-surfaceDark/30 prose-blockquote:italic prose-blockquote:text-custom-secondary
+            
+            /* 👇 這裡移除了 prose-pre:bg-[#1c1917] 等顏色設定 
+              因為我們已經在 globals.css 裡用 CSS 定義了編輯器樣式
+              移除這些 class 可以讓 Astro 的 Shiki 語法高亮顏色正確顯示
+            */
+            prose-pre:shadow-2xl 
+            
+            prose-code:text-custom-accent prose-code:bg-surfaceDark/50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+            prose-img:rounded-xl prose-img:shadow-lg prose-img:border prose-img:border-custom-muted/30
+            prose-li:marker:text-custom-accent
+            prose-hr:border-custom-muted/40
+          ">
+            <slot />
+          </div>
+
+          <div class="mt-20 pt-10 border-t border-custom-muted/40 flex justify-between items-center">
+            <a href="/blog" class="group inline-flex items-center gap-2 text-custom-secondary hover:text-custom-accent transition-colors font-medium text-sm tracking-wide uppercase">
+              <>
+                <span class="transform group-hover:-translate-x-1 transition-transform">←</span> Back to All Posts
+              </>
+            </a>
+          </div>
+        </div>
+      </article>
+    </main>
+    <Footer client:visible />
+  </body>
+</html>
