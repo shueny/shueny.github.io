@@ -77,6 +77,9 @@
 }
 
 @layer base {
+  /* Lato fonts are not available in /fonts/ directory, commenting out to avoid 404 errors */
+  /* If Lato fonts are needed, add them to /public/fonts/ or use Google Fonts instead */
+  /*
   @font-face {
     font-family: 'Lato';
     src: url('/fonts/lato-thin.ttf') format('truetype');
@@ -116,6 +119,7 @@
     font-style: normal;
     font-display: swap;
   }
+  */
 
   * {
     @apply border-border;
@@ -157,7 +161,7 @@
   }
 
   h1 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', 'Noto Sans TC', sans-serif;
   }
 
   /* Documentation part */
