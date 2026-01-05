@@ -44,6 +44,8 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('language', lang);
+    // Dispatch custom event for same-tab language changes
+    window.dispatchEvent(new CustomEvent('languagechange', { detail: lang }));
   };
 
   const t = translations[language];

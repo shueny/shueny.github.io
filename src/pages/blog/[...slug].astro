@@ -1,5 +1,6 @@
 ---
 import BlogPostLayout from '@/layouts/blog-post.astro';
+import BlogLanguageSwitcher from '@/components/BlogLanguageSwitcher';
 import "@/styles/globals.css"; 
 import { getCollection, type CollectionEntry } from 'astro:content';
 
@@ -16,8 +17,45 @@ type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const { Content } = await post.render();
 
+// Map of multilingual posts
+const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string }> = {
+  'mobile-pagespeed-optimizations': {
+    zh: 'mobile-pagespeed-optimizations-zh',
+    en: 'mobile-pagespeed-optimizations',
+  },
+  'mobile-pagespeed-optimizations-zh': {
+    zh: 'mobile-pagespeed-optimizations-zh',
+    en: 'mobile-pagespeed-optimizations',
+  },
+  'from-spa-to-astro-islands': {
+    zh: 'from-spa-to-astro-islands',
+    en: 'from-spa-to-astro-islands-en',
+  },
+  'from-spa-to-astro-islands-en': {
+    zh: 'from-spa-to-astro-islands',
+    en: 'from-spa-to-astro-islands-en',
+  },
+  'local-chat': {
+    zh: 'local-chat-zh',
+    en: 'local-chat',
+  },
+  'local-chat-zh': {
+    zh: 'local-chat-zh',
+    en: 'local-chat',
+  },
+};
+
+const slug = post.slug;
+const isMultilingual = MULTILINGUAL_POSTS[slug] !== undefined;
+
 ---
 
 <BlogPostLayout {...post.data} slug={post.slug}>
-	<Content />
+  {isMultilingual ? (
+    <BlogLanguageSwitcher client:load slug={slug}>
+      <Content />
+    </BlogLanguageSwitcher>
+  ) : (
+    <Content />
+  )}
 </BlogPostLayout>

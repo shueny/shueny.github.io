@@ -44,12 +44,18 @@ export default defineConfig({
               return 'vendor';
             }
           },
+          // Ensure content hashing for better caching
+          entryFileNames: 'assets/[name].[hash].js',
+          chunkFileNames: 'assets/[name].[hash].js',
+          assetFileNames: 'assets/[name].[hash].[ext]',
         },
       },
       // Enable CSS code splitting
       cssCodeSplit: true,
       // Optimize asset inlining threshold (small assets will be inlined)
       assetsInlineLimit: 4096, // 4KB
+      // Optimize chunk size warnings
+      chunkSizeWarningLimit: 1000,
     },
     // Optimize dependencies
     optimizeDeps: {

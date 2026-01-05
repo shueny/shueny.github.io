@@ -53,13 +53,18 @@ const NavbarContent: React.FC = () => {
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
       if (element) {
-        setTimeout(() => {
-          const offset = 80;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-          setActiveSection(id as SectionId);
-        }, 100);
+        // Use requestAnimationFrame to avoid forced reflow
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            requestAnimationFrame(() => {
+              const offset = 80;
+              const elementPosition = element.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - offset;
+              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+              setActiveSection(id as SectionId);
+            });
+          }, 100);
+        });
       }
     }
   }, []);

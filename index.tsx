@@ -15,16 +15,16 @@ const AppWithLoaderHandler = () => {
     // Remove the pre-loader when the React app mounts
     // Use requestAnimationFrame to batch DOM operations and avoid forced reflow
     requestAnimationFrame(() => {
-      const loader = document.getElementById('initial-loader');
-      if (loader) {
-        loader.style.opacity = '0';
+    const loader = document.getElementById('initial-loader');
+    if (loader) {
+      loader.style.opacity = '0';
         // Use requestAnimationFrame for removal to batch with other DOM operations
         requestAnimationFrame(() => {
-          setTimeout(() => {
-            loader.remove();
-          }, 500); // Wait for transition
+      setTimeout(() => {
+        loader.remove();
+      }, 500); // Wait for transition
         });
-      }
+    }
     });
   }, []);
 
