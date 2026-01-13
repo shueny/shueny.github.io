@@ -40,6 +40,36 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     }
   }, []);
 
+  // Listen to language changes from other LanguageProvider instances
+  useEffect(() => {
+    // Listen to custom event for same-tab language changes
+    const handleLanguageChange = (e: Event) => {
+      const customEvent = e as CustomEvent<Language>;
+      const newLanguage = customEvent.detail;
+      if (newLanguage && LANGUAGES.includes(newLanguage)) {
+        setLanguageState(newLanguage);
+      }
+    };
+
+    // Listen to storage event for cross-tab language changes
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'language' && e.newValue) {
+        const newLanguage = e.newValue as Language;
+        if (LANGUAGES.includes(newLanguage)) {
+          setLanguageState(newLanguage);
+        }
+      }
+    };
+
+    window.addEventListener('languagechange', handleLanguageChange);
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('languagechange', handleLanguageChange);
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   // Save language to localStorage when it changes
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
