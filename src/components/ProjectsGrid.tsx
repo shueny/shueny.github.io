@@ -4,6 +4,7 @@ import type { Project } from '../types';
 import { PROJECTS_DATA } from '../constants';
 import ProjectModal from './ProjectModal';
 import { useLanguage } from '../contexts/LanguageContext';
+import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 // --- Helper Functions ---
 const getProjectIcon = (id: string) => {
@@ -371,12 +372,13 @@ const ProjectsGrid: React.FC = () => {
               {t.projects.label}
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-6 leading-tight">
-            {t.projects.titlePart1}{' '}
-            <span className="font-serif italic text-accent">
-              {t.projects.titlePart2}
-            </span>
-          </h2>
+          <AnimatedSectionTitle
+            textMain={t.projects.titlePart1}
+            textAccent={t.projects.titlePart2}
+            accentClassName="font-serif italic text-accent"
+            strokeColor="rgba(255, 255, 255, 0.18)"
+            className="mb-6"
+          />
           <p className="text-secondary text-lg font-light leading-relaxed">
             {t.projects.subtitle}
           </p>

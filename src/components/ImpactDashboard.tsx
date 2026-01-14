@@ -1,5 +1,6 @@
 import React from 'react';
-import { useLanguage } from '../contexts/LanguageContext'; // 👈 確保這行有正確引入
+import { useLanguage } from '../contexts/LanguageContext';
+import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 const ImpactDashboard: React.FC = () => {
   const { t } = useLanguage();
@@ -39,12 +40,15 @@ const ImpactDashboard: React.FC = () => {
                 {t.impact.tagline}
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-sans font-bold text-white mb-0 leading-tight">
-              {t.impact.titlePart1}{' '}
-              <span className="font-serif italic text-accent">
-                {t.impact.titlePart2}
-              </span>
-            </h2>
+            <AnimatedSectionTitle
+              textMain={t.impact.titlePart1}
+              textAccent={t.impact.titlePart2}
+              accentClassName="text-accent"
+              textColor="white"
+              accentColor="hsl(var(--accent))"
+              strokeColor="rgba(255, 255, 255, 0.18)" // 稍微降低描邊透明度，讓 Dashboard 線框更淡
+              className="mb-0"
+            />
           </div>
 
           {/* Context Line: 增加信任感的小字 */}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { SectionId } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
@@ -18,10 +19,19 @@ const Contact: React.FC = () => {
           {t.contact.tagline}
         </span>
 
-        <h2 className="text-5xl md:text-9xl font-serif font-bold mb-8 leading-[0.9] tracking-tight">
-          {t.contact.titlePart1} <br />
-          <span className="text-accent italic">{t.contact.titlePart2}</span>
-        </h2>
+        <div className="mb-8">
+          <AnimatedSectionTitle
+            textMain={t.contact.titlePart1}
+            textAccent={t.contact.titlePart2}
+            accentClassName="text-accent italic"
+            textColor="white"
+            accentColor="hsl(var(--accent))"
+            strokeColor="rgba(255, 255, 255, 0.3)"
+            textSize="text-5xl md:text-9xl"
+            fontFamily="font-serif"
+            className="leading-[0.9] tracking-tight"
+          />
+        </div>
 
         <p className="text-stone-400 max-w-xl mx-auto mb-16 text-lg font-light">
           {t.contact.subtitle}

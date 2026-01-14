@@ -2,6 +2,7 @@ import React from 'react';
 // 引入新的 Icon: LayoutTemplate (代表 CMS/Wix), Component (代表 React/Vue)
 import { SectionId } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 const Services: React.FC = () => {
   const { t } = useLanguage();
@@ -108,12 +109,13 @@ const Services: React.FC = () => {
               {t.services.capabilities}
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-6 leading-tight">
-            {t.services.titlePart1}{' '}
-            <span className="font-serif italic text-accent">
-              {t.services.titlePart2}
-            </span>
-          </h2>
+          <AnimatedSectionTitle
+            textMain={t.services.titlePart1}
+            textAccent={t.services.titlePart2}
+            accentClassName="text-accent"
+            strokeColor="rgba(255, 255, 255, 0.18)"
+            className="mb-6"
+          />
           <p className="text-secondary text-lg font-light leading-relaxed">
             {t.services.subtitle}
           </p>

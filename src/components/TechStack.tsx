@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SectionId } from '@/types';
+import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 // 定義技能資料結構 (若不需多語系切換技能名稱，直接寫在這裡最快)
 // 包含了從您簡歷和 V1 中提取的所有關鍵字
@@ -94,12 +95,13 @@ const TechStack: React.FC = () => {
             </div>
 
             {/* Main Title with Serif Italic Accent */}
-            <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-6 leading-tight">
-              {t.techStack.titlePart1}{' '}
-              <span className="font-serif italic text-accent">
-                {t.techStack.titlePart2}
-              </span>
-            </h2>
+            <AnimatedSectionTitle
+              textMain={t.techStack.titlePart1}
+              textAccent={t.techStack.titlePart2}
+              accentClassName="font-serif italic text-accent"
+              strokeColor="rgba(255, 255, 255, 0.18)"
+              className="mb-6"
+            />
           </div>
 
           {/* Subtitle / Description - 對齊右側或下方，增加層次 */}

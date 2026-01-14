@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SectionId } from '../types';
 import SkillsChart from './SkillsChart';
 import { useLanguage } from '../contexts/LanguageContext';
+import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 const ExperienceList: React.FC = () => {
   const { t } = useLanguage();
@@ -33,13 +34,13 @@ const ExperienceList: React.FC = () => {
           {/* Header & Chart Area */}
           <div className="lg:col-span-5">
             <div className="sticky top-32">
-              <h2 className="text-4xl md:text-5xl font-sans font-bold text-primary mb-8 tracking-tight">
-                {t.experience.titlePart1}
-                <br />
-                <span className="font-serif italic text-accent">
-                  {t.experience.titlePart2}
-                </span>
-              </h2>
+              <AnimatedSectionTitle
+                textMain={t.experience.titlePart1}
+                textAccent={t.experience.titlePart2}
+                accentClassName="font-serif italic text-accent"
+                strokeColor="rgba(255, 255, 255, 0.18)"
+                className="mb-8"
+              />
               <p className="text-secondary mb-12 leading-relaxed font-light text-lg">
                 {t.experience.description}
               </p>

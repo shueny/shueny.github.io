@@ -1,6 +1,7 @@
 import React from 'react';
 import { SectionId } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
@@ -17,13 +18,14 @@ const About: React.FC = () => {
           <span className="text-orange-600 uppercase tracking-widest text-xs font-bold block mb-4">
             {t.about.tagline}
           </span>
-          <h2 className="text-4xl md:text-5xl font-sans font-bold text-stone-900 mb-8 leading-tight">
-            {t.about.title} <br />
-            {/* 使用 Serif + Italic + Orange 呈現強調文字 */}
-            <span className="font-serif italic text-orange-600">
-              {t.about.subtitle}
-            </span>
-          </h2>
+          <AnimatedSectionTitle
+            textMain={t.about.title}
+            textAccent={t.about.subtitle}
+            accentClassName="font-serif italic text-orange-600"
+            accentColor="rgb(234, 88, 12)"
+            strokeColor="rgba(255, 255, 255, 0.18)"
+            className="mb-8"
+          />
           {/* Intro 文字，支援 HTML 粗體顯示 */}
           <p
             className="text-stone-600 text-lg md:text-xl font-light leading-relaxed [&>strong]:font-medium [&>strong]:text-stone-900"
