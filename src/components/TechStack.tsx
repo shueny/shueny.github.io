@@ -4,10 +4,11 @@ import { SectionId } from '@/types';
 
 // 定義技能資料結構 (若不需多語系切換技能名稱，直接寫在這裡最快)
 // 包含了從您簡歷和 V1 中提取的所有關鍵字
-const SKILL_CATEGORIES = [
+// 注意：分類標題現在從翻譯文件中獲取
+const getSkillCategories = (t: any) => [
   {
     id: 'frontend_arch',
-    title: 'Frontend & Architecture', // 強調架構能力
+    title: t.techStack.categories.frontendArch, // 強調架構能力
     skills: [
       'React',
       'Next.js',
@@ -23,7 +24,7 @@ const SKILL_CATEGORIES = [
   },
   {
     id: 'ai_backend',
-    title: 'AI Engineering & Backend', // 強調 AI 整合
+    title: t.techStack.categories.aiBackend, // 強調 AI 整合
     skills: [
       'OpenAI API (Azure)',
       'Gemini API',
@@ -39,7 +40,7 @@ const SKILL_CATEGORIES = [
   },
   {
     id: 'quality_devops',
-    title: 'QA & DevOps', // 強調自動化測試與流程
+    title: t.techStack.categories.qaDevops, // 強調自動化測試與流程
     skills: [
       'Cypress',
       'Playwright',
@@ -55,7 +56,7 @@ const SKILL_CATEGORIES = [
   },
   {
     id: 'growth_design',
-    title: 'Growth & Design', // 強調商業價值與設計背景
+    title: t.techStack.categories.growthDesign, // 強調商業價值與設計背景
     skills: [
       'Figma',
       'Shopify',
@@ -72,6 +73,7 @@ const SKILL_CATEGORIES = [
 
 const TechStack: React.FC = () => {
   const { t } = useLanguage();
+  const SKILL_CATEGORIES = getSkillCategories(t);
 
   return (
     // 背景色與 Services 保持一致或微調，這裡用 bg-[#FDFCF8] 營造層次
@@ -108,7 +110,7 @@ const TechStack: React.FC = () => {
 
         {/* Skills Grid - 極簡列表風格 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 border-t border-orange-100 pt-12">
-          {SKILL_CATEGORIES.map((category) => (
+          {SKILL_CATEGORIES.map((category: any) => (
             <div key={category.id} className="group">
               {/* Category Title with Serif Font */}
               <h3 className="text-xl font-serif font-bold text-primary mb-6 flex items-center">

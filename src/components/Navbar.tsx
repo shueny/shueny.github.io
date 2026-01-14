@@ -25,8 +25,7 @@ const NavbarContent: React.FC = () => {
       { label: t.nav.about, href: SectionId.ABOUT },
       { label: t.nav.experience, href: SectionId.EXPERIENCE },
       // 👇 新增 Blog 連結 (放在 Contact 之前)
-      // 如果您的語系檔 (t.nav) 還沒加入 blog 翻譯，暫時先用字串 'Blog'
-      { label: 'Blog', href: '/blog' },
+      { label: t.nav.blog, href: '/blog' },
       { label: t.nav.contact, href: SectionId.CONTACT },
     ],
     [t]

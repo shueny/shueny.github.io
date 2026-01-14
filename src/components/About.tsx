@@ -15,7 +15,7 @@ const About: React.FC = () => {
         {/* --- 1. Header (完全還原 image_f9068d.png 風格) --- */}
         <div className="max-w-4xl mb-20">
           <span className="text-orange-600 uppercase tracking-widest text-xs font-bold block mb-4">
-            The Person Behind the Pixels
+            {t.about.tagline}
           </span>
           <h2 className="text-4xl md:text-5xl font-sans font-bold text-stone-900 mb-8 leading-tight">
             {t.about.title} <br />

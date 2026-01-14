@@ -14,6 +14,20 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
   icon,
 }) => {
   const { t } = useLanguage();
+  
+  // Get translated category name
+  const getCategoryName = (category: string) => {
+    switch (category) {
+      case 'frontend':
+        return t.projects.categories.frontend;
+      case 'fullstack':
+        return t.projects.categories.fullstack;
+      case 'design':
+        return t.projects.categories.design;
+      default:
+        return category;
+    }
+  };
   // Prevent body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -72,7 +86,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
             <div className="flex items-center gap-2 mb-4">
               <span className="text-orange-600">{icon}</span>
               <span className="text-xs font-bold uppercase tracking-widest text-orange-600">
-                {project.category}
+                {getCategoryName(project.category)}
               </span>
             </div>
 
@@ -219,11 +233,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
               {/* Call to Action Card */}
               <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-lg shadow-stone-200/50 sticky top-8">
                 <h4 className="font-bold text-stone-900 mb-2">
-                  Interested in this stack?
+                  {t.projectModal.interestedInStack}
                 </h4>
                 <p className="text-xs text-stone-500 mb-6 leading-relaxed">
                   {project.link
-                    ? 'Check out the live application to see the performance optimizations in action.'
+                    ? t.projectModal.checkOutLiveApp
                     : t.projectModal.liveDemoNote}
                 </p>
 

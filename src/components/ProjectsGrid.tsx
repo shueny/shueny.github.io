@@ -140,6 +140,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   onClick,
   viewCaseStudyText,
 }) => {
+  const { t } = useLanguage();
   const [imgError, setImgError] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
   // Use banner if available, otherwise fall back to image
@@ -278,7 +279,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
           {/* Category Indicator with subtle hover effect */}
           <span className="text-[10px] font-mono text-stone-400 capitalize transition-colors duration-300 group-hover:text-stone-500">
-            {project.category}
+            {project.category === 'frontend' 
+              ? t.projects.categories.frontend
+              : project.category === 'fullstack'
+              ? t.projects.categories.fullstack
+              : project.category === 'design'
+              ? t.projects.categories.design
+              : project.category}
           </span>
         </div>
       </div>
@@ -293,7 +300,24 @@ const ProjectsGrid: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
 
-  const totalProjects = PROJECTS_DATA.length;
+  // Merge translated project data with static data (images, links, etc.)
+  const projects = t.projects.data.map((translatedProject) => {
+    const staticData = PROJECTS_DATA.find((p) => p.id === translatedProject.id);
+    if (!staticData) return null;
+    
+    return {
+      ...staticData,
+      title: translatedProject.title,
+      description: translatedProject.description,
+      problem: translatedProject.problem,
+      solution: translatedProject.solution,
+      techDeepDive: translatedProject.techDeepDive,
+      features: translatedProject.features,
+      category: staticData.category, // Keep original category for display
+    } as Project;
+  }).filter((p): p is Project => p !== null);
+
+  const totalProjects = projects.length;
   const maxIndex = Math.max(0, totalProjects - visibleCount);
 
   // Handle responsive visible count
@@ -400,7 +424,7 @@ const ProjectsGrid: React.FC = () => {
               transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
             }}
           >
-            {PROJECTS_DATA.map((project, index) => (
+            {projects.map((project, index) => (
               <div
                 key={project.id}
                 className="shrink-0 basis-full md:basis-1/2 xl:basis-1/3 px-4"
