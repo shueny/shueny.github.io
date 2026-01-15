@@ -12,7 +12,7 @@ interface Props {
 
 const {
   title = "Shueny - Senior Frontend Engineer",
-  description = "專精於 React、Nx 架構與效能優化的資深前端工程師。",
+  description = "Shueny Wang | Senior Frontend Engineer · AI Solutions Builder",
   image = siteConfig.ogImage,
 } = Astro.props;
 
@@ -23,9 +23,9 @@ const imageURL = image.startsWith("http")
 ---
 
 <!DOCTYPE html>
-<html lang="zh-TW" className="scroll-smooth snap-y snap-proximity scroll-pt-32">
+<html lang="zh-TW" class="scroll-smooth snap-y snap-proximity scroll-pt-32">
   <head>
-    <meta charSet="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
@@ -74,9 +74,8 @@ const imageURL = image.startsWith("http")
     />
     </noscript>
   </head>
-  <body className="text-stone-900 antialiased overflow-x-hidden">
+  <body class="text-stone-900 antialiased overflow-x-hidden">
     <slot />
-    {/* @ts-expect-error - is:global is a valid Astro directive */}
     <style is:global>
       /* Smooth Scrolling & Custom Selection */
       ::selection {
