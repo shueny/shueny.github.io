@@ -217,7 +217,7 @@ export const translations: Record<Language, Translations> = {
       title3: 'AI Solutions',
       title3Suffix: 'Builder',
       subtitle:
-        'Specializing in scalable frontend architecture (React/Nx) and practical AI integration for business automation.',
+        'Specializing in scalable frontend architecture (React, Nx) and practical AI integration to solve real-world business problems.',
       description:
         'Building scalable design systems and AI-enhanced applications that reduce operational overhead and improve user conversion.',
       ctaPrimary: 'View AI Projects',
@@ -596,11 +596,11 @@ export const translations: Record<Language, Translations> = {
       title1: 'Senior Frontend',
       title2: 'Engineer &',
       title3: 'KI-Lösungen',
-      title3Suffix: 'Spezialist',
+      title3Suffix: 'Builder',
       subtitle:
-        'Spezialisiert auf skalierbare Frontend-Architektur (React/Nx) und praktische KI-Integration für Geschäftsautomatisierung.',
+        'Spezialisiert auf skalierbare Frontend-Architektur (React, Nx) und praxisnahe KI-Integration zur Lösung realer Geschäftsprobleme.',
       description:
-        'Entwicklung skalierbarer Design-Systeme und KI-gestützter Anwendungen, die den Betriebsaufwand reduzieren und die Benutzerkonversion verbessern.',
+        'Entwicklung skalierbarer Design-Systeme und KI-gestützter Anwendungen zur Reduzierung des Betriebsaufwands und Verbesserung der Nutzerkonversion.',
       ctaPrimary: 'KI-Projekte ansehen',
       ctaSecondary: 'Beratung buchen',
       scroll: 'Scrollen',
@@ -976,11 +976,11 @@ export const translations: Record<Language, Translations> = {
       title1: '資深前端',
       title2: '工程師 &',
       title3: 'AI 解決方案',
-      title3Suffix: '專家',
+      title3Suffix: '實踐者',
       subtitle:
-        '專注於可擴展的前端架構（React/Nx）和實用的 AI 整合以實現業務自動化。',
+        '專注於可擴展的前端架構（React／Nx），並將 AI 實際整合於產品中，以解決真實的業務問題與流程瓶頸。',
       description:
-        '構建可擴展的設計系統和 AI 增強應用，減少運營開銷並提升用戶轉換率。',
+        '打造可擴展的設計系統與 AI 強化應用，降低營運成本，提升產品效率與使用者轉換率。',
       ctaPrimary: '查看 AI 專案',
       ctaSecondary: '預約諮詢',
       scroll: '向下滾動',
