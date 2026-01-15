@@ -212,10 +212,10 @@ export const translations: Record<Language, Translations> = {
       location:
         'Based in Germany (CET) | Available for Hybrid (Ulm) & Global Remote',
       locationMobile: 'Germany (CET) | Hybrid & Remote',
-      title1: 'Senior Frontend',
-      title2: 'Engineer &',
+      title1: 'Senior Frontend Engineer',
+      title2: 'Shueny Wang',
       title3: 'AI Solutions',
-      title3Suffix: 'Specialist',
+      title3Suffix: 'Builder',
       subtitle:
         'Specializing in scalable frontend architecture (React/Nx) and practical AI integration for business automation.',
       description:
@@ -564,7 +564,8 @@ export const translations: Record<Language, Translations> = {
       contactForDemo: 'Contact for Demo',
       launchLiveApp: 'Launch Live App',
       interestedInStack: 'Interested in this stack?',
-      checkOutLiveApp: 'Check out the live application to see the performance optimizations in action.',
+      checkOutLiveApp:
+        'Check out the live application to see the performance optimizations in action.',
     },
     common: {
       downloadResume: 'Download Resume',
@@ -816,7 +817,7 @@ export const translations: Record<Language, Translations> = {
           solution:
             "Ich baute eine automatisierte ETL-Pipeline für Karrieredaten. Sie scraped oder akzeptiert JD-Text, nutzt Chain-of-Thought-Prompting, um Anforderungen zu durchdenken (unterscheidet 'Must-have' von 'Nice-to-have') und normalisiert die Ausgabe in ein standardisiertes JSON-Schema zur visuellen Vergleich mit meinem Lebenslauf.",
           techDeepDive:
-            "Die technische Herausforderung war die Gewährleistung der Datenkonsistenz. Ich verwendete Pydantic-Modelle in FastAPI, um strenge Typvalidierung zwischen der KI-Ausgabe und dem Frontend durchzusetzen. Nutzte Few-Shot-Prompting, um Halluzinationen beim Extrahieren numerischer Erfahrungsanforderungen erheblich zu reduzieren.",
+            'Die technische Herausforderung war die Gewährleistung der Datenkonsistenz. Ich verwendete Pydantic-Modelle in FastAPI, um strenge Typvalidierung zwischen der KI-Ausgabe und dem Frontend durchzusetzen. Nutzte Few-Shot-Prompting, um Halluzinationen beim Extrahieren numerischer Erfahrungsanforderungen erheblich zu reduzieren.',
           features: [
             'Unstrukturiert-zu-strukturiert Datenpipeline',
             'Intelligente Gap-Analyse (Lebenslauf vs. JD)',
@@ -944,7 +945,8 @@ export const translations: Record<Language, Translations> = {
       contactForDemo: 'Demo anfragen',
       launchLiveApp: 'Live-App öffnen',
       interestedInStack: 'Interessiert an diesem Stack?',
-      checkOutLiveApp: 'Schauen Sie sich die Live-Anwendung an, um die Performance-Optimierungen in Aktion zu sehen.',
+      checkOutLiveApp:
+        'Schauen Sie sich die Live-Anwendung an, um die Performance-Optimierungen in Aktion zu sehen.',
     },
     common: {
       downloadResume: 'Lebenslauf herunterladen',

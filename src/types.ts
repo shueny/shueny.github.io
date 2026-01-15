@@ -134,3 +134,22 @@ export interface AboutSection {
   education: EducationItem[];
   global: GlobalExperienceItem[];
 }
+
+// Re-export types from types/index.d.ts
+// Note: NavMenuConfig is excluded as it's already defined in this file with a different structure
+export type {
+  NavItem,
+  MenuItem,
+  MainNavItem,
+  SidebarNavItem,
+  SiteConfig,
+  DocsConfig,
+  FedConfig,
+  MarketingConfig,
+  DashboardConfig,
+  SubscriptionPlan,
+  Airing,
+  Media,
+  InfoList,
+  InfoLdg,
+} from '@/types/index';

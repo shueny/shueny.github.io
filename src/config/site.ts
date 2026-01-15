@@ -2,8 +2,7 @@ import type { SidebarNavItem, SiteConfig } from '@/types';
 
 export const siteConfig: SiteConfig = {
   name: 'Shueny',
-  description:
-    '專精於 React、Nx 架構與效能優化的資深前端工程師。',
+  description: 'Shueny Wang | Senior Frontend Engineer · AI Solutions Builder',
   url: 'https://shueny.github.io/',
   ogImage: 'https://shueny.github.io/og-image.png',
   author: 'Shueny Wang',
