@@ -1,7 +1,7 @@
 // Service Worker for caching static assets on GitHub Pages
 // This helps improve cache lifetime for static resources
 
-const CACHE_NAME = 'shueny-portfolio-v1';
+const CACHE_NAME = 'shueny-portfolio-v2';
 const STATIC_CACHE_DURATION = 31536000; // 1 year in seconds
 const HTML_CACHE_DURATION = 3600; // 1 hour in seconds
 
