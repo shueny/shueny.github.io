@@ -31,7 +31,7 @@ const { title, description } = Astro.props;
     /> -->
 
     <!-- if use Navigation Menu on desktop -->
-    <MainNavigationMenu slot="left-header" client:load />
+    <MainNavigationMenu slot="left-header" client:idle />
     <SheetMobileNav
       mainNavItems={[...navMenuConfig.links]}
       sidebarNavItems={[
@@ -40,7 +40,7 @@ const { title, description } = Astro.props;
         ...docsConfig.sidebarNav,
       ]}
       slot="mobile-nav-header"
-      client:load
+      client:idle
     />
 
     <div class="flex items-center gap-x-4" slot="right-header">
@@ -60,7 +60,7 @@ const { title, description } = Astro.props;
         <Icon name="github" class="size-[22px]" />
       </a>
 
-      <ThemeToggle client:load />
+      <ThemeToggle client:idle />
     </div>
   </Header>
 
