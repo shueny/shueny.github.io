@@ -1,7 +1,18 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { SectionId } from '../types';
-import { FileText, Globe } from 'lucide-react';
 import { useLanguage, LanguageProvider } from '../contexts/LanguageContext';
+
+// Inline SVG icons to avoid pulling lucide-react into the critical path
+const FileTextIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" />
+  </svg>
+);
+const GlobeIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
+  </svg>
+);
 
 const NavbarContent: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -210,7 +221,7 @@ const NavbarContent: React.FC = () => {
             className="p-1.5 sm:p-2 text-stone-600 hover:text-accent transition-colors group relative flex-shrink-0"
             title={t.common.downloadResume}
           >
-            <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
+            <FileTextIcon className="w-4 h-4 sm:w-5 sm:h-5" />
           </a>
 
           <div className="relative language-switcher flex-shrink-0">
@@ -219,7 +230,7 @@ const NavbarContent: React.FC = () => {
               className="flex items-center gap-1 px-1.5 sm:px-2 md:px-3 py-1.5 text-[10px] sm:text-xs font-medium text-stone-600 hover:text-accent transition-colors whitespace-nowrap"
               title={t.common.changeLanguage}
             >
-              <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+              <GlobeIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
               <span className="hidden sm:inline">{language}</span>
             </button>
 

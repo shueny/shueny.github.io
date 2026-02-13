@@ -32,36 +32,29 @@ export default defineConfig({
   output: 'static',
   vite: {
     build: {
-      // Optimize chunk splitting for better caching
       rollupOptions: {
         output: {
-          // Manual chunk splitting for better cache performance
           manualChunks: (id) => {
-            // Separate vendor chunks
             if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom')) {
+              // React core in its own chunk (needed on all React pages)
+              if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
                 return 'react-vendor';
               }
-              if (id.includes('lucide-react')) {
-                return 'lucide-vendor';
-              }
-              return 'vendor';
+              // Let all other dependencies split naturally based on usage.
+              // This prevents unused JS from other pages (e.g. framer-motion,
+              // embla-carousel, radix-ui used only on /portfolio) from being
+              // bundled into a single vendor.js that loads on every page.
             }
           },
-          // Ensure content hashing for better caching
           entryFileNames: 'assets/[name].[hash].js',
           chunkFileNames: 'assets/[name].[hash].js',
           assetFileNames: 'assets/[name].[hash].[ext]',
         },
       },
-      // Enable CSS code splitting
       cssCodeSplit: true,
-      // Optimize asset inlining threshold (small assets will be inlined)
-      assetsInlineLimit: 4096, // 4KB
-      // Optimize chunk size warnings
+      assetsInlineLimit: 4096,
       chunkSizeWarningLimit: 1000,
     },
-    // Optimize dependencies
     optimizeDeps: {
       include: ['react', 'react-dom'],
     },
