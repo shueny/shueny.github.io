@@ -2,9 +2,9 @@ import React, { Suspense, lazy } from 'react';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import Navbar from './Navbar';
 import Hero from './Hero';
-import Services from './Services';
 
-// Lazy load non-critical components to reduce initial bundle size
+// Lazy load all below-the-fold components to reduce initial bundle size
+const Services = lazy(() => import('./Services'));
 const TechStack = lazy(() => import('./TechStack'));
 const ImpactDashboard = lazy(() => import('./ImpactDashboard'));
 const ProjectsGrid = lazy(() => import('./ProjectsGrid'));
@@ -28,7 +28,9 @@ const App: React.FC = () => {
         <Navbar />
         <main>
           <Hero />
-          <Services />
+          <Suspense fallback={<LoadingFallback />}>
+            <Services />
+          </Suspense>
           <Suspense fallback={<LoadingFallback />}>
             <TechStack />
           </Suspense>
