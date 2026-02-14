@@ -65,6 +65,7 @@ export default defineConfig({
         },
       },
       cssCodeSplit: true,
+      // Inline small CSS to reduce render-blocking requests
       assetsInlineLimit: 4096,
       chunkSizeWarningLimit: 1000,
       // Vite uses esbuild for minification by default (faster than terser)

@@ -25,6 +25,29 @@ const imageURL = image.startsWith("http")
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth snap-y snap-proximity scroll-pt-32">
   <head>
+    <!-- Critical CSS - MUST be first to prevent white flash and improve FCP -->
+    <style is:inline>
+      /* Critical above-the-fold styles - prevents white flash on page load */
+      html {
+        background-color: #fff7ed !important; /* Warm Cream Background */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      }
+      
+      body {
+        background-color: #fff7ed !important; /* Warm Cream Background */
+        color: #1c1917 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

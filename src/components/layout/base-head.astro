@@ -46,6 +46,42 @@ const pageTitle = title
   : defaultTitle;
 ---
 
+<!-- Critical CSS - MUST be first to prevent white flash and improve FCP -->
+<!-- This inline style ensures background color is applied immediately, before any external CSS loads -->
+<style is:inline>
+  /* Critical above-the-fold styles - prevents white flash on page load */
+  html {
+    background-color: #fff7ed !important; /* Warm Cream Background - matches body */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  
+  body {
+    background-color: #fff7ed !important; /* Warm Cream Background */
+    color: #1c1917 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Nunito', 'Noto Sans TC', sans-serif;
+    font-size-adjust: 0.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Prevent layout shift during font loading */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Ensure text is visible immediately with proper contrast */
+  h1, h2, h3, h4, h5, h6, p, span, a, div {
+    color: #1c1917;
+  }
+  
+  /* Prevent invisible text during font load */
+  .fonts-loading {
+    visibility: visible !important; /* Keep content visible */
+  }
+</style>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -106,31 +142,10 @@ const pageTitle = title
     }
   })();
 </script>
-<!-- Prevent layout shift by setting font-size-adjust and using system fonts as fallback -->
+<!-- Additional font loading optimizations (non-critical, can load after FCP) -->
 <style is:inline>
-  /* Prevent layout shift during font loading */
-  /* Use system fonts first, then load custom fonts */
-  html {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  }
-  
   /* Font loading optimization - prevent CLS */
-  body {
-    font-size-adjust: 0.5;
-    /* Use system fonts until custom fonts load */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Nunito', 'Noto Sans TC', sans-serif;
-  }
-  
-  /* Ensure text is visible during font load */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Nunito', 'Noto Sans TC', sans-serif;
-  }
-  
-  /* Font loading state - prevent invisible text */
-  .fonts-loading {
-    visibility: hidden;
-  }
-  
+  /* These styles complement the critical CSS above */
   .fonts-loaded {
     visibility: visible;
   }
