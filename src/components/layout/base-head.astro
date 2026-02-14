@@ -188,18 +188,30 @@ setDarkMode();
 document.addEventListener("astro:after-swap", setDarkMode);
 </script>
 
-<!-- Register Service Worker for better caching on GitHub Pages -->
+<!-- Register Service Worker early for better caching on GitHub Pages -->
 <script is:inline>
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('Service Worker registered:', registration.scope);
-        })
-        .catch((error) => {
-          console.log('Service Worker registration failed:', error);
+    // Register immediately, don't wait for load event
+    // This allows Service Worker to start caching earlier
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .then((registration) => {
+        console.log('Service Worker registered:', registration.scope);
+        // Update Service Worker if a new version is available
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // New Service Worker available, reload to use it
+                console.log('New Service Worker available');
+              }
+            });
+          }
         });
-    });
+      })
+      .catch((error) => {
+        console.log('Service Worker registration failed:', error);
+      });
   }
 </script>
 

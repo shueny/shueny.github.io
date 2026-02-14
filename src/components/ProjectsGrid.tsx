@@ -177,12 +177,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <img
               src={bannerImage}
               alt={`${project.title} banner`}
+              width={800}
+              height={450}
               className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 ${
                 imgLoading ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
               }`}
               onLoad={handleImageLoad}
               onError={handleImageError}
               loading="lazy"
+              decoding="async"
             />
             {/* Number Badge Overlay with enhanced hover effect */}
             <div className="absolute top-4 left-4 z-20 transition-transform duration-500 group-hover:scale-110">

@@ -61,6 +61,12 @@ export default defineConfig({
           chunkFileNames: 'assets/[name].[hash].js',
           assetFileNames: 'assets/[name].[hash].[ext]',
         },
+        // Enable aggressive tree-shaking to remove unused code
+        treeshake: {
+          moduleSideEffects: false, // Enable aggressive tree-shaking
+          propertyReadSideEffects: false,
+          tryCatchDeoptimization: false,
+        },
       },
       cssCodeSplit: true,
       assetsInlineLimit: 4096,
@@ -73,6 +79,9 @@ export default defineConfig({
       include: ['react', 'react-dom'],
       // Exclude heavy dependencies from pre-bundling if not needed immediately
       exclude: ['@google/generative-ai'],
+      esbuildOptions: {
+        treeShaking: true, // Enable tree-shaking for dependencies
+      },
     },
   },
 });

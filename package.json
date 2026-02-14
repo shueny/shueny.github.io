@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "pnpm build && pnpm dlx gh-pages -d build -t true"
+    "deploy": "pnpm build && pnpm dlx gh-pages -d dist -t true",
+    "test:performance": "node scripts/test-performance.js"
   },
   "packageManager": "pnpm@8.15.4",
   "dependencies": {

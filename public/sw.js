@@ -85,7 +85,14 @@ self.addEventListener('fetch', (event) => {
           // For content-hashed assets (JS/CSS with hash), cache is always valid
           // The hash in filename ensures cache invalidation when content changes
           if (url.pathname.match(/\.([a-f0-9]{8,})\.(js|css)$/)) {
-            return cachedResponse;
+            // Modify response headers to include Cache-Control for Lighthouse
+            const headers = new Headers(cachedResponse.headers);
+            headers.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}, immutable`);
+            return new Response(cachedResponse.body, {
+              status: cachedResponse.status,
+              statusText: cachedResponse.statusText,
+              headers: headers,
+            });
           }
           
           // Check if cache is still valid for other assets
@@ -93,10 +100,24 @@ self.addEventListener('fetch', (event) => {
           if (cacheDate) {
             const cacheAge = (Date.now() - new Date(cacheDate).getTime()) / 1000;
             if (cacheAge < STATIC_CACHE_DURATION) {
-              return cachedResponse;
+              // Add Cache-Control header
+              const headers = new Headers(cachedResponse.headers);
+              headers.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}, immutable`);
+              return new Response(cachedResponse.body, {
+                status: cachedResponse.status,
+                statusText: cachedResponse.statusText,
+                headers: headers,
+              });
             }
           } else {
-            return cachedResponse;
+            // Add Cache-Control header even if no date
+            const headers = new Headers(cachedResponse.headers);
+            headers.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}, immutable`);
+            return new Response(cachedResponse.body, {
+              status: cachedResponse.status,
+              statusText: cachedResponse.statusText,
+              headers: headers,
+            });
           }
         }
 
@@ -111,9 +132,14 @@ self.addEventListener('fetch', (event) => {
             // Clone response for caching
             const responseToCache = response.clone();
             
-            // Add custom headers to indicate long cache duration
+            // Add Cache-Control headers for long-term caching
             const headers = new Headers(responseToCache.headers);
-            headers.set('sw-cache-duration', STATIC_CACHE_DURATION.toString());
+            // Check if it's a content-hashed asset
+            if (url.pathname.match(/\.([a-f0-9]{8,})\.(js|css)$/)) {
+              headers.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}, immutable`);
+            } else {
+              headers.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}`);
+            }
             
             const modifiedResponse = new Response(responseToCache.body, {
               status: responseToCache.status,
@@ -125,11 +151,34 @@ self.addEventListener('fetch', (event) => {
               cache.put(request, modifiedResponse);
             });
 
-            return response;
+            // Also modify the original response to include Cache-Control
+            const responseHeaders = new Headers(response.headers);
+            if (url.pathname.match(/\.([a-f0-9]{8,})\.(js|css)$/)) {
+              responseHeaders.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}, immutable`);
+            } else {
+              responseHeaders.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}`);
+            }
+            
+            return new Response(response.body, {
+              status: response.status,
+              statusText: response.statusText,
+              headers: responseHeaders,
+            });
           })
           .catch(() => {
-            // If network fails and we have a cached version, return it
-            return caches.match(request);
+            // If network fails and we have a cached version, return it with headers
+            return caches.match(request).then((cached) => {
+              if (cached) {
+                const headers = new Headers(cached.headers);
+                headers.set('Cache-Control', `public, max-age=${STATIC_CACHE_DURATION}, immutable`);
+                return new Response(cached.body, {
+                  status: cached.status,
+                  statusText: cached.statusText,
+                  headers: headers,
+                });
+              }
+              return cached;
+            });
           });
       })
     );

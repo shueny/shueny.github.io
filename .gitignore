@@ -48,3 +48,24 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+
+# Optimization documentation (temporary files created during optimization)
+ALL_OPTIMIZATIONS_COMPLETE.md
+DEPLOYMENT_GUIDE.md
+FINAL_OPTIMIZATION_SUMMARY.md
+OPTIMIZATION_CHECKLIST.md
+OPTIMIZATION_SUMMARY.md
+QUICK_START.md
+REMAINING_OPTIMIZATIONS.md
+SCORE_83_TO_90.md
+TESTING_GUIDE.md
+TEST_SUMMARY.md
+BUILD_TEST_REPORT.md
+REACT_VENDOR_OPTIMIZATION.md
+LIGHTHOUSE_MOBILE_IMPROVEMENTS.md
+GITIGNORE_UPDATE.md
+
+# Development/preview files (legacy files, not used in Astro build)
+# Note: These are already tracked, use "git rm --cached" to untrack them
+# index.html
+# index.tsx
