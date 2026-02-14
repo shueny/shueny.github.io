@@ -10,10 +10,6 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://shueny.github.io',
   base: '',
-  build: {
-    // Inline all CSS into HTML to eliminate render-blocking stylesheet requests
-    inlineStylesheets: 'always',
-  },
   integrations: [
     mdx({
       syntaxHighlight: 'shiki',

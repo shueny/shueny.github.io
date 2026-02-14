@@ -63,7 +63,7 @@ const {
     /> -->
 
     <!-- if use Navigation Menu on desktop -->
-    <MainNavigationMenu slot="left-header" client:idle />
+    <MainNavigationMenu slot="left-header" client:load />
     <SheetMobileNav
       mainNavItems={[...(navMenuConfig.links || [])]}
       sidebarNavItems={[
@@ -71,7 +71,7 @@ const {
         ...(navMenuConfig.examplesNav || []),
       ]}
       slot="mobile-nav-header"
-      client:idle
+      client:load
     />
 
     <div class="flex items-center gap-x-4" slot="right-header">
@@ -83,7 +83,7 @@ const {
       >
         <Icon name="github" class="size-[22px]" />
       </a>
-      <ThemeToggle client:idle />
+      <ThemeToggle client:load />
     </div>
   </Header>
 

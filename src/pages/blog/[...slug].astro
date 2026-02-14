@@ -1,6 +1,7 @@
 ---
 import BlogPostLayout from '@/layouts/blog-post.astro';
 import BlogLanguageSwitcher from '@/components/BlogLanguageSwitcher';
+import "@/styles/globals.css"; 
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
