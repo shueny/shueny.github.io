@@ -64,6 +64,29 @@ BUILD_TEST_REPORT.md
 REACT_VENDOR_OPTIMIZATION.md
 LIGHTHOUSE_MOBILE_IMPROVEMENTS.md
 GITIGNORE_UPDATE.md
+PERFORMANCE_FIX_72.md
+TESTING_CHECKLIST.md
+TEST_RESULTS.md
+MOBILE_PAGESPEED_OPTIMIZATIONS.md
+JS_DEFER_ANALYSIS.md
+JS_DEFER_OPTIMIZATIONS.md
+JS_DEFER_SUMMARY.md
+
+# Pattern-based ignores for optimization/test documentation
+*_OPTIMIZATION*.md
+*_OPTIMIZATIONS*.md
+*_ANALYSIS*.md
+*_SUMMARY*.md
+*_CHECKLIST*.md
+*_RESULTS*.md
+*_REPORT*.md
+*_FIX*.md
+*_GUIDE*.md
+*_TEST*.md
+*TEST*.md
+*PERFORMANCE*.md
+*DEPLOYMENT*.md
+*GITIGNORE*.md
 
 # Development/preview files (legacy files, not used in Astro build)
 # Note: These are already tracked, use "git rm --cached" to untrack them

@@ -3,8 +3,8 @@ import { LanguageProvider } from '../contexts/LanguageContext';
 import Navbar from './Navbar';
 import Hero from './Hero';
 
-// Eagerly loaded with initial bundle (above-the-fold)
-import Services from './Services';
+// Services can be lazy loaded since it's below the fold
+const Services = lazy(() => import('./Services'));
 
 // Lazy load below-the-fold sections — chunks only load when triggered by scroll cascade
 const TechStack = lazy(() => import('./TechStack'));
@@ -80,23 +80,27 @@ const App: React.FC = () => {
     setUnlockedCount((prev) => Math.max(prev, next));
   }, []);
 
-  // Observe Services section — when it enters viewport, unlock TechStack
+  // Observe Hero section — when it enters viewport, unlock Services
   useEffect(() => {
-    const el = servicesRef.current;
-    if (!el) return;
+    // Unlock Services immediately when Hero is visible (Hero is above the fold)
+    unlock(1);
+    
+    // Also observe Hero to trigger Services loading when user scrolls
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            unlock(1); // Ensure Services is unlocked
+            observer.disconnect();
+          }
+        },
+        { rootMargin: '200px 0px' },
+      );
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          unlock(1);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '300px 0px' },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
+      observer.observe(heroSection);
+      return () => observer.disconnect();
+    }
   }, [unlock]);
 
   return (
@@ -106,41 +110,46 @@ const App: React.FC = () => {
         <main>
           <Hero />
           <div ref={servicesRef}>
-            <Services />
+            <LazySection shouldLoad={unlockedCount >= 1} onVisible={() => unlock(2)}>
+              <Services />
+            </LazySection>
           </div>
 
-          <LazySection shouldLoad={unlockedCount >= 1} onVisible={() => unlock(2)}>
+          <LazySection shouldLoad={unlockedCount >= 2} onVisible={() => unlock(3)}>
             <TechStack />
           </LazySection>
 
-          <LazySection shouldLoad={unlockedCount >= 2} onVisible={() => unlock(3)}>
+          <LazySection shouldLoad={unlockedCount >= 3} onVisible={() => unlock(4)}>
             <ImpactDashboard />
           </LazySection>
 
-          <LazySection shouldLoad={unlockedCount >= 3} onVisible={() => unlock(4)}>
+          <LazySection shouldLoad={unlockedCount >= 4} onVisible={() => unlock(5)}>
             <ProjectsGrid />
           </LazySection>
 
-          <LazySection shouldLoad={unlockedCount >= 4} onVisible={() => unlock(5)}>
+          <LazySection shouldLoad={unlockedCount >= 5} onVisible={() => unlock(6)}>
             <About />
           </LazySection>
 
-          <LazySection shouldLoad={unlockedCount >= 5} onVisible={() => unlock(6)}>
+          <LazySection shouldLoad={unlockedCount >= 6} onVisible={() => unlock(7)}>
             <ExperienceList />
           </LazySection>
 
-          <LazySection shouldLoad={unlockedCount >= 6} onVisible={() => unlock(7)}>
+          <LazySection shouldLoad={unlockedCount >= 7} onVisible={() => unlock(8)}>
             <Contact />
           </LazySection>
         </main>
 
-        <LazySection shouldLoad={unlockedCount >= 7} onVisible={() => {}} fallback={null}>
+        <LazySection shouldLoad={unlockedCount >= 8} onVisible={() => {}} fallback={null}>
           <Footer />
         </LazySection>
 
-        <Suspense fallback={null}>
-          <CookieConsent />
-        </Suspense>
+        {/* Delay CookieConsent until page is fully loaded */}
+        {unlockedCount >= 8 && (
+          <Suspense fallback={null}>
+            <CookieConsent />
+          </Suspense>
+        )}
       </div>
     </LanguageProvider>
   );
