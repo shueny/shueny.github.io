@@ -36,14 +36,25 @@ export default defineConfig({
         output: {
           manualChunks: (id) => {
             if (id.includes('node_modules')) {
-              // React core in its own chunk (needed on all React pages)
-              if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
-                return 'react-vendor';
+              // Split React core from React DOM for better caching
+              // React core is needed immediately, React DOM can be loaded slightly later
+              if (id.includes('react/') && !id.includes('react-dom')) {
+                return 'react-core';
               }
-              // Let all other dependencies split naturally based on usage.
-              // This prevents unused JS from other pages (e.g. framer-motion,
-              // embla-carousel, radix-ui used only on /portfolio) from being
-              // bundled into a single vendor.js that loads on every page.
+              if (id.includes('react-dom') || id.includes('scheduler')) {
+                return 'react-dom';
+              }
+              // Split large UI libraries into separate chunks
+              if (id.includes('@radix-ui')) {
+                return 'radix-ui';
+              }
+              if (id.includes('framer-motion')) {
+                return 'framer-motion';
+              }
+              if (id.includes('lucide-react')) {
+                return 'lucide-icons';
+              }
+              // Let other dependencies split naturally based on usage
             }
           },
           entryFileNames: 'assets/[name].[hash].js',
@@ -54,9 +65,14 @@ export default defineConfig({
       cssCodeSplit: true,
       assetsInlineLimit: 4096,
       chunkSizeWarningLimit: 1000,
+      // Vite uses esbuild for minification by default (faster than terser)
+      // esbuild automatically removes console.log in production builds
+      minify: 'esbuild',
     },
     optimizeDeps: {
       include: ['react', 'react-dom'],
+      // Exclude heavy dependencies from pre-bundling if not needed immediately
+      exclude: ['@google/generative-ai'],
     },
   },
 });

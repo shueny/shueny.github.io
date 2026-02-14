@@ -8,6 +8,7 @@ const HTML_CACHE_DURATION = 3600; // 1 hour in seconds
 // Assets that should be cached for a long time (content-hashed)
 const STATIC_ASSETS = [
   '/_astro/',
+  '/assets/',
   '/fonts/',
   '/images/',
   '.js',
@@ -19,6 +20,13 @@ const STATIC_ASSETS = [
   '.jpg',
   '.svg',
   '.webp',
+];
+
+// Critical JS assets that should be pre-cached
+const CRITICAL_JS_PATTERNS = [
+  /react-core\.[\w-]+\.js$/,
+  /react-dom\.[\w-]+\.js$/,
+  /index\.[\w-]+\.js$/,
 ];
 
 // Install event - cache static assets
@@ -56,6 +64,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Check if this is a critical JS asset
+  const isCriticalJS = CRITICAL_JS_PATTERNS.some((pattern) =>
+    pattern.test(url.pathname)
+  );
+
   // Check if this is a static asset that should be cached long-term
   const isStaticAsset = STATIC_ASSETS.some((pattern) => {
     if (pattern.startsWith('/')) {
@@ -64,12 +77,18 @@ self.addEventListener('fetch', (event) => {
     return url.pathname.endsWith(pattern);
   });
 
-  // For static assets, use cache-first strategy with long TTL
-  if (isStaticAsset) {
+  // For critical JS and static assets, use cache-first strategy with long TTL
+  if (isCriticalJS || isStaticAsset) {
     event.respondWith(
       caches.match(request).then((cachedResponse) => {
         if (cachedResponse) {
-          // Check if cache is still valid
+          // For content-hashed assets (JS/CSS with hash), cache is always valid
+          // The hash in filename ensures cache invalidation when content changes
+          if (url.pathname.match(/\.([a-f0-9]{8,})\.(js|css)$/)) {
+            return cachedResponse;
+          }
+          
+          // Check if cache is still valid for other assets
           const cacheDate = cachedResponse.headers.get('date');
           if (cacheDate) {
             const cacheAge = (Date.now() - new Date(cacheDate).getTime()) / 1000;
@@ -89,9 +108,21 @@ self.addEventListener('fetch', (event) => {
               return response;
             }
 
+            // Clone response for caching
             const responseToCache = response.clone();
+            
+            // Add custom headers to indicate long cache duration
+            const headers = new Headers(responseToCache.headers);
+            headers.set('sw-cache-duration', STATIC_CACHE_DURATION.toString());
+            
+            const modifiedResponse = new Response(responseToCache.body, {
+              status: responseToCache.status,
+              statusText: responseToCache.statusText,
+              headers: headers,
+            });
+
             caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, responseToCache);
+              cache.put(request, modifiedResponse);
             });
 
             return response;
