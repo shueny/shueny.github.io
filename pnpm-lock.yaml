@@ -29,6 +29,12 @@ dependencies:
   '@astrojs/vercel':
     specifier: ^7.6.0
     version: 7.8.2(astro@4.16.19)(react@18.3.1)
+  '@fontsource/outfit':
+    specifier: ^5.2.8
+    version: 5.2.8
+  '@fontsource/playfair-display':
+    specifier: ^5.2.8
+    version: 5.2.8
   '@google/generative-ai':
     specifier: ^0.21.0
     version: 0.21.0
@@ -1065,6 +1071,14 @@ packages:
 
   /@floating-ui/utils@0.2.10:
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+    dev: false
+
+  /@fontsource/outfit@5.2.8:
+    resolution: {integrity: sha512-rXC6g0MqD7cOBjht0bMqc43qM6lRqDLML9KXsmg9uykz0wLQhy8Z/ajrMG6iyoT3NJR+MYgU+OEHp7uHoTb+Yw==}
+    dev: false
+
+  /@fontsource/playfair-display@5.2.8:
+    resolution: {integrity: sha512-fUEhib70SszNhQVsGbUMSsWJhr7Je0rdeuZdtGpDNu0GKF1xJM8QhpI/y0pckU25GcChXm9TLOmeZupkvvZo2g==}
     dev: false
 
   /@google/generative-ai@0.21.0:
