@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id={SectionId.HERO}
-      className="min-h-[100dvh] flex flex-col justify-center relative overflow-hidden bg-surface pt-24 pb-32 md:pb-12 snap-center"
+      className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-surface pt-24 pb-32 md:pb-12 snap-center"
     >
       {/* Abstract Background Shapes */}
       <div className="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full border border-orange-200/40 opacity-60 animate-pulse-slow pointer-events-none"></div>
