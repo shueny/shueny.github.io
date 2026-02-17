@@ -1,19 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { siteConfig } from '@/config/site'
-import {
-  Navbar,
-  Hero,
-  Services,
-  TechStack,
-  ImpactDashboard,
-  ProjectsGrid,
-  About,
-  ExperienceList,
-  Contact,
-  Footer,
-  CookieConsent
-} from "@/components/Islands";
+import HeroStatic from '@/components/HeroStatic.astro'
+import NavbarIsland from '@/components/islands/NavbarIsland';
+import ServicesIsland from '@/components/islands/ServicesIsland';
+import TechStackIsland from '@/components/islands/TechStackIsland';
+import ImpactDashboardIsland from '@/components/islands/ImpactDashboardIsland';
+import ProjectsGridIsland from '@/components/islands/ProjectsGridIsland';
+import AboutIsland from '@/components/islands/AboutIsland';
+import ExperienceListIsland from '@/components/islands/ExperienceListIsland';
+import ContactIsland from '@/components/islands/ContactIsland';
+import FooterIsland from '@/components/islands/FooterIsland';
+import CookieConsentIsland from '@/components/islands/CookieConsentIsland';
 ---
 
 <BaseLayout 
@@ -23,33 +21,34 @@ import {
 >
   <!-- 
     Islands Architecture for Performance Optimization:
-    - Navbar & Hero: client:load (Critical path, hydration needed immediately)
+    - HeroStatic: Pure Astro (no JS needed for FCP)
+    - Navbar: client:load (hydration needed for mobile menu)
     - Others: client:visible (Hydrate only when scrolled into view)
     - Footer/Cookie: client:idle (Low priority)
   -->
   
-  <Navbar client:load />
+  <NavbarIsland client:load />
 
   <main>
-    <Hero client:load />
+    <HeroStatic />
 
-    <Services client:visible />
+    <ServicesIsland client:visible />
 
-    <TechStack client:visible />
+    <TechStackIsland client:visible />
 
-    <ImpactDashboard client:visible />
+    <ImpactDashboardIsland client:visible />
 
-    <ProjectsGrid client:visible />
+    <ProjectsGridIsland client:visible />
 
-    <About client:visible />
+    <AboutIsland client:visible />
 
-    <ExperienceList client:visible />
+    <ExperienceListIsland client:visible />
 
-    <Contact client:visible />
+    <ContactIsland client:visible />
   </main>
 
-  <Footer client:idle />
+  <FooterIsland client:idle />
 
-  <CookieConsent client:idle />
+  <CookieConsentIsland client:idle />
 </BaseLayout>
 

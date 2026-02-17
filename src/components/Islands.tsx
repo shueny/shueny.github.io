@@ -2,7 +2,7 @@ import React from 'react';
 import { LanguageProvider } from '../contexts/LanguageContext';
 
 import NavbarComp from './Navbar';
-import HeroComp from './Hero';
+
 import ServicesComp from './Services';
 import TechStackComp from './TechStack';
 import ImpactDashboardComp from './ImpactDashboard';
@@ -23,7 +23,7 @@ const withIsland = <P extends object>(Component: React.ComponentType<P>): React.
 };
 
 export const Navbar = withIsland(NavbarComp);
-export const Hero = withIsland(HeroComp);
+
 export const Services = withIsland(ServicesComp);
 export const TechStack = withIsland(TechStackComp);
 export const ImpactDashboard = withIsland(ImpactDashboardComp);
