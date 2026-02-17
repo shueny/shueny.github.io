@@ -168,8 +168,8 @@ export const PROJECTS_DATA: Project[] = [
       'PWA',
       'Prompt Engineering',
     ],
-    image: getAssetUrl('images/german-tutor-cover.png'),
-    banner: getAssetUrl('images/german-tutor-cover.png'),
+    image: getAssetUrl('images/german-tutor-cover.webp'),
+    banner: getAssetUrl('images/german-tutor-cover.webp'),
     visualDescription:
       'GIF: Mobile chat interface showing voice waves and instant text corrections.',
     category: 'fullstack',
@@ -207,12 +207,12 @@ export const PROJECTS_DATA: Project[] = [
       'Full-Stack',
       'Edge Functions',
     ],
-    image: getAssetUrl('images/expense-tracker-cover.png'),
-    banner: getAssetUrl('images/expense-tracker-cover.png'),
+    image: getAssetUrl('images/expense-tracker-cover.webp'),
+    banner: getAssetUrl('images/expense-tracker-cover.webp'),
     gallery: [
-      getAssetUrl('images/expense-tracker-cover.png'),
-      getAssetUrl('images/expense-tracker-app.png'),
-      // getAssetUrl('images/expense-tracker-modal.png'),
+      getAssetUrl('images/expense-tracker-cover.webp'),
+      getAssetUrl('images/expense-tracker-app.webp'),
+      // getAssetUrl('images/expense-tracker-modal.webp'),
     ],
     link: 'https://minni.lovable.app/',
     visualDescription:
@@ -244,8 +244,8 @@ export const PROJECTS_DATA: Project[] = [
       'React',
       'Data Visualization',
     ],
-    image: getAssetUrl('images/job-analyzer-cover.png'),
-    banner: getAssetUrl('images/job-analyzer-cover.png'),
+    image: getAssetUrl('images/job-analyzer-cover.webp'),
+    banner: getAssetUrl('images/job-analyzer-cover.webp'),
     visualDescription:
       'Image: Split screen showing raw text input vs. structured JSON dashboard.',
     category: 'fullstack',
@@ -276,11 +276,11 @@ export const PROJECTS_DATA: Project[] = [
     description:
       'A robust financial visualization platform engineered for institutional data clarity. Focused on strict API contract adherence and high-performance rendering of complex banking datasets.',
     tags: ['React', 'TypeScript', 'Data Visualization', 'REST API'],
-    image: getAssetUrl('images/f13-cover.png'),
-    banner: getAssetUrl('images/f13-cover.png'),
+    image: getAssetUrl('images/f13-cover.webp'),
+    banner: getAssetUrl('images/f13-cover.webp'),
     gallery: [
-      getAssetUrl('images/f13-fintech-1.png'),
-      getAssetUrl('images/f13-fintech-2.png'),
+      getAssetUrl('images/f13-fintech-1.webp'),
+      getAssetUrl('images/f13-fintech-2.webp'),
     ],
     link: 'https://f13-fintech.lovable.app',
     visualDescription:
