@@ -1,7 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import App from '../components/App'
 import { siteConfig } from '@/config/site'
+import {
+  Navbar,
+  Hero,
+  Services,
+  TechStack,
+  ImpactDashboard,
+  ProjectsGrid,
+  About,
+  ExperienceList,
+  Contact,
+  Footer,
+  CookieConsent
+} from "@/components/Islands";
 ---
 
 <BaseLayout 
@@ -9,5 +21,35 @@ import { siteConfig } from '@/config/site'
   description="Shueny Wang | Senior Frontend Engineer · AI Solutions Builder"
   image={siteConfig.ogImage}
 >
-  <App client:only="react" />
+  <!-- 
+    Islands Architecture for Performance Optimization:
+    - Navbar & Hero: client:load (Critical path, hydration needed immediately)
+    - Others: client:visible (Hydrate only when scrolled into view)
+    - Footer/Cookie: client:idle (Low priority)
+  -->
+  
+  <Navbar client:load />
+
+  <main>
+    <Hero client:load />
+
+    <Services client:visible />
+
+    <TechStack client:visible />
+
+    <ImpactDashboard client:visible />
+
+    <ProjectsGrid client:visible />
+
+    <About client:visible />
+
+    <ExperienceList client:visible />
+
+    <Contact client:visible />
+  </main>
+
+  <Footer client:idle />
+
+  <CookieConsent client:idle />
 </BaseLayout>
+
