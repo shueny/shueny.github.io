@@ -1,18 +1,15 @@
 ---
 import '../styles/globals.css'
-// Supports weights 300-800
-import '@fontsource/outfit/300.css';
-import '@fontsource/outfit/400.css';
-import '@fontsource/outfit/500.css';
-import '@fontsource/outfit/600.css';
-import '@fontsource/outfit/700.css';
-import '@fontsource/outfit/800.css';
+// Self-hosted fonts: latin subset only (reduces ~28 font files to ~10)
+import '@fontsource/outfit/latin-400.css';
+import '@fontsource/outfit/latin-500.css';
+import '@fontsource/outfit/latin-600.css';
+import '@fontsource/outfit/latin-700.css';
+import '@fontsource/outfit/latin-800.css';
 
-// Supports weights 400, 600, 700
-import '@fontsource/playfair-display/400.css';
-import '@fontsource/playfair-display/600.css';
-import '@fontsource/playfair-display/700.css';
-import '@fontsource/playfair-display/400-italic.css';
+import '@fontsource/playfair-display/latin-400.css';
+import '@fontsource/playfair-display/latin-400-italic.css';
+import '@fontsource/playfair-display/latin-700.css';
 
 import { SEO } from "astro-seo";
 import { siteConfig } from "@/config/site";
@@ -44,7 +41,7 @@ const imageURL = image.startsWith("http")
       /* Critical above-the-fold styles - prevents white flash on page load */
       html {
         background-color: #fff7ed !important; /* Warm Cream Background */
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       }
       
       body {
@@ -52,7 +49,7 @@ const imageURL = image.startsWith("http")
         color: #1c1917 !important;
         margin: 0 !important;
         padding: 0 !important;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -60,6 +57,9 @@ const imageURL = image.startsWith("http")
       * {
         box-sizing: border-box;
       }
+
+      /* Critical Hero section styles - inlined for faster FCP */
+      .bg-surface { background-color: #fff7ed; }
     </style>
     
     <meta charset="UTF-8" />
@@ -93,10 +93,7 @@ const imageURL = image.startsWith("http")
         creator: siteConfig.twitter,
       }}
     />
-    <!-- Preconnect to Google Fonts for faster loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <!-- Load Google Fonts synchronously to prevent CLS -->
-    <!-- Fonts are now self-hosted via @fontsource packages to avoid render blocking -->
+    <!-- Fonts are self-hosted via @fontsource packages (latin subset only) -->
   </head>
   <body class="text-stone-900 antialiased overflow-x-hidden">
     <slot />
