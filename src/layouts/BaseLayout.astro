@@ -36,17 +36,61 @@ const imageURL = image.startsWith("http")
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth snap-y snap-proximity scroll-pt-32">
   <head>
+    <!-- Critical Theme Script - prevents FOUC -->
+    <script is:inline>
+      (function() {
+        try {
+          var localTheme = localStorage.getItem('theme');
+          var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+          if (!localTheme && supportDarkMode) {
+            document.documentElement.classList.add('dark');
+          } else if (localTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    
     <!-- Critical CSS - MUST be first to prevent white flash and improve FCP -->
     <style is:inline>
       /* Critical above-the-fold styles - prevents white flash on page load */
+      :root {
+        /* Light Mode Variables */
+        --background: 0 0% 100%;
+        --background-200: 0 0% 98%;
+        --foreground: 0 0% 9%;
+        --primary: 0 0% 9%;
+        --secondary: 30 5% 33%;
+        --secondary-foreground: 0 0% 98%;
+        --accent: 18 90% 48%;
+        
+        /* Critical Colors */
+        --bg-critical: #fff7ed; /* Warm Cream */
+        --text-critical: #1c1917;
+      }
+      
+      .dark {
+        /* Dark Mode Variables (from globals.css) */
+        --background: 0 0% 4%;
+        --background-200: 0 170% 0%;
+        --foreground: 0 0% 93%;
+        --primary: 0 0% 93%;
+        --secondary: 30 5% 50%;
+        --secondary-foreground: 0 0% 98%;
+        
+        /* Critical Colors */
+        --bg-critical: #0c0a09; /* Stone 950 */
+        --text-critical: #f5f5f5;
+      }
+      
       html {
-        background-color: #fff7ed !important; /* Warm Cream Background */
+        background-color: var(--bg-critical) !important;
         font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       }
       
       body {
-        background-color: #fff7ed !important; /* Warm Cream Background */
-        color: #1c1917 !important;
+        background-color: var(--bg-critical) !important;
+        color: var(--text-critical) !important;
         margin: 0 !important;
         padding: 0 !important;
         font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -59,12 +103,14 @@ const imageURL = image.startsWith("http")
       }
 
       /* Critical Hero section styles - inlined for faster FCP */
-      .bg-surface { background-color: #fff7ed; }
+      .bg-surface { background-color: var(--bg-critical); }
     </style>
     
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#fff7ed" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0a09" media="(prefers-color-scheme: dark)" />
     
     <SEO
       title={title}
