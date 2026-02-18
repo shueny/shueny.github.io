@@ -8,7 +8,7 @@ interface BlogLanguageSwitcherProps {
 }
 
 // Map of slugs to their language-specific versions
-const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string }> = {
+const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string; de?: string }> = {
   'mobile-pagespeed-optimizations': {
     zh: 'mobile-pagespeed-optimizations-zh',
     en: 'mobile-pagespeed-optimizations',
@@ -32,6 +32,21 @@ const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string }> = {
   'local-chat-zh': {
     zh: 'local-chat-zh',
     en: 'local-chat',
+  },
+  'astro-islands-lighthouse-optimization': {
+    en: 'astro-islands-lighthouse-optimization',
+    zh: 'astro-islands-lighthouse-optimization-zh',
+    de: 'astro-islands-lighthouse-optimization-de',
+  },
+  'astro-islands-lighthouse-optimization-zh': {
+    en: 'astro-islands-lighthouse-optimization',
+    zh: 'astro-islands-lighthouse-optimization-zh',
+    de: 'astro-islands-lighthouse-optimization-de',
+  },
+  'astro-islands-lighthouse-optimization-de': {
+    en: 'astro-islands-lighthouse-optimization',
+    zh: 'astro-islands-lighthouse-optimization-zh',
+    de: 'astro-islands-lighthouse-optimization-de',
   },
 };
 
@@ -65,7 +80,9 @@ const BlogLanguageSwitcherContent: React.FC<BlogLanguageSwitcherProps> = ({
     let targetSlug: string | null = null;
     if (currentLanguage === 'ZH' && postConfig.zh) {
       targetSlug = postConfig.zh;
-    } else if ((currentLanguage === 'EN' || currentLanguage === 'DE') && postConfig.en) {
+    } else if (currentLanguage === 'DE' && postConfig.de) {
+      targetSlug = postConfig.de;
+    } else if (currentLanguage === 'EN' && postConfig.en) {
       targetSlug = postConfig.en;
     }
 

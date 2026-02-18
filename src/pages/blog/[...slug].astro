@@ -18,7 +18,7 @@ const post = Astro.props;
 const { Content } = await post.render();
 
 // Map of multilingual posts
-const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string }> = {
+const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string; de?: string }> = {
   'mobile-pagespeed-optimizations': {
     zh: 'mobile-pagespeed-optimizations-zh',
     en: 'mobile-pagespeed-optimizations',
@@ -42,6 +42,21 @@ const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string }> = {
   'local-chat-zh': {
     zh: 'local-chat-zh',
     en: 'local-chat',
+  },
+  'astro-islands-lighthouse-optimization': {
+    en: 'astro-islands-lighthouse-optimization',
+    zh: 'astro-islands-lighthouse-optimization-zh',
+    de: 'astro-islands-lighthouse-optimization-de',
+  },
+  'astro-islands-lighthouse-optimization-zh': {
+    en: 'astro-islands-lighthouse-optimization',
+    zh: 'astro-islands-lighthouse-optimization-zh',
+    de: 'astro-islands-lighthouse-optimization-de',
+  },
+  'astro-islands-lighthouse-optimization-de': {
+    en: 'astro-islands-lighthouse-optimization',
+    zh: 'astro-islands-lighthouse-optimization-zh',
+    de: 'astro-islands-lighthouse-optimization-de',
   },
 };
 
