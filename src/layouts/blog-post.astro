@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
 import "@/styles/prose.css";
+import { siteConfig } from "@/config/site";
 
 type Props = CollectionEntry<"blog">["data"] & {
   slug?: string;
@@ -53,6 +54,22 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
         }
       })();
     </script>
+
+    <!-- JSON-LD Structured Data for Blog Post -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title,
+      "description": description,
+      "image": cover ? new URL(cover, Astro.site || siteConfig.url).toString() : undefined,
+      "datePublished": pubDate ? pubDate.toISOString() : undefined,
+      "dateModified": updatedDate ? updatedDate.toISOString() : (pubDate ? pubDate.toISOString() : undefined),
+      "author": {
+        "@type": "Person",
+        "name": siteConfig.author,
+        "url": siteConfig.url
+      }
+    })} />
   </head>
   
   <body class="bg-surface text-custom-primary font-sans antialiased selection:bg-orange-100 selection:text-custom-accent">
