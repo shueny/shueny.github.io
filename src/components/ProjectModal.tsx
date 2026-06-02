@@ -232,6 +232,18 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
 
               {/* Call to Action Card */}
               <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-lg shadow-stone-200/50 sticky top-8">
+                <img
+                  src="/images/duck-checklist.png"
+                  alt=""
+                  aria-hidden="true"
+                  width={72}
+                  height={72}
+                  loading="lazy"
+                  className="mx-auto mb-3 h-16 w-16 object-contain"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = 'none';
+                  }}
+                />
                 <h4 className="font-bold text-stone-900 mb-2">
                   {t.projectModal.interestedInStack}
                 </h4>
