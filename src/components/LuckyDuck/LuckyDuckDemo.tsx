@@ -186,6 +186,44 @@ function GiftDuck({ size = 130 }: { size?: number }) {
   );
 }
 
+/* ----------------------------------------------------------------- mascots */
+// 3D mascot art (uploaded to /public/images). Each <Mascot> gracefully falls
+// back to the inline SVG duck if the PNG hasn't been added to the repo yet, so
+// the demo never shows a broken image.
+const MASCOTS = {
+  wave: '/images/duck-wave.png',
+  celebrate: '/images/duck-celebrate.png',
+  coin: '/images/duck-coin.png',
+  checklist: '/images/duck-checklist.png',
+} as const;
+
+function Mascot({
+  src,
+  size,
+  fallback,
+  className,
+}: {
+  src: string;
+  size: number;
+  fallback: React.ReactNode;
+  className?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return <>{fallback}</>;
+  return (
+    <img
+      src={src}
+      width={size}
+      height={size}
+      alt=""
+      aria-hidden="true"
+      onError={() => setFailed(true)}
+      className={className}
+      style={{ width: size, height: size, objectFit: 'contain' }}
+    />
+  );
+}
+
 /* --------------------------------------------------------------------- icons */
 
 type IconName = 'home' | 'deals' | 'play' | 'portfolio' | 'activity';
@@ -392,10 +430,8 @@ function LandingScreen({ p, onStart }: { p: Palette; onStart: () => void }) {
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <Duck size={140} />
+          <Mascot src={MASCOTS.wave} size={185} fallback={<Duck size={140} />} />
         </motion.div>
-        <span className="absolute left-2 top-4 text-lg">🪙</span>
-        <span className="absolute right-4 top-10 text-base">🪙</span>
       </div>
 
       <div className="mt-3 flex items-center gap-3">
@@ -421,12 +457,17 @@ function SignupScreen({ p, onComplete }: { p: Palette; onComplete: () => void })
 
   return (
     <div className="flex h-full flex-col overflow-y-auto px-6 pb-6 pt-1">
-      <h2 className="mt-2 text-[22px] font-extrabold" style={{ color: p.text }}>
-        Create your account
-      </h2>
-      <p className="mt-1 text-sm" style={{ color: p.sub }}>
-        Let's get you all set up!
-      </p>
+      <div className="mt-2 flex items-start justify-between gap-2">
+        <div>
+          <h2 className="text-[22px] font-extrabold" style={{ color: p.text }}>
+            Create your account
+          </h2>
+          <p className="mt-1 text-sm" style={{ color: p.sub }}>
+            Let's get you all set up!
+          </p>
+        </div>
+        <Mascot src={MASCOTS.checklist} size={64} fallback={null} className="shrink-0" />
+      </div>
 
       <div className="mt-5 space-y-3">
         <label className="block">
@@ -667,7 +708,7 @@ function PortfolioScreen({
           <p className="mt-1 text-3xl font-extrabold text-white">🪙 {credits.toLocaleString()}</p>
           <span className="text-xs text-white/70">Credits</span>
         </div>
-        <div className="text-5xl">🪙</div>
+        <Mascot src={MASCOTS.coin} size={88} fallback={<span className="text-5xl">🪙</span>} />
       </div>
 
       {/* Collections */}
@@ -798,7 +839,7 @@ function CelebrationOverlay({
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: 'spring', stiffness: 200, damping: 12 }}
       >
-        <GiftDuck size={140} />
+        <Mascot src={MASCOTS.celebrate} size={175} fallback={<GiftDuck size={140} />} />
       </motion.div>
       <motion.h2
         className="mt-4 text-[28px] font-extrabold"
