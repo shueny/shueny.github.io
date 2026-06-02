@@ -1,0 +1,226 @@
+---
+import MainLayout from "@/layouts/main-layout.astro";
+import LuckyDuckIsland from "@/components/islands/LuckyDuckIsland";
+
+export const prerender = true;
+
+const coreLoops = [
+  { icon: "🚀", title: "Acquisition", desc: "Landing, referrals & social signup that turn visitors into members." },
+  { icon: "⚡", title: "Activation", desc: "Wallet setup and welcome credits to reach the first 'aha' fast." },
+  { icon: "🎯", title: "Engagement", desc: "Reward discovery, odds & collections that keep people exploring." },
+  { icon: "🔁", title: "Retention", desc: "Streaks, tiers & celebration moments that bring users back daily." },
+  { icon: "💰", title: "Monetize", desc: "Credit packs, membership & brand partnerships drive revenue." },
+];
+
+const mvpScope = [
+  "User signup & wallet setup",
+  "Event purchase & management",
+  "Reward discovery & claim",
+  "Portfolio & collections",
+  "Tier system & progress",
+  "Achievements & notifications",
+  "Mobile-first responsive web app",
+  "Analytics & event tracking",
+];
+
+const screens = [
+  { tag: "Acquisition", title: "Landing", desc: "A bold, mascot-led hero that sells the core promise in one line." },
+  { tag: "Activation", title: "Signup / Wallet", desc: "Low-friction account creation that opens a credit wallet instantly." },
+  { tag: "Engagement", title: "Reward Discovery", desc: "Featured reward, categories and trending picks with live odds." },
+  { tag: "Retention", title: "Portfolio", desc: "Wallet, tier, streak and collection progress in one glanceable view." },
+  { tag: "Delight", title: "Celebration", desc: "Confetti + mascot moment that makes every win feel earned." },
+];
+
+const palette = [
+  { name: "Lucky Yellow", hex: "#FFD84D" },
+  { name: "Cream", hex: "#FFFDF7" },
+  { name: "Charcoal", hex: "#1F1F23" },
+  { name: "Coral", hex: "#FF6B6B" },
+  { name: "Mint", hex: "#4ECDC4" },
+  { name: "Violet", hex: "#A78BFA" },
+];
+
+const techStack = ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"];
+---
+
+<MainLayout
+  title="Lucky Duck — Interactive MVP Concept"
+  description="A clickable, mobile-first prototype for the Lucky Duck consumer rewards platform — designed and front-end engineered by Shueny."
+>
+  <section class="border-b border-border">
+    <div class="container max-w-screen-xl py-16 md:py-20">
+      <div class="flex flex-col items-start gap-4">
+        <span
+          class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-bold"
+          style="background:#FFD84D;color:#15151C;"
+        >
+          🦆 Lucky Duck
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight md:text-6xl">
+          Rewards Platform <span style="color:#FFD84D;">MVP</span>
+        </h1>
+        <p class="max-w-2xl text-lg text-muted-foreground">
+          Turn everyday spending into exciting rewards. This is a working,
+          clickable concept — designed <em>and</em> built front-to-back in the
+          same stack the product would ship on.
+        </p>
+        <div class="mt-2 flex flex-wrap gap-2">
+          {techStack.map((t) => (
+            <span class="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core loops -->
+  <section class="container max-w-screen-xl py-14">
+    <h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+      Core loops
+    </h2>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {coreLoops.map((l) => (
+        <div class="rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:shadow-lg">
+          <div class="text-2xl">{l.icon}</div>
+          <h3 class="mt-3 text-base font-bold">{l.title}</h3>
+          <p class="mt-1 text-sm text-muted-foreground">{l.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Interactive demo + MVP scope -->
+  <section class="border-y border-border" style="background:linear-gradient(180deg, rgba(255,216,77,0.06), transparent);">
+    <div class="container max-w-screen-xl grid grid-cols-1 items-start gap-12 py-16 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl font-extrabold md:text-4xl">Try the prototype</h2>
+        <p class="mt-3 text-muted-foreground">
+          The primary happy flow, fully interactive. Create an account, discover
+          a reward, enter to win, and watch it land in your portfolio. Toggle the
+          site theme to see the light and dark design systems.
+        </p>
+
+        <ol class="mt-6 space-y-3">
+          {screens.map((s, i) => (
+            <li class="flex gap-3">
+              <span
+                class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold"
+                style="background:#FFD84D;color:#15151C;"
+              >
+                {i + 1}
+              </span>
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wide" style="color:#C99A00;">
+                  {s.tag}
+                </span>
+                <p class="text-sm font-bold">{s.title}</p>
+                <p class="text-sm text-muted-foreground">{s.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <h3 class="mb-3 mt-10 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+          MVP scope
+        </h3>
+        <ul class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {mvpScope.map((item) => (
+            <li class="flex items-center gap-2 text-sm">
+              <span style="color:#FFD84D;">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:sticky lg:top-24">
+        <LuckyDuckIsland client:load />
+      </div>
+    </div>
+  </section>
+
+  <!-- Design system -->
+  <section class="container max-w-screen-xl py-16">
+    <h2 class="text-3xl font-extrabold md:text-4xl">Design system foundation</h2>
+    <p class="mt-3 max-w-2xl text-muted-foreground">
+      The prototype runs on a small token set — not one-off screens. Color,
+      type and components are reusable, so new features ship fast and stay
+      on-brand.
+    </p>
+
+    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded-2xl border border-border bg-card p-6">
+        <h3 class="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">Palette</h3>
+        <div class="grid grid-cols-3 gap-3">
+          {palette.map((c) => (
+            <div>
+              <div class="h-12 w-full rounded-xl border border-border" style={`background:${c.hex};`}></div>
+              <p class="mt-1 text-[11px] font-semibold">{c.name}</p>
+              <p class="text-[10px] text-muted-foreground">{c.hex}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-border bg-card p-6">
+        <h3 class="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">Type</h3>
+        <p class="text-4xl font-extrabold leading-none">Aa</p>
+        <p class="mt-2 text-2xl font-extrabold">Win More.</p>
+        <p class="text-sm text-muted-foreground">
+          Heavy display weights for moments, calm body copy for clarity.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-border bg-card p-6">
+        <h3 class="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">Components</h3>
+        <div class="space-y-3">
+          <button class="w-full rounded-2xl py-2.5 text-sm font-bold" style="background:#FFD84D;color:#15151C;">Primary action</button>
+          <div class="flex gap-2">
+            <span class="rounded-full px-3 py-1 text-xs font-bold" style="background:#FFD84D;color:#15151C;">⭐ Credits</span>
+            <span class="rounded-full border border-border px-3 py-1 text-xs font-bold">🏆 Tier 3</span>
+          </div>
+          <div class="h-2 w-full overflow-hidden rounded-full bg-muted">
+            <div class="h-full w-2/3 rounded-full" style="background:#FFD84D;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="border-t border-border">
+    <div class="container max-w-screen-xl py-16">
+      <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="text-3xl font-extrabold md:text-4xl">Why this works</h2>
+          <p class="mt-4 text-muted-foreground">
+            The hard part of a rewards product isn't another marketplace — it's
+            building enough momentum that people come back. Every screen here maps
+            to a growth loop: acquisition → activation → engagement → retention →
+            monetization. That's product design working as a growth function, not
+            just a coat of paint.
+          </p>
+          <p class="mt-4 text-muted-foreground">
+            I designed the system and built the front end end-to-end, so the
+            handoff to a backend engineer for payments, credits and the odds
+            engine is clean and ready.
+          </p>
+        </div>
+        <div class="rounded-3xl border border-border bg-card p-8">
+          <p class="text-sm font-bold uppercase tracking-wider text-muted-foreground">Built by</p>
+          <p class="mt-1 text-2xl font-extrabold">Shueny Wang</p>
+          <p class="mt-1 text-muted-foreground">Product designer & front-end engineer</p>
+          <a
+            href="/portfolio"
+            class="mt-6 inline-block rounded-2xl px-5 py-3 text-sm font-bold"
+            style="background:#FFD84D;color:#15151C;"
+          >
+            See more work →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

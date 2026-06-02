@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Lucky Duck rewards platform">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE074"/>
+      <stop offset="1" stop-color="#FFD84D"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="url(#bg)"/>
+  <!-- floating credit chips -->
+  <circle cx="60" cy="60" r="14" fill="#15151C" opacity="0.08"/>
+  <circle cx="340" cy="80" r="20" fill="#15151C" opacity="0.08"/>
+  <circle cx="320" cy="230" r="12" fill="#15151C" opacity="0.08"/>
+  <!-- duck -->
+  <g transform="translate(150 70)">
+    <ellipse cx="50" cy="150" rx="46" ry="9" fill="#15151C" opacity="0.12"/>
+    <path d="M14 96c0-26 20-44 44-44s44 18 44 44c0 23-19 38-44 38S14 122 14 96Z" fill="#FFD84D" stroke="#15151C" stroke-width="0"/>
+    <circle cx="58" cy="52" r="34" fill="#FFE99A"/>
+    <path d="M36 86c12 12 32 12 44 0-3 18-18 26-44 18Z" fill="#F5C73B"/>
+    <circle cx="70" cy="46" r="6.5" fill="#15151C"/>
+    <circle cx="72" cy="43.5" r="2" fill="#fff"/>
+    <path d="M92 52c14-3 23 3 23 9s-9 11-23 8c-4-1-4-15 0-17Z" fill="#FF9F1C"/>
+    <circle cx="44" cy="62" r="6" fill="#FFB3C1" opacity="0.7"/>
+  </g>
+  <!-- title -->
+  <text x="200" y="270" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-size="26" font-weight="800" fill="#15151C">Lucky Duck</text>
+</svg>
