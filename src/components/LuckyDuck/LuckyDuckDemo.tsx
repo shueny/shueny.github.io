@@ -270,7 +270,7 @@ function SignupScreen({
       </p>
 
       <div className="mt-6 space-y-4">
-        {field('Full name', name, setName, 'Your full name')}
+        {field('Full name', name, setName, 'Jamie Rivera')}
         {field('Email', email, setEmail, 'you@example.com', 'email')}
       </div>
 
