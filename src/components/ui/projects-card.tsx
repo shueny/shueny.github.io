@@ -65,10 +65,10 @@ export default function ProjectsCard({ data }: { data: Projects }) {
               <DialogTitle>{project.title}</DialogTitle>
               <DialogDescription>
                 {project.description.map((desc, i) => (
-                  <div key={i} className="mt-2 flex items-start gap-2">
+                  <span key={i} className="mt-2 flex items-start gap-2">
                     <span>{i + 1}.</span>
                     <span className="font-light">{desc}</span>
-                  </div>
+                  </span>
                 ))}
               </DialogDescription>
             </DialogHeader>
@@ -87,8 +87,8 @@ export default function ProjectsCard({ data }: { data: Projects }) {
                 <Button variant={'ghost'} className="text-gray-500">
                   <a
                     href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={/^https?:\/\//i.test(project.url) ? '_blank' : undefined}
+                    rel={/^https?:\/\//i.test(project.url) ? 'noopener noreferrer' : undefined}
                     className="text-gray-500 underline"
                   >
                     View Project

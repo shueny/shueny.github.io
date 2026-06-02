@@ -58,7 +58,8 @@ export const ProjectSchema = z.object({
   title: z.string(),
   description: z.array(z.string()),
   image: z.string().optional(),
-  url: z.string().url().optional(),
+  // Allow both absolute (https://…) and internal relative (/lucky-duck) URLs.
+  url: z.string().optional(),
   technologies: z.array(z.string()),
 });
 

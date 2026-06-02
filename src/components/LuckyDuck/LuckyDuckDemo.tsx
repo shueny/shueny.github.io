@@ -33,7 +33,14 @@ const REWARDS: Reward[] = [
 /* ------------------------------------------------------------------ theming */
 
 function useIsDark(): boolean {
-  const [isDark, setIsDark] = useState(false);
+  // Read the real theme on the first render so dark-mode visitors don't see a
+  // flash of the light palette. Safe because this island is mounted with
+  // `client:only` (no SSR markup to mismatch against).
+  const [isDark, setIsDark] = useState(
+    () =>
+      typeof document !== 'undefined' &&
+      document.documentElement.classList.contains('dark')
+  );
   useEffect(() => {
     const root = document.documentElement;
     const update = () => setIsDark(root.classList.contains('dark'));
@@ -263,7 +270,7 @@ function SignupScreen({
       </p>
 
       <div className="mt-6 space-y-4">
-        {field('Full name', name, setName, 'Jamie Rivera')}
+        {field('Full name', name, setName, 'Your full name')}
         {field('Email', email, setEmail, 'you@example.com', 'email')}
       </div>
 
