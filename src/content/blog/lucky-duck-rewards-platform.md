@@ -2,7 +2,7 @@
 title: 'Designing Lucky Duck: A Rewards Platform MVP as a Growth Function'
 description: 'A product + front-end case study on Lucky Duck — a consumer rewards platform MVP concept. How I structured the experience around growth loops, built a token-based design system for light & dark, and shipped a fully clickable prototype on the same stack the product would launch on.'
 pubDate: 2026-06-03
-cover: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop'
+cover: '/images/lucky-duck-banner.png'
 category: 'Product & Design'
 draft: false
 ---

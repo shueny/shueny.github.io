@@ -312,8 +312,8 @@ export const PROJECTS_DATA: Project[] = [
     description:
       'A clickable, mobile-first MVP concept for a consumer rewards & membership platform. Designed and front-end engineered end-to-end as an interactive prototype built around growth loops: acquisition → activation → engagement → retention.',
     tags: ['Astro', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    image: getAssetUrl('images/lucky-duck-cover.svg'),
-    banner: getAssetUrl('images/lucky-duck-cover.svg'),
+    image: getAssetUrl('images/lucky-duck-banner.png'),
+    banner: getAssetUrl('images/lucky-duck-banner.png'),
     link: '/lucky-duck',
     visualDescription:
       'Interactive phone prototype walking through Landing, Signup/Wallet, Reward Discovery, Portfolio and Celebration in light & dark themes.',

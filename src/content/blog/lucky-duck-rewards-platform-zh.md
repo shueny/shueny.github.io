@@ -2,7 +2,7 @@
 title: '設計 Lucky Duck：把獎勵平台 MVP 當成一種成長函數'
 description: '一個產品 + 前端的案例研究——Lucky Duck，一個消費者獎勵平台的 MVP 概念。我如何把體驗圍繞成長迴圈來設計、建立一套淺色與深色通用的 token 設計系統，並用產品實際上線會採用的同一套技術棧，做出完全可點擊的原型。'
 pubDate: 2026-06-03
-cover: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop'
+cover: '/images/lucky-duck-banner.png'
 category: 'Product & Design'
 draft: false
 ---
