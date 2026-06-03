@@ -4,6 +4,7 @@ description: '詳細記錄所有針對行動版網頁效能分數（PageSpeed In
 pubDate: 2026-01-05
 cover: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop'
 category: 'Engineering & Insights'
+lang: 'zh'
 draft: false
 ---
 

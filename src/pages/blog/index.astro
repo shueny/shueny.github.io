@@ -23,6 +23,20 @@ const posts = allPosts.filter((post) => {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Blog | Shueny</title>
+    {/* Set the active blog language before paint so cards don't flash all locales */}
+    <script is:inline>
+      document.documentElement.setAttribute(
+        'data-blog-lang',
+        (localStorage.getItem('language') || 'EN').toLowerCase()
+      );
+    </script>
+    <style>
+      html[data-blog-lang='en'] [data-blog-card]:not([data-lang='en']),
+      html[data-blog-lang='zh'] [data-blog-card]:not([data-lang='zh']),
+      html[data-blog-lang='de'] [data-blog-card]:not([data-lang='de']) {
+        display: none !important;
+      }
+    </style>
   </head>
   
   <body class="bg-surface text-custom-primary font-sans antialiased selection:bg-orange-100 selection:text-custom-accent">
@@ -46,7 +60,7 @@ const posts = allPosts.filter((post) => {
       {/* 文章列表 Grid */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 border-t border-custom-muted/40 pt-12 animate-fade-in-up delay-100">
         {posts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="group flex flex-col h-full relative">
+          <a href={`/blog/${post.slug}`} data-blog-card data-lang={post.data.lang} class="group flex flex-col h-full relative">
             
             {/* 🛠️ 開發模式提示：如果是 Draft，在卡片上顯示標籤方便識別 */}
             {post.data.draft && (
@@ -96,5 +110,30 @@ const posts = allPosts.filter((post) => {
     </main>
 
     <Footer client:visible />
+
+    {/* Keep the blog list in sync with the active language (live switch + empty-state fallback) */}
+    <script is:inline>
+      (function () {
+        function apply() {
+          var lang = (localStorage.getItem('language') || 'EN').toLowerCase();
+          var cards = document.querySelectorAll('[data-blog-card]');
+          var hasMatch = Array.prototype.some.call(cards, function (c) {
+            return c.getAttribute('data-lang') === lang;
+          });
+          // If no post exists in the active language, show all rather than an empty page.
+          if (hasMatch) {
+            document.documentElement.setAttribute('data-blog-lang', lang);
+          } else {
+            document.documentElement.removeAttribute('data-blog-lang');
+          }
+        }
+        apply();
+        window.addEventListener('languagechange', apply);
+        window.addEventListener('storage', function (e) {
+          if (e.key === 'language') apply();
+        });
+        document.addEventListener('astro:after-swap', apply);
+      })();
+    </script>
   </body>
 </html>

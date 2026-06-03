@@ -4,6 +4,7 @@ description: '深入探討 Astro 與 React 整合時最容易遇到的架構問�
 pubDate: 2025-01-05
 cover: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop'
 category: 'Engineering & Insights'
+lang: 'zh'
 draft: false
 ---
 

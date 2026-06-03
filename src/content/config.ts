@@ -8,6 +8,8 @@ const blog = defineCollection({
       description: z.string(),
       cover: z.string(),
       category: z.string(),
+      // Post language — used to filter the blog index by the active locale.
+      lang: z.enum(['en', 'zh', 'de']).default('en'),
       draft: z.boolean().default(false),
       pubDate: z
         .string()

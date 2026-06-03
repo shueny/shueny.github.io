@@ -4,6 +4,7 @@ description: 'Eine Produkt- und Frontend-Fallstudie zu Lucky Duck — einem MVP-
 pubDate: 2026-06-03
 cover: '/images/lucky-duck-banner.png'
 category: 'Product & Design'
+lang: 'de'
 draft: false
 ---
 

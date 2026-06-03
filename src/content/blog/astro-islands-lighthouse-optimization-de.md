@@ -4,6 +4,7 @@ description: 'Eine praxisnahe Fallstudie zur Optimierung einer Astro + React Isl
 pubDate: 2026-02-18
 cover: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'
 category: 'Engineering & Insights'
+lang: 'de'
 draft: false
 ---
 

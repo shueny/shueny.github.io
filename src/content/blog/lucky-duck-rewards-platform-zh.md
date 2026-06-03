@@ -4,6 +4,7 @@ description: '一個產品 + 前端的案例研究——Lucky Duck，一個消�
 pubDate: 2026-06-03
 cover: '/images/lucky-duck-banner.png'
 category: 'Product & Design'
+lang: 'zh'
 draft: false
 ---
 

@@ -4,6 +4,7 @@ description: '一個真實案例，記錄如何優化 Astro + React Islands 作�
 pubDate: 2026-02-18
 cover: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'
 category: 'Engineering & Insights'
+lang: 'zh'
 draft: false
 ---
 

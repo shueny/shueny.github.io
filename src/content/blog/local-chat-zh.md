@@ -4,6 +4,7 @@ description: '一個用於考試的本地聊天模擬器，使用 TypeScript 和
 pubDate: 'Aug 28 2024'
 cover: 'https://shueny.github.io/local-chat-simulator.jpg'
 category: 'project'
+lang: 'zh'
 draft: false
 ---
 
