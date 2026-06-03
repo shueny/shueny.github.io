@@ -30,7 +30,7 @@ const posts = allPosts.filter((post) => {
         (localStorage.getItem('language') || 'EN').toLowerCase()
       );
     </script>
-    <style>
+    <style is:global>
       html[data-blog-lang='en'] [data-blog-card]:not([data-lang='en']),
       html[data-blog-lang='zh'] [data-blog-card]:not([data-lang='zh']),
       html[data-blog-lang='de'] [data-blog-card]:not([data-lang='de']) {
