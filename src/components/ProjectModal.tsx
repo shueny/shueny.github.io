@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import type { Project } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+
+// Code-split: only fetched when the Lucky Duck modal actually opens.
+const LuckyDuckDemo = lazy(() => import('./LuckyDuck/LuckyDuckDemo'));
 
 interface ProjectModalProps {
   project: Project;
@@ -108,6 +111,31 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Live interactive prototype (Lucky Duck only) */}
+        {project.id === 'p-lucky-duck' && (
+          <div className="bg-stone-50 border-b border-stone-100 px-6 sm:px-12 py-10">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-2xl font-serif italic font-bold text-stone-900 mb-2 flex items-center">
+                <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                Live interactive prototype
+              </h3>
+              <p className="text-stone-600 mb-6">
+                Click through the primary flow — create an account, claim a reward,
+                and watch it land in your portfolio. Toggle the site theme for light &amp; dark.
+              </p>
+              <Suspense
+                fallback={
+                  <div className="h-[700px] flex items-center justify-center text-stone-400 text-sm">
+                    Loading prototype…
+                  </div>
+                }
+              >
+                <LuckyDuckDemo />
+              </Suspense>
+            </div>
+          </div>
+        )}
 
         {/* 2. Main Content Grid */}
         <div className="flex-1 px-6 sm:px-12 py-10">
