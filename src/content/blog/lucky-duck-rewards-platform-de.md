@@ -2,7 +2,7 @@
 title: 'Lucky Duck gestalten: Eine Rewards-Plattform-MVP als Growth-Funktion'
 description: 'Eine Produkt- und Frontend-Fallstudie zu Lucky Duck — einem MVP-Konzept für eine Verbraucher-Rewards-Plattform. Wie ich das Erlebnis um Growth Loops herum strukturiert, ein token-basiertes Designsystem für Hell & Dunkel gebaut und einen voll klickbaren Prototyp auf genau dem Stack ausgeliefert habe, auf dem das Produkt starten würde.'
 pubDate: 2026-06-03
-cover: '/images/lucky-duck-banner.png'
+cover: '/images/blog/lucky-duck-banner-de.png'
 category: 'Product & Design'
 lang: 'de'
 draft: false
