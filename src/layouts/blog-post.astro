@@ -125,20 +125,7 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
             <slot />
           </div>
 
-          <div class="mt-20 flex flex-col items-center text-center">
-            <img
-              src="/images/duck-wave.png"
-              alt="Lucky Duck mascot waving"
-              width="96"
-              height="96"
-              loading="lazy"
-              class="h-24 w-24 object-contain"
-              onerror="this.remove()"
-            />
-            <p class="mt-2 text-sm font-light text-custom-secondary">Thanks for reading!</p>
-          </div>
-
-          <div class="mt-10 pt-10 border-t border-custom-muted/40 flex justify-between items-center">
+          <div class="mt-20 pt-10 border-t border-custom-muted/40 flex justify-between items-center">
             <a href="/blog" class="group inline-flex items-center gap-2 text-custom-secondary hover:text-custom-accent transition-colors font-medium text-sm tracking-wide uppercase">
               <>
                 <span class="transform group-hover:-translate-x-1 transition-transform">←</span> Back to All Posts

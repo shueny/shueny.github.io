@@ -391,6 +391,24 @@ export const translations: Record<Language, Translations> = {
       },
       data: [
         {
+          id: 'p-lucky-duck',
+          title: 'Lucky Duck — Rewards Platform MVP',
+          description:
+            'A clickable, mobile-first MVP concept for a consumer rewards & membership platform. Designed and front-end engineered end-to-end as an interactive prototype built around growth loops: acquisition → activation → engagement → retention.',
+          problem:
+            "The hard part of a rewards product isn't building another marketplace — it's building enough momentum that people come back. A pile of disconnected screens doesn't prove that; it needs a coherent flow where every screen earns the next tap and maps to a real growth loop.",
+          solution:
+            'I designed a token-based design system (light + dark) and built the full primary happy flow as a working prototype: a mascot-led landing, low-friction signup with instant wallet setup, reward discovery with featured deals and odds, a portfolio of collections, and a confetti celebration moment — shipped on the exact stack the product would launch on.',
+          techDeepDive:
+            'Built as an Astro static page hosting a React island (mounted client:only to read the live theme with no flash). The interactive demo is a self-contained screen state machine animated with Framer Motion, driven by a single Palette abstraction so light/dark stay in lockstep. No backend coupling — the handoff for payments, credits and the odds engine stays clean.',
+          features: [
+            'Full clickable happy-flow prototype (5 core screens)',
+            'Reusable light/dark design-system tokens',
+            'Growth-loop structure: acquisition → activation → engagement → retention',
+            'Animated celebration & mascot-led brand moments',
+          ],
+        },
+        {
           id: 'p1',
           title: 'Personal AI German Tutor',
           description:
@@ -771,6 +789,24 @@ export const translations: Record<Language, Translations> = {
       },
       data: [
         {
+          id: 'p-lucky-duck',
+          title: 'Lucky Duck — Rewards-Plattform MVP',
+          description:
+            'Ein klickbares, mobil-first MVP-Konzept für eine Verbraucher-Rewards- und Mitgliedschaftsplattform. End-to-end gestaltet und im Frontend umgesetzt als interaktiver Prototyp rund um Growth Loops: Akquise → Aktivierung → Engagement → Retention.',
+          problem:
+            'Das Schwierige an einem Rewards-Produkt ist nicht, einen weiteren Marktplatz zu bauen — sondern genug Momentum aufzubauen, damit Menschen zurückkommen. Eine Sammlung zusammenhangloser Screens beweist das nicht; es braucht einen stimmigen Flow, in dem jeder Screen den nächsten Tap verdient und auf einen echten Growth Loop einzahlt.',
+          solution:
+            'Ich habe ein token-basiertes Designsystem (hell + dunkel) entworfen und den kompletten primären Happy Flow als funktionierenden Prototyp gebaut: ein maskottchengeführtes Landing, reibungsarmes Signup mit sofortigem Wallet-Setup, Reward-Discovery mit Featured Deals und Gewinnchancen, ein Portfolio aus Sammlungen und ein Konfetti-Celebration-Moment — ausgeliefert auf exakt dem Stack, auf dem das Produkt starten würde.',
+          techDeepDive:
+            'Umgesetzt als statische Astro-Seite mit einer React-Insel (client:only gemountet, um das aktuelle Theme ohne Flackern zu lesen). Die interaktive Demo ist eine in sich geschlossene Screen-State-Machine, mit Framer Motion animiert und über eine einzige Palette-Abstraktion gesteuert, damit Hell/Dunkel synchron bleiben. Keine Backend-Kopplung — die Übergabe für Payments, Credits und die Odds-Engine bleibt sauber.',
+          features: [
+            'Vollständiger klickbarer Happy-Flow-Prototyp (5 Kern-Screens)',
+            'Wiederverwendbare Designsystem-Tokens für Hell/Dunkel',
+            'Growth-Loop-Struktur: Akquise → Aktivierung → Engagement → Retention',
+            'Animierte Celebration- & maskottchengeführte Markenmomente',
+          ],
+        },
+        {
           id: 'p1',
           title: 'Persönlicher KI-Deutschlehrer',
           description:
@@ -1139,6 +1175,24 @@ export const translations: Record<Language, Translations> = {
         design: '設計',
       },
       data: [
+        {
+          id: 'p-lucky-duck',
+          title: 'Lucky Duck — 獎勵平台 MVP',
+          description:
+            '一個可點擊、行動優先的消費者獎勵與會員平台 MVP 概念。從設計到前端工程一手完成，做成圍繞成長迴圈的互動原型：獲取 → 啟用 → 參與 → 留存。',
+          problem:
+            '獎勵產品難的不是再做一個商城，而是建立足夠的動能讓人願意回來。一堆彼此無關的畫面證明不了這件事；它需要一個連貫的流程，讓每個畫面都值得使用者點下一步，並對應到真實的成長迴圈。',
+          solution:
+            '我設計了一套以 token 為基礎的設計系統（淺色 + 深色），並把完整的主要 happy flow 做成可運作的原型：吉祥物主導的 Landing、低摩擦註冊與即時錢包設定、含精選優惠與中獎機率的獎勵探索、收藏組成的個人作品集，以及彩帶慶祝時刻——而且用的是產品實際上線會採用的同一套技術棧。',
+          techDeepDive:
+            '以 Astro 靜態頁面承載一個 React island（用 client:only 掛載，直接讀取當前主題、避免閃爍）。互動 demo 是一個自包含的畫面狀態機，用 Framer Motion 製作動畫，並由單一的 Palette 抽象驅動，讓淺色／深色保持同步。不與後端耦合——付款、點數與機率引擎的交接保持乾淨。',
+          features: [
+            '完整可點擊的 happy-flow 原型（5 個核心畫面）',
+            '可重用的淺色／深色設計系統 token',
+            '成長迴圈結構：獲取 → 啟用 → 參與 → 留存',
+            '動畫慶祝與吉祥物主導的品牌時刻',
+          ],
+        },
         {
           id: 'p1',
           title: '專屬的AI德語教師',

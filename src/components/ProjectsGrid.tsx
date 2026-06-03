@@ -77,6 +77,23 @@ const getProjectIcon = (id: string) => {
           />
         </svg>
       );
+    case 'p-lucky-duck': // Rewards / gift
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 mx-auto"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18a.75.75 0 0 0 .75-.75V9a.75.75 0 0 0-.75-.75h-18a.75.75 0 0 0-.75.75v1.5c0 .414.336.75.75.75Z"
+          />
+        </svg>
+      );
     default:
       return (
         <svg
