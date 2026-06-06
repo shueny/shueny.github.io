@@ -4,7 +4,7 @@ description: 'A product + front-end case study on Lucky Duck — a consumer rewa
 pubDate: 2026-06-03
 cover: '/images/blog/lucky-duck-banner-en.png'
 category: 'Product & Design'
-draft: false
+draft: true
 ---
 
 # Designing Lucky Duck: A Rewards Platform MVP as a Growth Function

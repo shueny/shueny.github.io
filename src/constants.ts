@@ -306,31 +306,6 @@ export const PROJECTS_DATA: Project[] = [
     techDeepDive:
       'Implemented a robust Service Layer pattern to decouple UI logic from API communication. This allowed for transforming raw JSON from the Zeabur-hosted backend into consumable UI state while maintaining strict type safety via TypeScript interfaces, ensuring zero runtime errors in financial calculations.',
   },
-  {
-    id: 'p-lucky-duck',
-    title: 'Lucky Duck — Rewards Platform MVP',
-    description:
-      'A clickable, mobile-first MVP concept for a consumer rewards & membership platform. Designed and front-end engineered end-to-end as an interactive prototype built around growth loops: acquisition → activation → engagement → retention.',
-    tags: ['Astro', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    image: getAssetUrl('images/lucky-duck-card.png'),
-    banner: getAssetUrl('images/lucky-duck-card.png'),
-    link: '/lucky-duck',
-    visualDescription:
-      'Interactive phone prototype walking through Landing, Signup/Wallet, Reward Discovery, Portfolio and Celebration in light & dark themes.',
-    category: 'design',
-    problem:
-      "The hard part of a rewards product isn't building another marketplace — it's building enough momentum that people come back. A pile of disconnected screens doesn't prove that; it needs a coherent flow where every screen earns the next tap and maps to a real growth loop.",
-    solution:
-      'I designed a token-based design system (light + dark) and built the full primary happy flow as a working prototype: a mascot-led landing, low-friction signup with instant wallet setup, reward discovery with featured deals and odds, a portfolio of collections, and a confetti celebration moment — shipped on the exact stack the product would launch on.',
-    features: [
-      'Full clickable happy-flow prototype (5 core screens)',
-      'Reusable light/dark design-system tokens',
-      'Growth-loop structure: acquisition → activation → engagement → retention',
-      'Animated celebration & mascot-led brand moments',
-    ],
-    techDeepDive:
-      'Built as an Astro static page hosting a React island (mounted client:only to read the live theme with no flash). The interactive demo is a self-contained screen state machine animated with Framer Motion, driven by a single Palette abstraction so light/dark stay in lockstep. No backend coupling — the handoff for payments, credits and the odds engine stays clean.',
-  },
 ];
 
 export const ANALYSIS_REPORT = [

@@ -5,7 +5,7 @@ pubDate: 2026-06-03
 cover: '/images/blog/lucky-duck-banner-de.png'
 category: 'Product & Design'
 lang: 'de'
-draft: false
+draft: true
 ---
 
 # Lucky Duck gestalten: Eine Rewards-Plattform-MVP als Growth-Funktion

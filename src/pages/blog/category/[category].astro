@@ -9,12 +9,16 @@ import { siteConfig } from "@/config/site";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
+  // Hide drafts from category listings in production (still reachable by direct URL)
+  const listablePosts = allPosts.filter(
+    (post: CollectionEntry<'blog'>) => !(import.meta.env.PROD && post.data.draft),
+  );
   const uniqueCategories = [
-    ...new Set(allPosts.map((post: CollectionEntry<'blog'>) => post.data.category).flat()),
+    ...new Set(listablePosts.map((post: CollectionEntry<'blog'>) => post.data.category).flat()),
   ];
 
   return uniqueCategories.map((category) => {
-    const filteredPosts = allPosts
+    const filteredPosts = listablePosts
       .filter((post: CollectionEntry<'blog'>) => post.data.category === category)
       .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     return {

@@ -5,7 +5,7 @@ pubDate: 2026-06-03
 cover: '/images/blog/lucky-duck-banner-zh.png'
 category: 'Product & Design'
 lang: 'zh'
-draft: false
+draft: true
 ---
 
 # 設計 Lucky Duck：把獎勵平台 MVP 當成一種成長函數

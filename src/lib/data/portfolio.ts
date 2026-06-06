@@ -122,19 +122,6 @@ export const portfolioData = {
     title: 'Projects',
     list: [
       {
-        title: 'Lucky Duck — Rewards Platform Concept',
-        description: [
-          'Designed and front-end engineered a clickable, mobile-first MVP concept for a consumer rewards & membership platform.',
-          'Built the full primary happy flow as an interactive prototype: Landing → Signup/Wallet → Reward Discovery → Portfolio/Collections → Celebration.',
-          'Structured the experience around growth loops (acquisition, activation, engagement, retention, monetization) with credits, tiers, collections and odds.',
-          'Created a reusable token-based design system with light and dark themes, animated celebration moments and a mascot-led brand.',
-          'Live, interactive demo built with the same stack the product would ship on.',
-        ],
-        image: '/images/lucky-duck-cover.svg',
-        url: '/lucky-duck',
-        technologies: ['Astro', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-      },
-      {
         title: 'AI Job Scraper Integration',
         description: [
           'Developed an AI-powered job scraping tool that extracts job descriptions from various sources, summarizes key takeaways using Gemini AI, and stores the data in Google Sheets.',
