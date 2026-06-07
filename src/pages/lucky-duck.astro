@@ -1,6 +1,8 @@
 ---
 import MainLayout from "@/layouts/main-layout.astro";
 import LuckyDuckIsland from "@/components/islands/LuckyDuckIsland";
+import WireframeSection from "@/components/LuckyDuck/WireframeSection.jsx";
+import ProjectQA from "@/components/LuckyDuck/ProjectQA.jsx";
 
 export const prerender = true;
 
@@ -195,6 +197,11 @@ const techStack = ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motio
     </div>
   </section>
 
+  <!-- Screen architecture & wireframes -->
+  <section class="border-b border-border">
+    <WireframeSection client:visible />
+  </section>
+
   <!-- Key MVP features -->
   <section class="container max-w-screen-xl py-16">
     <h2 class="mb-8 text-sm font-bold uppercase tracking-wider" style={`color:${PURPLE};`}>
@@ -282,6 +289,11 @@ const techStack = ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motio
         </div>
       ))}
     </div>
+  </section>
+
+  <!-- Proposal Q&A (client brief answers) -->
+  <section class="border-t border-border bg-card/40">
+    <ProjectQA client:visible />
   </section>
 
   <!-- Why + attribution -->
