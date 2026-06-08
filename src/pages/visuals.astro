@@ -1,0 +1,318 @@
+---
+import MainLayout from "@/layouts/main-layout.astro";
+import { Icon } from "astro-icon/components";
+import {
+  visualsHero,
+  visualsIntro,
+  visualsStats,
+  visualsFeatured,
+  visualsStories,
+  visualsServices,
+  visualsCta,
+} from "@/config/visuals";
+
+export const prerender = true;
+---
+
+<MainLayout
+  title="Visual Stories — Travel & Documentary"
+  description="Travel & documentary films and photography by Shueny. 5+ years behind the lens, capturing journeys across continents."
+  mainClass="bg-black text-white"
+>
+  <!-- ============================ HERO ============================ -->
+  <section class="hero relative h-[88vh] min-h-[520px] w-full overflow-hidden">
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster={visualsHero.poster}
+    >
+      {visualsHero.video && <source src={visualsHero.video} type="video/mp4" />}
+    </video>
+
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/80"
+    >
+    </div>
+
+    <div
+      class="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+    >
+      <p
+        class="reveal mb-5 text-xs font-medium uppercase tracking-[0.35em] text-white/70"
+      >
+        {visualsIntro.eyebrow}
+      </p>
+      <h1
+        class="reveal max-w-5xl font-heading text-4xl font-bold leading-tight sm:text-6xl lg:text-7xl"
+      >
+        {visualsHero.title}
+      </h1>
+      <p class="reveal mt-6 max-w-2xl text-base text-white/80 sm:text-lg">
+        {visualsHero.subtitle}
+      </p>
+    </div>
+
+    <a
+      href="#intro"
+      aria-label="Scroll down"
+      class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+    >
+      <div class="relative h-10 w-7 rounded-2xl border-2 border-white/70">
+        <span class="scroll-dot absolute left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white"></span>
+      </div>
+    </a>
+  </section>
+
+  <!-- ============================ INTRO ============================ -->
+  <section id="intro" class="mx-auto max-w-4xl px-6 py-24 sm:py-32">
+    <p
+      class="reveal text-center text-2xl font-light leading-relaxed text-white/90 sm:text-3xl sm:leading-relaxed"
+    >
+      {visualsIntro.statement}
+    </p>
+  </section>
+
+  <!-- ============================ STATS ============================ -->
+  <section class="border-y border-white/10">
+    <div
+      class="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 px-6 py-16 sm:grid-cols-4"
+    >
+      {
+        visualsStats.map((stat) => (
+          <div class="reveal text-center">
+            <div class="font-heading text-4xl font-bold sm:text-5xl">
+              {stat.value}
+            </div>
+            <div class="mt-2 text-xs uppercase tracking-widest text-white/60">
+              {stat.label}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ========================= FEATURED FILM ========================= -->
+  <section class="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+    <p
+      class="reveal mb-3 text-xs font-medium uppercase tracking-[0.35em] text-white/50"
+    >
+      {visualsFeatured.eyebrow}
+    </p>
+    <h2 class="reveal mb-10 font-heading text-3xl font-bold sm:text-5xl">
+      {visualsFeatured.title}
+    </h2>
+
+    <div
+      class="reveal group relative aspect-video w-full overflow-hidden rounded-2xl"
+    >
+      {
+        visualsFeatured.video ? (
+          <video
+            class="h-full w-full object-cover"
+            controls
+            preload="metadata"
+            poster={visualsFeatured.poster}
+          >
+            <source src={visualsFeatured.video} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            class="h-full w-full object-cover"
+            src={visualsFeatured.poster}
+            alt={visualsFeatured.title}
+            loading="lazy"
+          />
+        )
+      }
+    </div>
+
+    <p class="reveal mt-8 max-w-3xl text-lg leading-relaxed text-white/70">
+      {visualsFeatured.description}
+    </p>
+  </section>
+
+  <!-- ========================= PHOTO STORIES ========================= -->
+  <section class="space-y-px">
+    {
+      visualsStories.map((story, i) => (
+        <article
+          class="story relative flex h-[80vh] min-h-[480px] w-full items-end overflow-hidden"
+        >
+          <img
+            class="absolute inset-0 h-full w-full scale-105 object-cover"
+            src={story.image}
+            alt={`${story.title} — ${story.location}`}
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+          <div
+            class={`reveal relative z-10 w-full px-6 pb-16 sm:px-12 lg:px-20 ${
+              i % 2 === 1 ? "text-right" : "text-left"
+            }`}
+          >
+            <p class="mb-2 text-xs uppercase tracking-[0.3em] text-white/70">
+              {story.location} · {story.year}
+            </p>
+            <h3 class="font-heading text-3xl font-bold sm:text-5xl">
+              {story.title}
+            </h3>
+            <p
+              class={`mt-4 max-w-xl text-base text-white/80 ${
+                i % 2 === 1 ? "ml-auto" : ""
+              }`}
+            >
+              {story.description}
+            </p>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <!-- ============================ SERVICES ============================ -->
+  <section class="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+    <h2
+      class="reveal mb-16 text-center font-heading text-3xl font-bold sm:text-5xl"
+    >
+      What I create
+    </h2>
+    <div class="grid gap-10 sm:grid-cols-3">
+      {
+        visualsServices.map((service) => (
+          <div class="reveal text-center">
+            <div class="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-white/20">
+              <Icon name={`lucide:${service.icon}`} class="size-6 text-white" />
+            </div>
+            <h3 class="mb-3 font-heading text-xl font-semibold">
+              {service.title}
+            </h3>
+            <p class="text-sm leading-relaxed text-white/60">
+              {service.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ============================== CTA ============================== -->
+  <section class="relative overflow-hidden">
+    <img
+      class="absolute inset-0 h-full w-full object-cover"
+      src={visualsHero.poster}
+      alt=""
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-black/75"></div>
+    <div
+      class="relative z-10 mx-auto max-w-3xl px-6 py-28 text-center sm:py-36"
+    >
+      <h2 class="reveal font-heading text-3xl font-bold sm:text-5xl">
+        {visualsCta.title}
+      </h2>
+      <p class="reveal mx-auto mt-6 max-w-xl text-lg text-white/80">
+        {visualsCta.description}
+      </p>
+      <div
+        class="reveal mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+      >
+        <a
+          href={`mailto:${visualsCta.email}`}
+          class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition-transform hover:scale-105"
+        >
+          <Icon name="lucide:mail" class="size-4" />
+          Get in touch
+        </a>
+        <a
+          href={visualsCta.instagram}
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+        >
+          <Icon name="lucide:instagram" class="size-4" />
+          See more on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  /* Scroll-reveal: hidden until observed, then fade/slide in */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+      opacity 0.9s ease,
+      transform 0.9s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Slow zoom on story photos for a cinematic feel */
+  .story img {
+    transition: transform 8s ease-out;
+  }
+  .story.is-visible img {
+    transform: scale(1);
+  }
+
+  @keyframes scroll-dot {
+    0% {
+      top: 18%;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: 70%;
+      opacity: 0;
+    }
+  }
+  .scroll-dot {
+    animation: scroll-dot 1.8s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  // Reveal elements as they scroll into view.
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  const init = () => {
+    document
+      .querySelectorAll(".reveal, .story")
+      .forEach((el) => io.observe(el));
+    // Hero content is already in view on load — reveal immediately.
+    document
+      .querySelectorAll(".hero .reveal")
+      .forEach((el) => el.classList.add("is-visible"));
+  };
+
+  if (document.readyState !== "loading") init();
+  else document.addEventListener("DOMContentLoaded", init);
+</script>

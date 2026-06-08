@@ -20,6 +20,7 @@ export interface Translations {
     experience: string;
     contact: string;
     blog: string;
+    visuals: string;
     common: {
       downloadResume: string;
       changeLanguage: string;
@@ -203,6 +204,7 @@ export const translations: Record<Language, Translations> = {
       analysis: 'Analysis',
       projects: 'Projects',
       blog: 'Blog',
+      visuals: 'Visuals',
       common: {
         downloadResume: 'Download Resume',
         changeLanguage: 'Change Language',
@@ -602,6 +604,7 @@ export const translations: Record<Language, Translations> = {
       analysis: 'Analysis',
       projects: 'Projects',
       blog: 'Blog',
+      visuals: 'Visuals',
       common: {
         downloadResume: 'Download Resume',
         changeLanguage: 'Change Language',
@@ -1001,6 +1004,7 @@ export const translations: Record<Language, Translations> = {
       analysis: '分析',
       projects: '專案',
       blog: '文章',
+      visuals: '影像故事',
       common: {
         downloadResume: '下載履歷',
         changeLanguage: '切換語言',

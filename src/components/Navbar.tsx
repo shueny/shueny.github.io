@@ -37,6 +37,8 @@ const NavbarContent: React.FC = () => {
       { label: t.nav.experience, href: SectionId.EXPERIENCE },
       // 👇 新增 Blog 連結 (放在 Contact 之前)
       { label: t.nav.blog, href: '/blog' },
+      // 👇 新增 Visual Stories 連結 (影片 + 相片作品頁)
+      { label: t.nav.visuals, href: '/visuals' },
       { label: t.nav.contact, href: SectionId.CONTACT },
     ],
     [t]
