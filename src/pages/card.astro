@@ -10,6 +10,9 @@ const initials = card.name
   .join("")
   .slice(0, 2)
   .toUpperCase();
+
+const [firstName, ...restName] = card.name.split(" ");
+const lastName = restName.join(" ");
 ---
 
 <BaseLayout
@@ -17,75 +20,126 @@ const initials = card.name
   description={`${card.title} · ${card.tagline}`}
 >
   <main
-    class="relative flex min-h-screen items-center justify-center bg-background px-5 py-10 text-foreground"
+    class="relative flex min-h-screen items-center justify-center overflow-hidden bg-surface px-5 py-10 text-foreground"
   >
-    <!-- Soft accent glow backdrop -->
-    <div
-      class="pointer-events-none absolute inset-0 overflow-hidden"
-      aria-hidden="true"
-    >
+    <!-- Abstract animated background shapes (matches hero) -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div
-        class="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/20 blur-3xl"
+        class="absolute right-[-15%] top-[-15%] h-[60vw] w-[60vw] animate-pulse-slow rounded-full border border-orange-200/40 opacity-60"
+      >
+      </div>
+      <div
+        class="absolute bottom-[-10%] left-[-15%] h-[45vw] w-[45vw] animate-pulse-slow rounded-full bg-orange-100/30 blur-3xl"
+        style="animation-delay: 1.5s"
+      >
+      </div>
+      <div
+        class="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
       >
       </div>
     </div>
 
     <article
-      class="relative z-10 w-full max-w-sm rounded-3xl border border-border bg-card p-8 shadow-2xl shadow-black/10"
+      class="relative z-10 w-full max-w-sm animate-fade-in-up rounded-[2rem] border border-orange-200/60 bg-card/95 p-8 shadow-2xl shadow-orange-500/10 backdrop-blur-sm"
     >
       <!-- Theme toggle -->
       <div class="absolute right-5 top-5 text-foreground">
         <ThemeToggle client:load />
       </div>
 
+      <!-- Availability pill with live ping -->
+      <div
+        class="mx-auto mb-6 flex w-fit animate-fade-in-up items-center gap-2 rounded-full border border-orange-200/60 bg-accent/5 px-3 py-1"
+        style="animation-delay: 0.05s"
+      >
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+        </span>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-accent">
+          Open to collaborate
+        </span>
+      </div>
+
       <!-- Avatar -->
       <div
-        class="mx-auto mb-4 grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-accent to-amber-500 text-3xl font-bold text-white shadow-lg"
+        class="group relative mx-auto mb-5 h-24 w-24 animate-fade-in-up"
+        style="animation-delay: 0.1s"
       >
-        {initials}
+        <span
+          class="absolute inset-0 animate-pulse-slow rounded-full bg-gradient-to-br from-accent to-amber-400 opacity-40 blur-md"
+        ></span>
+        <div
+          class="relative grid h-24 w-24 animate-float place-items-center rounded-full bg-gradient-to-br from-accent to-amber-500 text-3xl font-extrabold text-white shadow-lg shadow-orange-500/30 ring-4 ring-card transition-transform duration-300 group-hover:scale-105"
+        >
+          {initials}
+        </div>
       </div>
 
       <!-- Identity -->
-      <h1 class="text-center text-2xl font-bold tracking-tight">{card.name}</h1>
-      <p class="mt-1 text-center text-sm font-semibold text-accent">
+      <h1
+        class="animate-fade-in-up text-center text-3xl font-extrabold tracking-tight"
+        style="animation-delay: 0.15s"
+      >
+        {firstName}{" "}
+        <span class="bg-gradient-to-r from-accent to-amber-500 bg-clip-text text-transparent">
+          {lastName}
+        </span>
+      </h1>
+      <p
+        class="mt-1.5 animate-fade-in-up text-center text-sm font-bold uppercase tracking-wider text-accent"
+        style="animation-delay: 0.2s"
+      >
         {card.title}
       </p>
       <p
-        class="mt-1 flex items-center justify-center gap-1.5 text-center text-xs text-muted-foreground"
+        class="mt-2 flex animate-fade-in-up items-center justify-center gap-1.5 text-center text-xs text-muted-foreground"
+        style="animation-delay: 0.25s"
       >
-        <Icon name="lucide:briefcase" class="size-3.5" />
-        {card.company}
+        <Icon name="lucide:briefcase" class="size-3.5 text-accent/70" />
+        <span class="font-serif italic">{card.company}</span>
         <span class="opacity-40">·</span>
-        <Icon name="lucide:map-pin" class="size-3.5" />
+        <Icon name="lucide:map-pin" class="size-3.5 text-accent/70" />
         {card.location}
       </p>
 
       <p
-        class="mx-2 mt-4 text-center text-sm leading-relaxed text-muted-foreground"
+        class="mx-1 mt-4 animate-fade-in-up text-center text-sm leading-relaxed text-secondary"
+        style="animation-delay: 0.3s"
       >
         {card.tagline}
       </p>
 
       <!-- Primary actions -->
-      <div class="mt-6 grid gap-2.5">
+      <div
+        class="mt-6 grid animate-fade-in-up gap-2.5"
+        style="animation-delay: 0.35s"
+      >
         <a
           href="/shueny.vcf"
           download="shueny-wang.vcf"
-          class="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white transition active:scale-[.98]"
+          class="group relative flex items-center justify-center gap-2 overflow-hidden rounded-full px-4 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-orange-500/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-orange-500/40"
+          style="background-color: hsl(var(--accent))"
         >
-          <Icon name="lucide:user-plus" class="size-4" />
-          Save to contacts
+          <span class="relative z-10 flex items-center gap-2">
+            <Icon name="lucide:user-plus" class="size-4" />
+            Save to contacts
+          </span>
+          <div
+            class="absolute inset-0 origin-left scale-x-0 bg-stone-900 transition-transform duration-500 ease-out group-hover:scale-x-100"
+          >
+          </div>
         </a>
         <a
           href={`mailto:${card.email}`}
-          class="flex items-center justify-center gap-2 rounded-2xl border border-border px-4 py-3 text-sm font-semibold transition hover:border-accent hover:bg-accent/5 active:scale-[.98]"
+          class="flex items-center justify-center gap-2 rounded-full border-2 border-stone-300 px-4 py-3 text-sm font-semibold transition-all duration-300 hover:scale-[1.03] hover:border-accent hover:bg-accent/5 hover:text-accent"
         >
           <Icon name="lucide:mail" class="size-4" />
           {card.email}
         </a>
         <a
           href={`tel:${card.phone}`}
-          class="flex items-center justify-center gap-2 rounded-2xl border border-border px-4 py-3 text-sm font-semibold transition hover:border-accent hover:bg-accent/5 active:scale-[.98]"
+          class="flex items-center justify-center gap-2 rounded-full border-2 border-stone-300 px-4 py-3 text-sm font-semibold transition-all duration-300 hover:scale-[1.03] hover:border-accent hover:bg-accent/5 hover:text-accent"
         >
           <Icon name="lucide:phone" class="size-4" />
           {card.phone}
@@ -93,7 +147,10 @@ const initials = card.name
       </div>
 
       <!-- Social -->
-      <div class="mt-5 flex justify-center gap-3.5">
+      <div
+        class="mt-5 flex animate-fade-in-up justify-center gap-3.5"
+        style="animation-delay: 0.4s"
+      >
         {
           card.social.map((s) => (
             <a
@@ -101,7 +158,7 @@ const initials = card.name
               target="_blank"
               rel="noopener noreferrer"
               aria-label={s.label}
-              class="grid size-11 place-items-center rounded-full border border-border text-foreground transition hover:border-accent hover:text-accent active:scale-95"
+              class="grid size-11 place-items-center rounded-full border-2 border-stone-300 text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:text-accent hover:shadow-lg hover:shadow-orange-500/20"
             >
               <Icon name={s.icon} class="size-5" />
             </a>
@@ -110,25 +167,38 @@ const initials = card.name
       </div>
 
       <!-- QR code -->
-      <div class="mt-6 border-t border-dashed border-border pt-5 text-center">
-        <img
-          src="/card-qr.svg"
-          alt={`QR code linking to ${card.url}`}
-          width="128"
-          height="128"
-          class="mx-auto size-32"
-          loading="lazy"
-        />
-        <p class="mt-2 text-xs text-muted-foreground">Scan to open this card</p>
+      <div
+        class="mt-6 animate-fade-in-up border-t border-dashed border-orange-200/60 pt-5 text-center"
+        style="animation-delay: 0.45s"
+      >
+        <div
+          class="mx-auto w-fit rounded-2xl border border-orange-200/60 bg-white p-2.5 shadow-sm transition-transform duration-300 hover:scale-105"
+        >
+          <img
+            src="/card-qr.svg"
+            alt={`QR code linking to ${card.url}`}
+            width="120"
+            height="120"
+            class="size-[120px]"
+            loading="lazy"
+          />
+        </div>
+        <p class="mt-2.5 text-xs font-medium uppercase tracking-widest text-accent">
+          Scan to open
+        </p>
       </div>
 
       <!-- Back to portfolio -->
       <a
         href="/"
-        class="mt-5 flex items-center justify-center gap-1.5 text-xs font-medium text-muted-foreground transition hover:text-accent"
+        class="group mt-5 flex animate-fade-in-up items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:text-accent"
+        style="animation-delay: 0.5s"
       >
         View full portfolio
-        <Icon name="lucide:arrow-right" class="size-3.5" />
+        <Icon
+          name="lucide:arrow-right"
+          class="size-3.5 transition-transform duration-300 group-hover:translate-x-1"
+        />
       </a>
     </article>
   </main>
