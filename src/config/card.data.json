@@ -1,0 +1,28 @@
+{
+  "name": "Shueny Wang",
+  "title": "Frontend & AI Engineer",
+  "tagline": "Crafting fast, human-centered interfaces — powered by AI.",
+  "company": "Consulting",
+  "location": "Achstetten, Germany",
+  "email": "shuenyw@gmail.com",
+  "phone": "+4915739156090",
+  "url": "https://shueny.github.io/card",
+  "website": "https://shueny.github.io",
+  "social": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/shueny",
+      "icon": "mdi:github"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/shueny-wang/",
+      "icon": "mdi:linkedin"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/shueny_wang/",
+      "icon": "mdi:instagram"
+    }
+  ]
+}

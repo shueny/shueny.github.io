@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "card:gen": "node scripts/generate-card.mjs",
     "deploy": "pnpm build && pnpm dlx gh-pages -d dist -t true",
     "test:performance": "node scripts/test-performance.js"
   },
@@ -68,12 +69,14 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^25.0.1",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.17",
     "gh-pages": "^6.1.1",
     "mdast-util-toc": "^7.1.0",
     "postcss": "^8.4.35",
+    "qrcode": "^1.5.4",
     "remark": "^15.0.1",
     "tailwindcss": "^3.4.3",
     "unist-util-visit": "^5.0.0"

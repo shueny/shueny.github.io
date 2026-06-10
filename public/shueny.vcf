@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Wang;Shueny;;;
+FN:Shueny Wang
+ORG:Consulting
+TITLE:Frontend & AI Engineer
+EMAIL;TYPE=INTERNET,PREF:shuenyw@gmail.com
+TEL;TYPE=CELL:+4915739156090
+ADR;TYPE=WORK:;;;Achstetten;;;Germany
+URL:https://shueny.github.io
+URL;TYPE=GitHub:https://github.com/shueny
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/shueny-wang/
+URL;TYPE=Instagram:https://www.instagram.com/shueny_wang/
+NOTE:Crafting fast, human-centered interfaces — powered by AI.
+REV:2026-06-10T09:30:29.944Z
+END:VCARD
