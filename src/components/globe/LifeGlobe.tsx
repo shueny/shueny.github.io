@@ -62,11 +62,32 @@ function useContainerSize(ref: React.RefObject<HTMLElement>) {
     const update = () =>
       setSize({ width: el.clientWidth, height: el.clientHeight });
     update();
-    const ro = new ResizeObserver(update);
+    // Coalesce bursts of ResizeObserver callbacks into one update per frame —
+    // each size change forces a WebGL renderer resize, which is expensive.
+    let raf = 0;
+    const ro = new ResizeObserver(() => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    });
     ro.observe(el);
-    return () => ro.disconnect();
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+    };
   }, [ref]);
   return size;
+}
+
+function usePrefersReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return reduced;
 }
 
 /* ------------------------------------------------------------------ */
@@ -201,7 +222,15 @@ const LifeGlobe: React.FC = () => {
   const globeRef = useRef<any>(null);
 
   const isMobile = useIsMobile();
+  const reducedMotion = usePrefersReducedMotion();
   const { width, height } = useContainerSize(containerRef);
+
+  // Mirror into refs so the rAF loop / callbacks read fresh values without
+  // re-subscribing effects.
+  const isMobileRef = useRef(isMobile);
+  isMobileRef.current = isMobile;
+  const reducedMotionRef = useRef(reducedMotion);
+  reducedMotionRef.current = reducedMotion;
 
   const [activeIndex, setActiveIndex] = useState(INITIAL_INDEX);
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -225,13 +254,17 @@ const LifeGlobe: React.FC = () => {
     setActiveIndex(index);
     setHintVisible(false);
     targetPosRef.current = { lat: entry.lat, lng: entry.lng };
+    if (reducedMotionRef.current) {
+      // Respect prefers-reduced-motion: jump instead of fly/walk.
+      curPosRef.current = { lat: entry.lat, lng: entry.lng };
+    }
     const globe = globeRef.current;
     if (globe) {
       const controls = globe.controls();
       if (controls) controls.autoRotate = false;
       globe.pointOfView(
         { lat: entry.lat, lng: entry.lng, altitude: entry.altitude ?? DEFAULT_ALTITUDE },
-        FLY_MS
+        reducedMotionRef.current ? 0 : FLY_MS
       );
     }
   }, []);
@@ -260,6 +293,25 @@ const LifeGlobe: React.FC = () => {
   useEffect(() => {
     if (!isMobile) setSheetOpen(false);
   }, [isMobile]);
+
+  // Keyboard navigation: ←/→ switch years, Escape closes the mobile sheet.
+  useEffect(() => {
+    const onKeyDown = (ev: KeyboardEvent) => {
+      const target = ev.target as HTMLElement | null;
+      if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+      if (ev.key === 'ArrowLeft') {
+        ev.preventDefault();
+        selectPrev();
+      } else if (ev.key === 'ArrowRight') {
+        ev.preventDefault();
+        selectNext();
+      } else if (ev.key === 'Escape') {
+        setSheetOpen(false);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [selectPrev, selectNext]);
 
   /* --------------------------- globe markers --------------------------- */
 
@@ -329,10 +381,19 @@ const LifeGlobe: React.FC = () => {
     const globe = globeRef.current;
     if (!globe) return;
 
+    // Cap the pixel ratio — full DPR on phones triples the fragment load for
+    // no visible gain on a moving 3D scene.
+    const renderer = globe.renderer && globe.renderer();
+    if (renderer) {
+      renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio || 1, isMobileRef.current ? 1.5 : 2)
+      );
+    }
+
     // Camera + controls intro state
     const controls = globe.controls();
     controls.enablePan = false;
-    controls.autoRotate = true;
+    controls.autoRotate = !reducedMotionRef.current;
     controls.autoRotateSpeed = 0.45;
     controls.minDistance = 140;
     controls.maxDistance = 480;
@@ -523,8 +584,8 @@ const LifeGlobe: React.FC = () => {
             width={width}
             height={height}
             globeImageUrl="/images/globe/earth-blue-marble.jpg"
-            bumpImageUrl="/images/globe/earth-topology.png"
-            backgroundImageUrl="/images/globe/night-sky.png"
+            bumpImageUrl="/images/globe/earth-topology.jpg"
+            backgroundImageUrl="/images/globe/night-sky.jpg"
             backgroundColor="rgba(0,0,0,0)"
             showAtmosphere
             atmosphereColor="#6ab7ff"

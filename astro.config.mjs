@@ -47,6 +47,15 @@ export default defineConfig({
               if (id.includes('framer-motion')) {
                 return 'framer-motion';
               }
+              // three.js + globe libs (only loaded lazily on /journey)
+              if (
+                id.includes('/three/') ||
+                id.includes('three-globe') ||
+                id.includes('globe.gl') ||
+                id.includes('three-render-objects')
+              ) {
+                return 'globe-3d';
+              }
               if (id.includes('lucide-react')) {
                 return 'lucide-icons';
               }
