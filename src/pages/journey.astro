@@ -1,0 +1,18 @@
+---
+import MainLayout from "@/layouts/main-layout.astro";
+import LifeGlobeIsland from "@/components/globe/LifeGlobeIsland";
+
+export const prerender = true;
+---
+
+<MainLayout
+  title="我的人生旅程 · 3D 地球儀"
+  description="以互動式 3D 地球儀呈現 Shueny 的人生旅程:從台北的學生時期、成為資深前端工程師,到走遍世界各地的足跡,點選年份即可飛往當年的所在地。"
+>
+  <section
+    class="relative w-full overflow-hidden h-[calc(100svh-2.75rem)] md:h-[calc(100svh-3rem)]"
+    aria-label="3D 地球儀人生旅程"
+  >
+    <LifeGlobeIsland client:only="react" />
+  </section>
+</MainLayout>
