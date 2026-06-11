@@ -5,6 +5,7 @@ import defaultImg from '../assets/images/default-cover.jpg';
 export const navMenuConfig: NavMenuConfig = {
   links: [
     { title: 'Portfolio', href: '/' },
+    { title: '3D 旅程', href: '/journey' },
     { title: 'Travel Blog', href: 'http://take-two.world/' },
   ],
   // pagesNav: [
