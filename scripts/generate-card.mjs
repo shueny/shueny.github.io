@@ -69,9 +69,9 @@ const socialSvg = {
 
 const socialLinks = card.social
   .map(
-    (s) => `        <a class="social" href="${s.href}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">${socialSvg[s.label] || ''}</svg>
-        </a>`,
+    (s) => `          <a class="social" href="${s.href}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">${socialSvg[s.label] || ''}</svg>
+          </a>`,
   )
   .join('\n');
 
@@ -97,132 +97,126 @@ const html = `<!doctype html>
 <style>
   :root {
     --bg: #fff7ed; --card: #ffffff; --text: #1c1917; --muted: #78716c;
-    --border: #e7e5e4; --accent: #ea580c; --accent-soft: #fff1e7;
+    --line: #1c1917; --accent: #ea580c; --accent-soft: #fff1e7;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #0c0a09; --card: #1c1917; --text: #f5f5f4; --muted: #a8a29e; --border: #292524; --accent: #fb923c; --accent-soft: #292017; }
+    :root { --bg: #0c0a09; --card: #1c1917; --text: #f5f5f4; --muted: #a8a29e; --line: #f5f5f4; --accent: #fb923c; --accent-soft: #292017; }
   }
-  html[data-theme="light"] { --bg: #fff7ed; --card: #ffffff; --text: #1c1917; --muted: #78716c; --border: #e7e5e4; --accent: #ea580c; --accent-soft: #fff1e7; }
-  html[data-theme="dark"] { --bg: #0c0a09; --card: #1c1917; --text: #f5f5f4; --muted: #a8a29e; --border: #292524; --accent: #fb923c; --accent-soft: #292017; }
+  html[data-theme="light"] { --bg: #fff7ed; --card: #ffffff; --text: #1c1917; --muted: #78716c; --line: #1c1917; --accent: #ea580c; --accent-soft: #fff1e7; }
+  html[data-theme="dark"] { --bg: #0c0a09; --card: #1c1917; --text: #f5f5f4; --muted: #a8a29e; --line: #f5f5f4; --accent: #fb923c; --accent-soft: #292017; }
   * { box-sizing: border-box; }
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   @keyframes pulseSlow { 0%,100% { opacity: .5; } 50% { opacity: .85; } }
   @keyframes ping { 75%,100% { transform: scale(2.2); opacity: 0; } }
   body {
     margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    padding: 24px; background: var(--bg); color: var(--text); position: relative; overflow: hidden;
+    padding: 28px 20px; background: var(--bg); color: var(--text); position: relative; overflow-x: hidden;
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  .blob { position: absolute; border-radius: 50%; pointer-events: none; }
+  .blob { position: fixed; border-radius: 50%; pointer-events: none; }
   .blob-1 { top: -15%; right: -15%; width: 60vw; height: 60vw; border: 1px solid var(--accent); opacity: .15; animation: pulseSlow 4s ease-in-out infinite; }
   .blob-2 { bottom: -10%; left: -15%; width: 45vw; height: 45vw; background: var(--accent); opacity: .08; filter: blur(60px); animation: pulseSlow 4s ease-in-out 1.5s infinite; }
   .card {
-    width: 100%; max-width: 400px; background: var(--card); border: 1px solid var(--accent);
-    border-radius: 32px; padding: 32px 28px; position: relative; z-index: 1;
-    box-shadow: 0 25px 50px -20px rgba(234,88,12,.25); animation: fadeInUp .8s cubic-bezier(0.16,1,0.3,1) both;
+    width: 100%; max-width: 440px; background: var(--card); border: 2px solid var(--line);
+    padding: 36px 32px; position: relative; z-index: 1;
+    box-shadow: 10px 10px 0 0 var(--accent);
+    animation: fadeInUp .8s cubic-bezier(0.16,1,0.3,1) both;
+    transition: box-shadow .3s;
   }
-  @media (prefers-color-scheme: dark) { .card { border-color: var(--border); } }
+  .card:hover { box-shadow: 14px 14px 0 0 var(--accent); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+  .pill { display: flex; align-items: center; gap: 8px; }
+  .pill .dot { position: relative; width: 10px; height: 10px; }
+  .pill .dot::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
+  .pill .dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); }
+  .pill b { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
   .theme-btn {
-    position: absolute; top: 18px; right: 18px; width: 38px; height: 38px; border-radius: 50%;
-    border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer;
-    display: grid; place-items: center; transition: border-color .2s, transform .2s;
+    width: 38px; height: 38px; border: 2px solid var(--line); background: transparent; color: var(--text);
+    cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s, transform .2s;
   }
-  .theme-btn:hover { border-color: var(--accent); transform: rotate(20deg); }
-  .pill {
-    display: flex; width: fit-content; margin: 0 auto 22px; align-items: center; gap: 8px;
-    padding: 5px 12px; border-radius: 999px; border: 1px solid var(--accent); background: var(--accent-soft);
+  .theme-btn:hover { background: var(--accent); color: #fff; transform: rotate(8deg); }
+  h1 { margin: 0; font-size: clamp(52px, 17vw, 68px); line-height: .9; letter-spacing: -.04em; font-weight: 800; text-transform: uppercase; }
+  h1 .grad { background: linear-gradient(90deg, var(--accent), #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; display: block; }
+  .role { margin: 16px 0 0; font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 22px; }
+  .role em { font-style: normal; color: var(--accent); }
+  .meta { margin: 8px 0 0; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .tagline { margin: 20px 0 0; padding-left: 14px; border-left: 2px solid var(--accent); font-size: 14px; line-height: 1.55; color: var(--muted); }
+  .index { margin-top: 30px; border-top: 2px solid var(--line); }
+  .row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 16px 4px; border-bottom: 2px solid var(--line); text-decoration: none; color: var(--text);
+    font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    transition: padding .3s, background .2s, color .2s;
   }
-  .pill span.dot { position: relative; width: 8px; height: 8px; }
-  .pill span.dot::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
-  .pill span.dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); }
-  .pill b { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
-  .avatar-wrap { position: relative; width: 96px; height: 96px; margin: 0 auto 20px; }
-  .avatar-glow { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #f59e0b); filter: blur(12px); opacity: .45; animation: pulseSlow 4s ease-in-out infinite; }
-  .avatar {
-    position: relative; width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center;
-    font-size: 34px; font-weight: 800; color: #fff; box-shadow: 0 10px 25px -5px rgba(234,88,12,.4);
-    background: linear-gradient(135deg, var(--accent), #f59e0b); animation: float 6s ease-in-out infinite;
-    outline: 4px solid var(--card);
-  }
-  h1 { font-size: 28px; margin: 0; text-align: center; font-weight: 800; letter-spacing: -.02em; }
-  h1 .grad { background: linear-gradient(90deg, var(--accent), #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .title { text-align: center; color: var(--accent); font-weight: 800; margin: 6px 0 2px; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
-  .meta { text-align: center; color: var(--muted); font-size: 13px; margin: 6px 0 0; }
-  .meta i { font-style: italic; font-family: 'Playfair Display', Georgia, serif; }
-  .tagline { text-align: center; color: var(--muted); font-size: 14px; margin: 14px 4px 24px; line-height: 1.55; }
-  .actions { display: grid; gap: 10px; margin-bottom: 20px; }
-  .btn {
-    display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
-    padding: 13px 16px; border-radius: 999px; font-weight: 700; font-size: 13px; letter-spacing: .02em;
-    border: 2px solid var(--border); color: var(--text); background: transparent;
-    transition: transform .2s, border-color .2s, background .2s, color .2s, box-shadow .2s;
-  }
-  .btn:hover { transform: scale(1.03); }
-  .btn:active { transform: scale(.98); }
-  .btn.primary {
-    background: var(--accent); color: #fff; border-color: var(--accent); text-transform: uppercase;
-    box-shadow: 0 10px 20px -6px rgba(234,88,12,.45);
-  }
-  .btn.primary:hover { box-shadow: 0 14px 26px -6px rgba(234,88,12,.55); }
-  .btn:not(.primary):hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); box-shadow: 0 8px 18px -8px rgba(234,88,12,.4); }
-  .socials { display: flex; justify-content: center; gap: 14px; margin: 6px 0 22px; }
+  .row:hover { padding-left: 14px; padding-right: 14px; }
+  .row .num { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 400; font-size: 12px; color: var(--muted); margin-right: 12px; }
+  .row .val { font-weight: 500; font-size: 10px; letter-spacing: 0; text-transform: none; color: var(--muted); margin-left: 10px; }
+  .row svg { flex-shrink: 0; transition: transform .3s; }
+  .row:hover svg { transform: translate(2px, -2px); }
+  .row.primary { background: var(--accent); color: #fff; }
+  .row.primary .num { color: rgba(255,255,255,.75); }
+  .row.primary:hover svg { transform: translateY(2px); }
+  .row:not(.primary):hover { background: var(--accent-soft); color: var(--accent); }
+  .bottom { margin-top: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .label { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+  .socials { display: flex; gap: 10px; }
   .social {
-    width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--border); color: var(--text);
-    display: grid; place-items: center; transition: border-color .2s, color .2s, transform .2s, box-shadow .2s;
+    width: 40px; height: 40px; border: 2px solid var(--line); color: var(--text);
+    display: grid; place-items: center; transition: transform .2s, background .2s, color .2s, box-shadow .2s;
   }
-  .social:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-4px); box-shadow: 0 10px 18px -8px rgba(234,88,12,.5); }
-  .social:active { transform: scale(.94); }
-  .qr { text-align: center; padding-top: 20px; border-top: 1px dashed var(--accent); }
-  .qr-box { display: inline-block; padding: 10px; border-radius: 16px; background: #fff; border: 1px solid var(--accent); box-shadow: 0 4px 12px -4px rgba(0,0,0,.15); transition: transform .3s; }
-  .qr-box:hover { transform: scale(1.05); }
-  .qr svg { width: 120px; height: 120px; display: block; }
-  .qr p { color: var(--accent); font-size: 11px; margin: 10px 0 0; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-  .icon { width: 18px; height: 18px; }
+  .social:hover { background: var(--accent); color: #fff; transform: translateY(-4px); box-shadow: 3px 3px 0 0 var(--line); }
+  .qr { text-align: right; }
+  .qr-box { display: inline-block; padding: 8px; background: #fff; border: 2px solid var(--line); transition: transform .3s; }
+  .qr-box:hover { transform: rotate(2deg) scale(1.05); }
+  .qr svg { width: 92px; height: 92px; display: block; }
+  .qr p { margin: 8px 0 0; font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  .icon { width: 16px; height: 16px; }
+  @media (max-width: 380px) { .row .val { display: none; } }
 </style>
 </head>
 <body>
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
   <main class="card">
-    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
-
-    <div class="pill"><span class="dot"></span><b>Open to collaborate</b></div>
-
-    <div class="avatar-wrap">
-      <div class="avatar-glow"></div>
-      <div class="avatar">${initials}</div>
+    <div class="topbar">
+      <div class="pill"><span class="dot"></span><b>Open to collaborate</b></div>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
     </div>
-    <h1>${firstName} <span class="grad">${lastName}</span></h1>
-    <p class="title">${card.title}</p>
-    <p class="meta"><i>${card.company}</i> · ${card.location}</p>
+
+    <h1>${firstName}<span class="grad">${lastName}</span></h1>
+    <p class="role">${card.title.toLowerCase()} <em>*</em></p>
+    <p class="meta">${card.company} — ${card.location}</p>
     <p class="tagline">${card.tagline}</p>
 
-    <div class="actions">
-      <a class="btn primary" href="${vcardDataUri}" download="${firstName.toLowerCase()}-wang.vcf">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-        Save to contacts
+    <div class="index">
+      <a class="row primary" href="${vcardDataUri}" download="${firstName.toLowerCase()}-wang.vcf">
+        <span><span class="num">01</span>Save contact</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"/><path d="m6 11 6 6 6-6"/><path d="M19 21H5"/></svg>
       </a>
-      <a class="btn" href="mailto:${card.email}">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-        ${card.email}
+      <a class="row" href="mailto:${card.email}">
+        <span><span class="num">02</span>Email<span class="val">${card.email}</span></span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
       </a>
-      <a class="btn" href="tel:${card.phone}">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-        ${card.phone}
+      <a class="row" href="tel:${card.phone}">
+        <span><span class="num">03</span>Call<span class="val">${card.phone}</span></span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
       </a>
     </div>
 
-    <div class="socials">
+    <div class="bottom">
+      <div>
+        <p class="label">Elsewhere</p>
+        <div class="socials">
 ${socialLinks}
-    </div>
-
-    <div class="qr">
-      <div class="qr-box">${qrLight.replace('<svg', '<svg width="120" height="120"')}</div>
-      <p>Scan to open</p>
+        </div>
+      </div>
+      <div class="qr">
+        <div class="qr-box">${qrLight.replace('<svg', '<svg width="92" height="92"')}</div>
+        <p>Scan me</p>
+      </div>
     </div>
   </main>
 
