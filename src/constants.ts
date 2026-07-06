@@ -327,7 +327,7 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Vue 3', 'Pinia', 'CSS Scroll Snap', 'PWA'],
     image: getAssetUrl('images/tomato-todo-cover.svg'),
     banner: getAssetUrl('images/tomato-todo-cover.svg'),
-    link: '/daily-tomato-todo',
+    link: 'https://shueny.github.io/vue-daily-tomato-todo/',
     visualDescription:
       'Interactive phone mockup: day-card carousel, collapsible calendar and full-screen Pomodoro focus overlay.',
     category: 'frontend',

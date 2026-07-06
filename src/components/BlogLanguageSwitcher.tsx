@@ -48,6 +48,21 @@ const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string; de?: string
     zh: 'astro-islands-lighthouse-optimization-zh',
     de: 'astro-islands-lighthouse-optimization-de',
   },
+  'daily-tomato-todo': {
+    en: 'daily-tomato-todo',
+    zh: 'daily-tomato-todo-zh',
+    de: 'daily-tomato-todo-de',
+  },
+  'daily-tomato-todo-zh': {
+    en: 'daily-tomato-todo',
+    zh: 'daily-tomato-todo-zh',
+    de: 'daily-tomato-todo-de',
+  },
+  'daily-tomato-todo-de': {
+    en: 'daily-tomato-todo',
+    zh: 'daily-tomato-todo-zh',
+    de: 'daily-tomato-todo-de',
+  },
 };
 
 const BlogLanguageSwitcherContent: React.FC<BlogLanguageSwitcherProps> = ({
