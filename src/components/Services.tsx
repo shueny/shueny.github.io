@@ -9,8 +9,7 @@ const Services: React.FC = () => {
 
   const services = [
     {
-      // 1. Modern Frontend Architecture (含 React, Next, Vue, Nuxt)
-      // 重點：跨框架的架構能力
+      // 1. Frontend Architecture at Scale (React, Next, Vue, Nx)
       title: t.services.service1Title,
       desc: t.services.service1Desc,
       icon: (
@@ -31,31 +30,9 @@ const Services: React.FC = () => {
       ),
     },
     {
-      // 2. CMS & Rapid Deployment (含 Wix, Wordpress)
-      // 重點：快速上線、行銷導向、高性價比
+      // 2. AI Integration That Ships (RAG, orchestration, model routing)
       title: t.services.service2Title,
       desc: t.services.service2Desc,
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z"
-          />
-        </svg>
-      ),
-    },
-    {
-      // 3. AI & Automation (維持不變，高價值)
-      title: t.services.service3Title,
-      desc: t.services.service3Desc,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -74,9 +51,9 @@ const Services: React.FC = () => {
       ),
     },
     {
-      // 4. Consulting & Mentoring (維持不變，資深價值)
-      title: t.services.service4Title,
-      desc: t.services.service4Desc,
+      // 3. Engineering Quality & Mentoring (testing, reviews, refactoring)
+      title: t.services.service3Title,
+      desc: t.services.service3Desc,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +98,7 @@ const Services: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={index}

@@ -49,8 +49,6 @@ export interface Translations {
     service2Desc: string;
     service3Title: string;
     service3Desc: string;
-    service4Title: string;
-    service4Desc: string;
   };
   techStack: {
     label: string;
@@ -121,12 +119,13 @@ export interface Translations {
     }>;
   };
   contact: {
-    tagline: string; // "Available for hire"
-    titlePart1: string; // "Let's create"
-    titlePart2: string; // "impact."
+    tagline: string; // "Open to opportunities"
+    titlePart1: string; // "Let's build something"
+    titlePart2: string; // "that ships."
     subtitle: string;
     startProject: string;
     linkedinProfile: string;
+    bookCall: string; // Secondary Calendly link
   };
   footer: {
     copyright: string;
@@ -217,51 +216,46 @@ export const translations: Record<Language, Translations> = {
       title3: 'AI Solutions',
       title3Suffix: 'Builder',
       subtitle:
-        'Specializing in scalable frontend architecture (React, Nx) and practical AI integration to solve real-world business problems.',
+        'Frontend architecture that scales. AI features that ship.',
       description:
-        'Building scalable design systems and AI-enhanced applications that reduce operational overhead and improve user conversion.',
-      ctaPrimary: 'View AI Projects',
-      ctaSecondary: 'Book Consultation',
+        'Ten years of React and TypeScript across automotive cybersecurity, B2B SaaS, and e-commerce. Most recently at VicOne (Trend Micro), building security platforms as sole frontend engineer. Now applying that same rigor to LLM products: RAG pipelines, agent workflows, and interfaces people trust.',
+      ctaPrimary: 'View Projects',
+      ctaSecondary: 'Download Resume',
       scroll: 'Scroll',
     },
     services: {
-      capabilities: 'Technical Solutions',
-      titlePart1: 'Engineering &',
-      titlePart2: 'Strategy',
+      capabilities: 'What I Do',
+      titlePart1: 'Three Things,',
+      titlePart2: 'Done Deeply',
       subtitle:
-        'Selecting the right tools for the job—from custom enterprise applications to rapid marketing sites.',
+        'Frontend architecture, AI integration, and the engineering practices that keep both maintainable.',
 
-      // 1. Custom Apps (React, Next, Vue, Nuxt)
-      service1Title: 'Modern Web Applications',
+      // 1. Frontend Architecture at Scale
+      service1Title: 'Frontend Architecture at Scale',
       service1Desc:
-        'Framework-agnostic architecture using React, Next.js, Vue 3, or Nuxt. I build scalable, high-performance applications tailored to complex business logic.',
+        'React, Next.js, Vue 3, and Nx monorepos for complex business domains. I design component systems and micro-frontend structures that stay fast and maintainable as teams and codebases grow.',
 
-      // 2. CMS & Rapid Deployment (Wix, WP)
-      service2Title: 'CMS & Rapid Deployment',
+      // 2. AI Integration That Ships
+      service2Title: 'AI Integration That Ships',
       service2Desc:
-        'Efficient solutions for marketing sites using WordPress or Wix. I focus on speed-to-market and empowering teams to manage their own content without code.',
+        'Beyond API calls: RAG pipelines, prompt orchestration, multimodal parsing, and cost-aware model routing. I have built AI features as the sole engineer, from schema design to production deployment.',
 
-      // 3. AI (Same)
-      service3Title: 'AI & Workflow Automation',
+      // 3. Engineering Quality & Mentoring
+      service3Title: 'Engineering Quality & Mentoring',
       service3Desc:
-        'Integrating LLMs (OpenAI/Gemini) to automate manual processes, parse unstructured data, and build intelligent internal tools.',
-
-      // 4. Consulting (Same)
-      service4Title: 'Mentoring & Optimization',
-      service4Desc:
-        'Improving code quality through reviews, refactoring legacy systems, and establishing best practices to prevent technical debt.',
+        'Automated testing (Cypress, Playwright), code review culture, and legacy refactoring. I raise the baseline so quality does not depend on any single person.',
     },
     techStack: {
       label: 'Technical Toolkit',
       titlePart1: 'Technologies',
       titlePart2: '& Tools',
       subtitle:
-        'The engine behind the strategy. A comprehensive list of tools I use to build scalable solutions.',
+        'The tools behind the work. Frontend is the core, AI engineering is the edge, and testing is the habit.',
       categories: {
         frontendArch: 'Frontend & Architecture',
         aiBackend: 'AI Engineering & Backend',
         qaDevops: 'QA & DevOps',
-        growthDesign: 'Growth & Design',
+        growthDesign: 'Design & Product',
       },
     },
     impact: {
@@ -269,7 +263,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Impact',
       titlePart2: 'Dashboard',
       subtitle:
-        'Real-world performance metrics delivered for VicOne, Synttro, and Citiesocial.',
+        'Numbers from real production systems at VicOne, Synttro, and Citiesocial, not estimates from side projects.',
 
       // Metric 1
       impact1Value: '50%',
@@ -306,7 +300,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Professional',
       titlePart2: 'Trajectory',
       description:
-        "Over two decades of navigating the evolving landscape of web technology. From jQuery spaghetti code to modern React ecosystems, I've led teams through it all.",
+        'Ten years of frontend engineering across e-commerce, B2B SaaS, and automotive cybersecurity, with three years of design practice before that. I have seen jQuery spaghetti become React ecosystems, and led teams through the migration.',
       keyAchievements: 'Key Achievements',
       items: [
         {
@@ -382,7 +376,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Featured',
       titlePart2: 'AI & Web Solutions',
       subtitle:
-        'A selection of projects demonstrating cultural adaptation, business process automation, and deep technical capabilities.',
+        'Each project answers the same question: can AI capabilities become features real users rely on? Built end-to-end, from data pipeline to interface.',
       viewCaseStudy: 'View Case Study',
       categories: {
         frontend: 'Frontend',
@@ -394,7 +388,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p-lucky-duck',
           title: 'Lucky Duck — Rewards Platform MVP',
           description:
-            'A clickable, mobile-first MVP concept for a consumer rewards & membership platform. Designed and front-end engineered end-to-end as an interactive prototype built around growth loops: acquisition → activation → engagement → retention.',
+            'A mobile-first MVP for a consumer rewards platform, designed and engineered end-to-end. The prototype is structured around measurable growth loops (acquisition, activation, retention) rather than static screens, so every interaction maps to a product hypothesis.',
           problem:
             "The hard part of a rewards product isn't building another marketplace — it's building enough momentum that people come back. A pile of disconnected screens doesn't prove that; it needs a coherent flow where every screen earns the next tap and maps to a real growth loop.",
           solution:
@@ -412,7 +406,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p1',
           title: 'Personal AI German Tutor',
           description:
-            "A voice-first language simulator designed to accelerate cultural integration in Germany. Utilizes OpenAI's Whisper and Gemini 2.0 to provide real-time, context-aware feedback on spoken grammar and pronunciation, bridging the gap between textbook theory and street-level reality.",
+            'A voice-first language simulator for real-life German, built for my own integration in Germany. Whisper handles speech recognition, Gemini provides context-aware feedback on grammar and pronunciation, and the whole thing runs as a PWA. Textbook German is not street German; this closes that gap.',
           problem:
             "Traditional language apps are too rigid—they teach vocabulary but fail to build conversational confidence. Newcomers to Germany often struggle with the 'Sprechhemmung' (fear of speaking) because they lack a safe environment to practice chaotic, real-world scenarios like dealing with the Ausländerbehörde.",
           solution:
@@ -430,7 +424,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p2',
           title: 'AI Smart Travel Expense Tracker',
           description:
-            'An intelligent financial assistant that eliminates manual data entry. Leverages Google Gemini for multimodal receipt parsing and Supabase for secure, real-time group collaboration across multiple currencies.',
+            "Receipt in, structured data out. Gemini's multimodal parsing eliminates manual entry, while Supabase handles real-time group collaboration across currencies. The hard part was not the AI call; it was making the parsing reliable enough that users stop double-checking it.",
           problem:
             "Spreadsheets were killing the holiday vibe. During a multi-country trip, I realized splitting bills across EUR, JPY, and TWD was a logistical nightmare. My goal was simple yet ambitious: Eliminate manual data entry entirely. I wanted a 'fire-and-forget' solution where users snap a photo, and the system handles the math, currency, and splits instantly.",
           solution:
@@ -447,27 +441,27 @@ export const translations: Record<Language, Translations> = {
         },
         {
           id: 'p3',
-          title: 'Intelligent Job Market Analyzer',
+          title: 'Pilotfit — AI Job Search Platform',
           description:
-            'A full-stack automation pipeline built with Python (FastAPI) and React. Orchestrates complex prompt engineering to transform unstructured job descriptions into structured strategic insights, performing gap analysis with high precision.',
+            'A full-stack AI platform that turns the chaos of job searching into structured strategy, built solo and running with real beta users.',
           problem:
             "Job hunting is a data problem disguised as a document problem. Reading hundreds of unstructured JDs creates cognitive overload, making it difficult to objectively quantify skill gaps (e.g., 'Do I lack React or just Next.js?'). I needed a tool to find the signal in the noise.",
           solution:
-            "I built an automated ETL pipeline for career data. It scrapes or accepts JD text, utilizes Chain-of-Thought prompting to reason through requirements (distinguishing 'Must-have' from 'Nice-to-have'), and normalizes the output into a standardized JSON schema for visual comparison against my resume.",
+            'I built the platform solo, end to end: a FastAPI backend, a React frontend, and an agent layer that turns raw job postings into structured strategy. It runs with real beta users, which keeps the engineering honest: reliability, cost, and trust matter more than demo polish.',
           techDeepDive:
-            "The technical challenge was ensuring data consistency. I employed Pydantic models in FastAPI to enforce strict type validation between the AI's output and the frontend. Used few-shot prompting to significantly reduce hallucinations when extracting numerical experience requirements.",
+            'Under the hood: hybrid RAG search combining pgvector embeddings with structured filters, a LangGraph coaching agent that maintains context across sessions, and tiered model routing that cut inference costs by 84 percent without degrading output quality. The frontend renders agent state transparently, so users always know what the system is doing and why. The lesson this project taught me: in AI products, the model is 20 percent of the work; reliability, cost, and interface trust are the other 80.',
           features: [
-            'Unstructured-to-Structured Data Pipeline',
-            'Intelligent Gap Analysis (Resume vs. JD)',
-            'Async Python Backend (FastAPI + Pydantic)',
-            'React Dashboard for Skill Visualization',
+            'Hybrid RAG Search (pgvector + Structured Filters)',
+            'LangGraph Coaching Agent with Cross-Session Memory',
+            'Tiered Model Routing (84% Inference Cost Reduction)',
+            'Transparent Agent-State Rendering',
           ],
         },
         {
           id: 'p4',
           title: 'Institutional Fintech Dashboard',
           description:
-            'A robust financial visualization platform engineered for institutional data clarity. Focused on strict API contract adherence and high-performance rendering of complex banking datasets.',
+            'High-density financial visualization for institutional users, where API contract precision and rendering performance are non-negotiable. No AI here, deliberately: it demonstrates the frontend rigor that the AI projects are built on.',
           problem:
             "In institutional finance, data presentation cannot just be 'pretty'—it must be precise. The challenge was to consume a raw, extensive backend API and transform it into a user-friendly interface without losing data granularity or introducing rendering lag.",
           solution:
@@ -485,10 +479,10 @@ export const translations: Record<Language, Translations> = {
     },
     about: {
       tagline: 'The Person Behind the Pixels',
-      title: 'Design roots. Engineering mind.',
-      subtitle: 'Global perspective.',
+      title: 'Never two careers.',
+      subtitle: 'One education.',
       intro:
-        "With a foundation in <strong class='text-stone-900 font-medium'>Graphic Design</strong> and a <strong class='text-stone-900 font-medium'>Master's in Learning Technology</strong>, I approach frontend development differently. I don't just implement designs; I understand the 'why' behind them. My journey from creative arts to rigorous engineering allows me to bridge the gap between design teams and developers.",
+        "My degree is in <strong class='text-stone-900 font-medium'>Computer Simulation and Design</strong>, where programming, 3D graphics, and visual design were a single curriculum. My Master's thesis was a <strong class='text-stone-900 font-medium'>VR museum guide</strong> built in Unity, then validated with quantitative usability research. So when I read a Figma file, I see the designer's intent, not just measurements. When I push back on a spec, it is with an alternative, not just an objection.<br /><br />That foundation shapes how I build AI products today. LLM features live or die on interface decisions: how uncertainty is shown, when to ask for confirmation, where automation should stop and the human should decide. These are design problems and engineering problems at the same time, and I have always worked on both sides of that line.",
       educationTitle: 'Education & Research',
       globalTitle: 'Global Perspective & Resilience',
 
@@ -539,20 +533,21 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     contact: {
-      tagline: 'Available for hire',
-      titlePart1: "Let's create",
-      titlePart2: 'impact.',
+      tagline: 'Open to opportunities',
+      titlePart1: "Let's build something",
+      titlePart2: 'that ships.',
       subtitle:
-        'Open for strategic partnerships, product leadership roles, and technical consulting.',
-      startProject: 'Start a Project',
+        'Open to senior frontend and AI engineering roles (hybrid Ulm or remote), and selective technical consulting.',
+      startProject: 'Get in Touch',
       linkedinProfile: 'LinkedIn Profile',
+      bookCall: 'Prefer a call? Book 30 minutes',
     },
     footer: {
       copyright: 'Shueny',
       allRightsReserved: 'All Rights Reserved',
       impressum: 'Impressum',
       privacyPolicy: 'Privacy Policy',
-      designedWith: 'Designed with Gemini 2.5',
+      designedWith: 'Astro',
     },
     cookieConsent: {
       title: 'Cookie Preferences',
@@ -616,47 +611,43 @@ export const translations: Record<Language, Translations> = {
       title3: 'KI-Lösungen',
       title3Suffix: 'Builder',
       subtitle:
-        'Spezialisiert auf skalierbare Frontend-Architektur (React, Nx) und praxisnahe KI-Integration zur Lösung realer Geschäftsprobleme.',
+        'Frontend-Architektur, die skaliert. KI-Features, die live gehen.',
       description:
-        'Entwicklung skalierbarer Design-Systeme und KI-gestützter Anwendungen zur Reduzierung des Betriebsaufwands und Verbesserung der Nutzerkonversion.',
-      ctaPrimary: 'KI-Projekte ansehen',
-      ctaSecondary: 'Beratung buchen',
+        'Zehn Jahre React und TypeScript in Automotive-Cybersecurity, B2B-SaaS und E-Commerce. Zuletzt bei VicOne (Trend Micro) als alleiniger Frontend-Engineer für Security-Plattformen. Jetzt mit derselben Sorgfalt an LLM-Produkten: RAG-Pipelines, Agent-Workflows und Interfaces, denen Menschen vertrauen.',
+      ctaPrimary: 'Projekte ansehen',
+      ctaSecondary: 'Lebenslauf herunterladen',
       scroll: 'Scrollen',
     },
     services: {
-      capabilities: 'Technische Lösungen',
-      titlePart1: 'Engineering &',
-      titlePart2: 'Strategie',
+      capabilities: 'Was ich mache',
+      titlePart1: 'Drei Dinge,',
+      titlePart2: 'mit Tiefe',
       subtitle:
-        'Die richtigen Tools für jede Anforderung – von maßgeschneiderten Enterprise-Apps bis hin zu schnellen Marketing-Websites.',
+        'Frontend-Architektur, KI-Integration und die Engineering-Praktiken, die beides wartbar halten.',
 
-      service1Title: 'Moderne Web-Applikationen',
+      service1Title: 'Frontend-Architektur im großen Maßstab',
       service1Desc:
-        'Framework-agnostische Architektur mit React, Next.js, Vue 3 oder Nuxt. Entwicklung skalierbarer High-Performance-Anwendungen für komplexe Geschäftslogik.',
+        'React, Next.js, Vue 3 und Nx-Monorepos für komplexe Fachdomänen. Ich entwerfe Komponentensysteme und Micro-Frontend-Strukturen, die auch bei wachsenden Teams und Codebasen schnell und wartbar bleiben.',
 
-      service2Title: 'CMS & Rapid Deployment',
+      service2Title: 'KI-Integration, die live geht',
       service2Desc:
-        'Effiziente Lösungen für Marketing-Websites mit WordPress oder Wix. Fokus auf kurze Markteinführungszeiten (Time-to-Market) und einfache Content-Pflege.',
+        'Mehr als API-Aufrufe: RAG-Pipelines, Prompt-Orchestrierung, multimodales Parsing und kostenbewusstes Model-Routing. Ich habe KI-Features als alleiniger Engineer gebaut, vom Schema-Design bis zum Produktiv-Deployment.',
 
-      service3Title: 'KI & Workflow-Automation',
+      service3Title: 'Engineering-Qualität & Mentoring',
       service3Desc:
-        'Integration von LLMs (OpenAI/Gemini) zur Automatisierung manueller Prozesse, Datenanalyse und Entwicklung intelligenter interner Tools.',
-
-      service4Title: 'Mentoring & Optimierung',
-      service4Desc:
-        'Verbesserung der Codequalität durch Reviews, Refactoring von Legacy-Systemen und Etablierung von Best Practices zur Vermeidung technischer Schulden.',
+        'Automatisierte Tests (Cypress, Playwright), Code-Review-Kultur und Legacy-Refactoring. Ich hebe das Qualitätsniveau im Team, damit Qualität nicht von einer einzelnen Person abhängt.',
     },
     techStack: {
       label: 'Technisches Toolkit',
       titlePart1: 'Technologien',
       titlePart2: '& Tools',
       subtitle:
-        'Der Motor hinter der Strategie. Eine umfassende Liste der Werkzeuge, die ich für skalierbare Lösungen verwende.',
+        'Die Werkzeuge hinter der Arbeit. Frontend ist der Kern, KI-Engineering der Vorsprung und Testing die Gewohnheit.',
       categories: {
         frontendArch: 'Frontend & Architektur',
         aiBackend: 'KI-Engineering & Backend',
         qaDevops: 'QA & DevOps',
-        growthDesign: 'Growth & Design',
+        growthDesign: 'Design & Produkt',
       },
     },
     impact: {
@@ -667,7 +658,7 @@ export const translations: Record<Language, Translations> = {
       titlePart2: 'Kennzahlen',
 
       subtitle:
-        'Nachweisbare Erfolge aus meiner Arbeit für VicOne, Synttro und Citiesocial.',
+        'Zahlen aus echten Produktivsystemen bei VicOne, Synttro und Citiesocial, keine Schätzungen aus Side-Projects.',
 
       // Metric 1: 50% Faster Time-to-Market
       impact1Value: '50%',
@@ -704,7 +695,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Professional',
       titlePart2: 'Trajectory',
       description:
-        'Über zwei Jahrzehnte Erfahrung in der sich entwickelnden Landschaft der Web-Technologie. Von jQuery-Spaghetti-Code bis zu modernen React-Ökosystemen – ich habe Teams durch alles geführt.',
+        'Zehn Jahre Frontend-Engineering in E-Commerce, B2B-SaaS und Automotive-Cybersecurity, davor drei Jahre Designpraxis. Ich habe erlebt, wie aus jQuery-Spaghetti React-Ökosysteme wurden, und Teams durch diese Migration geführt.',
       keyAchievements: 'Schlüsselerfolge',
       items: [
         {
@@ -780,7 +771,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Featured',
       titlePart2: 'KI & Web-Lösungen',
       subtitle:
-        'Eine Auswahl von Projekten, die kulturelle Anpassung, Geschäftsprozessautomatisierung und tiefe technische Fähigkeiten demonstrieren.',
+        'Jedes Projekt beantwortet dieselbe Frage: Können KI-Fähigkeiten zu Features werden, auf die sich echte Nutzer verlassen? End-to-end gebaut, von der Datenpipeline bis zum Interface.',
       viewCaseStudy: 'Fallstudie ansehen',
       categories: {
         frontend: 'Frontend',
@@ -792,7 +783,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p-lucky-duck',
           title: 'Lucky Duck — Rewards-Plattform MVP',
           description:
-            'Ein klickbares, mobil-first MVP-Konzept für eine Verbraucher-Rewards- und Mitgliedschaftsplattform. End-to-end gestaltet und im Frontend umgesetzt als interaktiver Prototyp rund um Growth Loops: Akquise → Aktivierung → Engagement → Retention.',
+            'Ein Mobile-First-MVP für eine Consumer-Rewards-Plattform, end-to-end gestaltet und umgesetzt. Der Prototyp ist um messbare Growth Loops (Akquise, Aktivierung, Retention) statt statischer Screens strukturiert, sodass jede Interaktion auf eine Produkthypothese einzahlt.',
           problem:
             'Das Schwierige an einem Rewards-Produkt ist nicht, einen weiteren Marktplatz zu bauen — sondern genug Momentum aufzubauen, damit Menschen zurückkommen. Eine Sammlung zusammenhangloser Screens beweist das nicht; es braucht einen stimmigen Flow, in dem jeder Screen den nächsten Tap verdient und auf einen echten Growth Loop einzahlt.',
           solution:
@@ -810,7 +801,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p1',
           title: 'Persönlicher KI-Deutschlehrer',
           description:
-            'Ein sprachbasiertes Sprachsimulator, entwickelt zur Beschleunigung der kulturellen Integration in Deutschland. Nutzt OpenAIs Whisper und Gemini 2.0, um Echtzeit-Feedback zu Grammatik und Aussprache zu geben und die Lücke zwischen Lehrbuchtheorie und Alltagsrealität zu schließen.',
+            'Ein Voice-First-Sprachsimulator für Alltagsdeutsch, gebaut für meine eigene Integration in Deutschland. Whisper übernimmt die Spracherkennung, Gemini liefert kontextbewusstes Feedback zu Grammatik und Aussprache, und das Ganze läuft als PWA. Lehrbuchdeutsch ist kein Alltagsdeutsch; genau diese Lücke schließt das Projekt.',
           problem:
             "Traditionelle Sprach-Apps sind zu starr—sie lehren Vokabeln, bauen aber kein Gesprächsvertrauen auf. Neuankömmlinge in Deutschland kämpfen oft mit der 'Sprechhemmung', weil ihnen eine sichere Umgebung fehlt, um chaotische, realistische Szenarien wie den Umgang mit der Ausländerbehörde zu üben.",
           solution:
@@ -828,7 +819,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p2',
           title: 'KI-Reisekosten-Tracker',
           description:
-            'Ein intelligenter Finanzassistent, der manuelle Dateneingabe eliminiert. Nutzt Google Gemini für multimodale Beleganalyse und Supabase für sichere, Echtzeit-Gruppenzusammenarbeit über mehrere Währungen.',
+            'Beleg rein, strukturierte Daten raus. Geminis multimodales Parsing eliminiert manuelle Eingaben, während Supabase die Echtzeit-Zusammenarbeit in der Gruppe über Währungen hinweg übernimmt. Die Schwierigkeit war nicht der KI-Aufruf, sondern das Parsing so zuverlässig zu machen, dass Nutzer aufhören, es nachzuprüfen.',
           problem:
             'Tabellenkalkulationen zerstörten die Urlaubsstimmung. Während einer mehrländerigen Reise erkannte ich, dass die Aufteilung von Rechnungen über EUR, JPY und TWD ein logistischer Albtraum war. Mein Ziel war einfach, aber ehrgeizig: Manuelle Dateneingabe vollständig eliminieren. Ich wollte eine "Fire-and-Forget"-Lösung, bei der Benutzer ein Foto machen und das System sofort die Mathematik, Währung und Aufteilung übernimmt.',
           solution:
@@ -845,27 +836,27 @@ export const translations: Record<Language, Translations> = {
         },
         {
           id: 'p3',
-          title: 'Intelligenter Arbeitsmarkt-Analysator',
+          title: 'Pilotfit — KI-Plattform für die Jobsuche',
           description:
-            'Eine Full-Stack-Automatisierungspipeline, erstellt mit Python (FastAPI) und React. Orchestriert komplexes Prompt Engineering, um unstrukturierte Stellenbeschreibungen in strukturierte strategische Erkenntnisse zu transformieren und Gap-Analysen mit hoher Präzision durchzuführen.',
+            'Eine Full-Stack-KI-Plattform, die das Chaos der Jobsuche in strukturierte Strategie verwandelt, solo gebaut und mit echten Beta-Nutzern im Betrieb.',
           problem:
             "Jobsuche ist ein Datenproblem, das als Dokumentproblem getarnt ist. Das Lesen von Hunderten unstrukturierter Stellenbeschreibungen erzeugt kognitive Überlastung und macht es schwierig, Qualifikationslücken objektiv zu quantifizieren (z.B. 'Fehlt mir React oder nur Next.js?'). Ich brauchte ein Tool, um das Signal im Rauschen zu finden.",
           solution:
-            "Ich baute eine automatisierte ETL-Pipeline für Karrieredaten. Sie scraped oder akzeptiert JD-Text, nutzt Chain-of-Thought-Prompting, um Anforderungen zu durchdenken (unterscheidet 'Must-have' von 'Nice-to-have') und normalisiert die Ausgabe in ein standardisiertes JSON-Schema zur visuellen Vergleich mit meinem Lebenslauf.",
+            'Ich habe die Plattform solo und end-to-end gebaut: FastAPI-Backend, React-Frontend und eine Agenten-Schicht, die rohe Stellenanzeigen in strukturierte Strategie übersetzt. Sie läuft mit echten Beta-Nutzern, was das Engineering ehrlich hält: Zuverlässigkeit, Kosten und Vertrauen zählen mehr als Demo-Politur.',
           techDeepDive:
-            'Die technische Herausforderung war die Gewährleistung der Datenkonsistenz. Ich verwendete Pydantic-Modelle in FastAPI, um strenge Typvalidierung zwischen der KI-Ausgabe und dem Frontend durchzusetzen. Nutzte Few-Shot-Prompting, um Halluzinationen beim Extrahieren numerischer Erfahrungsanforderungen erheblich zu reduzieren.',
+            'Unter der Haube: hybride RAG-Suche, die pgvector-Embeddings mit strukturierten Filtern kombiniert, ein LangGraph-Coaching-Agent, der Kontext über Sessions hinweg hält, und gestuftes Model-Routing, das die Inferenzkosten um 84 Prozent senkte, ohne die Ausgabequalität zu verschlechtern. Das Frontend stellt den Agentenzustand transparent dar, sodass Nutzer immer wissen, was das System tut und warum. Die Lektion dieses Projekts: In KI-Produkten ist das Modell 20 Prozent der Arbeit; Zuverlässigkeit, Kosten und Interface-Vertrauen sind die anderen 80.',
           features: [
-            'Unstrukturiert-zu-strukturiert Datenpipeline',
-            'Intelligente Gap-Analyse (Lebenslauf vs. JD)',
-            'Asynchrones Python-Backend (FastAPI + Pydantic)',
-            'React-Dashboard zur Qualifikationsvisualisierung',
+            'Hybride RAG-Suche (pgvector + strukturierte Filter)',
+            'LangGraph-Coaching-Agent mit Session-übergreifendem Gedächtnis',
+            'Gestuftes Model-Routing (84% geringere Inferenzkosten)',
+            'Transparente Darstellung des Agentenzustands',
           ],
         },
         {
           id: 'p4',
           title: 'Institutionelles Fintech-Dashboard',
           description:
-            'Eine robuste Finanzvisualisierungsplattform, entwickelt für institutionelle Datentransparenz. Fokus auf strikte API-Vertragseinhaltung und High-Performance-Rendering komplexer Bankdatensätze.',
+            'Hochverdichtete Finanzvisualisierung für institutionelle Nutzer, bei der Präzision im API-Vertrag und Rendering-Performance nicht verhandelbar sind. Bewusst ohne KI: Es zeigt die Frontend-Disziplin, auf der die KI-Projekte aufbauen.',
           problem:
             "Im institutionellen Finanzwesen kann Datenpräsentation nicht nur 'hübsch' sein—sie muss präzise sein. Die Herausforderung war, eine rohe, umfangreiche Backend-API zu konsumieren und in eine benutzerfreundliche Oberfläche zu transformieren, ohne Datengranularität zu verlieren oder Rendering-Verzögerungen einzuführen.",
           solution:
@@ -883,10 +874,10 @@ export const translations: Record<Language, Translations> = {
     },
     about: {
       tagline: 'Die Person hinter den Pixeln',
-      title: 'Design-Wurzeln. Engineering-Verstand.',
-      subtitle: 'Globale Perspektive.',
+      title: 'Nie zwei Karrieren.',
+      subtitle: 'Eine Ausbildung.',
       intro:
-        "Mit einem Hintergrund in <strong class='text-stone-900 font-medium'>Grafikdesign</strong> und einem <strong class='text-stone-900 font-medium'>Master in Learning Technology</strong> gehe ich Frontend-Entwicklung anders an. Ich setze Designs nicht nur um, ich verstehe das 'Warum' dahinter. Mein Weg von den kreativen Künsten zum strengen Engineering ermöglicht es mir, die Lücke zwischen Design-Teams und Entwicklern zu schließen.",
+        "Mein Studiengang heißt <strong class='text-stone-900 font-medium'>Computer Simulation and Design</strong>: Programmierung, 3D-Grafik und visuelles Design waren ein einziges Curriculum. Meine Masterarbeit war ein <strong class='text-stone-900 font-medium'>VR-Museumsführer</strong> in Unity, validiert mit quantitativer Usability-Forschung. Wenn ich eine Figma-Datei lese, sehe ich die Absicht des Designers, nicht nur Maße. Wenn ich eine Spezifikation hinterfrage, dann mit einer Alternative, nicht nur mit einem Einwand.<br /><br />Dieses Fundament prägt, wie ich heute KI-Produkte baue. LLM-Features stehen und fallen mit Interface-Entscheidungen: wie Unsicherheit gezeigt wird, wann nach Bestätigung gefragt wird, wo Automatisierung endet und der Mensch entscheidet. Das sind Design- und Engineering-Probleme zugleich, und ich habe immer auf beiden Seiten dieser Linie gearbeitet.",
       educationTitle: 'Ausbildung & Forschung',
       globalTitle: 'Globale Perspektive & Resilienz',
 
@@ -937,20 +928,21 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     contact: {
-      tagline: 'Verfügbar für Aufträge',
-      titlePart1: 'Lassen Sie uns',
-      titlePart2: 'Wirkung erzielen.',
+      tagline: 'Offen für neue Aufgaben',
+      titlePart1: 'Lassen Sie uns bauen,',
+      titlePart2: 'was live geht.',
       subtitle:
-        'Offen für strategische Partnerschaften, Produktleitungsrollen und technische Beratung.',
-      startProject: 'Projekt starten',
+        'Offen für Senior-Frontend- und KI-Engineering-Rollen (hybrid in Ulm oder remote) sowie ausgewählte technische Beratung.',
+      startProject: 'Kontakt aufnehmen',
       linkedinProfile: 'LinkedIn Profil',
+      bookCall: 'Lieber ein Gespräch? 30 Minuten buchen',
     },
     footer: {
       copyright: 'Shueny',
       allRightsReserved: 'Alle Rechte vorbehalten',
       impressum: 'Impressum',
       privacyPolicy: 'Datenschutzerklärung',
-      designedWith: 'Entworfen mit Gemini 2.5',
+      designedWith: 'Astro',
     },
     cookieConsent: {
       title: 'Cookie-Einstellungen',
@@ -1013,48 +1005,41 @@ export const translations: Record<Language, Translations> = {
       title2: '工程師 &',
       title3: 'AI 解決方案',
       title3Suffix: '實踐者',
-      subtitle:
-        '專注於可擴展的前端架構（React／Nx），並將 AI 實際整合於產品中，以解決真實的業務問題與流程瓶頸。',
+      subtitle: '可擴展的前端架構。能真正上線的 AI 功能。',
       description:
-        '打造可擴展的設計系統與 AI 強化應用，降低營運成本，提升產品效率與使用者轉換率。',
-      ctaPrimary: '查看 AI 專案',
-      ctaSecondary: '預約諮詢',
+        '十年 React 與 TypeScript 經驗，橫跨汽車網路安全、B2B SaaS 與電商。最近在 VicOne（趨勢科技）以唯一前端工程師的身分打造安全平台。現在把同樣的嚴謹帶進 LLM 產品：RAG pipeline、agent 工作流程，以及讓人信任的介面。',
+      ctaPrimary: '查看專案',
+      ctaSecondary: '下載履歷',
       scroll: '向下滾動',
     },
     services: {
-      capabilities: '技術解決方案',
-      titlePart1: '工程與',
-      titlePart2: '策略規劃',
-      subtitle:
-        '依據專案需求選擇最合適的工具——從高度客製化的企業級應用到快速上線的行銷網站。',
+      capabilities: '我做的事',
+      titlePart1: '三件事，',
+      titlePart2: '做到深',
+      subtitle: '前端架構、AI 整合，以及讓兩者都能長期維護的工程實踐。',
 
-      service1Title: '現代化網頁應用開發',
+      service1Title: '可擴展的前端架構',
       service1Desc:
-        '跨框架的架構設計能力（React, Next.js, Vue 3, Nuxt）。專為複雜商業邏輯打造高可擴展性與高效能的應用程式。',
+        'React、Next.js、Vue 3 與 Nx monorepo，服務複雜的商業領域。我設計的元件系統與微前端架構，在團隊與程式碼規模成長時仍能保持快速且可維護。',
 
-      service2Title: 'CMS 與快速部署方案',
+      service2Title: '能真正上線的 AI 整合',
       service2Desc:
-        '針對形象官網與行銷活動，運用 WordPress 或 Wix 提供高性價比方案。強調快速上線，並賦能行銷團隊自行維護內容。',
+        '不只是呼叫 API：RAG pipeline、prompt 編排、多模態解析與成本導向的模型路由。我曾以唯一工程師的身分打造 AI 功能，從 schema 設計到正式部署。',
 
-      service3Title: 'AI 與工作流自動化',
+      service3Title: '工程品質與 Mentoring',
       service3Desc:
-        '整合 LLM (OpenAI/Gemini) 以自動化繁瑣的手動流程，從非結構化資料解析到建置智慧內部工具。',
-
-      service4Title: '前端顧問與代碼優化',
-      service4Desc:
-        '透過代碼審查與重構舊系統來提升品質。協助團隊建立最佳實踐，在技術債累積前先行預防。',
+        '自動化測試（Cypress、Playwright）、code review 文化與舊系統重構。我提升團隊的品質基準線，讓品質不依賴任何單一個人。',
     },
     techStack: {
       label: '技術工具箱',
       titlePart1: '核心技術',
       titlePart2: '與工具',
-      subtitle:
-        '支撐策略執行的技術引擎。構建可擴展解決方案所使用的完整工具列表。',
+      subtitle: '支撐作品的工具。前端是核心，AI 工程是優勢，測試是習慣。',
       categories: {
         frontendArch: '前端與架構',
         aiBackend: 'AI 工程與後端',
         qaDevops: 'QA 與 DevOps',
-        growthDesign: '成長與設計',
+        growthDesign: '設計與產品',
       },
     },
     impact: {
@@ -1062,7 +1047,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: '成效數據',
       titlePart2: '儀表板',
       subtitle:
-        '源自 VicOne, Synttro 與 Citiesocial 的實戰數據，以卓越工程技術創造可衡量的商業價值。',
+        '來自 VicOne、Synttro 與 Citiesocial 真實生產系統的數據，而非 side project 的估計值。',
       // Metric 1
       impact1Value: '50%',
       impact1Title: '加速產品上市',
@@ -1093,7 +1078,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: '專業',
       titlePart2: '職涯軌跡',
       description:
-        '超過二十年的網頁技術演進歷程。從 jQuery 的混亂代碼到現代 React 生態系統，我帶領團隊走過這一切。',
+        '十年前端工程經驗，橫跨電商、B2B SaaS 與汽車網路安全，在此之前還有三年設計實務。我看著 jQuery 義大利麵程式碼演變成 React 生態系，並帶領團隊完成這段遷移。',
       keyAchievements: '關鍵成就',
       items: [
         {
@@ -1167,7 +1152,8 @@ export const translations: Record<Language, Translations> = {
       label: '創新與影響力',
       titlePart1: '精選',
       titlePart2: 'AI 與 Web 解決方案',
-      subtitle: '精選專案展示文化適應、業務流程自動化和深厚的技術能力。',
+      subtitle:
+        '每個專案都在回答同一個問題：AI 能力能否成為真實使用者依賴的功能？從資料管線到介面，端對端打造。',
       viewCaseStudy: '查看案例研究',
       categories: {
         frontend: '前端',
@@ -1179,7 +1165,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p-lucky-duck',
           title: 'Lucky Duck — 獎勵平台 MVP',
           description:
-            '一個可點擊、行動優先的消費者獎勵與會員平台 MVP 概念。從設計到前端工程一手完成，做成圍繞成長迴圈的互動原型：獲取 → 啟用 → 參與 → 留存。',
+            '一個行動優先的消費者獎勵平台 MVP，從設計到工程一手完成。原型圍繞可衡量的成長迴圈（獲取、啟用、留存）而非靜態畫面構建，讓每一個互動都對應到一個產品假設。',
           problem:
             '獎勵產品難的不是再做一個商城，而是建立足夠的動能讓人願意回來。一堆彼此無關的畫面證明不了這件事；它需要一個連貫的流程，讓每個畫面都值得使用者點下一步，並對應到真實的成長迴圈。',
           solution:
@@ -1197,7 +1183,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p1',
           title: '專屬的AI德語教師',
           description:
-            '專為加速在德國文化融入而設計的語音優先語言模擬器。運用 OpenAI 的 Whisper 和 Gemini 2.0，提供即時、情境感知的語法和發音回饋，彌合教科書理論與實際生活之間的差距。',
+            '一個為真實生活德語打造的語音優先模擬器，源自我自己在德國融入的需求。Whisper 負責語音辨識，Gemini 提供情境感知的文法與發音回饋，整體以 PWA 運行。教科書德語不等於街頭德語；這個專案就是要補上這段落差。',
           problem:
             '傳統語言應用程式過於僵化——它們教授詞彙，但無法建立對話信心。初到德國的新移民經常面臨「開口恐懼症」（Sprechhemmung），因為他們缺乏安全的環境來練習混亂的真實場景，例如與外國人辦公室打交道。',
           solution:
@@ -1215,7 +1201,7 @@ export const translations: Record<Language, Translations> = {
           id: 'p2',
           title: 'AI 智慧旅行費用追蹤器',
           description:
-            '一個消除手動資料輸入的智慧財務助手。利用 Google Gemini 進行多模態收據解析，並使用 Supabase 進行安全、即時的多貨幣群組協作。',
+            '收據進，結構化資料出。Gemini 的多模態解析消除了手動輸入，Supabase 則處理跨幣別的即時群組協作。難的不是呼叫 AI，而是讓解析可靠到使用者不再需要重複核對。',
           problem:
             '試算表破壞了假期氛圍。在一次多國旅行中，我意識到在 EUR、JPY 和 TWD 之間分攤帳單是一個後勤噩夢。我的目標簡單而雄心勃勃：完全消除手動資料輸入。我想要一個「發射後不管」的解決方案，用戶拍照，系統立即處理數學、貨幣和分攤。',
           solution:
@@ -1232,27 +1218,27 @@ export const translations: Record<Language, Translations> = {
         },
         {
           id: 'p3',
-          title: '智慧職場市場分析器',
+          title: 'Pilotfit — AI 求職平台',
           description:
-            '使用 Python（FastAPI）和 React 建置的全端自動化管道。編排複雜的提示工程，將非結構化職位描述轉換為結構化策略洞察，以高精度執行差距分析。',
+            '一個把求職的混亂轉化為結構化策略的全端 AI 平台，獨立打造，並有真實 beta 使用者在使用。',
           problem:
             '求職是一個偽裝成文件問題的資料問題。閱讀數百個非結構化職位描述會造成認知超載，使得客觀量化技能差距變得困難（例如，「我缺少 React 還是只是 Next.js？」）。我需要一個工具來在噪音中找到信號。',
           solution:
-            '我建立了一個用於職業資料的自動化 ETL 管道。它抓取或接受職位描述文字，利用 Chain-of-Thought 提示來推理需求（區分「必須具備」和「加分項」），並將輸出標準化為結構化 JSON 架構，以便與我的履歷進行視覺比較。',
+            '我獨立完成整個平台：FastAPI 後端、React 前端，以及把原始職缺轉化為結構化策略的 agent 層。它有真實 beta 使用者在用，這讓工程必須誠實：可靠性、成本與信任比 demo 的華麗更重要。',
           techDeepDive:
-            '技術挑戰是確保資料一致性。我在 FastAPI 中使用 Pydantic 模型，在 AI 輸出和前端之間強制執行嚴格的類型驗證。使用少樣本提示來顯著減少提取數值經驗要求時的幻覺。',
+            '技術核心：混合式 RAG 搜尋結合 pgvector 向量與結構化篩選；LangGraph 教練 agent 能跨 session 維持上下文，而不是每次對話都重來；分層模型路由在不犧牲輸出品質的前提下，將推論成本降低 84%。前端透明呈現 agent 狀態，讓使用者永遠知道系統在做什麼、為什麼。這個專案教我的一課：在 AI 產品裡，模型只佔兩成工作；可靠性、成本與介面信任才是另外八成。',
           features: [
-            '非結構化到結構化資料管道',
-            '智慧差距分析（履歷 vs. 職位描述）',
-            '非同步 Python 後端（FastAPI + Pydantic）',
-            '用於技能視覺化的 React 儀表板',
+            '混合式 RAG 搜尋（pgvector + 結構化篩選）',
+            '具跨 session 記憶的 LangGraph 教練 agent',
+            '分層模型路由（推論成本降低 84%）',
+            'agent 狀態透明化呈現',
           ],
         },
         {
           id: 'p4',
           title: '機構金融科技儀表板',
           description:
-            '為機構資料清晰度而設計的穩健財務視覺化平台。專注於嚴格的 API 合約遵守和複雜銀行資料集的高效能渲染。',
+            '為機構使用者打造的高密度金融視覺化，API 合約精確度與渲染效能沒有妥協空間。刻意不含 AI：它展示的是那些 AI 專案賴以建立的前端基本功。',
           problem:
             '在機構金融中，資料呈現不能只是「漂亮」——它必須精確。挑戰是消費一個原始、廣泛的後端 API，並將其轉換為用戶友好的介面，而不失去資料粒度或引入渲染延遲。',
           solution:
@@ -1270,10 +1256,10 @@ export const translations: Record<Language, Translations> = {
     },
     about: {
       tagline: '像素背後的人',
-      title: '設計的靈魂，工程的思維。',
-      subtitle: '以及全球化的視野。',
+      title: '設計與工程從來不是兩條路，',
+      subtitle: '而是同一套教育。',
       intro:
-        "擁有 <strong class='text-stone-900 font-medium'>平面設計背景</strong> 與 <strong class='text-stone-900 font-medium'>數位學習科技碩士學位</strong>，這讓我能以獨特的視角切入前端開發。我不僅僅是實作設計稿，更深入理解設計背後的「為什麼」。從創意藝術到嚴謹工程的跨域歷程，讓我能有效連結設計與開發團隊。",
+        "我的學位是<strong class='text-stone-900 font-medium'>電腦模擬與設計</strong>：程式、3D 圖學與視覺設計從第一天起就是同一套課程。我的碩士論文是用 Unity 打造的 <strong class='text-stone-900 font-medium'>VR 博物館導覽</strong>，並以量化易用性研究驗證。所以當我閱讀 Figma 檔案時，我看到的是設計師的意圖，而不只是尺寸；當我對規格提出異議時，我帶的是替代方案，而不只是反對。<br /><br />這個基礎形塑了我今天打造 AI 產品的方式。LLM 功能的成敗取決於介面決策：如何呈現不確定性、何時請使用者確認、自動化該在哪裡停下讓人來決定。這些同時是設計問題與工程問題，而我一直都在這條線的兩側工作。",
       educationTitle: '學歷與研究',
       globalTitle: '國際視野與適應力',
 
@@ -1324,19 +1310,21 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     contact: {
-      tagline: '可接受委託',
-      titlePart1: '讓我們創造',
-      titlePart2: '影響力。',
-      subtitle: '開放戰略合作夥伴關係、產品領導職位和技術諮詢。',
-      startProject: '開始專案',
+      tagline: '開放工作機會',
+      titlePart1: '一起打造',
+      titlePart2: '能上線的東西。',
+      subtitle:
+        '開放資深前端與 AI 工程職位（烏爾姆混合辦公或遠端），以及少量精選的技術顧問合作。',
+      startProject: '與我聯繫',
       linkedinProfile: 'LinkedIn 檔案',
+      bookCall: '想先聊聊？預約 30 分鐘通話',
     },
     footer: {
       copyright: 'Shueny',
       allRightsReserved: '版權所有',
       impressum: '法律聲明',
       privacyPolicy: '隱私政策',
-      designedWith: '使用 Gemini 2.5 設計',
+      designedWith: 'Astro',
     },
     cookieConsent: {
       title: 'Cookie 偏好設定',

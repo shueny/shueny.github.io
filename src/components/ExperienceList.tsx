@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { SectionId } from '../types';
-import SkillsChart from './SkillsChart';
 import { useLanguage } from '../contexts/LanguageContext';
 import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
@@ -44,9 +43,6 @@ const ExperienceList: React.FC = () => {
               <p className="text-secondary mb-12 leading-relaxed font-light text-lg">
                 {t.experience.description}
               </p>
-              <div className="transform hover:scale-[1.02] transition-transform duration-500">
-                <SkillsChart />
-              </div>
             </div>
           </div>
 

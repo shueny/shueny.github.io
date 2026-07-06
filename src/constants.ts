@@ -158,9 +158,8 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: 'p1',
     title: 'Personal AI German Tutor',
-    // 優化：強調 "Confidence" (心理層面) 與 "Context-aware" (技術亮點)
     description:
-      "A voice-first language simulator designed to accelerate cultural integration in Germany. Utilizes OpenAI's Whisper and Gemini 2.0 to provide real-time, context-aware feedback on spoken grammar and pronunciation, bridging the gap between textbook theory and street-level reality.",
+      'A voice-first language simulator for real-life German, built for my own integration in Germany. Whisper handles speech recognition, Gemini provides context-aware feedback on grammar and pronunciation, and the whole thing runs as a PWA. Textbook German is not street German; this closes that gap.',
     tags: [
       'Next.js',
       'OpenAI/Gemini',
@@ -196,9 +195,8 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: 'p2',
     title: 'AI Smart Travel Expense Tracker',
-    // 保持上次優化的版本，這是目前的黃金標準
     description:
-      'An intelligent financial assistant that eliminates manual data entry. Leverages Google Gemini for multimodal receipt parsing and Supabase for secure, real-time group collaboration across multiple currencies.',
+      "Receipt in, structured data out. Gemini's multimodal parsing eliminates manual entry, while Supabase handles real-time group collaboration across currencies. The hard part was not the AI call; it was making the parsing reliable enough that users stop double-checking it.",
     tags: [
       'React',
       'Supabase',
@@ -234,47 +232,37 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'p3',
-    title: 'Intelligent Job Market Analyzer',
-    // 優化：強調 "Strategic" 與 "Precision" (精準度)
+    title: 'Pilotfit — AI Job Search Platform',
     description:
-      'A full-stack automation pipeline built with Python (FastAPI) and React. Orchestrates complex prompt engineering to transform unstructured job descriptions into structured strategic insights, performing gap analysis with high precision.',
-    tags: [
-      'Python (FastAPI)',
-      'Prompt Engineering',
-      'React',
-      'Data Visualization',
-    ],
+      'A full-stack AI platform that turns the chaos of job searching into structured strategy, built solo and running with real beta users.',
+    tags: ['FastAPI', 'React', 'LangGraph', 'pgvector', 'Gemini'],
     image: getAssetUrl('images/job-analyzer-cover.webp'),
     banner: getAssetUrl('images/job-analyzer-cover.webp'),
     visualDescription:
       'Image: Split screen showing raw text input vs. structured JSON dashboard.',
     category: 'fullstack',
 
-    // ⭐️ 核心修改：將個人需求轉化為「數據分析問題」
     problem:
       "Job hunting is a data problem disguised as a document problem. Reading hundreds of unstructured JDs creates cognitive overload, making it difficult to objectively quantify skill gaps (e.g., 'Do I lack React or just Next.js?'). I needed a tool to find the signal in the noise.",
 
-    // ⭐️ 核心修改：強調 "Pipeline" 與 "Standardization"
     solution:
-      "I built an automated ETL pipeline for career data. It scrapes or accepts JD text, utilizes Chain-of-Thought prompting to reason through requirements (distinguishing 'Must-have' from 'Nice-to-have'), and normalizes the output into a standardized JSON schema for visual comparison against my resume.",
+      'I built the platform solo, end to end: a FastAPI backend, a React frontend, and an agent layer that turns raw job postings into structured strategy. It runs with real beta users, which keeps the engineering honest: reliability, cost, and trust matter more than demo polish.',
 
     features: [
-      'Unstructured-to-Structured Data Pipeline',
-      'Intelligent Gap Analysis (Resume vs. JD)',
-      'Async Python Backend (FastAPI + Pydantic)',
-      'React Dashboard for Skill Visualization',
+      'Hybrid RAG Search (pgvector + Structured Filters)',
+      'LangGraph Coaching Agent with Cross-Session Memory',
+      'Tiered Model Routing (84% Inference Cost Reduction)',
+      'Transparent Agent-State Rendering',
     ],
 
-    // ⭐️ 核心修改：強調 Python 後端能力與 Type Safety
     techDeepDive:
-      "The technical challenge was ensuring data consistency. I employed Pydantic models in FastAPI to enforce strict type validation between the AI's output and the frontend. Used few-shot prompting to significantly reduce hallucinations when extracting numerical experience requirements.",
+      'Under the hood: hybrid RAG search combining pgvector embeddings with structured filters, a LangGraph coaching agent that maintains context across sessions, and tiered model routing that cut inference costs by 84 percent without degrading output quality. The frontend renders agent state transparently, so users always know what the system is doing and why. The lesson this project taught me: in AI products, the model is 20 percent of the work; reliability, cost, and interface trust are the other 80.',
   },
   {
     id: 'p4',
-    title: 'Institutional Fintech Dashboard', // 修改標題，聽起來更專業
-    // 優化：強調 "Robustness" (穩健性) 與 "Compliance" (合規/精確)
+    title: 'Institutional Fintech Dashboard',
     description:
-      'A robust financial visualization platform engineered for institutional data clarity. Focused on strict API contract adherence and high-performance rendering of complex banking datasets.',
+      'High-density financial visualization for institutional users, where API contract precision and rendering performance are non-negotiable. No AI here, deliberately: it demonstrates the frontend rigor that the AI projects are built on.',
     tags: ['React', 'TypeScript', 'Data Visualization', 'REST API'],
     image: getAssetUrl('images/f13-cover.webp'),
     banner: getAssetUrl('images/f13-cover.webp'),
@@ -310,7 +298,7 @@ export const PROJECTS_DATA: Project[] = [
     id: 'p-lucky-duck',
     title: 'Lucky Duck — Rewards Platform MVP',
     description:
-      'A clickable, mobile-first MVP concept for a consumer rewards & membership platform. Designed and front-end engineered end-to-end as an interactive prototype built around growth loops: acquisition → activation → engagement → retention.',
+      'A mobile-first MVP for a consumer rewards platform, designed and engineered end-to-end. The prototype is structured around measurable growth loops (acquisition, activation, retention) rather than static screens, so every interaction maps to a product hypothesis.',
     tags: ['Astro', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     image: getAssetUrl('images/lucky-duck-card.png'),
     banner: getAssetUrl('images/lucky-duck-card.png'),

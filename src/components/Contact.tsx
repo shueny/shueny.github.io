@@ -53,6 +53,17 @@ const Contact: React.FC = () => {
             {t.contact.linkedinProfile}
           </a>
         </div>
+
+        <p className="mt-10 text-sm text-stone-500">
+          <a
+            href="https://calendly.com/shuenyw/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:text-accent transition-colors duration-300"
+          >
+            {t.contact.bookCall}
+          </a>
+        </p>
       </div>
     </section>
   );
