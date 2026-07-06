@@ -475,6 +475,24 @@ export const translations: Record<Language, Translations> = {
             'Component-Driven UI Architecture',
           ],
         },
+        {
+          id: 'p-tomato',
+          title: 'Daily Tomato Todo',
+          description:
+            'A Vue 3 + Pinia daily planner where the todo list and the Pomodoro timer are one product, not two features. Swipeable day cards, a calendar hidden behind the header date, and a focus mode that takes over the whole screen on purpose.',
+          problem:
+            'Most todo apps treat time as a label and focus as an afterthought: tasks pile up in one endless list, and the Pomodoro timer lives in a corner you ignore. I wanted planning by day and focusing on one task to be the same motion, not two separate apps.',
+          solution:
+            'I structured the app around one card per day: swipe between days, tap any date in the collapsible calendar, and the add-task date chip follows whichever day you are looking at, so planning tomorrow needs zero extra taps. Pressing play on a task hands the entire screen to the focus overlay: countdown ring, task name, pause and stop. Nothing else is reachable, deliberately.',
+          techDeepDive:
+            'The day carousel is plain CSS scroll-snap, zero dependencies, with scroll position synced to the header date, day pills and calendar selection through a single Pinia store. Calendar cells derive status dots (open, overdue, all done) from the same store. The Pomodoro is a state machine (idle, focus, paused, break) rendered as a full-screen overlay with an SVG progress ring; blocking every other interaction during focus is the feature, not a limitation.',
+          features: [
+            'Day-Card Carousel (CSS Scroll Snap, Zero Dependencies)',
+            'Collapsible Calendar with Task-Status Dots',
+            'Date Chip That Follows the Day in View',
+            'Full-Screen Pomodoro Focus Overlay (25/5 & 50/10)',
+          ],
+        },
       ],
     },
     about: {
@@ -870,6 +888,24 @@ export const translations: Record<Language, Translations> = {
             'Komponentengetriebene UI-Architektur',
           ],
         },
+        {
+          id: 'p-tomato',
+          title: 'Daily Tomato Todo',
+          description:
+            'Ein Vue-3-Tagesplaner mit Pinia, bei dem Todo-Liste und Pomodoro-Timer ein Produkt sind, nicht zwei Features. Wischbare Tageskarten, ein hinter dem Kopfzeilendatum verborgener Kalender und ein Fokusmodus, der bewusst den ganzen Bildschirm übernimmt.',
+          problem:
+            'Die meisten Todo-Apps behandeln Zeit als Label und Fokus als Nebensache: Aufgaben stapeln sich in einer endlosen Liste, und der Pomodoro-Timer lebt in einer Ecke, die man ignoriert. Ich wollte, dass Tagesplanung und Fokussieren auf eine Aufgabe dieselbe Bewegung sind, nicht zwei getrennte Apps.',
+          solution:
+            'Ich habe die App um eine Karte pro Tag strukturiert: zwischen Tagen wischen, jedes Datum im ausklappbaren Kalender antippen, und der Datums-Chip beim Anlegen folgt dem gerade sichtbaren Tag, sodass Planen für morgen keinen zusätzlichen Tap braucht. Ein Druck auf Play übergibt den ganzen Bildschirm an das Fokus-Overlay: Countdown-Ring, Aufgabenname, Pause und Stopp. Alles andere ist bewusst unerreichbar.',
+          techDeepDive:
+            'Das Tageskarussell ist reines CSS Scroll-Snap ohne Abhängigkeiten; die Scroll-Position ist über einen einzigen Pinia-Store mit Kopfzeilendatum, Tages-Pills und Kalenderauswahl synchronisiert. Kalenderzellen leiten Status-Punkte (offen, überfällig, alles erledigt) aus demselben Store ab. Der Pomodoro ist eine State Machine (idle, focus, paused, break) als Vollbild-Overlay mit SVG-Fortschrittsring; dass während des Fokus jede andere Interaktion blockiert ist, ist das Feature, keine Einschränkung.',
+          features: [
+            'Tageskarten-Karussell (CSS Scroll-Snap, ohne Abhängigkeiten)',
+            'Ausklappbarer Kalender mit Status-Punkten',
+            'Datums-Chip, der dem sichtbaren Tag folgt',
+            'Vollbild-Pomodoro-Fokus-Overlay (25/5 & 50/10)',
+          ],
+        },
       ],
     },
     about: {
@@ -1250,6 +1286,24 @@ export const translations: Record<Language, Translations> = {
             '嚴格的 Swagger/OpenAPI 整合',
             '即時資產估值更新',
             '組件驅動的 UI 架構',
+          ],
+        },
+        {
+          id: 'p-tomato',
+          title: 'Daily Tomato Todo',
+          description:
+            '一個 Vue 3 + Pinia 的每日計畫工具，待辦清單與蕃茄鐘是同一個產品，而不是兩個功能。可滑動的每日卡片、藏在標題日期後的行事曆，以及刻意接管全畫面的專注模式。',
+          problem:
+            '多數待辦 app 把時間當成標籤、把專注當成附加功能：任務堆在一條無盡的清單裡，蕃茄鐘則縮在你不會看的角落。我希望「按天計畫」和「專注做一件事」是同一個動作，而不是兩個分開的 app。',
+          solution:
+            '我以「一天一張卡」為核心結構：左右滑動切換日子、在可收合的行事曆點任何一天，而新增任務的日期 chip 會跟著你正在看的那天，所以規劃明天完全不用多點一下。按下任務的播放鍵後，整個畫面交給專注遮罩：倒數進度環、任務名稱、暫停與停止。其他一切刻意碰不到。',
+          techDeepDive:
+            '每日卡片輪播用純 CSS scroll-snap 實作、零依賴，捲動位置透過單一 Pinia store 與標題日期、日子膠囊、行事曆選取保持同步。行事曆格子的狀態圓點（未完成、逾期、全部完成）也從同一個 store 推導。蕃茄鐘是一個狀態機（idle、focus、paused、break），以全畫面遮罩加 SVG 進度環呈現；專注期間封鎖所有其他操作是功能，不是限制。',
+          features: [
+            '每日卡片輪播（CSS scroll-snap、零依賴）',
+            '可收合行事曆與任務狀態圓點',
+            '跟著檢視日的新增日期 chip',
+            '全畫面蕃茄鐘專注遮罩（25/5 與 50/10）',
           ],
         },
       ],

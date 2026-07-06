@@ -319,6 +319,31 @@ export const PROJECTS_DATA: Project[] = [
     techDeepDive:
       'Built as an Astro static page hosting a React island (mounted client:only to read the live theme with no flash). The interactive demo is a self-contained screen state machine animated with Framer Motion, driven by a single Palette abstraction so light/dark stay in lockstep. No backend coupling — the handoff for payments, credits and the odds engine stays clean.',
   },
+  {
+    id: 'p-tomato',
+    title: 'Daily Tomato Todo',
+    description:
+      'A Vue 3 + Pinia daily planner where the todo list and the Pomodoro timer are one product, not two features. Swipeable day cards, a calendar hidden behind the header date, and a focus mode that takes over the whole screen on purpose.',
+    tags: ['Vue 3', 'Pinia', 'CSS Scroll Snap', 'PWA'],
+    image: getAssetUrl('images/tomato-todo-cover.svg'),
+    banner: getAssetUrl('images/tomato-todo-cover.svg'),
+    link: '/daily-tomato-todo',
+    visualDescription:
+      'Interactive phone mockup: day-card carousel, collapsible calendar and full-screen Pomodoro focus overlay.',
+    category: 'frontend',
+    problem:
+      'Most todo apps treat time as a label and focus as an afterthought: tasks pile up in one endless list, and the Pomodoro timer lives in a corner you ignore. I wanted planning by day and focusing on one task to be the same motion, not two separate apps.',
+    solution:
+      'I structured the app around one card per day: swipe between days, tap any date in the collapsible calendar, and the add-task date chip follows whichever day you are looking at, so planning tomorrow needs zero extra taps. Pressing play on a task hands the entire screen to the focus overlay: countdown ring, task name, pause and stop. Nothing else is reachable, deliberately.',
+    techDeepDive:
+      'The day carousel is plain CSS scroll-snap, zero dependencies, with scroll position synced to the header date, day pills and calendar selection through a single Pinia store. Calendar cells derive status dots (open, overdue, all done) from the same store. The Pomodoro is a state machine (idle, focus, paused, break) rendered as a full-screen overlay with an SVG progress ring; blocking every other interaction during focus is the feature, not a limitation.',
+    features: [
+      'Day-Card Carousel (CSS Scroll Snap, Zero Dependencies)',
+      'Collapsible Calendar with Task-Status Dots',
+      'Date Chip That Follows the Day in View',
+      'Full-Screen Pomodoro Focus Overlay (25/5 & 50/10)',
+    ],
+  },
 ];
 
 export const ANALYSIS_REPORT = [

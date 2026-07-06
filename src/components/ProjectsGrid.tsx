@@ -77,6 +77,23 @@ const getProjectIcon = (id: string) => {
           />
         </svg>
       );
+    case 'p-tomato': // Pomodoro timer / clock
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 mx-auto"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      );
     case 'p-lucky-duck': // Rewards / gift
       return (
         <svg
@@ -161,6 +178,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const { t } = useLanguage();
   const [imgError, setImgError] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
+  const imgRef = React.useRef<HTMLImageElement>(null);
   // Use banner if available, otherwise fall back to image
   const bannerImage = project.banner || project.image;
   const showImage = bannerImage && !imgError;
@@ -174,6 +192,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     setImgError(true);
     setImgLoading(false);
   };
+
+  // With client:visible hydration the browser often finishes loading the
+  // server-rendered <img> before React attaches onLoad, so the event never
+  // fires and the skeleton sticks. Sync from the DOM state on mount.
+  React.useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      if (img.naturalWidth > 0) {
+        setImgLoading(false);
+      } else {
+        setImgError(true);
+        setImgLoading(false);
+      }
+    }
+  }, []);
 
   return (
     <div
@@ -192,6 +225,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
             <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
             <img
+              ref={imgRef}
               src={bannerImage}
               alt={`${project.title} banner`}
               width={800}

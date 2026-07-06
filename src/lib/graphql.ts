@@ -89,44 +89,56 @@ export const getPlanningAnimes = async () => {
     }
   `;
 
-  const response = await fetch(graphqlAPI, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      query: query,
-      variables: {
-        season: season,
-        seasonYear: seasonYear,
-        nextSeason: nextSeason,
-        nextYear: nextYear,
-        latestAiringStart: getUnixTime(subDays(new Date(), 1)),
-        latestAiringEnd: getUnixTime(new Date()),
-        futureAiringStart: getUnixTime(new Date()),
-        futureAiringEnd: getUnixTime(addDays(new Date(), 1)),
+  // AniList is a build-time dependency for a hobby page; if it is down or
+  // unreachable the whole static build must not fail with it.
+  try {
+    const response = await fetch(graphqlAPI, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
-    }),
-  });
+      body: JSON.stringify({
+        query: query,
+        variables: {
+          season: season,
+          seasonYear: seasonYear,
+          nextSeason: nextSeason,
+          nextYear: nextYear,
+          latestAiringStart: getUnixTime(subDays(new Date(), 1)),
+          latestAiringEnd: getUnixTime(new Date()),
+          futureAiringStart: getUnixTime(new Date()),
+          futureAiringEnd: getUnixTime(addDays(new Date(), 1)),
+        },
+      }),
+    });
 
-  const { data } = await response.json();
+    const { data } = await response.json();
 
-  const trending: Media[] = data.trending.media;
-  const upcomingSeason: Media[] = data.nextSeason.media;
+    const trending: Media[] = data.trending.media;
+    const upcomingSeason: Media[] = data.nextSeason.media;
 
-  const latestAiring: Airing[] = data?.latestAiring?.airingSchedules.filter(
-    (airing: Airing) => airing.media.isAdult == false
-  );
+    const latestAiring: Airing[] = data?.latestAiring?.airingSchedules.filter(
+      (airing: Airing) => airing.media.isAdult == false
+    );
 
-  const futureAiring: Airing[] = data?.futureAiring?.airingSchedules.filter(
-    (airing: Airing) => airing.media.isAdult == false
-  );
+    const futureAiring: Airing[] = data?.futureAiring?.airingSchedules.filter(
+      (airing: Airing) => airing.media.isAdult == false
+    );
 
-  return {
-    trending,
-    upcomingSeason,
-    latestAiring,
-    futureAiring,
-  };
+    return {
+      trending,
+      upcomingSeason,
+      latestAiring,
+      futureAiring,
+    };
+  } catch (error) {
+    console.warn("[animes] AniList API unavailable, rendering empty lists:", error);
+    return {
+      trending: [] as Media[],
+      upcomingSeason: [] as Media[],
+      latestAiring: [] as Airing[],
+      futureAiring: [] as Airing[],
+    };
+  }
 };
