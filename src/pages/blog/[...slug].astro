@@ -1,8 +1,9 @@
 ---
 import BlogPostLayout from '@/layouts/blog-post.astro';
 import BlogLanguageSwitcher from '@/components/BlogLanguageSwitcher';
-import "@/styles/globals.css"; 
+import "@/styles/globals.css";
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { MULTILINGUAL_POSTS } from '@/lib/multilingual-posts';
 
 export async function getStaticPaths() {
     const posts = await getCollection('blog');
@@ -16,64 +17,6 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await post.render();
-
-// Map of multilingual posts
-const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string; de?: string }> = {
-  'mobile-pagespeed-optimizations': {
-    zh: 'mobile-pagespeed-optimizations-zh',
-    en: 'mobile-pagespeed-optimizations',
-  },
-  'mobile-pagespeed-optimizations-zh': {
-    zh: 'mobile-pagespeed-optimizations-zh',
-    en: 'mobile-pagespeed-optimizations',
-  },
-  'from-spa-to-astro-islands': {
-    zh: 'from-spa-to-astro-islands',
-    en: 'from-spa-to-astro-islands-en',
-  },
-  'from-spa-to-astro-islands-en': {
-    zh: 'from-spa-to-astro-islands',
-    en: 'from-spa-to-astro-islands-en',
-  },
-  'local-chat': {
-    zh: 'local-chat-zh',
-    en: 'local-chat',
-  },
-  'local-chat-zh': {
-    zh: 'local-chat-zh',
-    en: 'local-chat',
-  },
-  'astro-islands-lighthouse-optimization': {
-    en: 'astro-islands-lighthouse-optimization',
-    zh: 'astro-islands-lighthouse-optimization-zh',
-    de: 'astro-islands-lighthouse-optimization-de',
-  },
-  'astro-islands-lighthouse-optimization-zh': {
-    en: 'astro-islands-lighthouse-optimization',
-    zh: 'astro-islands-lighthouse-optimization-zh',
-    de: 'astro-islands-lighthouse-optimization-de',
-  },
-  'astro-islands-lighthouse-optimization-de': {
-    en: 'astro-islands-lighthouse-optimization',
-    zh: 'astro-islands-lighthouse-optimization-zh',
-    de: 'astro-islands-lighthouse-optimization-de',
-  },
-  'lucky-duck-rewards-platform': {
-    en: 'lucky-duck-rewards-platform',
-    zh: 'lucky-duck-rewards-platform-zh',
-    de: 'lucky-duck-rewards-platform-de',
-  },
-  'lucky-duck-rewards-platform-zh': {
-    en: 'lucky-duck-rewards-platform',
-    zh: 'lucky-duck-rewards-platform-zh',
-    de: 'lucky-duck-rewards-platform-de',
-  },
-  'lucky-duck-rewards-platform-de': {
-    en: 'lucky-duck-rewards-platform',
-    zh: 'lucky-duck-rewards-platform-zh',
-    de: 'lucky-duck-rewards-platform-de',
-  },
-};
 
 const slug = post.slug;
 const isMultilingual = MULTILINGUAL_POSTS[slug] !== undefined;
