@@ -63,6 +63,21 @@ const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string; de?: string
     zh: 'daily-tomato-todo-zh',
     de: 'daily-tomato-todo-de',
   },
+  'seo-content-prioritization-ai-search': {
+    en: 'seo-content-prioritization-ai-search',
+    zh: 'seo-content-prioritization-ai-search-zh',
+    de: 'seo-content-prioritization-ai-search-de',
+  },
+  'seo-content-prioritization-ai-search-zh': {
+    en: 'seo-content-prioritization-ai-search',
+    zh: 'seo-content-prioritization-ai-search-zh',
+    de: 'seo-content-prioritization-ai-search-de',
+  },
+  'seo-content-prioritization-ai-search-de': {
+    en: 'seo-content-prioritization-ai-search',
+    zh: 'seo-content-prioritization-ai-search-zh',
+    de: 'seo-content-prioritization-ai-search-de',
+  },
 };
 
 const BlogLanguageSwitcherContent: React.FC<BlogLanguageSwitcherProps> = ({
