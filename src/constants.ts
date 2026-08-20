@@ -86,6 +86,22 @@ export const SPECIAL_EXPERIENCE_DATA: SpecialExperience[] = [
 
 export const EXPERIENCE_DATA: Experience[] = [
   {
+    id: 'exp0',
+    role: 'Independent Frontend & AI Engineer',
+    company: 'Freelance & Independent Products',
+    period: 'Mar 2025 - Present',
+    description:
+      'Client engagements as lead frontend engineer on long-running enterprise and research platforms, alongside my own AI products shipped end to end.',
+    achievements: [
+      'DC Keeper (data-centre asset management): lead frontend on a two-phase build scoped at ~289 person-days across 9 modules and 284 screens. Set the architecture — API-first boundaries, TanStack Query for server state, zustand for UI state, RBAC via context — and a shared component library that every module composes from.',
+      'Built a reusable three-stage approval flow (initiator, reviewer, optional executive sign-off) and a four-role RBAC layer with field-level amount masking, so permissions and audit trails are defined once instead of re-implemented per module.',
+      'Toxicology research platform for a university research team: Nuxt 3 application for spectral analysis — Plotly mass-spectrum visualization, molecular similarity heatmaps, chemical structure rendering, and one-click PDF/Word report export from live analysis state.',
+      'Pilotfit: designed and shipped a full-stack AI job-search platform solo, running with real beta users. Hybrid RAG over pgvector, a LangGraph agent with cross-session memory, and tiered model routing that cut inference cost by 84% without degrading output.',
+      'Shipped independent products end to end: Lucky Duck rewards-platform MVP (design system plus full prototype) and Daily Tomato Todo (Vue 3 + Pinia planner).',
+      'Rebuilt this site from a client-rendered SPA into Astro islands with partial hydration, self-hosted font subsets, and a trilingual blog — and wrote up the performance work publicly.',
+    ],
+  },
+  {
     id: 'exp1',
     role: 'Senior Front-End Engineer',
     company: 'VicOne (Trend Micro)',
@@ -343,6 +359,86 @@ export const PROJECTS_DATA: Project[] = [
       'Date Chip That Follows the Day in View',
       'Full-Screen Pomodoro Focus Overlay (25/5 & 50/10)',
     ],
+  },
+  {
+    id: 'p-dc-keeper',
+    title: 'DC Keeper — Data-Centre Asset Management',
+    description:
+      'Lead frontend on a client platform for managing data-centre inventory: 9 modules, 284 screens, four permission roles, and every write operation routed through a shared approval flow. The work here is architecture, not screens — decide once, compose everywhere.',
+    tags: [
+      'React 18',
+      'TanStack Query',
+      'zustand',
+      'RBAC',
+      'Design System',
+      'i18next',
+    ],
+    image: getAssetUrl('images/dc-keeper-cover.svg'),
+    banner: getAssetUrl('images/dc-keeper-cover.svg'),
+    visualDescription:
+      'Rack elevation view alongside a three-stage approval flow panel with role-based amount masking.',
+    category: 'frontend',
+    problem:
+      'A build this size fails by duplication, not by difficulty. Nine modules each needing CRUD, batch import, approvals, permissions and state pages is roughly 284 screens — and if every module solves those problems in its own way, the codebase becomes nine codebases. The real risk was not any single feature; it was the second engineer joining and having no single way to build a page.',
+    solution:
+      'I set the architecture first and made it non-negotiable. API-first boundaries keep business logic on the server, so the frontend stays a thin, testable layer. Server state goes through TanStack Query, global UI state through zustand, permissions through a context guard — one home per concern. Then I built the shared component library every module composes from, and a documented "golden path" for how a standard page is assembled, so new modules are wiring, not invention.',
+    features: [
+      'Reusable three-stage approval flow (initiator → reviewer → optional executive)',
+      'Four-role RBAC with module-level access and field-level amount masking',
+      'Batch .xlsx import as a three-step stepper with per-cell error reporting',
+      'Shared component library plus a live showcase page for every primitive',
+    ],
+    techDeepDive:
+      'The decisive calls were about boundaries. The vendor admin template arrived with Redux-Saga wired through everything; I froze it rather than extending it, and routed all new data flow through TanStack Query so cache invalidation after a mutation is declarative instead of hand-managed. Approvals are a single component driven by config, not a per-module reimplementation, which is what makes the audit trail consistent. A mock API layer (axios-mock-adapter) let the frontend be built and tested against the agreed contract before the backend existed — the schedule depended on those two tracks not blocking each other.',
+  },
+  {
+    id: 'p-toxintel',
+    title: 'Toxicology Research Platform',
+    description:
+      'A Nuxt 3 analysis platform built for a university toxicology research team: mass-spectrum visualization, molecular similarity search, and reports that export straight out of a live analysis. Scientific tooling has a different bar — a plausible-looking chart is worse than no chart.',
+    tags: ['Nuxt 3', 'Vue 3', 'Plotly.js', 'Data Visualization', 'Vitest', 'Playwright'],
+    image: getAssetUrl('images/toxintel-cover.svg'),
+    banner: getAssetUrl('images/toxintel-cover.svg'),
+    visualDescription:
+      'Mass spectrum with a flagged peak, rendered molecular structure, and a similarity heatmap strip.',
+    category: 'frontend',
+    problem:
+      'Researchers were reading spectral results in one tool, comparing candidate molecules in another, and rebuilding the write-up by hand in a third. The analysis was not the bottleneck — moving between the analysis and the document was. And in this domain the interface carries real risk: if the UI implies more certainty than the data supports, it does damage that a prettier chart cannot undo.',
+    solution:
+      'I built the analysis and the report as one continuous surface. Spectra render interactively with Plotly, candidate matches surface as a similarity heatmap and a comparison table, chemical structures draw from SMILES notation in the browser, and the finished analysis exports to PDF or Word carrying the same state the researcher was just looking at — no re-entry, no drift between screen and document.',
+    features: [
+      'Interactive mass-spectrum visualization with peak inspection',
+      'Molecular similarity heatmap and candidate comparison table',
+      'In-browser chemical structure rendering from SMILES',
+      'PDF and Word report export from live analysis state',
+    ],
+    techDeepDive:
+      'Nuxt 3 static generation keeps hosting simple for the client while the analysis views stay fully interactive. Data access is centralized in composables (one per resource) so every screen shares the same fetching, error and toast behaviour rather than each page inventing its own. Export was the subtle part: PDF and Word are generated from the same structured analysis state as the on-screen view, so the document cannot silently disagree with the chart. The suite runs Vitest for components and composables plus Playwright end-to-end — in research tooling, a silently wrong number is the failure mode worth testing against.',
+  },
+  {
+    id: 'p-portfolio',
+    title: 'This Site — From SPA to Astro Islands',
+    description:
+      'The site you are reading. Rebuilt from a fully client-rendered React SPA into Astro with islands architecture, then tuned until the mobile numbers stopped being embarrassing. Every optimization is written up in the blog, including the ones that did not work.',
+    tags: ['Astro', 'React', 'Islands Architecture', 'Core Web Vitals', 'i18n', 'three.js'],
+    image: getAssetUrl('images/portfolio-site-cover.svg'),
+    banner: getAssetUrl('images/portfolio-site-cover.svg'),
+    link: '/blog',
+    visualDescription:
+      'Static HTML shell with dashed hydration islands beside a panel of Lighthouse score rings.',
+    category: 'frontend',
+    problem:
+      'The previous version shipped the entire page as a React bundle: a hero that is pure text still cost a full hydration pass before anything rendered. On desktop the damage was invisible. On a mid-range phone it was the whole first impression — and a frontend engineer whose own portfolio has bad Core Web Vitals has an argument problem.',
+    solution:
+      'I moved the site to Astro and re-drew the line between static and interactive. The hero renders as plain HTML with zero JavaScript; each interactive region became its own island with a hydration directive matched to how soon it actually matters — client:load for navigation, client:visible for sections below the fold, client:idle for anything low-priority. Language switching in the static hero is a sub-1KB inline script rather than a reason to hydrate.',
+    features: [
+      'Per-component hydration (client:load / client:visible / client:idle)',
+      'Self-hosted font subsets, replacing render-blocking CDN requests',
+      'Trilingual blog (EN/DE/ZH) with per-language filtering and JSON-LD',
+      'WebP image pipeline, service-worker caching, critical CSS inlining',
+    ],
+    techDeepDive:
+      'Islands are the headline, but the mobile score came from the unglamorous parts: self-hosting Outfit and Playfair Display as latin subsets to remove render-blocking CDN round-trips, inlining critical hero CSS to stop layout shift, splitting the React vendor chunk so islands do not drag in each other\'s dependencies, and converting the image set to WebP. The three.js hero accent is deliberately the strictest case — lazy-loaded, desktop-only, and disabled under prefers-reduced-motion, so the decorative layer can never cost a mobile visitor anything.',
   },
 ];
 

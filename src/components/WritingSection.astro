@@ -1,0 +1,226 @@
+---
+/**
+ * WritingSection.astro — latest blog posts on the home page.
+ *
+ * Rendered statically (no hydration) so the section costs zero JS beyond a tiny
+ * inline script. The three most recent posts per language are all emitted, and
+ * CSS hides the ones that do not match the active locale — the same approach the
+ * blog index uses. Language switching is driven by the `languagechange` event the
+ * Navbar island dispatches, matching HeroStatic.
+ */
+import { getPosts } from '@/lib/fetchers';
+
+const POSTS_PER_LANG = 3;
+const LANGS = ['en', 'zh', 'de'] as const;
+
+const allPosts = await getPosts();
+const published = allPosts.filter(
+  (post) => !(import.meta.env.PROD && post.data.draft)
+);
+
+// getPosts() already sorts newest first, so taking the head of each group is enough.
+const latestPerLang = LANGS.flatMap((lang) =>
+  published.filter((post) => post.data.lang === lang).slice(0, POSTS_PER_LANG)
+);
+
+// Section copy lives here rather than in the React i18n context: this component
+// never hydrates, so it carries its own tiny dictionary (see the inline script).
+const writingI18n = {
+  EN: {
+    label: 'From the Blog',
+    titlePart1: 'Writing',
+    titlePart2: '& Notes',
+    subtitle:
+      'Build logs and technical notes — performance work with the numbers attached, case studies from shipped products, and what AI search changes about content.',
+    viewAll: 'View all posts',
+  },
+  DE: {
+    label: 'Aus dem Blog',
+    titlePart1: 'Schreiben',
+    titlePart2: '& Notizen',
+    subtitle:
+      'Build-Logs und technische Notizen — Performance-Arbeit mit den zugehörigen Zahlen, Fallstudien ausgelieferter Produkte und was die KI-Suche an Content verändert.',
+    viewAll: 'Alle Beiträge ansehen',
+  },
+  ZH: {
+    label: '來自部落格',
+    titlePart1: '技術寫作',
+    titlePart2: '與筆記',
+    subtitle:
+      '開發紀錄與技術筆記——附上實際數字的效能優化、已上線產品的案例研究，以及 AI 搜尋改變了什麼。',
+    viewAll: '看所有文章',
+  },
+};
+
+const t = writingI18n.EN; // Default language for SSG
+---
+
+<section
+  id="writing"
+  class="py-24 bg-surface border-b border-orange-100"
+>
+  <div class="container mx-auto px-6 md:px-12">
+    <div class="max-w-3xl mb-16">
+      <span
+        class="uppercase tracking-widest text-xs font-bold block mb-4"
+        style="color: hsl(var(--accent))"
+        data-i18n-writing="writing.label">{t.label}</span
+      >
+      <h2
+        class="text-4xl md:text-6xl font-bold text-custom-primary tracking-tight mb-6"
+      >
+        <span data-i18n-writing="writing.titlePart1">{t.titlePart1}</span>{' '}
+        <span
+          class="font-serif italic font-normal"
+          style="color: hsl(var(--accent))"
+          data-i18n-writing="writing.titlePart2">{t.titlePart2}</span
+        >
+      </h2>
+      <p
+        class="text-custom-secondary text-lg font-light leading-relaxed"
+        data-i18n-writing="writing.subtitle"
+      >
+        {t.subtitle}
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 border-t border-custom-muted/40 pt-12"
+    >
+      {
+        latestPerLang.map((post) => (
+          <a
+            href={`/blog/${post.slug}`}
+            data-writing-card
+            data-lang={post.data.lang}
+            class="group flex flex-col h-full"
+          >
+            {post.data.cover && (
+              <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 bg-stone-100 shadow-sm border border-stone-100/50">
+                <img
+                  src={post.data.cover}
+                  alt={post.data.title}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
+            )}
+
+            <div class="flex flex-col flex-grow">
+              <div class="flex items-center gap-3 mb-3 text-xs font-medium uppercase tracking-wider text-custom-secondary/60">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </time>
+                {post.data.category && (
+                  <>
+                    <span class="w-1 h-1 rounded-full bg-custom-accent/60" />
+                    <span class="text-custom-accent">{post.data.category}</span>
+                  </>
+                )}
+              </div>
+
+              <h3 class="text-2xl font-serif font-bold text-custom-primary mb-3 group-hover:text-custom-accent transition-colors leading-tight">
+                {post.data.title}
+              </h3>
+
+              {post.data.description && (
+                <p class="text-custom-secondary font-light leading-relaxed line-clamp-3 text-sm">
+                  {post.data.description}
+                </p>
+              )}
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 flex justify-center">
+      <a
+        href="/blog"
+        class="group inline-flex items-center gap-2 px-8 py-4 border-2 border-stone-300 text-custom-primary text-xs font-bold uppercase tracking-wider hover:border-custom-accent hover:text-custom-accent hover:bg-custom-accent/5 transition-all duration-300 rounded-full bg-white"
+      >
+        <span data-i18n-writing="writing.viewAll">{t.viewAll}</span>
+        <span
+          class="transform group-hover:translate-x-1 transition-transform"
+          aria-hidden="true">&rarr;</span
+        >
+      </a>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* Show only the posts matching the active locale. Mirrors the blog index. */
+  html[data-writing-lang='en'] [data-writing-card]:not([data-lang='en']),
+  html[data-writing-lang='zh'] [data-writing-card]:not([data-lang='zh']),
+  html[data-writing-lang='de'] [data-writing-card]:not([data-lang='de']) {
+    display: none !important;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var writingI18n = {
+      EN: {
+        'writing.label': 'From the Blog',
+        'writing.titlePart1': 'Writing',
+        'writing.titlePart2': '& Notes',
+        'writing.subtitle':
+          'Build logs and technical notes — performance work with the numbers attached, case studies from shipped products, and what AI search changes about content.',
+        'writing.viewAll': 'View all posts',
+      },
+      DE: {
+        'writing.label': 'Aus dem Blog',
+        'writing.titlePart1': 'Schreiben',
+        'writing.titlePart2': '& Notizen',
+        'writing.subtitle':
+          'Build-Logs und technische Notizen — Performance-Arbeit mit den zugehörigen Zahlen, Fallstudien ausgelieferter Produkte und was die KI-Suche an Content verändert.',
+        'writing.viewAll': 'Alle Beiträge ansehen',
+      },
+      ZH: {
+        'writing.label': '來自部落格',
+        'writing.titlePart1': '技術寫作',
+        'writing.titlePart2': '與筆記',
+        'writing.subtitle':
+          '開發紀錄與技術筆記——附上實際數字的效能優化、已上線產品的案例研究，以及 AI 搜尋改變了什麼。',
+        'writing.viewAll': '看所有文章',
+      },
+    };
+
+    function applyWriting(lang) {
+      var dict = writingI18n[lang];
+      if (!dict) return;
+
+      var els = document.querySelectorAll('[data-i18n-writing]');
+      for (var i = 0; i < els.length; i++) {
+        var key = els[i].getAttribute('data-i18n-writing');
+        if (dict[key] !== undefined) els[i].textContent = dict[key];
+      }
+
+      // Fall back to showing every card if nothing exists in the active locale,
+      // so the section can never render empty.
+      var lower = lang.toLowerCase();
+      var cards = document.querySelectorAll('[data-writing-card]');
+      var hasMatch = Array.prototype.some.call(cards, function (card) {
+        return card.getAttribute('data-lang') === lower;
+      });
+      if (hasMatch) {
+        document.documentElement.setAttribute('data-writing-lang', lower);
+      } else {
+        document.documentElement.removeAttribute('data-writing-lang');
+      }
+    }
+
+    var saved = localStorage.getItem('language');
+    applyWriting(saved && writingI18n[saved] ? saved : 'EN');
+
+    window.addEventListener('languagechange', function (e) {
+      if (e.detail) applyWriting(e.detail);
+    });
+  })();
+</script>

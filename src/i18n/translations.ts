@@ -183,6 +183,14 @@ export interface Translations {
       features: string[];
     }>;
   };
+  writing: {
+    label: string; // "From the blog"
+    titlePart1: string; // "Writing"
+    titlePart2: string; // "& Notes" (serif italic accent)
+    subtitle: string;
+    readPost: string;
+    viewAll: string;
+  };
   common: {
     downloadResume: string;
     changeLanguage: string;
@@ -218,7 +226,7 @@ export const translations: Record<Language, Translations> = {
       subtitle:
         'Frontend architecture that scales. AI features that ship.',
       description:
-        'Ten years of React and TypeScript across automotive cybersecurity, B2B SaaS, and e-commerce. Most recently at VicOne (Trend Micro), building security platforms as sole frontend engineer. Now applying that same rigor to LLM products: RAG pipelines, agent workflows, and interfaces people trust.',
+        'Ten years of React and TypeScript across automotive cybersecurity, B2B SaaS, and e-commerce, including four years at VicOne (Trend Micro) as sole frontend engineer. Since 2025, independent: lead frontend on enterprise platforms, and LLM products shipped end to end — RAG pipelines, agent workflows, and interfaces people trust.',
       ctaPrimary: 'View Projects',
       ctaSecondary: 'Download Resume',
       scroll: 'Scroll',
@@ -263,7 +271,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Impact',
       titlePart2: 'Dashboard',
       subtitle:
-        'Numbers from real production systems at VicOne, Synttro, and Citiesocial, not estimates from side projects.',
+        'Numbers from real production systems at VicOne, Synttro, and Citiesocial, and from client platforms shipped independently since 2025 — not estimates from side projects.',
 
       // Metric 1
       impact1Value: '50%',
@@ -300,9 +308,25 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Professional',
       titlePart2: 'Trajectory',
       description:
-        'Ten years of frontend engineering across e-commerce, B2B SaaS, and automotive cybersecurity, with three years of design practice before that. I have seen jQuery spaghetti become React ecosystems, and led teams through the migration.',
+        'Ten years of frontend engineering across e-commerce, B2B SaaS, and automotive cybersecurity, with three years of design practice before that, and independent client work since 2025. I have seen jQuery spaghetti become React ecosystems, and led teams through the migration.',
       keyAchievements: 'Key Achievements',
       items: [
+        {
+          id: 'exp0',
+          role: 'Independent Frontend & AI Engineer',
+          company: 'Freelance & Independent Products',
+          period: 'Mar 2025 - Present',
+          description:
+            'Client engagements as lead frontend engineer on long-running enterprise and research platforms, alongside my own AI products shipped end to end.',
+          achievements: [
+            'DC Keeper (data-centre asset management): lead frontend on a two-phase build scoped at ~289 person-days across 9 modules and 284 screens. Set the architecture — API-first boundaries, TanStack Query, zustand, RBAC via context — plus the shared component library every module composes from.',
+            'Built a reusable three-stage approval flow and four-role RBAC with field-level amount masking, so permissions and audit trails are defined once instead of re-implemented per module.',
+            'Toxicology research platform for a university research team: Nuxt 3 spectral analysis with Plotly mass-spectrum visualization, molecular similarity heatmaps, in-browser structure rendering, and PDF/Word report export from live analysis state.',
+            'Pilotfit: shipped a full-stack AI job-search platform solo, running with real beta users. Hybrid RAG over pgvector, a LangGraph agent with cross-session memory, and tiered model routing that cut inference cost by 84%.',
+            'Shipped independent products end to end: Lucky Duck rewards MVP and Daily Tomato Todo (Vue 3 + Pinia).',
+            'Rebuilt this site from a client-rendered SPA into Astro islands with partial hydration, self-hosted fonts, and a trilingual blog.',
+          ],
+        },
         {
           id: 'exp1',
           role: 'Senior Front-End Engineer',
@@ -493,6 +517,60 @@ export const translations: Record<Language, Translations> = {
             'Full-Screen Pomodoro Focus Overlay (25/5 & 50/10)',
           ],
         },
+        {
+          id: 'p-dc-keeper',
+          title: 'DC Keeper — Data-Centre Asset Management',
+          description:
+            'Lead frontend on a client platform for managing data-centre inventory: 9 modules, 284 screens, four permission roles, and every write operation routed through a shared approval flow. The work here is architecture, not screens — decide once, compose everywhere.',
+          problem:
+            'A build this size fails by duplication, not by difficulty. Nine modules each needing CRUD, batch import, approvals, permissions and state pages is roughly 284 screens — and if every module solves those problems in its own way, the codebase becomes nine codebases. The real risk was not any single feature; it was the second engineer joining and having no single way to build a page.',
+          solution:
+            'I set the architecture first and made it non-negotiable. API-first boundaries keep business logic on the server, so the frontend stays a thin, testable layer. Server state goes through TanStack Query, global UI state through zustand, permissions through a context guard — one home per concern. Then I built the shared component library every module composes from, and a documented "golden path" for how a standard page is assembled, so new modules are wiring, not invention.',
+          techDeepDive:
+            'The decisive calls were about boundaries. The vendor admin template arrived with Redux-Saga wired through everything; I froze it rather than extending it, and routed all new data flow through TanStack Query so cache invalidation after a mutation is declarative instead of hand-managed. Approvals are a single component driven by config, not a per-module reimplementation, which is what makes the audit trail consistent. A mock API layer let the frontend be built and tested against the agreed contract before the backend existed — the schedule depended on those two tracks not blocking each other.',
+          features: [
+            'Reusable three-stage approval flow (initiator → reviewer → optional executive)',
+            'Four-role RBAC with module-level access and field-level amount masking',
+            'Batch .xlsx import as a three-step stepper with per-cell error reporting',
+            'Shared component library plus a live showcase page for every primitive',
+          ],
+        },
+        {
+          id: 'p-toxintel',
+          title: 'Toxicology Research Platform',
+          description:
+            'A Nuxt 3 analysis platform built for a university toxicology research team: mass-spectrum visualization, molecular similarity search, and reports that export straight out of a live analysis. Scientific tooling has a different bar — a plausible-looking chart is worse than no chart.',
+          problem:
+            'Researchers were reading spectral results in one tool, comparing candidate molecules in another, and rebuilding the write-up by hand in a third. The analysis was not the bottleneck — moving between the analysis and the document was. And in this domain the interface carries real risk: if the UI implies more certainty than the data supports, it does damage that a prettier chart cannot undo.',
+          solution:
+            'I built the analysis and the report as one continuous surface. Spectra render interactively with Plotly, candidate matches surface as a similarity heatmap and a comparison table, chemical structures draw from SMILES notation in the browser, and the finished analysis exports to PDF or Word carrying the same state the researcher was just looking at — no re-entry, no drift between screen and document.',
+          techDeepDive:
+            'Nuxt 3 static generation keeps hosting simple for the client while the analysis views stay fully interactive. Data access is centralized in composables (one per resource) so every screen shares the same fetching, error and toast behaviour rather than each page inventing its own. Export was the subtle part: PDF and Word are generated from the same structured analysis state as the on-screen view, so the document cannot silently disagree with the chart. The suite runs Vitest for components and composables plus Playwright end-to-end — in research tooling, a silently wrong number is the failure mode worth testing against.',
+          features: [
+            'Interactive mass-spectrum visualization with peak inspection',
+            'Molecular similarity heatmap and candidate comparison table',
+            'In-browser chemical structure rendering from SMILES',
+            'PDF and Word report export from live analysis state',
+          ],
+        },
+        {
+          id: 'p-portfolio',
+          title: 'This Site — From SPA to Astro Islands',
+          description:
+            'The site you are reading. Rebuilt from a fully client-rendered React SPA into Astro with islands architecture, then tuned until the mobile numbers stopped being embarrassing. Every optimization is written up in the blog, including the ones that did not work.',
+          problem:
+            'The previous version shipped the entire page as a React bundle: a hero that is pure text still cost a full hydration pass before anything rendered. On desktop the damage was invisible. On a mid-range phone it was the whole first impression — and a frontend engineer whose own portfolio has bad Core Web Vitals has an argument problem.',
+          solution:
+            'I moved the site to Astro and re-drew the line between static and interactive. The hero renders as plain HTML with zero JavaScript; each interactive region became its own island with a hydration directive matched to how soon it actually matters — client:load for navigation, client:visible for sections below the fold, client:idle for anything low-priority. Language switching in the static hero is a sub-1KB inline script rather than a reason to hydrate.',
+          techDeepDive:
+            'Islands are the headline, but the mobile score came from the unglamorous parts: self-hosting Outfit and Playfair Display as latin subsets to remove render-blocking CDN round-trips, inlining critical hero CSS to stop layout shift, splitting the React vendor chunk so islands do not drag in each other\'s dependencies, and converting the image set to WebP. The three.js hero accent is deliberately the strictest case — lazy-loaded, desktop-only, and disabled under prefers-reduced-motion, so the decorative layer can never cost a mobile visitor anything.',
+          features: [
+            'Per-component hydration (client:load / client:visible / client:idle)',
+            'Self-hosted font subsets, replacing render-blocking CDN requests',
+            'Trilingual blog (EN/DE/ZH) with per-language filtering and JSON-LD',
+            'WebP image pipeline, service-worker caching, critical CSS inlining',
+          ],
+        },
       ],
     },
     about: {
@@ -598,6 +676,15 @@ export const translations: Record<Language, Translations> = {
       checkOutLiveApp:
         'Check out the live application to see the performance optimizations in action.',
     },
+    writing: {
+      label: 'From the Blog',
+      titlePart1: 'Writing',
+      titlePart2: '& Notes',
+      subtitle:
+        'Build logs and technical notes — performance work with the numbers attached, case studies from shipped products, and what AI search changes about content.',
+      readPost: 'Read post',
+      viewAll: 'View all posts',
+    },
     common: {
       downloadResume: 'Download Resume',
       changeLanguage: 'Change Language',
@@ -631,7 +718,7 @@ export const translations: Record<Language, Translations> = {
       subtitle:
         'Frontend-Architektur, die skaliert. KI-Features, die live gehen.',
       description:
-        'Zehn Jahre React und TypeScript in Automotive-Cybersecurity, B2B-SaaS und E-Commerce. Zuletzt bei VicOne (Trend Micro) als alleiniger Frontend-Engineer für Security-Plattformen. Jetzt mit derselben Sorgfalt an LLM-Produkten: RAG-Pipelines, Agent-Workflows und Interfaces, denen Menschen vertrauen.',
+        'Zehn Jahre React und TypeScript in Automotive-Cybersecurity, B2B-SaaS und E-Commerce, davon vier Jahre bei VicOne (Trend Micro) als alleiniger Frontend-Engineer. Seit 2025 selbstständig: leitender Frontend-Engineer für Enterprise-Plattformen und LLM-Produkte von A bis Z — RAG-Pipelines, Agent-Workflows und Interfaces, denen Menschen vertrauen.',
       ctaPrimary: 'Projekte ansehen',
       ctaSecondary: 'Lebenslauf herunterladen',
       scroll: 'Scrollen',
@@ -676,7 +763,7 @@ export const translations: Record<Language, Translations> = {
       titlePart2: 'Kennzahlen',
 
       subtitle:
-        'Zahlen aus echten Produktivsystemen bei VicOne, Synttro und Citiesocial, keine Schätzungen aus Side-Projects.',
+        'Zahlen aus echten Produktivsystemen bei VicOne, Synttro und Citiesocial sowie aus Kundenplattformen, die ich seit 2025 selbstständig umgesetzt habe — keine Schätzungen aus Side-Projects.',
 
       // Metric 1: 50% Faster Time-to-Market
       impact1Value: '50%',
@@ -713,9 +800,25 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Professional',
       titlePart2: 'Trajectory',
       description:
-        'Zehn Jahre Frontend-Engineering in E-Commerce, B2B-SaaS und Automotive-Cybersecurity, davor drei Jahre Designpraxis. Ich habe erlebt, wie aus jQuery-Spaghetti React-Ökosysteme wurden, und Teams durch diese Migration geführt.',
+        'Zehn Jahre Frontend-Engineering in E-Commerce, B2B-SaaS und Automotive-Cybersecurity, davor drei Jahre Designpraxis, seit 2025 selbstständige Kundenprojekte. Ich habe erlebt, wie aus jQuery-Spaghetti React-Ökosysteme wurden, und Teams durch diese Migration geführt.',
       keyAchievements: 'Schlüsselerfolge',
       items: [
+        {
+          id: 'exp0',
+          role: 'Selbstständiger Frontend- & KI-Engineer',
+          company: 'Freelance & eigene Produkte',
+          period: 'Mär 2025 - heute',
+          description:
+            'Kundenprojekte als leitender Frontend-Engineer für langfristige Enterprise- und Forschungsplattformen, parallel dazu eigene KI-Produkte von A bis Z.',
+          achievements: [
+            'DC Keeper (Rechenzentrums-Assetverwaltung): leitender Frontend-Engineer für einen zweiphasigen Aufbau mit rund 289 Personentagen über 9 Module und 284 Screens. Architektur gesetzt — API-First-Grenzen, TanStack Query, zustand, RBAC per Context — plus die gemeinsame Komponentenbibliothek, aus der sich jedes Modul zusammensetzt.',
+            'Wiederverwendbaren dreistufigen Freigabe-Workflow und RBAC mit vier Rollen samt feldgenauer Betragsmaskierung gebaut, sodass Berechtigungen und Audit-Trails einmal definiert und nicht pro Modul neu implementiert werden.',
+            'Toxikologie-Forschungsplattform für ein universitäres Forschungsteam: Nuxt-3-Spektralanalyse mit Plotly-Massenspektren, Heatmaps zur molekularen Ähnlichkeit, Strukturdarstellung im Browser und PDF-/Word-Export direkt aus dem laufenden Analysezustand.',
+            'Pilotfit: eine Full-Stack-KI-Plattform für die Jobsuche im Alleingang umgesetzt, im Einsatz mit echten Beta-Nutzern. Hybrides RAG über pgvector, ein LangGraph-Agent mit sitzungsübergreifendem Gedächtnis und gestaffeltes Model-Routing, das die Inferenzkosten um 84% senkte.',
+            'Eigene Produkte vollständig ausgeliefert: Lucky Duck Rewards-MVP und Daily Tomato Todo (Vue 3 + Pinia).',
+            'Diese Website von einer clientseitig gerenderten React-SPA auf Astro Islands mit partieller Hydration, selbst gehosteten Fonts und dreisprachigem Blog umgebaut.',
+          ],
+        },
         {
           id: 'exp1',
           role: 'Senior Frontend-Entwickler',
@@ -906,6 +1009,60 @@ export const translations: Record<Language, Translations> = {
             'Vollbild-Pomodoro-Fokus-Overlay (25/5 & 50/10)',
           ],
         },
+        {
+          id: 'p-dc-keeper',
+          title: 'DC Keeper — Rechenzentrums-Assetverwaltung',
+          description:
+            'Leitender Frontend-Engineer für eine Kundenplattform zur Verwaltung von Rechenzentrums-Inventar: 9 Module, 284 Screens, vier Berechtigungsrollen, und jeder schreibende Vorgang läuft über einen gemeinsamen Freigabe-Workflow. Die Arbeit hier ist Architektur, nicht Screens — einmal entscheiden, überall zusammensetzen.',
+          problem:
+            'Ein Aufbau dieser Größe scheitert an Duplikation, nicht an Schwierigkeit. Neun Module, die jeweils CRUD, Massenimport, Freigaben, Berechtigungen und Zustandsseiten brauchen, ergeben rund 284 Screens — und wenn jedes Modul diese Probleme auf eigene Weise löst, werden aus einer Codebasis neun. Das eigentliche Risiko war kein einzelnes Feature, sondern der zweite Entwickler, der dazustößt und keinen einheitlichen Weg findet, eine Seite zu bauen.',
+          solution:
+            'Ich habe zuerst die Architektur gesetzt und sie verbindlich gemacht. API-First-Grenzen halten die Geschäftslogik auf dem Server, sodass das Frontend eine dünne, testbare Schicht bleibt. Serverdaten laufen über TanStack Query, globaler UI-Zustand über zustand, Berechtigungen über einen Context-Guard — ein Ort pro Belang. Darauf aufbauend die gemeinsame Komponentenbibliothek, aus der sich jedes Modul zusammensetzt, plus ein dokumentierter „Golden Path“ für den Aufbau einer Standardseite, sodass neue Module Verdrahtung sind und keine Neuerfindung.',
+          techDeepDive:
+            'Die entscheidenden Punkte waren Grenzen. Das Admin-Template des Anbieters hatte Redux-Saga überall verdrahtet; ich habe es eingefroren statt erweitert und allen neuen Datenfluss über TanStack Query geführt, sodass Cache-Invalidierung nach einer Mutation deklarativ statt handgesteuert ist. Freigaben sind eine einzige, konfigurationsgetriebene Komponente statt einer Neuimplementierung pro Modul — genau das macht den Audit-Trail konsistent. Eine Mock-API-Schicht erlaubte es, das Frontend gegen den vereinbarten Vertrag zu bauen und zu testen, bevor das Backend existierte; der Zeitplan hing daran, dass sich beide Stränge nicht blockieren.',
+          features: [
+            'Wiederverwendbarer dreistufiger Freigabe-Workflow (Einreicher → Prüfer → optionale Geschäftsleitung)',
+            'RBAC mit vier Rollen, Modulzugriff und feldgenauer Betragsmaskierung',
+            'Massenimport (.xlsx) als dreistufiger Stepper mit zellgenauer Fehlermeldung',
+            'Gemeinsame Komponentenbibliothek plus Live-Showcase für jedes Primitive',
+          ],
+        },
+        {
+          id: 'p-toxintel',
+          title: 'Toxikologie-Forschungsplattform',
+          description:
+            'Eine Nuxt-3-Analyseplattform für ein universitäres Toxikologie-Forschungsteam: Massenspektren-Visualisierung, Suche nach molekularer Ähnlichkeit und Berichte, die direkt aus der laufenden Analyse exportiert werden. Wissenschaftliche Werkzeuge haben einen anderen Maßstab — ein plausibel aussehendes Diagramm ist schlimmer als gar keines.',
+          problem:
+            'Forschende lasen Spektralergebnisse in einem Werkzeug, verglichen Kandidatenmoleküle in einem zweiten und bauten die Auswertung im dritten von Hand nach. Nicht die Analyse war der Engpass, sondern der Weg zwischen Analyse und Dokument. Und in dieser Domäne trägt das Interface echtes Risiko: Suggeriert die Oberfläche mehr Sicherheit, als die Daten hergeben, richtet sie Schaden an, den kein schöneres Diagramm ausgleicht.',
+          solution:
+            'Ich habe Analyse und Bericht als eine durchgehende Fläche gebaut. Spektren rendern interaktiv mit Plotly, Kandidatentreffer erscheinen als Ähnlichkeits-Heatmap und Vergleichstabelle, chemische Strukturen werden aus SMILES-Notation im Browser gezeichnet, und die fertige Analyse exportiert nach PDF oder Word — mit genau dem Zustand, den die Forschenden gerade vor sich hatten. Keine Neueingabe, keine Abweichung zwischen Bildschirm und Dokument.',
+          techDeepDive:
+            'Nuxt-3-Static-Generation hält das Hosting für den Kunden einfach, während die Analyseansichten voll interaktiv bleiben. Der Datenzugriff ist in Composables gebündelt (eines pro Ressource), sodass alle Screens dasselbe Verhalten für Laden, Fehler und Toasts teilen, statt dass jede Seite ihr eigenes erfindet. Der Export war der subtile Teil: PDF und Word entstehen aus demselben strukturierten Analysezustand wie die Bildschirmansicht, sodass das Dokument dem Diagramm nicht stillschweigend widersprechen kann. Getestet wird mit Vitest für Komponenten und Composables plus Playwright end-to-end — bei Forschungswerkzeugen ist die still falsche Zahl der Fehlerfall, gegen den sich Testen lohnt.',
+          features: [
+            'Interaktive Massenspektren-Visualisierung mit Peak-Inspektion',
+            'Heatmap zur molekularen Ähnlichkeit und Kandidaten-Vergleichstabelle',
+            'Chemische Strukturdarstellung aus SMILES im Browser',
+            'PDF- und Word-Export direkt aus dem laufenden Analysezustand',
+          ],
+        },
+        {
+          id: 'p-portfolio',
+          title: 'Diese Website — von der SPA zu Astro Islands',
+          description:
+            'Die Seite, die Sie gerade lesen. Von einer vollständig clientseitig gerenderten React-SPA auf Astro mit Islands-Architektur umgebaut und dann so lange optimiert, bis die Mobilwerte nicht mehr peinlich waren. Jede Optimierung ist im Blog dokumentiert, auch die, die nicht funktioniert haben.',
+          problem:
+            'Die Vorgängerversion lieferte die ganze Seite als React-Bundle aus: Ein Hero, der reiner Text ist, kostete trotzdem einen vollständigen Hydration-Durchlauf, bevor überhaupt etwas gerendert wurde. Auf dem Desktop war der Schaden unsichtbar. Auf einem Mittelklasse-Smartphone war er der gesamte erste Eindruck — und ein Frontend-Engineer, dessen eigenes Portfolio schlechte Core Web Vitals hat, hat ein Argumentationsproblem.',
+          solution:
+            'Ich bin auf Astro umgestiegen und habe die Grenze zwischen statisch und interaktiv neu gezogen. Der Hero rendert als reines HTML ohne JavaScript; jede interaktive Region wurde zu einer eigenen Island mit einer Hydration-Direktive, die dazu passt, wie schnell sie tatsächlich gebraucht wird — client:load für die Navigation, client:visible für Abschnitte unterhalb der Falz, client:idle für alles Nachrangige. Der Sprachwechsel im statischen Hero ist ein Inline-Skript unter 1 KB statt eines Grundes zu hydrieren.',
+          techDeepDive:
+            'Islands sind die Schlagzeile, aber der Mobilwert kam aus den unglamourösen Teilen: Outfit und Playfair Display als Latin-Subsets selbst hosten, um renderblockierende CDN-Roundtrips zu entfernen; kritisches Hero-CSS inline setzen, um Layout-Shift zu stoppen; den React-Vendor-Chunk aufteilen, damit Islands nicht die Abhängigkeiten der jeweils anderen mitziehen; und den Bildbestand auf WebP umstellen. Der three.js-Akzent im Hero ist bewusst der strengste Fall — lazy geladen, nur Desktop, deaktiviert bei prefers-reduced-motion —, damit die dekorative Ebene mobile Besucher niemals etwas kosten kann.',
+          features: [
+            'Hydration pro Komponente (client:load / client:visible / client:idle)',
+            'Selbst gehostete Font-Subsets statt renderblockierender CDN-Requests',
+            'Dreisprachiger Blog (EN/DE/ZH) mit Sprachfilter und JSON-LD',
+            'WebP-Bildpipeline, Service-Worker-Caching, kritisches CSS inline',
+          ],
+        },
       ],
     },
     about: {
@@ -1012,6 +1169,15 @@ export const translations: Record<Language, Translations> = {
       checkOutLiveApp:
         'Schauen Sie sich die Live-Anwendung an, um die Performance-Optimierungen in Aktion zu sehen.',
     },
+    writing: {
+      label: 'Aus dem Blog',
+      titlePart1: 'Schreiben',
+      titlePart2: '& Notizen',
+      subtitle:
+        'Build-Logs und technische Notizen — Performance-Arbeit mit den zugehörigen Zahlen, Fallstudien ausgelieferter Produkte und was die KI-Suche an Content verändert.',
+      readPost: 'Beitrag lesen',
+      viewAll: 'Alle Beiträge ansehen',
+    },
     common: {
       downloadResume: 'Lebenslauf herunterladen',
       changeLanguage: 'Sprache ändern',
@@ -1043,7 +1209,7 @@ export const translations: Record<Language, Translations> = {
       title3Suffix: '實踐者',
       subtitle: '可擴展的前端架構。能真正上線的 AI 功能。',
       description:
-        '十年 React 與 TypeScript 經驗，橫跨汽車網路安全、B2B SaaS 與電商。最近在 VicOne（趨勢科技）以唯一前端工程師的身分打造安全平台。現在把同樣的嚴謹帶進 LLM 產品：RAG pipeline、agent 工作流程，以及讓人信任的介面。',
+        '十年 React 與 TypeScript 經驗，橫跨汽車網路安全、B2B SaaS 與電商，其中四年在 VicOne（趨勢科技）以唯一前端工程師的身分打造安全平台。2025 年起獨立接案：擔任企業平台的前端主導，同時把 LLM 產品從頭做到上線——RAG pipeline、agent 工作流程，以及讓人信任的介面。',
       ctaPrimary: '查看專案',
       ctaSecondary: '下載履歷',
       scroll: '向下滾動',
@@ -1083,7 +1249,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: '成效數據',
       titlePart2: '儀表板',
       subtitle:
-        '來自 VicOne、Synttro 與 Citiesocial 真實生產系統的數據，而非 side project 的估計值。',
+        '來自 VicOne、Synttro 與 Citiesocial 真實生產系統的數據，以及 2025 年起獨立交付的客戶平台，而非 side project 的估計值。',
       // Metric 1
       impact1Value: '50%',
       impact1Title: '加速產品上市',
@@ -1114,9 +1280,25 @@ export const translations: Record<Language, Translations> = {
       titlePart1: '專業',
       titlePart2: '職涯軌跡',
       description:
-        '十年前端工程經驗，橫跨電商、B2B SaaS 與汽車網路安全，在此之前還有三年設計實務。我看著 jQuery 義大利麵程式碼演變成 React 生態系，並帶領團隊完成這段遷移。',
+        '十年前端工程經驗，橫跨電商、B2B SaaS 與汽車網路安全，在此之前還有三年設計實務，2025 年起獨立接案。我看著 jQuery 義大利麵程式碼演變成 React 生態系，並帶領團隊完成這段遷移。',
       keyAchievements: '關鍵成就',
       items: [
+        {
+          id: 'exp0',
+          role: '獨立前端與 AI 工程師',
+          company: '接案與自有產品',
+          period: '2025年3月 - 至今',
+          description:
+            '以前端主導的身分承接長期的企業與研究平台專案，同時把自己的 AI 產品從頭做到上線。',
+          achievements: [
+            'DC Keeper（資料中心資產管理系統）：擔任前端主導，兩階段開發、估算約 289 人天，涵蓋 9 個模組與 284 張畫面。定下整體架構——API First 的邊界、TanStack Query 管伺服器狀態、zustand 管全域 UI 狀態、權限走 Context——以及所有模組共用的元件庫。',
+            '建立可複用的三關審核流程，以及四種角色的 RBAC 權限層（含欄位級金額遮罩），讓權限與稽核軌跡只定義一次，不必每個模組重寫一遍。',
+            '毒理研究平台（某醫學大學研究團隊）：以 Nuxt 3 打造質譜分析介面，包含 Plotly 質譜視覺化、分子相似度熱圖、瀏覽器端化學結構繪製，以及直接由當前分析狀態匯出 PDF／Word 報告。',
+            'Pilotfit：獨自完成一個全端 AI 求職平台並實際上線，有真實 beta 使用者。以 pgvector 做混合式 RAG、LangGraph agent 具跨對話記憶，並用分層模型路由把推論成本降低 84%。',
+            '自有產品完整交付：Lucky Duck 獎勵平台 MVP，以及 Daily Tomato Todo（Vue 3 + Pinia）。',
+            '把這個網站從純前端渲染的 React SPA 重構為 Astro Islands：部分水合、自架字體、三語部落格。',
+          ],
+        },
         {
           id: 'exp1',
           role: '資深前端工程師',
@@ -1306,6 +1488,60 @@ export const translations: Record<Language, Translations> = {
             '全畫面蕃茄鐘專注遮罩（25/5 與 50/10）',
           ],
         },
+        {
+          id: 'p-dc-keeper',
+          title: 'DC Keeper — 資料中心資產管理系統',
+          description:
+            '擔任客戶資料中心資產管理平台的前端主導：9 個模組、284 張畫面、四種權限角色，而且所有寫入操作都走同一套審核流程。這個案子的重點是架構，不是畫面——決定一次，到處組裝。',
+          problem:
+            '這種規模的專案不是敗在難，是敗在重複。九個模組各自都要 CRUD、批次匯入、審核、權限與各種狀態頁，加起來大約 284 張畫面；如果每個模組都用自己的方式解，一份程式碼就會變成九份。真正的風險從來不是某一個功能，而是第二個工程師加入時，發現「做一頁」沒有標準做法。',
+          solution:
+            '我先把架構定下來，而且定成不可協商。API First 的邊界讓商業邏輯留在後端，前端維持薄且可測試的一層。伺服器資料統一走 TanStack Query、全域 UI 狀態走 zustand、權限走 Context guard——每一種關注點只有一個家。接著建立所有模組共用的元件庫，以及一份「標準組法」文件，說明一頁標準頁面該怎麼組起來，讓新模組只是接線，而不是重新發明。',
+          techDeepDive:
+            '關鍵決策都在邊界上。廠商的後台模板整套綁著 Redux-Saga，我選擇凍結它而不是繼續擴充，所有新的資料流改走 TanStack Query，讓變更後的快取失效是宣告式的，而不是手動管理。審核流是一個由設定驅動的共用元件，不是每個模組各做一套——這正是稽核軌跡能保持一致的原因。另外用 mock API 層讓前端在後端還不存在時就能照談定的合約開發與測試；整個時程能成立，靠的就是這兩條線不互相卡住。',
+          features: [
+            '可複用的三關審核流（發動者 → 審核者 → 選填的主管核決）',
+            '四角色 RBAC，模組級權限加欄位級金額遮罩',
+            '批次 .xlsx 匯入採三步驟 stepper，錯誤回報到每一格',
+            '共用元件庫，每個元件都有可實測的 showcase 頁',
+          ],
+        },
+        {
+          id: 'p-toxintel',
+          title: '毒理研究分析平台',
+          description:
+            '為某醫學大學毒理研究團隊打造的 Nuxt 3 分析平台：質譜視覺化、分子相似度比對，以及直接從當前分析匯出的報告。科學工具的標準不一樣——一張看起來很合理但其實是錯的圖，比沒有圖更糟。',
+          problem:
+            '研究人員在一個工具裡看質譜結果、在另一個工具裡比對候選分子，再到第三個地方手動重打一份報告。瓶頸從來不是分析本身，而是在分析與文件之間來回搬運。而且這個領域的介面本身帶著風險：如果 UI 暗示的確定性超過資料能支撐的程度，那種傷害不是把圖畫漂亮一點就能補回來的。',
+          solution:
+            '我把分析和報告做成同一個連續的介面。質譜用 Plotly 互動呈現，候選比對結果以相似度熱圖與比較表列出，化學結構直接在瀏覽器端由 SMILES 繪製，而完成的分析可以匯出成 PDF 或 Word，帶著研究者剛剛看到的同一份狀態——不用重新輸入，畫面與文件也不會對不起來。',
+          techDeepDive:
+            'Nuxt 3 靜態生成讓客戶端的佈署維持單純，同時分析頁面保有完整互動性。資料存取集中在 composables（一種資源一個），讓所有畫面共用同一套抓取、錯誤與提示行為，而不是每頁各自發明。匯出是比較細膩的部分：PDF 與 Word 由與畫面相同的結構化分析狀態產生，所以文件不可能悄悄跟圖表講不一樣的話。測試用 Vitest 涵蓋元件與 composables，再加上 Playwright 端對端——在研究工具裡，「安靜地算錯一個數字」才是最值得防的失敗模式。',
+          features: [
+            '互動式質譜視覺化，可檢視個別波峰',
+            '分子相似度熱圖與候選分子比較表',
+            '瀏覽器端由 SMILES 繪製化學結構',
+            '由當前分析狀態直接匯出 PDF 與 Word 報告',
+          ],
+        },
+        {
+          id: 'p-portfolio',
+          title: '這個網站 — 從 SPA 到 Astro Islands',
+          description:
+            '你正在看的這個網站。從純前端渲染的 React SPA 重構成 Astro 的 islands 架構，然後一路調到行動端分數不再難看為止。每一項優化都寫在部落格裡，包括沒有奏效的那些。',
+          problem:
+            '上一版把整頁當成 React bundle 送出：一個純文字的 hero，也要先跑完整套 hydration 才看得到東西。在桌機上這個代價是隱形的；在中階手機上，它就是使用者的全部第一印象——而一個前端工程師，自己的作品集 Core Web Vitals 很差，說什麼都沒有說服力。',
+          solution:
+            '我把網站搬到 Astro，重新畫了靜態與互動之間的那條線。Hero 以純 HTML 渲染、零 JavaScript；每個互動區塊各自成為一座 island，水合時機依照它「真正多快需要」來配——導覽用 client:load、首屏以下的區塊用 client:visible、低優先的用 client:idle。靜態 hero 的語言切換是一段不到 1KB 的 inline script，而不是拿來當作水合的理由。',
+          techDeepDive:
+            'islands 是標題，但行動端分數其實是那些不起眼的部分換來的：把 Outfit 與 Playfair Display 以 latin 子集自架，移除會阻擋渲染的 CDN 往返；把關鍵的 hero CSS inline 進去止住 layout shift；切開 React vendor chunk，讓各個 island 不會互相拖進對方的依賴；以及把整批圖片轉成 WebP。hero 的 three.js 裝飾刻意用最嚴格的規格——延遲載入、只在桌機、prefers-reduced-motion 時直接關閉——確保這層裝飾永遠不會讓行動端使用者付出代價。',
+          features: [
+            '逐元件水合（client:load / client:visible / client:idle）',
+            '自架字體子集，取代會阻擋渲染的 CDN 請求',
+            '三語部落格（EN/DE/ZH），含語系過濾與 JSON-LD',
+            'WebP 圖片流程、Service Worker 快取、關鍵 CSS inline',
+          ],
+        },
       ],
     },
     about: {
@@ -1409,6 +1645,15 @@ export const translations: Record<Language, Translations> = {
       launchLiveApp: '開啟即時應用',
       interestedInStack: '對這個技術棧感興趣？',
       checkOutLiveApp: '查看即時應用程式，親眼見證效能優化的效果。',
+    },
+    writing: {
+      label: '來自部落格',
+      titlePart1: '技術寫作',
+      titlePart2: '與筆記',
+      subtitle:
+        '開發紀錄與技術筆記——附上實際數字的效能優化、已上線產品的案例研究，以及 AI 搜尋改變了什麼。',
+      readPost: '閱讀文章',
+      viewAll: '看所有文章',
     },
     common: {
       downloadResume: '下載履歷',
