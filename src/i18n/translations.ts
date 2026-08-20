@@ -578,25 +578,32 @@ export const translations: Record<Language, Translations> = {
       title: 'Never two careers.',
       subtitle: 'One education.',
       intro:
-        "My degree is in <strong class='text-stone-900 font-medium'>Computer Simulation and Design</strong>, where programming, 3D graphics, and visual design were a single curriculum. My Master's thesis was a <strong class='text-stone-900 font-medium'>VR museum guide</strong> built in Unity, then validated with quantitative usability research. So when I read a Figma file, I see the designer's intent, not just measurements. When I push back on a spec, it is with an alternative, not just an objection.<br /><br />That foundation shapes how I build AI products today. LLM features live or die on interface decisions: how uncertainty is shown, when to ask for confirmation, where automation should stop and the human should decide. These are design problems and engineering problems at the same time, and I have always worked on both sides of that line.",
+        "My degree is in <strong class='text-stone-900 font-medium'>Computer Simulation and Design</strong>, where programming, 3D graphics, and visual design were a single curriculum. My Master's thesis was a <strong class='text-stone-900 font-medium'>3D virtual museum guide</strong> built in Unity, then validated with quantitative usability research. Design and engineering have been <strong class='text-stone-900 font-medium'>one job</strong> for me ever since — which is why I own the architecture and the interface decisions together, rather than waiting for a finished spec to arrive.<br /><br />In practice that means starting where the problem is still ambiguous: running discovery with domain experts, shaping the data model, then building the backend, the frontend, and the AI layer on top. LLM features especially live or die on interface decisions — how uncertainty is shown, when to ask for confirmation, where automation should stop and a human should decide. Those are design problems and engineering problems at the same time, and I have always worked on both sides of that line.",
       educationTitle: 'Education & Research',
       globalTitle: 'Global Perspective & Resilience',
 
       education: [
         {
-          degree: 'Master, Information & Learning Technology',
+          degree: 'M.S. Information & Learning Technology',
           school: 'National University of Tainan',
           year: '2009 — 2011',
-          desc: 'Thesis: Developed an immersive <strong>VR Museum Guide</strong> using <strong>Unity & 3Ds Max</strong>. Conducted quantitative user research (SUS/IPO models) to validate usability.',
+          desc: 'Thesis: a first-person <strong>3D virtual museum guide</strong> built in <strong>Unity</strong>, validated with quantitative user research (SUS/IPO models). Degree <strong>ZAB-recognized in Germany</strong>.',
         },
         {
-          degree: 'Bachelor, Computer Simulation & Design',
+          degree: 'B.S. Computer Simulation & Design',
           school: 'Shih Chien University',
           year: '2005 — 2009',
           desc: 'Foundation in 3D logic and visual programming. Capstone Project: Engineered a fully functional e-commerce web platform.',
         },
       ],
       global: [
+        {
+          title: 'Based in Germany',
+          role: 'Achstetten, near Ulm',
+          year: 'Now',
+          icon: '🇩🇪',
+          desc: 'Living and working in southern Germany with full work authorization (Aufenthaltserlaubnis). Mandarin native, English fluent, German in training.',
+        },
         {
           title: 'TrendMicro Global AI Contest',
           role: 'Innovation Award Winner',
@@ -1070,25 +1077,32 @@ export const translations: Record<Language, Translations> = {
       title: 'Nie zwei Karrieren.',
       subtitle: 'Eine Ausbildung.',
       intro:
-        "Mein Studiengang heißt <strong class='text-stone-900 font-medium'>Computer Simulation and Design</strong>: Programmierung, 3D-Grafik und visuelles Design waren ein einziges Curriculum. Meine Masterarbeit war ein <strong class='text-stone-900 font-medium'>VR-Museumsführer</strong> in Unity, validiert mit quantitativer Usability-Forschung. Wenn ich eine Figma-Datei lese, sehe ich die Absicht des Designers, nicht nur Maße. Wenn ich eine Spezifikation hinterfrage, dann mit einer Alternative, nicht nur mit einem Einwand.<br /><br />Dieses Fundament prägt, wie ich heute KI-Produkte baue. LLM-Features stehen und fallen mit Interface-Entscheidungen: wie Unsicherheit gezeigt wird, wann nach Bestätigung gefragt wird, wo Automatisierung endet und der Mensch entscheidet. Das sind Design- und Engineering-Probleme zugleich, und ich habe immer auf beiden Seiten dieser Linie gearbeitet.",
+        "Mein Studiengang heißt <strong class='text-stone-900 font-medium'>Computer Simulation and Design</strong>: Programmierung, 3D-Grafik und visuelles Design waren ein einziges Curriculum. Meine Masterarbeit war ein <strong class='text-stone-900 font-medium'>virtueller 3D-Museumsführer</strong> in Unity, validiert mit quantitativer Usability-Forschung. Design und Engineering sind für mich seitdem <strong class='text-stone-900 font-medium'>ein Beruf</strong> — deshalb verantworte ich Architektur- und Interface-Entscheidungen gemeinsam, statt auf eine fertige Spezifikation zu warten.<br /><br />In der Praxis heißt das: dort anfangen, wo das Problem noch unscharf ist. Discovery mit Fachexpertinnen und -experten, das Datenmodell formen, dann Backend, Frontend und die KI-Schicht darüber bauen. Gerade LLM-Features stehen und fallen mit Interface-Entscheidungen: wie Unsicherheit gezeigt wird, wann nach Bestätigung gefragt wird, wo Automatisierung endet und der Mensch entscheidet. Das sind Design- und Engineering-Probleme zugleich, und ich habe immer auf beiden Seiten dieser Linie gearbeitet.",
       educationTitle: 'Ausbildung & Forschung',
       globalTitle: 'Globale Perspektive & Resilienz',
 
       education: [
         {
-          degree: 'Master, Information & Learning Technology',
+          degree: 'M.Sc. Information & Learning Technology',
           school: 'National University of Tainan',
           year: '2009 — 2011',
-          desc: 'Thesis: Entwicklung eines immersiven <strong>VR-Museumsführers</strong> mit <strong>Unity & 3Ds Max</strong>. Durchführung quantitativer Nutzerforschung (SUS/IPO) zur Validierung der Usability.',
+          desc: 'Masterarbeit: ein virtueller <strong>3D-Museumsführer</strong> aus der Ich-Perspektive in <strong>Unity</strong>, validiert mit quantitativer Nutzerforschung (SUS/IPO). Abschluss <strong>von der ZAB in Deutschland anerkannt</strong>.',
         },
         {
-          degree: 'Bachelor, Computer Simulation & Design',
+          degree: 'B.Sc. Computer Simulation & Design',
           school: 'Shih Chien University',
           year: '2005 — 2009',
           desc: 'Fundament in 3D-Logik und visueller Programmierung. Abschlussprojekt: Entwicklung einer voll funktionsfähigen E-Commerce-Webplattform.',
         },
       ],
       global: [
+        {
+          title: 'Ansässig in Deutschland',
+          role: 'Achstetten, bei Ulm',
+          year: 'Jetzt',
+          icon: '🇩🇪',
+          desc: 'Leben und Arbeiten in Süddeutschland mit unbeschränkter Arbeitserlaubnis (Aufenthaltserlaubnis). Mandarin Muttersprache, Englisch fließend, Deutsch im Aufbau.',
+        },
         {
           title: 'TrendMicro Global AI Contest',
           role: 'Innovation Award Winner',
@@ -1549,7 +1563,7 @@ export const translations: Record<Language, Translations> = {
       title: '設計與工程從來不是兩條路，',
       subtitle: '而是同一套教育。',
       intro:
-        "我的學位是<strong class='text-stone-900 font-medium'>電腦模擬與設計</strong>：程式、3D 圖學與視覺設計從第一天起就是同一套課程。我的碩士論文是用 Unity 打造的 <strong class='text-stone-900 font-medium'>VR 博物館導覽</strong>，並以量化易用性研究驗證。所以當我閱讀 Figma 檔案時，我看到的是設計師的意圖，而不只是尺寸；當我對規格提出異議時，我帶的是替代方案，而不只是反對。<br /><br />這個基礎形塑了我今天打造 AI 產品的方式。LLM 功能的成敗取決於介面決策：如何呈現不確定性、何時請使用者確認、自動化該在哪裡停下讓人來決定。這些同時是設計問題與工程問題，而我一直都在這條線的兩側工作。",
+        "我的學位是<strong class='text-stone-900 font-medium'>電腦模擬與設計</strong>：程式、3D 圖學與視覺設計從第一天起就是同一套課程。我的碩士論文是用 Unity 打造的<strong class='text-stone-900 font-medium'>第一人稱 3D 虛擬博物館導覽</strong>，並以量化易用性研究驗證。從那時起，設計與工程對我就是<strong class='text-stone-900 font-medium'>同一份工作</strong>——所以我把架構決策與介面決策一起扛下來，而不是等一份寫完的規格送到手上。<br /><br />實際做起來，就是從問題還很模糊的地方開始：跟領域專家一起做需求探索、把資料模型立起來，然後往上蓋後端、前端，以及最上層的 AI。LLM 功能尤其是成敗取決於介面決策：如何呈現不確定性、何時請使用者確認、自動化該在哪裡停下讓人來決定。這些同時是設計問題與工程問題，而我一直都在這條線的兩側工作。",
       educationTitle: '學歷與研究',
       globalTitle: '國際視野與適應力',
 
@@ -1558,7 +1572,7 @@ export const translations: Record<Language, Translations> = {
           degree: '數位學習科技學系 碩士',
           school: '國立臺南大學',
           year: '2009 — 2011',
-          desc: '論文：基於 <strong>Unity 3D</strong> 與 <strong>3Ds Max</strong> 開發沈浸式虛擬博物館系統。運用 IPO 模式與 SUS 易用性量表進行實證研究。',
+          desc: '論文：以 <strong>Unity 3D</strong> 開發第一人稱沈浸式虛擬博物館導覽系統，並運用 IPO 模式與 SUS 易用性量表進行實證研究。學歷已<strong>通過德國 ZAB 學歷認證</strong>。',
         },
         {
           degree: '電腦模擬與設計學系 學士',
@@ -1568,6 +1582,13 @@ export const translations: Record<Language, Translations> = {
         },
       ],
       global: [
+        {
+          title: '定居德國',
+          role: '烏爾姆近郊 Achstetten',
+          year: '現在',
+          icon: '🇩🇪',
+          desc: '在德國南部生活與工作，持有完整工作許可（Aufenthaltserlaubnis）。中文母語、英文流利，德語持續進修中。',
+        },
         {
           title: 'TrendMicro Global AI Contest',
           role: '創新獎得主',

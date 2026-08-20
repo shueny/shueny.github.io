@@ -41,14 +41,14 @@ export const SKILLS_DATA: SkillData[] = [
 
 export const EDUCATION_DATA: Education[] = [
   {
-    degree: 'Master, Information and Learning Technology',
+    degree: 'M.S. Information and Learning Technology',
     school: 'National University of Tainan',
     period: '2009 - 2011',
     description:
-      'Focused on human-computer interaction and educational technology.',
+      'Focused on human-computer interaction and educational technology. Thesis: a first-person 3D virtual museum guide built in Unity. Degree ZAB-recognized in Germany.',
   },
   {
-    degree: 'Bachelor, Computer Simulation & Design',
+    degree: 'B.S. Computer Simulation & Design',
     school: 'Shih Chien University',
     period: '2005 - 2009',
     description: 'Foundation in multimedia design and 3D simulation.',
