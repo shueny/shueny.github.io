@@ -226,7 +226,7 @@ export const translations: Record<Language, Translations> = {
       subtitle:
         'Frontend architecture that scales. AI features that ship.',
       description:
-        'Ten years of React and TypeScript across automotive cybersecurity, B2B SaaS, and e-commerce, including four years at VicOne (Trend Micro) as sole frontend engineer. Since 2025, independent: lead frontend on enterprise platforms, and LLM products shipped end to end — RAG pipelines, agent workflows, and interfaces people trust.',
+        'Nine years of React and TypeScript across automotive cybersecurity, B2B SaaS, and e-commerce, including three and a half years at VicOne (Trend Micro) as sole frontend engineer. Since 2025, independent: lead frontend on enterprise platforms, and LLM products shipped end to end — RAG pipelines, agent workflows, and interfaces people trust.',
       ctaPrimary: 'View Projects',
       ctaSecondary: 'Download Resume',
       scroll: 'Scroll',
@@ -308,7 +308,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Professional',
       titlePart2: 'Trajectory',
       description:
-        'Ten years of frontend engineering across e-commerce, B2B SaaS, and automotive cybersecurity, with three years of design practice before that, and independent client work since 2025. I have seen jQuery spaghetti become React ecosystems, and led teams through the migration.',
+        'Nine years of frontend engineering across e-commerce, B2B SaaS, and automotive cybersecurity, with three years of design practice before that, and independent client work since 2025. I have seen jQuery spaghetti become React ecosystems, and led teams through the migration.',
       keyAchievements: 'Key Achievements',
       items: [
         {
@@ -331,7 +331,7 @@ export const translations: Record<Language, Translations> = {
           id: 'exp1',
           role: 'Senior Front-End Engineer',
           company: 'VicOne (Trend Micro)',
-          period: 'Sep 2021 - Mar 2025',
+          period: 'Sep 2021 - Feb 2025',
           description:
             'Delivering cybersecurity software and services for the automotive industry. Specializing in micro-frontends, AI integration, and automated testing.',
           achievements: [
@@ -725,7 +725,7 @@ export const translations: Record<Language, Translations> = {
       subtitle:
         'Frontend-Architektur, die skaliert. KI-Features, die live gehen.',
       description:
-        'Zehn Jahre React und TypeScript in Automotive-Cybersecurity, B2B-SaaS und E-Commerce, davon vier Jahre bei VicOne (Trend Micro) als alleiniger Frontend-Engineer. Seit 2025 selbstständig: leitender Frontend-Engineer für Enterprise-Plattformen und LLM-Produkte von A bis Z — RAG-Pipelines, Agent-Workflows und Interfaces, denen Menschen vertrauen.',
+        'Neun Jahre React und TypeScript in Automotive-Cybersecurity, B2B-SaaS und E-Commerce, davon dreieinhalb Jahre bei VicOne (Trend Micro) als alleiniger Frontend-Engineer. Seit 2025 selbstständig: leitender Frontend-Engineer für Enterprise-Plattformen und LLM-Produkte von A bis Z — RAG-Pipelines, Agent-Workflows und Interfaces, denen Menschen vertrauen.',
       ctaPrimary: 'Projekte ansehen',
       ctaSecondary: 'Lebenslauf herunterladen',
       scroll: 'Scrollen',
@@ -807,7 +807,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: 'Professional',
       titlePart2: 'Trajectory',
       description:
-        'Zehn Jahre Frontend-Engineering in E-Commerce, B2B-SaaS und Automotive-Cybersecurity, davor drei Jahre Designpraxis, seit 2025 selbstständige Kundenprojekte. Ich habe erlebt, wie aus jQuery-Spaghetti React-Ökosysteme wurden, und Teams durch diese Migration geführt.',
+        'Neun Jahre Frontend-Engineering in E-Commerce, B2B-SaaS und Automotive-Cybersecurity, davor drei Jahre Designpraxis, seit 2025 selbstständige Kundenprojekte. Ich habe erlebt, wie aus jQuery-Spaghetti React-Ökosysteme wurden, und Teams durch diese Migration geführt.',
       keyAchievements: 'Schlüsselerfolge',
       items: [
         {
@@ -830,7 +830,7 @@ export const translations: Record<Language, Translations> = {
           id: 'exp1',
           role: 'Senior Frontend-Entwickler',
           company: 'VicOne (Trend Micro)',
-          period: 'Sep 2021 - Mär 2025',
+          period: 'Sep 2021 - Feb 2025',
           description:
             'Entwicklung von Cybersicherheitssoftware und -dienstleistungen für die Automobilindustrie. Spezialisiert auf Micro-Frontends, KI-Integration und automatisierte Tests.',
           achievements: [
@@ -1223,7 +1223,7 @@ export const translations: Record<Language, Translations> = {
       title3Suffix: '實踐者',
       subtitle: '可擴展的前端架構。能真正上線的 AI 功能。',
       description:
-        '十年 React 與 TypeScript 經驗，橫跨汽車網路安全、B2B SaaS 與電商，其中四年在 VicOne（趨勢科技）以唯一前端工程師的身分打造安全平台。2025 年起獨立接案：擔任企業平台的前端主導，同時把 LLM 產品從頭做到上線——RAG pipeline、agent 工作流程，以及讓人信任的介面。',
+        '九年 React 與 TypeScript 經驗，橫跨汽車網路安全、B2B SaaS 與電商，其中三年半在 VicOne（趨勢科技）以唯一前端工程師的身分打造安全平台。2025 年起獨立接案：擔任企業平台的前端主導，同時把 LLM 產品從頭做到上線——RAG pipeline、agent 工作流程，以及讓人信任的介面。',
       ctaPrimary: '查看專案',
       ctaSecondary: '下載履歷',
       scroll: '向下滾動',
@@ -1294,7 +1294,7 @@ export const translations: Record<Language, Translations> = {
       titlePart1: '專業',
       titlePart2: '職涯軌跡',
       description:
-        '十年前端工程經驗，橫跨電商、B2B SaaS 與汽車網路安全，在此之前還有三年設計實務，2025 年起獨立接案。我看著 jQuery 義大利麵程式碼演變成 React 生態系，並帶領團隊完成這段遷移。',
+        '九年前端工程經驗，橫跨電商、B2B SaaS 與汽車網路安全，在此之前還有三年設計實務，2025 年起獨立接案。我看著 jQuery 義大利麵程式碼演變成 React 生態系，並帶領團隊完成這段遷移。',
       keyAchievements: '關鍵成就',
       items: [
         {
@@ -1317,7 +1317,7 @@ export const translations: Record<Language, Translations> = {
           id: 'exp1',
           role: '資深前端工程師',
           company: 'VicOne (趨勢科技)',
-          period: '2021年9月 - 2025年3月',
+          period: '2021年9月 - 2025年2月',
           description:
             '為汽車產業提供網路安全軟體與服務。專精於微前端架構、AI 整合與自動化測試。',
           achievements: [

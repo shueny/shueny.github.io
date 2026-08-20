@@ -105,7 +105,7 @@ export const EXPERIENCE_DATA: Experience[] = [
     id: 'exp1',
     role: 'Senior Front-End Engineer',
     company: 'VicOne (Trend Micro)',
-    period: 'Sep 2021 - Mar 2025',
+    period: 'Sep 2021 - Feb 2025',
     description:
       'Delivering cybersecurity software and services for the automotive industry. Specializing in micro-frontends, AI integration, and automated testing.',
     achievements: [
