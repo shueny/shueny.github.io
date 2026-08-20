@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-label="DC Keeper — data centre asset management system with a three-stage approval flow">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-label="Data-centre asset management platform with a three-stage approval flow">
   <defs>
     <linearGradient id="dcbg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#1c1917"/>
@@ -92,7 +92,7 @@
   <text x="684" y="285" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-size="15" font-weight="800" fill="#ea580c">***</text>
 
   <!-- title -->
-  <text x="64" y="398" font-family="Outfit, Arial, sans-serif" font-size="30" font-weight="800" fill="#fafaf9">DC Keeper</text>
-  <text x="64" y="424" font-family="Outfit, Arial, sans-serif" font-size="15" font-weight="600" fill="#a8a29e">Data-centre asset management · 9 modules · RBAC</text>
+  <text x="64" y="398" font-family="Outfit, Arial, sans-serif" font-size="30" font-weight="800" fill="#fafaf9">Data-Centre Assets</text>
+  <text x="64" y="424" font-family="Outfit, Arial, sans-serif" font-size="15" font-weight="600" fill="#a8a29e">Client platform · 9 modules · 284 screens · RBAC</text>
   <text x="736" y="424" text-anchor="end" font-family="Outfit, Arial, sans-serif" font-size="15" font-weight="700" fill="#ea580c">React 18</text>
 </svg>

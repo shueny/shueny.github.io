@@ -93,7 +93,7 @@ export const EXPERIENCE_DATA: Experience[] = [
     description:
       'Client engagements as lead frontend engineer on long-running enterprise and research platforms, alongside my own AI products shipped end to end.',
     achievements: [
-      'DC Keeper (data-centre asset management): lead frontend on a two-phase build scoped at ~289 person-days across 9 modules and 284 screens. Set the architecture — API-first boundaries, TanStack Query for server state, zustand for UI state, RBAC via context — and a shared component library that every module composes from.',
+      'Data-centre asset management platform: lead frontend on a two-phase build scoped at ~289 person-days across 9 modules and 284 screens. Set the architecture — API-first boundaries, TanStack Query for server state, zustand for UI state, RBAC via context — and a shared component library that every module composes from.',
       'Built a reusable three-stage approval flow (initiator, reviewer, optional executive sign-off) and a four-role RBAC layer with field-level amount masking, so permissions and audit trails are defined once instead of re-implemented per module.',
       'Toxicology research platform for a university research team: Nuxt 3 application for spectral analysis — Plotly mass-spectrum visualization, molecular similarity heatmaps, chemical structure rendering, and one-click PDF/Word report export from live analysis state.',
       'Pilotfit: designed and shipped a full-stack AI job-search platform solo, running with real beta users. Hybrid RAG over pgvector, a LangGraph agent with cross-session memory, and tiered model routing that cut inference cost by 84% without degrading output.',
@@ -361,8 +361,8 @@ export const PROJECTS_DATA: Project[] = [
     ],
   },
   {
-    id: 'p-dc-keeper',
-    title: 'DC Keeper — Data-Centre Asset Management',
+    id: 'p-datacenter-assets',
+    title: 'Data-Centre Asset Management Platform',
     description:
       'Lead frontend on a client platform for managing data-centre inventory: 9 modules, 284 screens, four permission roles, and every write operation routed through a shared approval flow. The work here is architecture, not screens — decide once, compose everywhere.',
     tags: [
@@ -373,8 +373,8 @@ export const PROJECTS_DATA: Project[] = [
       'Design System',
       'i18next',
     ],
-    image: getAssetUrl('images/dc-keeper-cover.svg'),
-    banner: getAssetUrl('images/dc-keeper-cover.svg'),
+    image: getAssetUrl('images/datacenter-assets-cover.svg'),
+    banner: getAssetUrl('images/datacenter-assets-cover.svg'),
     visualDescription:
       'Rack elevation view alongside a three-stage approval flow panel with role-based amount masking.',
     category: 'frontend',

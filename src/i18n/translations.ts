@@ -319,7 +319,7 @@ export const translations: Record<Language, Translations> = {
           description:
             'Client engagements as lead frontend engineer on long-running enterprise and research platforms, alongside my own AI products shipped end to end.',
           achievements: [
-            'DC Keeper (data-centre asset management): lead frontend on a two-phase build scoped at ~289 person-days across 9 modules and 284 screens. Set the architecture — API-first boundaries, TanStack Query, zustand, RBAC via context — plus the shared component library every module composes from.',
+            'Data-centre asset management platform: lead frontend on a two-phase build scoped at ~289 person-days across 9 modules and 284 screens. Set the architecture — API-first boundaries, TanStack Query, zustand, RBAC via context — plus the shared component library every module composes from.',
             'Built a reusable three-stage approval flow and four-role RBAC with field-level amount masking, so permissions and audit trails are defined once instead of re-implemented per module.',
             'Toxicology research platform for a university research team: Nuxt 3 spectral analysis with Plotly mass-spectrum visualization, molecular similarity heatmaps, in-browser structure rendering, and PDF/Word report export from live analysis state.',
             'Pilotfit: shipped a full-stack AI job-search platform solo, running with real beta users. Hybrid RAG over pgvector, a LangGraph agent with cross-session memory, and tiered model routing that cut inference cost by 84%.',
@@ -518,8 +518,8 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
-          id: 'p-dc-keeper',
-          title: 'DC Keeper — Data-Centre Asset Management',
+          id: 'p-datacenter-assets',
+          title: 'Data-Centre Asset Management Platform',
           description:
             'Lead frontend on a client platform for managing data-centre inventory: 9 modules, 284 screens, four permission roles, and every write operation routed through a shared approval flow. The work here is architecture, not screens — decide once, compose everywhere.',
           problem:
@@ -811,7 +811,7 @@ export const translations: Record<Language, Translations> = {
           description:
             'Kundenprojekte als leitender Frontend-Engineer für langfristige Enterprise- und Forschungsplattformen, parallel dazu eigene KI-Produkte von A bis Z.',
           achievements: [
-            'DC Keeper (Rechenzentrums-Assetverwaltung): leitender Frontend-Engineer für einen zweiphasigen Aufbau mit rund 289 Personentagen über 9 Module und 284 Screens. Architektur gesetzt — API-First-Grenzen, TanStack Query, zustand, RBAC per Context — plus die gemeinsame Komponentenbibliothek, aus der sich jedes Modul zusammensetzt.',
+            'Plattform für Rechenzentrums-Assetverwaltung: leitender Frontend-Engineer für einen zweiphasigen Aufbau mit rund 289 Personentagen über 9 Module und 284 Screens. Architektur gesetzt — API-First-Grenzen, TanStack Query, zustand, RBAC per Context — plus die gemeinsame Komponentenbibliothek, aus der sich jedes Modul zusammensetzt.',
             'Wiederverwendbaren dreistufigen Freigabe-Workflow und RBAC mit vier Rollen samt feldgenauer Betragsmaskierung gebaut, sodass Berechtigungen und Audit-Trails einmal definiert und nicht pro Modul neu implementiert werden.',
             'Toxikologie-Forschungsplattform für ein universitäres Forschungsteam: Nuxt-3-Spektralanalyse mit Plotly-Massenspektren, Heatmaps zur molekularen Ähnlichkeit, Strukturdarstellung im Browser und PDF-/Word-Export direkt aus dem laufenden Analysezustand.',
             'Pilotfit: eine Full-Stack-KI-Plattform für die Jobsuche im Alleingang umgesetzt, im Einsatz mit echten Beta-Nutzern. Hybrides RAG über pgvector, ein LangGraph-Agent mit sitzungsübergreifendem Gedächtnis und gestaffeltes Model-Routing, das die Inferenzkosten um 84% senkte.',
@@ -1010,8 +1010,8 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
-          id: 'p-dc-keeper',
-          title: 'DC Keeper — Rechenzentrums-Assetverwaltung',
+          id: 'p-datacenter-assets',
+          title: 'Plattform für Rechenzentrums-Assetverwaltung',
           description:
             'Leitender Frontend-Engineer für eine Kundenplattform zur Verwaltung von Rechenzentrums-Inventar: 9 Module, 284 Screens, vier Berechtigungsrollen, und jeder schreibende Vorgang läuft über einen gemeinsamen Freigabe-Workflow. Die Arbeit hier ist Architektur, nicht Screens — einmal entscheiden, überall zusammensetzen.',
           problem:
@@ -1291,7 +1291,7 @@ export const translations: Record<Language, Translations> = {
           description:
             '以前端主導的身分承接長期的企業與研究平台專案，同時把自己的 AI 產品從頭做到上線。',
           achievements: [
-            'DC Keeper（資料中心資產管理系統）：擔任前端主導，兩階段開發、估算約 289 人天，涵蓋 9 個模組與 284 張畫面。定下整體架構——API First 的邊界、TanStack Query 管伺服器狀態、zustand 管全域 UI 狀態、權限走 Context——以及所有模組共用的元件庫。',
+            '資料中心資產管理平台：擔任前端主導，兩階段開發、估算約 289 人天，涵蓋 9 個模組與 284 張畫面。定下整體架構——API First 的邊界、TanStack Query 管伺服器狀態、zustand 管全域 UI 狀態、權限走 Context——以及所有模組共用的元件庫。',
             '建立可複用的三關審核流程，以及四種角色的 RBAC 權限層（含欄位級金額遮罩），讓權限與稽核軌跡只定義一次，不必每個模組重寫一遍。',
             '毒理研究平台（某醫學大學研究團隊）：以 Nuxt 3 打造質譜分析介面，包含 Plotly 質譜視覺化、分子相似度熱圖、瀏覽器端化學結構繪製，以及直接由當前分析狀態匯出 PDF／Word 報告。',
             'Pilotfit：獨自完成一個全端 AI 求職平台並實際上線，有真實 beta 使用者。以 pgvector 做混合式 RAG、LangGraph agent 具跨對話記憶，並用分層模型路由把推論成本降低 84%。',
@@ -1489,8 +1489,8 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
-          id: 'p-dc-keeper',
-          title: 'DC Keeper — 資料中心資產管理系統',
+          id: 'p-datacenter-assets',
+          title: '資料中心資產管理平台',
           description:
             '擔任客戶資料中心資產管理平台的前端主導：9 個模組、284 張畫面、四種權限角色，而且所有寫入操作都走同一套審核流程。這個案子的重點是架構，不是畫面——決定一次，到處組裝。',
           problem:
