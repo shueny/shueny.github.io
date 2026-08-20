@@ -220,7 +220,7 @@ const NavbarContent: React.FC = () => {
           <div className="hidden sm:block w-px h-5 bg-stone-300/50 flex-shrink-0"></div>
 
           <a
-            href="/files/2025-12_Resume_ShuenyWang_FED.pdf"
+            href="/files/2026-08_Resume_ShuenyWang_ProductFullstack.pdf"
             download
             // Accessibility: Minimum touch target size 44x44px and better contrast
             className="p-2.5 sm:p-3 text-stone-800 hover:text-accent transition-colors group relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
