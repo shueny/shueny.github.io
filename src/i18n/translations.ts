@@ -613,11 +613,11 @@ export const translations: Record<Language, Translations> = {
           desc: "Conceptualized 'GrandKid', an AI companion for elderly care. Recognized for innovative LLM application.",
         },
         {
-          title: 'Solo Backpacking Expedition',
-          role: 'Chile & Argentina',
+          title: 'Honeymoon Backpacking Expedition',
+          role: 'Chile, Argentina & Antarctica',
           year: '2020',
           icon: '🌎',
-          desc: 'Navigated complex logistics in South America. Honed adaptability and problem-solving in high-pressure environments.',
+          desc: 'A 60-day self-guided honeymoon for two hikers: Torres del Paine, Iguazú Falls, the Atacama Desert, Patagonia, and Antarctica.',
         },
         {
           title: 'Wildlife Conservation Volunteer',
@@ -1112,11 +1112,11 @@ export const translations: Record<Language, Translations> = {
           desc: "Konzeption von 'GrandKid', einem KI-Begleiter für die Altenpflege. Ausgezeichnet für innovative Anwendung von LLMs.",
         },
         {
-          title: 'Solo Backpacking Expedition',
-          role: 'Chile & Argentinien',
+          title: 'Backpacking-Hochzeitsreise',
+          role: 'Chile, Argentinien & Antarktis',
           year: '2020',
           icon: '🌎',
-          desc: 'Bewältigung komplexer Logistik in Südamerika. Entwicklung hoher Anpassungsfähigkeit und Problemlösungskompetenz in unvorhersehbaren Umgebungen.',
+          desc: '60 Tage selbstgeplante Hochzeitsreise für zwei Wanderer: Torres del Paine, Iguazú-Wasserfälle, Atacama-Wüste, Patagonien und die Antarktis.',
         },
         {
           title: 'Wildlife Conservation Volunteer',
@@ -1598,11 +1598,11 @@ export const translations: Record<Language, Translations> = {
           desc: "構思並製作了老年照護 AI 解決方案 'GrandKid' 原型。因創新應用 LLM 解決社會問題而獲獎。",
         },
         {
-          title: '南美洲背包客遠征',
-          role: '智利與阿根廷',
+          title: '南美洲蜜月背包遠征',
+          role: '智利、阿根廷與南極',
           year: '2020',
           icon: '🌎',
-          desc: '獨自克服南美洲複雜的後勤挑戰。在充滿未知的高壓環境中，培養了極致的適應力與問題解決能力。',
+          desc: '喜歡健行的我們，花了 60 天自助走完蜜月：百內國家公園、伊瓜蘇瀑布、Atacama 沙漠、Patagonia，還有南極。',
         },
         {
           title: '野生動物保育志工',

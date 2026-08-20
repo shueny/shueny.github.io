@@ -63,10 +63,10 @@ export const SPECIAL_EXPERIENCE_DATA: SpecialExperience[] = [
     year: '2023',
   },
   {
-    title: 'Backpacking Trip',
-    location: 'Chile & Argentina',
+    title: 'Honeymoon Backpacking Trip',
+    location: 'Chile, Argentina & Antarctica',
     description:
-      '60-day solo backpacking journey across South America, adapting to diverse cultures and environments.',
+      'A 60-day self-guided honeymoon for two hikers: Torres del Paine, Iguazú Falls, the Atacama Desert, Patagonia, and Antarctica.',
     year: '2020',
   },
   {
