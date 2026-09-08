@@ -107,12 +107,6 @@ export interface NavMenuGroup {
   items: NavMenuItem[];
 }
 
-export interface NavMenuConfig {
-  links: NavLink[];
-  pagesNav?: NavMenuGroup[];
-  examplesNav?: NavMenuGroup[];
-}
-
 // For Astro image imports
 export interface ImageMetadata {
   src: string;
@@ -149,7 +143,6 @@ export interface AboutSection {
 }
 
 // Re-export types from types/index.d.ts
-// Note: NavMenuConfig is excluded as it's already defined in this file with a different structure
 export type {
   NavItem,
   MenuItem,
@@ -158,6 +151,7 @@ export type {
   SiteConfig,
   DocsConfig,
   FedConfig,
+  NavMenuConfig,
   MarketingConfig,
   DashboardConfig,
   SubscriptionPlan,

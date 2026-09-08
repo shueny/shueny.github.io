@@ -55,9 +55,9 @@ const CookieConsent: React.FC = () => {
     document.head.appendChild(script1);
 
     // Initialize gtag
-    window.dataLayer = window.dataLayer || [];
+    const dataLayer = (window.dataLayer = window.dataLayer || []);
     function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+      dataLayer.push(args);
     }
     window.gtag = gtag;
 
