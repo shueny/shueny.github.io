@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { SectionId } from '../types';
-import type { Project } from '../types';
+import type { Project, ProjectDomain } from '../types';
 import { PROJECTS_DATA } from '../constants';
 import ProjectModal from './ProjectModal';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -131,11 +131,20 @@ const getProjectIcon = (id: string) => {
   }
 };
 
+const getCategoryLabel = (
+  category: Project['category'],
+  labels: { frontend: string; fullstack: string; design: string },
+) => labels[category] ?? category;
+
+/** Tiny template helper: fill("{a} of {b}", { a: 1, b: 2 }) */
+const fill = (template: string, vars: Record<string, string | number>) =>
+  template.replace(/\{(\w+)\}/g, (_, key) => String(vars[key] ?? ''));
+
 // --- Sub-Component: ProjectCard ---
 // Handles individual project rendering and image error state
 interface ProjectCardProps {
   project: Project;
-  index: number;
+  index: number; // stable position in the full list (used for the "0N" badge)
   onClick: (p: Project) => void;
   viewCaseStudyText: string;
 }
@@ -303,7 +312,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* CTA with enhanced micro-interactions */}
         <div
-          className="mt-auto pt-6 border-t border-stone-100 flex items-center justify-between"
+          className="mt-auto pt-6 border-t border-stone-100 flex items-center justify-between gap-4"
           onClick={(e) => e.stopPropagation()}
         >
           <button
@@ -313,7 +322,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               e.preventDefault();
               onClick(project);
             }}
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-accent transition-all duration-300 group/btn hover:gap-3 cursor-pointer relative z-10 pointer-events-auto"
+            className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-xs font-bold uppercase tracking-widest text-primary hover:text-accent transition-all duration-300 group/btn hover:gap-3 cursor-pointer relative z-10 pointer-events-auto"
           >
             {viewCaseStudyText}
             <svg
@@ -332,15 +341,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </svg>
           </button>
 
-          {/* Category Indicator with subtle hover effect */}
-          <span className="text-[10px] font-mono text-stone-400 capitalize transition-colors duration-300 group-hover:text-stone-500">
-            {project.category === 'frontend' 
-              ? t.projects.categories.frontend
-              : project.category === 'fullstack'
-              ? t.projects.categories.fullstack
-              : project.category === 'design'
-              ? t.projects.categories.design
-              : project.category}
+          {/* Domain · Category indicator — tells a client at a glance who this was for */}
+          <span className="flex min-w-0 flex-col items-end text-right text-[10px] leading-snug font-mono text-stone-400 transition-colors duration-300 group-hover:text-stone-500">
+            {project.domains[0] && (
+              <span className="whitespace-nowrap text-accent/80">
+                {t.projects.domains[project.domains[0]]}
+              </span>
+            )}
+            <span className="whitespace-nowrap">
+              {getCategoryLabel(project.category, t.projects.categories)}
+            </span>
           </span>
         </div>
       </div>
@@ -349,44 +359,103 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 };
 
 // --- Main Container ---
+const DOMAIN_ORDER: ProjectDomain[] = ['ai', 'fintech', 'enterprise', 'data', 'consumer', 'mvp'];
+
+const SWIPE_THRESHOLD_PX = 48;
+
 const ProjectsGrid: React.FC = () => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
+  const [activeDomain, setActiveDomain] = useState<ProjectDomain | 'all'>('all');
+  const [query, setQuery] = useState('');
+  const touchStartX = useRef<number | null>(null);
 
   // Merge translated project data with static data (images, links, etc.)
-  const projects = t.projects.data.map((translatedProject) => {
-    const staticData = PROJECTS_DATA.find((p) => p.id === translatedProject.id);
-    if (!staticData) return null;
-    
-    return {
-      ...staticData,
-      title: translatedProject.title,
-      description: translatedProject.description,
-      problem: translatedProject.problem,
-      solution: translatedProject.solution,
-      techDeepDive: translatedProject.techDeepDive,
-      features: translatedProject.features,
-      category: staticData.category, // Keep original category for display
-    } as Project;
-  }).filter((p): p is Project => p !== null);
+  const allProjects = useMemo(
+    () =>
+      t.projects.data
+        .map((translatedProject) => {
+          const staticData = PROJECTS_DATA.find((p) => p.id === translatedProject.id);
+          if (!staticData) return null;
 
-  const totalProjects = projects.length;
+          return {
+            ...staticData,
+            title: translatedProject.title,
+            description: translatedProject.description,
+            problem: translatedProject.problem,
+            solution: translatedProject.solution,
+            techDeepDive: translatedProject.techDeepDive,
+            features: translatedProject.features,
+            category: staticData.category, // Keep original category for display
+          } as Project;
+        })
+        .filter((p): p is Project => p !== null),
+    [t],
+  );
+
+  // Only offer domain chips that actually have projects behind them
+  const availableDomains = useMemo(
+    () => DOMAIN_ORDER.filter((d) => allProjects.some((p) => p.domains.includes(d))),
+    [allProjects],
+  );
+
+  // --- Search + filter ---
+  const normalizedQuery = query.trim().toLowerCase();
+  const filtered = useMemo(() => {
+    return allProjects
+      .map((project, index) => ({ project, index }))
+      .filter(({ project }) => {
+        if (activeDomain !== 'all' && !project.domains.includes(activeDomain)) return false;
+        if (!normalizedQuery) return true;
+        const haystack = [
+          project.title,
+          project.description,
+          ...project.tags,
+          getCategoryLabel(project.category, t.projects.categories),
+          ...project.domains.map((d) => t.projects.domains[d]),
+        ]
+          .join(' ')
+          .toLowerCase();
+        return normalizedQuery
+          .split(/\s+/)
+          .every((term) => haystack.includes(term));
+      });
+  }, [allProjects, activeDomain, normalizedQuery, t]);
+
+  const totalProjects = filtered.length;
   const maxIndex = Math.max(0, totalProjects - visibleCount);
+  const isFiltered = activeDomain !== 'all' || normalizedQuery.length > 0;
+
+  // Page stops: 0, v, 2v, … clamped so the last page is always full
+  const pageStops = useMemo(() => {
+    if (totalProjects <= visibleCount) return [0];
+    const stops: number[] = [];
+    for (let i = 0; i < totalProjects; i += visibleCount) {
+      stops.push(Math.min(i, maxIndex));
+    }
+    return Array.from(new Set(stops));
+  }, [totalProjects, visibleCount, maxIndex]);
+
+  const currentPage = useMemo(() => {
+    // The page whose stop is closest to (and not after) the current index
+    let page = 0;
+    pageStops.forEach((stop, i) => {
+      if (stop <= currentIndex) page = i;
+    });
+    return page;
+  }, [pageStops, currentIndex]);
 
   // Handle responsive visible count
-  React.useEffect(() => {
+  useEffect(() => {
     const updateVisibleCount = () => {
       if (window.innerWidth >= 1280) {
-        // xl and above
-        setVisibleCount(3);
+        setVisibleCount(3); // xl and above
       } else if (window.innerWidth >= 768) {
-        // md to lg
-        setVisibleCount(2);
+        setVisibleCount(2); // md to lg
       } else {
-        // mobile
-        setVisibleCount(1);
+        setVisibleCount(1); // mobile
       }
     };
 
@@ -395,31 +464,82 @@ const ProjectsGrid: React.FC = () => {
     return () => window.removeEventListener('resize', updateVisibleCount);
   }, []);
 
-  // Reset index when visible count changes
-  React.useEffect(() => {
-    const newMaxIndex = Math.max(0, totalProjects - visibleCount);
-    if (currentIndex > newMaxIndex) {
-      setCurrentIndex(newMaxIndex);
-    }
-  }, [visibleCount, totalProjects, currentIndex]);
+  // Keep the index valid when the visible count or the result set changes
+  useEffect(() => {
+    setCurrentIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
 
-  const goToIndex = (index: number) => {
-    if (!totalProjects) return;
-    const clamped = Math.min(Math.max(index, 0), maxIndex);
-    setCurrentIndex(clamped);
+  // Any change to the filters rewinds to the first page
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [activeDomain, normalizedQuery]);
+
+  const goToIndex = useCallback(
+    (index: number) => {
+      if (!totalProjects) return;
+      setCurrentIndex(Math.min(Math.max(index, 0), maxIndex));
+    },
+    [totalProjects, maxIndex],
+  );
+
+  const goToPage = (page: number) => {
+    const clampedPage = Math.min(Math.max(page, 0), pageStops.length - 1);
+    goToIndex(pageStops[clampedPage]);
   };
 
-  const handlePrev = () => goToIndex(currentIndex - 1);
-  const handleNext = () => goToIndex(currentIndex + 1);
+  const handlePrev = () => goToPage(currentPage - 1);
+  const handleNext = () => goToPage(currentPage + 1);
 
-  const isPrevDisabled = currentIndex === 0;
-  const isNextDisabled = currentIndex >= maxIndex;
+  const hasSlider = totalProjects > visibleCount;
+  const isPrevDisabled = currentPage === 0;
+  const isNextDisabled = currentPage >= pageStops.length - 1;
+
+  const rangeFrom = totalProjects === 0 ? 0 : currentIndex + 1;
+  const rangeTo = Math.min(currentIndex + visibleCount, totalProjects);
+
+  const clearFilters = () => {
+    setActiveDomain('all');
+    setQuery('');
+  };
+
+  // Touch swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || !hasSlider) return;
+    const delta = (e.changedTouches[0]?.clientX ?? touchStartX.current) - touchStartX.current;
+    touchStartX.current = null;
+    if (delta <= -SWIPE_THRESHOLD_PX) handleNext();
+    else if (delta >= SWIPE_THRESHOLD_PX) handlePrev();
+  };
+
+  // Keyboard arrows while the slider region is focused
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (!hasSlider) return;
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      handlePrev();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      handleNext();
+    }
+  };
+
+  const pad = (n: number) => String(n).padStart(2, '0');
+
+  const navButtonClass = (disabled: boolean) =>
+    `inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+      disabled
+        ? 'border-stone-200 bg-white/60 text-stone-300 cursor-not-allowed'
+        : 'border-stone-300 bg-white text-primary shadow-sm hover:border-accent hover:bg-accent hover:text-white hover:shadow-md cursor-pointer'
+    }`;
 
   return (
     <section id={SectionId.PROJECTS} className="py-24 bg-surface relative">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
-        <div className="mb-8 max-w-2xl">
+        <div className="mb-10 max-w-2xl">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-[2px] w-8 bg-accent"></span>
             <span className="text-accent uppercase tracking-widest text-xs font-bold">
@@ -438,63 +558,232 @@ const ProjectsGrid: React.FC = () => {
           </p>
         </div>
 
-        {/* Slider Controls */}
-        {totalProjects > visibleCount && (
-          <div className="mb-6 flex justify-end">
-            <div className="flex gap-3">
-              <button
-                type="button"
-                onClick={handlePrev}
-                aria-label="Previous project"
-                disabled={isPrevDisabled}
-                className={`inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-primary shadow-md transition-colors ${
-                  isPrevDisabled
-                    ? 'opacity-40 cursor-not-allowed'
-                    : 'hover:bg-accent hover:text-white cursor-pointer'
-                }`}
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                aria-label="Next project"
-                disabled={isNextDisabled}
-                className={`inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-primary shadow-md transition-colors ${
-                  isNextDisabled
-                    ? 'opacity-40 cursor-not-allowed'
-                    : 'hover:bg-accent hover:text-white cursor-pointer'
-                }`}
-              >
-                ›
-              </button>
+        {/* Search + domain filter — lets a prospective client find the work that matches their brief */}
+        <div className="mb-8 rounded-2xl border border-orange-100 bg-white/70 backdrop-blur-sm p-4 md:p-5 shadow-sm">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-3 min-w-0">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">
+                {t.projects.filterLabel}
+              </span>
+              <div className="flex flex-wrap gap-2" role="group" aria-label={t.projects.filterLabel}>
+                {(['all', ...availableDomains] as Array<ProjectDomain | 'all'>).map((domain) => {
+                  const isActive = activeDomain === domain;
+                  const count =
+                    domain === 'all'
+                      ? allProjects.length
+                      : allProjects.filter((p) => p.domains.includes(domain)).length;
+                  return (
+                    <button
+                      key={domain}
+                      type="button"
+                      onClick={() => setActiveDomain(domain)}
+                      aria-pressed={isActive}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                        isActive
+                          ? 'border-accent bg-accent text-white shadow-md shadow-orange-500/20'
+                          : 'border-orange-200 bg-white text-primary hover:border-accent hover:text-accent'
+                      }`}
+                    >
+                      {t.projects.domains[domain]}
+                      <span
+                        className={`font-mono text-[10px] ${
+                          isActive ? 'text-white/80' : 'text-stone-400'
+                        }`}
+                      >
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
+
+            <label className="relative block w-full lg:w-80 shrink-0">
+              <span className="sr-only">{t.projects.searchAriaLabel}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
+                />
+              </svg>
+              <input
+                type="text"
+                inputMode="search"
+                autoComplete="off"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={t.projects.searchPlaceholder}
+                aria-label={t.projects.searchAriaLabel}
+                className="w-full rounded-full border border-orange-200 bg-white py-2.5 pl-11 pr-10 text-sm text-primary placeholder:text-stone-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              />
+              {query && (
+                <button
+                  type="button"
+                  onClick={() => setQuery('')}
+                  aria-label={t.projects.clearFilters}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-stone-400 hover:text-accent"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </label>
+          </div>
+        </div>
+
+        {/* Result count + slider controls */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <p className="text-xs font-mono text-stone-500" aria-live="polite">
+            {fill(t.projects.resultsCount, { count: totalProjects, total: allProjects.length })}
+            {isFiltered && (
+              <>
+                <span className="mx-2 text-stone-300">·</span>
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="font-sans font-bold uppercase tracking-wider text-accent hover:underline"
+                >
+                  {t.projects.clearFilters}
+                </button>
+              </>
+            )}
+          </p>
+
+          {hasSlider && (
+            <div className="flex items-center gap-4">
+              {/* "04–06 / 09" — makes it obvious there is more than one screen of work */}
+              <span className="font-mono text-xs tabular-nums text-stone-500" aria-live="polite">
+                {rangeFrom === rangeTo
+                  ? fill(t.projects.showingOne, {
+                      index: pad(rangeFrom),
+                      total: pad(totalProjects),
+                    })
+                  : fill(t.projects.showingRange, {
+                      from: pad(rangeFrom),
+                      to: pad(rangeTo),
+                      total: pad(totalProjects),
+                    })}
+              </span>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  aria-label={t.projects.prevProject}
+                  disabled={isPrevDisabled}
+                  className={navButtonClass(isPrevDisabled)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  aria-label={t.projects.nextProject}
+                  disabled={isNextDisabled}
+                  className={navButtonClass(isNextDisabled)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Slider window: responsive card count */}
+        {totalProjects > 0 ? (
+          <div
+            className="relative overflow-hidden -mx-4 outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded-2xl"
+            tabIndex={hasSlider ? 0 : -1}
+            onKeyDown={onKeyDown}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            aria-roledescription="carousel"
+          >
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
+              }}
+            >
+              {filtered.map(({ project, index }, position) => {
+                const isInView = position >= currentIndex && position < currentIndex + visibleCount;
+                return (
+                  <div
+                    key={project.id}
+                    className="shrink-0 basis-full md:basis-1/2 xl:basis-1/3 px-4 py-4"
+                    aria-hidden={!isInView}
+                  >
+                    <ProjectCard
+                      project={project}
+                      index={index}
+                      onClick={setSelectedProject}
+                      viewCaseStudyText={t.projects.viewCaseStudy}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-orange-200 bg-white/60 px-6 py-16 text-center">
+            <p className="text-secondary font-light max-w-md mx-auto mb-6">{t.projects.noResults}</p>
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-orange-500/30 transition-transform hover:scale-105"
+            >
+              {t.projects.clearFilters}
+            </button>
           </div>
         )}
 
-        {/* Slider window: responsive card count */}
-        <div className="relative overflow-hidden -mx-4">
-          <div
-            className="flex transition-transform duration-500 ease-out"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-            }}
-          >
-            {projects.map((project, index) => (
-              <div
-                key={project.id}
-                className="shrink-0 basis-full md:basis-1/2 xl:basis-1/3 px-4"
-              >
-                <ProjectCard
-                  project={project}
-                  index={index}
-                  onClick={setSelectedProject}
-                  viewCaseStudyText={t.projects.viewCaseStudy}
-                />
-              </div>
-            ))}
+        {/* Page dots — a second, at-a-glance signal of how much work is here */}
+        {hasSlider && (
+          <div className="mt-8 flex items-center justify-center gap-2" role="tablist" aria-label={t.projects.label}>
+            {pageStops.map((_, page) => {
+              const isActive = page === currentPage;
+              return (
+                <button
+                  key={page}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-label={fill(t.projects.goToPage, { page: page + 1 })}
+                  onClick={() => goToPage(page)}
+                  className="group/dot flex h-8 items-center px-1 cursor-pointer"
+                >
+                  <span
+                    className={`block h-2 rounded-full transition-all duration-300 ${
+                      isActive
+                        ? 'w-8 bg-accent'
+                        : 'w-2 bg-stone-300 group-hover/dot:bg-accent/60'
+                    }`}
+                  />
+                </button>
+              );
+            })}
           </div>
-        </div>
+        )}
       </div>
 
       {/* Modal Integration */}

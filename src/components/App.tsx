@@ -71,8 +71,8 @@ const LazySection: React.FC<{
 
 const App: React.FC = () => {
   // Tracks how many lazy sections are unlocked.
-  // 0 = only Hero + Services visible
-  // 1 = TechStack, 2 = ImpactDashboard, … 7 = Footer + CookieConsent
+  // 0 = only Hero visible
+  // 1 = ProjectsGrid, 2 = Services, 3 = TechStack, … 8 = Footer + CookieConsent
   const [unlockedCount, setUnlockedCount] = useState(0);
   const servicesRef = useRef<HTMLDivElement>(null);
 
@@ -82,7 +82,7 @@ const App: React.FC = () => {
 
   // Observe Hero section — when it enters viewport, unlock Services
   useEffect(() => {
-    // Unlock Services immediately when Hero is visible (Hero is above the fold)
+    // Unlock the first section immediately when Hero is visible (Hero is above the fold)
     unlock(1);
     
     // Also observe Hero to trigger Services loading when user scrolls
@@ -91,7 +91,7 @@ const App: React.FC = () => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            unlock(1); // Ensure Services is unlocked
+            unlock(1); // Ensure the first section is unlocked
             observer.disconnect();
           }
         },
@@ -109,22 +109,23 @@ const App: React.FC = () => {
         <Navbar />
         <main>
           <Hero />
+          {/* Featured work sits directly under the hero so a visitor sees proof first */}
+          <LazySection shouldLoad={unlockedCount >= 1} onVisible={() => unlock(2)}>
+            <ProjectsGrid />
+          </LazySection>
+
           <div ref={servicesRef}>
-            <LazySection shouldLoad={unlockedCount >= 1} onVisible={() => unlock(2)}>
+            <LazySection shouldLoad={unlockedCount >= 2} onVisible={() => unlock(3)}>
               <Services />
             </LazySection>
           </div>
 
-          <LazySection shouldLoad={unlockedCount >= 2} onVisible={() => unlock(3)}>
+          <LazySection shouldLoad={unlockedCount >= 3} onVisible={() => unlock(4)}>
             <TechStack />
           </LazySection>
 
-          <LazySection shouldLoad={unlockedCount >= 3} onVisible={() => unlock(4)}>
-            <ImpactDashboard />
-          </LazySection>
-
           <LazySection shouldLoad={unlockedCount >= 4} onVisible={() => unlock(5)}>
-            <ProjectsGrid />
+            <ImpactDashboard />
           </LazySection>
 
           <LazySection shouldLoad={unlockedCount >= 5} onVisible={() => unlock(6)}>

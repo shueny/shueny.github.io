@@ -173,6 +173,28 @@ export interface Translations {
       fullstack: string;
       design: string;
     };
+    // Search + filter UI
+    filterLabel: string; // "What are you building?"
+    searchPlaceholder: string;
+    searchAriaLabel: string;
+    domains: {
+      all: string;
+      ai: string;
+      fintech: string;
+      enterprise: string;
+      data: string;
+      consumer: string;
+      mvp: string;
+    };
+    resultsCount: string; // "{count} of {total} projects"
+    noResults: string;
+    clearFilters: string;
+    // Carousel
+    prevProject: string;
+    nextProject: string;
+    goToPage: string; // "Go to page {page}"
+    showingRange: string; // "{from}–{to} of {total}"
+    showingOne: string; // "{index} of {total}" (one card per screen)
     data: Array<{
       id: string;
       title: string;
@@ -407,6 +429,26 @@ export const translations: Record<Language, Translations> = {
         fullstack: 'Full Stack',
         design: 'Design',
       },
+      filterLabel: 'What are you building?',
+      searchPlaceholder: 'Search by stack, industry or keyword…',
+      searchAriaLabel: 'Search projects',
+      domains: {
+        all: 'All work',
+        ai: 'AI products',
+        fintech: 'Fintech',
+        enterprise: 'Enterprise platforms',
+        data: 'Data & research',
+        consumer: 'Consumer apps',
+        mvp: 'MVP & design',
+      },
+      resultsCount: '{count} of {total} projects',
+      noResults: 'Nothing matches that yet. Try another keyword, or clear the filters to see everything.',
+      clearFilters: 'Clear filters',
+      prevProject: 'Previous projects',
+      nextProject: 'Next projects',
+      goToPage: 'Go to page {page}',
+      showingRange: '{from}–{to} of {total}',
+      showingOne: '{index} of {total}',
       data: [
         {
           id: 'p-lucky-duck',
@@ -906,6 +948,26 @@ export const translations: Record<Language, Translations> = {
         fullstack: 'Full Stack',
         design: 'Design',
       },
+      filterLabel: 'Was möchten Sie bauen?',
+      searchPlaceholder: 'Nach Stack, Branche oder Stichwort suchen…',
+      searchAriaLabel: 'Projekte durchsuchen',
+      domains: {
+        all: 'Alle Projekte',
+        ai: 'KI-Produkte',
+        fintech: 'Fintech',
+        enterprise: 'Enterprise-Plattformen',
+        data: 'Daten & Forschung',
+        consumer: 'Consumer-Apps',
+        mvp: 'MVP & Design',
+      },
+      resultsCount: '{count} von {total} Projekten',
+      noResults: 'Dazu passt noch nichts. Probieren Sie ein anderes Stichwort oder setzen Sie die Filter zurück.',
+      clearFilters: 'Filter zurücksetzen',
+      prevProject: 'Vorherige Projekte',
+      nextProject: 'Nächste Projekte',
+      goToPage: 'Zu Seite {page}',
+      showingRange: '{from}–{to} von {total}',
+      showingOne: '{index} von {total}',
       data: [
         {
           id: 'p-lucky-duck',
@@ -1392,6 +1454,26 @@ export const translations: Record<Language, Translations> = {
         fullstack: '全端',
         design: '設計',
       },
+      filterLabel: '你想打造什麼？',
+      searchPlaceholder: '搜尋技術、產業或關鍵字…',
+      searchAriaLabel: '搜尋專案',
+      domains: {
+        all: '全部作品',
+        ai: 'AI 產品',
+        fintech: '金融科技',
+        enterprise: '企業平台',
+        data: '資料與研究',
+        consumer: '消費者應用',
+        mvp: 'MVP 與設計',
+      },
+      resultsCount: '共 {total} 個專案，符合 {count} 個',
+      noResults: '目前沒有符合的專案。換個關鍵字，或清除篩選查看全部作品。',
+      clearFilters: '清除篩選',
+      prevProject: '上一組專案',
+      nextProject: '下一組專案',
+      goToPage: '前往第 {page} 頁',
+      showingRange: '第 {from}–{to} 個，共 {total} 個',
+      showingOne: '第 {index} 個，共 {total} 個',
       data: [
         {
           id: 'p-lucky-duck',

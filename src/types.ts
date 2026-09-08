@@ -7,6 +7,18 @@ export interface SalaryData {
   experience?: string;
 }
 
+/**
+ * Who a project is for. Drives the "What are you building?" filter in the
+ * portfolio so a prospective client can jump straight to relevant work.
+ */
+export type ProjectDomain =
+  | 'ai'
+  | 'fintech'
+  | 'enterprise'
+  | 'data'
+  | 'consumer'
+  | 'mvp';
+
 export interface Project {
   id: string;
   title: string;
@@ -17,6 +29,7 @@ export interface Project {
   banner?: string; // Banner image for project card
   gallery?: string[]; // Array of screenshot URLs
   category: 'frontend' | 'fullstack' | 'design';
+  domains: ProjectDomain[]; // first entry is the primary domain shown on the card
   visualDescription?: string;
   // Case Study Specifics
   problem?: string;

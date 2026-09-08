@@ -188,6 +188,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'GIF: Mobile chat interface showing voice waves and instant text corrections.',
     category: 'fullstack',
+    domains: ['ai', 'consumer'],
 
     // ⭐️ 核心修改：從單純的「App太死板」提升到解決「開口恐懼症 (Sprechhemmung)」
     problem:
@@ -232,6 +233,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'UI Screenshot: Clean mobile dashboard showing "Recent Transactions" with auto-converted dual currency (NT$ / €) and category icons.',
     category: 'fullstack',
+    domains: ['ai', 'fintech', 'consumer'],
     problem:
       "Spreadsheets were killing the holiday vibe. During a multi-country trip, I realized splitting bills across EUR, JPY, and TWD was a logistical nightmare. My goal was simple yet ambitious: Eliminate manual data entry entirely. I wanted a 'fire-and-forget' solution where users snap a photo, and the system handles the math, currency, and splits instantly.",
     solution:
@@ -257,6 +259,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'Image: Split screen showing raw text input vs. structured JSON dashboard.',
     category: 'fullstack',
+    domains: ['ai', 'data'],
 
     problem:
       "Job hunting is a data problem disguised as a document problem. Reading hundreds of unstructured JDs creates cognitive overload, making it difficult to objectively quantify skill gaps (e.g., 'Do I lack React or just Next.js?'). I needed a tool to find the signal in the noise.",
@@ -290,6 +293,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'UI Screenshot: Professional financial dashboard showing dense asset tables and institutional metrics.',
     category: 'frontend',
+    domains: ['fintech', 'data'],
 
     // ⭐️ 核心修改：強調 "Data Integrity" (數據完整性)，這對金融業至關重要
     problem:
@@ -322,6 +326,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'Interactive phone prototype walking through Landing, Signup/Wallet, Reward Discovery, Portfolio and Celebration in light & dark themes.',
     category: 'design',
+    domains: ['mvp', 'consumer'],
     problem:
       "The hard part of a rewards product isn't building another marketplace — it's building enough momentum that people come back. A pile of disconnected screens doesn't prove that; it needs a coherent flow where every screen earns the next tap and maps to a real growth loop.",
     solution:
@@ -347,6 +352,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'Interactive phone mockup: day-card carousel, collapsible calendar and full-screen Pomodoro focus overlay.',
     category: 'frontend',
+    domains: ['consumer', 'mvp'],
     problem:
       'Most todo apps treat time as a label and focus as an afterthought: tasks pile up in one endless list, and the Pomodoro timer lives in a corner you ignore. I wanted planning by day and focusing on one task to be the same motion, not two separate apps.',
     solution:
@@ -378,6 +384,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'Rack elevation view alongside a three-stage approval flow panel with role-based amount masking.',
     category: 'frontend',
+    domains: ['enterprise'],
     problem:
       'A build this size fails by duplication, not by difficulty. Nine modules each needing CRUD, batch import, approvals, permissions and state pages is roughly 284 screens — and if every module solves those problems in its own way, the codebase becomes nine codebases. The real risk was not any single feature; it was the second engineer joining and having no single way to build a page.',
     solution:
@@ -402,6 +409,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'Mass spectrum with a flagged peak, rendered molecular structure, and a similarity heatmap strip.',
     category: 'frontend',
+    domains: ['data', 'enterprise'],
     problem:
       'Researchers were reading spectral results in one tool, comparing candidate molecules in another, and rebuilding the write-up by hand in a third. The analysis was not the bottleneck — moving between the analysis and the document was. And in this domain the interface carries real risk: if the UI implies more certainty than the data supports, it does damage that a prettier chart cannot undo.',
     solution:
@@ -427,6 +435,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'Static HTML shell with dashed hydration islands beside a panel of Lighthouse score rings.',
     category: 'frontend',
+    domains: ['mvp'],
     problem:
       'The previous version shipped the entire page as a React bundle: a hero that is pure text still cost a full hydration pass before anything rendered. On desktop the damage was invisible. On a mid-range phone it was the whole first impression — and a frontend engineer whose own portfolio has bad Core Web Vitals has an argument problem.',
     solution:
