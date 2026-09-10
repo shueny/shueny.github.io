@@ -598,11 +598,11 @@ const ProjectsGrid: React.FC = () => {
               </div>
             </div>
 
-            <label className="relative block w-full lg:w-80 shrink-0">
+            <label className="relative flex items-center w-full lg:w-80 shrink-0 rounded-full border border-orange-200 bg-white transition-colors focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20">
               <span className="sr-only">{t.projects.searchAriaLabel}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400"
+                className="pointer-events-none ml-4 h-4 w-4 shrink-0 text-stone-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -623,7 +623,7 @@ const ProjectsGrid: React.FC = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t.projects.searchPlaceholder}
                 aria-label={t.projects.searchAriaLabel}
-                className="w-full rounded-full border border-orange-200 bg-white py-2.5 pl-12 pr-10 text-sm text-primary placeholder:text-stone-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                className="w-full min-w-0 bg-transparent py-2.5 pl-3 pr-10 text-sm text-primary placeholder:text-stone-400 border-none outline-none focus:outline-none focus:ring-0"
               />
               {query && (
                 <button
