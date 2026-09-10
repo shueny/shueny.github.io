@@ -529,10 +529,10 @@ const ProjectsGrid: React.FC = () => {
   const pad = (n: number) => String(n).padStart(2, '0');
 
   const navButtonClass = (disabled: boolean) =>
-    `inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+    `inline-flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all duration-300 ${
       disabled
         ? 'border-stone-200 bg-white/60 text-stone-300 cursor-not-allowed'
-        : 'border-stone-300 bg-white text-primary shadow-sm hover:border-accent hover:bg-accent hover:text-white hover:shadow-md cursor-pointer'
+        : 'border-stone-400 bg-white text-primary shadow-sm hover:border-accent hover:bg-accent hover:text-white hover:shadow-md cursor-pointer'
     }`;
 
   return (
