@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <filter id="shadow1" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="shadow2" x="-2%" y="-2%" width="104%" height="110%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <clipPath id="roundClip2">
+      <rect width="1200" height="680" rx="16" ry="16"/>
+    </clipPath>
+    <linearGradient id="logoGrad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#roundClip2)">
+    <!-- Background -->
+    <rect width="1200" height="680" fill="#f8fafc"/>
+
+    <!-- Top Navigation Bar -->
+    <rect width="1200" height="60" fill="#ffffff" filter="url(#shadow2)"/>
+    <rect x="28" y="14" width="32" height="32" rx="8" fill="url(#logoGrad2)"/>
+    <text x="38" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">P</text>
+    <text x="72" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Pilotfit</text>
+
+    <!-- Nav items -->
+    <text x="880" y="36" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#64748b">Dashboard</text>
+    <text x="970" y="36" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#64748b">Jobs</text>
+    <text x="1030" y="36" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#059669">Skills</text>
+    <rect x="1020" y="50" width="40" height="2.5" rx="1" fill="#059669"/>
+
+    <!-- User avatar -->
+    <circle cx="1140" cy="30" r="16" fill="#d1fae5"/>
+    <circle cx="1140" cy="26" r="5" fill="#059669"/>
+    <ellipse cx="1140" cy="38" rx="8" ry="5" fill="#059669"/>
+
+    <!-- Page Title -->
+    <text x="48" y="106" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#0f172a">Skill Gap Analysis</text>
+    <text x="48" y="128" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Compare your skills against your target role: Senior Full-Stack Engineer</text>
+
+    <!-- Breadcrumb tabs -->
+    <rect x="48" y="142" width="90" height="30" rx="6" fill="#059669"/>
+    <text x="93" y="162" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">Overview</text>
+    <rect x="146" y="142" width="80" height="30" rx="6" fill="#f1f5f9"/>
+    <text x="186" y="162" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Timeline</text>
+    <rect x="234" y="142" width="90" height="30" rx="6" fill="#f1f5f9"/>
+    <text x="279" y="162" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Resources</text>
+
+    <!-- ===== LEFT: RADAR CHART ===== -->
+    <rect x="48" y="188" width="520" height="320" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow1)"/>
+    <text x="76" y="220" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0f172a">Skills Radar</text>
+
+    <!-- Legend -->
+    <rect x="340" y="206" width="10" height="10" rx="2" fill="#059669" opacity="0.7"/>
+    <text x="356" y="216" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Your Skills</text>
+    <rect x="420" y="206" width="10" height="10" rx="2" fill="#3b82f6" opacity="0.5"/>
+    <text x="436" y="216" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Job Requirements</text>
+
+    <!-- Radar chart center at 308, 370 with radius 110 -->
+    <!-- Hexagonal grid lines -->
+    <!-- Level 1 (innermost) r=37 -->
+    <polygon points="308,333 340,351 340,389 308,407 276,389 276,351" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+    <!-- Level 2 r=73 -->
+    <polygon points="308,297 371,333 371,407 308,443 245,407 245,333" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+    <!-- Level 3 (outer) r=110 -->
+    <polygon points="308,260 403,315 403,425 308,480 213,425 213,315" fill="none" stroke="#e2e8f0" stroke-width="0.75"/>
+
+    <!-- Axis lines from center -->
+    <line x1="308" y1="370" x2="308" y2="260" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="308" y1="370" x2="403" y2="315" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="308" y1="370" x2="403" y2="425" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="308" y1="370" x2="308" y2="480" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="308" y1="370" x2="213" y2="425" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="308" y1="370" x2="213" y2="315" stroke="#e2e8f0" stroke-width="0.5"/>
+
+    <!-- Axis labels -->
+    <text x="308" y="250" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">Frontend</text>
+    <text x="416" y="312" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="start">Backend</text>
+    <text x="416" y="432" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="start">AI / ML</text>
+    <text x="308" y="496" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">DevOps</text>
+    <text x="200" y="432" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="end">Data</text>
+    <text x="200" y="312" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="end">System Design</text>
+
+    <!-- Job Requirements polygon (blue) - 85%, 90%, 80%, 75%, 70%, 85% -->
+    <!-- Frontend(85%): 308, 260+(110*0.15)=276.5 -->
+    <!-- Backend(90%): 308+(95*0.9)=393.5, 315+(55*0.1)=320.5 ... using simplified coords -->
+    <polygon points="308,277 391,319 395,418 308,452 227,421 224,320"
+             fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.5"/>
+    <!-- Dots on job req -->
+    <circle cx="308" cy="277" r="3" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="391" cy="319" r="3" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="395" cy="418" r="3" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="308" cy="452" r="3" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="227" cy="421" r="3" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="224" cy="320" r="3" fill="#3b82f6" opacity="0.6"/>
+
+    <!-- Your Skills polygon (green) - 92%, 85%, 60%, 40%, 75%, 65% -->
+    <polygon points="308,269 388,324 365,403 308,462 237,412 243,334"
+             fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="2" stroke-opacity="0.7"/>
+    <!-- Dots on your skills -->
+    <circle cx="308" cy="269" r="4" fill="#059669"/>
+    <circle cx="388" cy="324" r="4" fill="#059669"/>
+    <circle cx="365" cy="403" r="4" fill="#059669"/>
+    <circle cx="308" cy="462" r="4" fill="#059669"/>
+    <circle cx="237" cy="412" r="4" fill="#059669"/>
+    <circle cx="243" cy="334" r="4" fill="#059669"/>
+
+
+    <!-- ===== RIGHT: SKILL RECOMMENDATIONS ===== -->
+    <rect x="588" y="188" width="564" height="320" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow1)"/>
+    <text x="616" y="220" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0f172a">Skill Proficiency</text>
+    <text x="616" y="238" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Based on your resume, projects, and assessments</text>
+
+    <!-- Skill 1: Docker & Kubernetes — 40% orange -->
+    <text x="616" y="274" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#334155">Docker &amp; Kubernetes</text>
+    <rect x="616" y="282" width="508" height="8" rx="4" fill="#f1f5f9"/>
+    <rect x="616" y="282" width="203" height="8" rx="4" fill="#f97316"/>
+    <text x="1100" y="274" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#f97316" text-anchor="end">40%</text>
+    <rect x="1020" y="262" width="72" height="20" rx="10" fill="#fff7ed"/>
+    <text x="1014" y="276" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#ea580c" text-anchor="end">Needs work</text>
+
+    <!-- Skill 2: System Design — 65% yellow -->
+    <text x="616" y="322" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#334155">System Design</text>
+    <rect x="616" y="330" width="508" height="8" rx="4" fill="#f1f5f9"/>
+    <rect x="616" y="330" width="330" height="8" rx="4" fill="#eab308"/>
+    <text x="1100" y="322" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ca8a04" text-anchor="end">65%</text>
+    <rect x="1032" y="310" width="60" height="20" rx="10" fill="#fefce8"/>
+    <text x="1026" y="324" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#ca8a04" text-anchor="end">Growing</text>
+
+    <!-- Skill 3: React/Next.js — 92% green -->
+    <text x="616" y="370" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#334155">React / Next.js</text>
+    <rect x="616" y="378" width="508" height="8" rx="4" fill="#f1f5f9"/>
+    <rect x="616" y="378" width="467" height="8" rx="4" fill="#059669"/>
+    <text x="1100" y="370" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#059669" text-anchor="end">92%</text>
+    <rect x="1044" y="358" width="48" height="20" rx="10" fill="#ecfdf5"/>
+    <text x="1038" y="372" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#059669" text-anchor="end">Strong</text>
+
+    <!-- Skill 4: Python/FastAPI — 85% green -->
+    <text x="616" y="418" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#334155">Python / FastAPI</text>
+    <rect x="616" y="426" width="508" height="8" rx="4" fill="#f1f5f9"/>
+    <rect x="616" y="426" width="432" height="8" rx="4" fill="#059669"/>
+    <text x="1100" y="418" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#059669" text-anchor="end">85%</text>
+    <rect x="1044" y="406" width="48" height="20" rx="10" fill="#ecfdf5"/>
+    <text x="1038" y="420" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#059669" text-anchor="end">Strong</text>
+
+    <!-- Skill 5: AI/ML Fundamentals — 60% -->
+    <text x="616" y="466" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#334155">AI / ML Fundamentals</text>
+    <rect x="616" y="474" width="508" height="8" rx="4" fill="#f1f5f9"/>
+    <rect x="616" y="474" width="305" height="8" rx="4" fill="#eab308"/>
+    <text x="1100" y="466" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ca8a04" text-anchor="end">60%</text>
+    <rect x="1032" y="454" width="60" height="20" rx="10" fill="#fefce8"/>
+    <text x="1026" y="468" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#ca8a04" text-anchor="end">Growing</text>
+
+
+    <!-- ===== BOTTOM: RECOMMENDED LEARNING PATH ===== -->
+    <text x="48" y="540" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Recommended Learning Path</text>
+    <text x="48" y="560" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">Curated resources to close your skill gaps</text>
+
+    <!-- Connection line between cards -->
+    <line x1="386" y1="630" x2="424" y2="630" stroke="#d1fae5" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="762" y1="630" x2="800" y2="630" stroke="#d1fae5" stroke-width="2" stroke-dasharray="4,4"/>
+
+    <!-- Course Card 1 -->
+    <rect x="48" y="578" width="338" height="90" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow1)"/>
+    <!-- Icon area -->
+    <rect x="68" y="596" width="44" height="44" rx="10" fill="#fff7ed"/>
+    <!-- Container icon -->
+    <rect x="78" y="606" width="24" height="16" rx="3" fill="none" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="82" y="602" width="16" height="6" rx="2" fill="none" stroke="#f97316" stroke-width="1.5"/>
+    <text x="128" y="610" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Docker &amp; K8s Mastery</text>
+    <text x="128" y="626" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">16 hours  ·  Hands-on labs</text>
+    <!-- Priority badge -->
+    <rect x="128" y="636" width="70" height="20" rx="10" fill="#fef2f2"/>
+    <text x="163" y="650" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#dc2626" text-anchor="middle">High Priority</text>
+    <!-- Difficulty -->
+    <rect x="206" y="636" width="78" height="20" rx="10" fill="#f1f5f9"/>
+    <text x="245" y="650" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Intermediate</text>
+    <!-- Step number -->
+    <circle cx="358" cy="600" r="12" fill="#ecfdf5"/>
+    <text x="358" y="605" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">1</text>
+
+    <!-- Course Card 2 -->
+    <rect x="424" y="578" width="338" height="90" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow1)"/>
+    <rect x="444" y="596" width="44" height="44" rx="10" fill="#fefce8"/>
+    <!-- Architecture icon -->
+    <rect x="454" y="604" width="8" height="20" rx="2" fill="none" stroke="#ca8a04" stroke-width="1.5"/>
+    <rect x="466" y="610" width="8" height="14" rx="2" fill="none" stroke="#ca8a04" stroke-width="1.5"/>
+    <rect x="478" y="606" width="8" height="18" rx="2" fill="none" stroke="#ca8a04" stroke-width="1.5"/>
+    <text x="504" y="610" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0f172a">System Design Deep Dive</text>
+    <text x="504" y="626" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">24 hours  ·  Case studies</text>
+    <rect x="504" y="636" width="54" height="20" rx="10" fill="#fff7ed"/>
+    <text x="531" y="650" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#ea580c" text-anchor="middle">Medium</text>
+    <rect x="566" y="636" width="68" height="20" rx="10" fill="#f1f5f9"/>
+    <text x="600" y="650" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Advanced</text>
+    <circle cx="734" cy="600" r="12" fill="#ecfdf5"/>
+    <text x="734" y="605" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">2</text>
+
+    <!-- Course Card 3 -->
+    <rect x="800" y="578" width="352" height="90" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow1)"/>
+    <rect x="820" y="596" width="44" height="44" rx="10" fill="#ecfdf5"/>
+    <!-- ML icon - neural net nodes -->
+    <circle cx="834" cy="612" r="4" fill="none" stroke="#059669" stroke-width="1.5"/>
+    <circle cx="834" cy="626" r="4" fill="none" stroke="#059669" stroke-width="1.5"/>
+    <circle cx="850" cy="619" r="4" fill="none" stroke="#059669" stroke-width="1.5"/>
+    <line x1="838" y1="612" x2="846" y2="619" stroke="#059669" stroke-width="1"/>
+    <line x1="838" y1="626" x2="846" y2="619" stroke="#059669" stroke-width="1"/>
+    <text x="880" y="610" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Applied ML Engineering</text>
+    <text x="880" y="626" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">20 hours  ·  Projects</text>
+    <rect x="880" y="636" width="54" height="20" rx="10" fill="#fff7ed"/>
+    <text x="907" y="650" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#ea580c" text-anchor="middle">Medium</text>
+    <rect x="942" y="636" width="68" height="20" rx="10" fill="#f1f5f9"/>
+    <text x="976" y="650" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#64748b" text-anchor="middle">Advanced</text>
+    <circle cx="1124" cy="600" r="12" fill="#ecfdf5"/>
+    <text x="1124" y="605" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">3</text>
+
+    <!-- Outer border -->
+    <rect width="1200" height="680" rx="16" ry="16" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+  </g>
+</svg>
