@@ -379,8 +379,8 @@ export const PROJECTS_DATA: Project[] = [
       'Design System',
       'i18next',
     ],
-    image: getAssetUrl('images/datacenter-assets-cover.png'),
-    banner: getAssetUrl('images/datacenter-assets-cover.png'),
+    image: getAssetUrl('images/datacenter-assets-cover.svg'),
+    banner: getAssetUrl('images/datacenter-assets-cover.svg'),
     link: '/dc-keeper',
     visualDescription:
       'SaaS-style landing page showing the DC Keeper dashboard with asset inventory, rack management, and approval flow.',
