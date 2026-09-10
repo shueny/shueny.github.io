@@ -185,6 +185,10 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: getAssetUrl('images/german-tutor-cover.webp'),
     banner: getAssetUrl('images/german-tutor-cover.webp'),
+    gallery: [
+      getAssetUrl('images/german-tutor-gallery-1.svg'),
+      getAssetUrl('images/german-tutor-gallery-2.svg'),
+    ],
     visualDescription:
       'GIF: Mobile chat interface showing voice waves and instant text corrections.',
     category: 'fullstack',
@@ -256,6 +260,10 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['FastAPI', 'React', 'LangGraph', 'pgvector', 'Gemini'],
     image: getAssetUrl('images/job-analyzer-cover.webp'),
     banner: getAssetUrl('images/job-analyzer-cover.webp'),
+    gallery: [
+      getAssetUrl('images/pilotfit-gallery-1.svg'),
+      getAssetUrl('images/pilotfit-gallery-2.svg'),
+    ],
     visualDescription:
       'Image: Split screen showing raw text input vs. structured JSON dashboard.',
     category: 'fullstack',
@@ -322,6 +330,11 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Astro', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     image: getAssetUrl('images/lucky-duck-card.png'),
     banner: getAssetUrl('images/lucky-duck-card.png'),
+    gallery: [
+      getAssetUrl('images/lucky-duck-gallery-1.png'),
+      getAssetUrl('images/lucky-duck-gallery-2.png'),
+      getAssetUrl('images/lucky-duck-gallery-3.png'),
+    ],
     link: '/lucky-duck',
     visualDescription:
       'Interactive phone prototype walking through Landing, Signup/Wallet, Reward Discovery, Portfolio and Celebration in light & dark themes.',
@@ -348,6 +361,10 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Vue 3', 'Pinia', 'CSS Scroll Snap', 'PWA'],
     image: getAssetUrl('images/tomato-todo-cover.svg'),
     banner: getAssetUrl('images/tomato-todo-cover.svg'),
+    gallery: [
+      getAssetUrl('images/tomato-todo-gallery-1.svg'),
+      getAssetUrl('images/tomato-todo-gallery-2.svg'),
+    ],
     link: 'https://shueny.github.io/vue-daily-tomato-todo/',
     visualDescription:
       'Interactive phone mockup: day-card carousel, collapsible calendar and full-screen Pomodoro focus overlay.',
@@ -381,6 +398,11 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: getAssetUrl('images/datacenter-assets-cover.svg'),
     banner: getAssetUrl('images/datacenter-assets-cover.svg'),
+    gallery: [
+      getAssetUrl('images/dc-keeper-gallery-1.svg'),
+      getAssetUrl('images/dc-keeper-gallery-2.svg'),
+      getAssetUrl('images/dc-keeper-gallery-3.svg'),
+    ],
     link: '/dc-keeper',
     visualDescription:
       'SaaS-style landing page showing the DC Keeper dashboard with asset inventory, rack management, and approval flow.',
@@ -407,6 +429,10 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Nuxt 3', 'Vue 3', 'Plotly.js', 'Data Visualization', 'Vitest', 'Playwright'],
     image: getAssetUrl('images/toxintel-cover.svg'),
     banner: getAssetUrl('images/toxintel-cover.svg'),
+    gallery: [
+      getAssetUrl('images/toxintel-gallery-1.svg'),
+      getAssetUrl('images/toxintel-gallery-2.svg'),
+    ],
     visualDescription:
       'Mass spectrum with a flagged peak, rendered molecular structure, and a similarity heatmap strip.',
     category: 'frontend',
@@ -467,6 +493,10 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: getAssetUrl('images/gcd-angela-cover.webp'),
     banner: getAssetUrl('images/gcd-angela-cover.webp'),
+    gallery: [
+      getAssetUrl('images/gcd-angela-gallery-1.svg'),
+      getAssetUrl('images/gcd-angela-gallery-2.svg'),
+    ],
     link: 'https://www.angelacareerpath.com',
     visualDescription:
       'Desktop screenshot of the GCD homepage: cream background with navy text, gold SVG career path illustration, and dual call-to-action buttons.',
