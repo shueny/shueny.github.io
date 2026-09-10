@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <filter id="phoneShadow2" x="-10%" y="-5%" width="120%" height="115%">
+      <feDropShadow dx="0" dy="8" stdDeviation="24" flood-color="#1a202c" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="bgGrad2" x1="0" y1="0" x2="1200" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#edf2f7"/>
+    </linearGradient>
+    <clipPath id="screenClip2">
+      <rect x="383" y="38" width="434" height="604" rx="0"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" fill="url(#bgGrad2)"/>
+
+  <!-- Subtle decorative circles -->
+  <circle cx="150" cy="150" r="90" fill="#fed7d7" opacity="0.25"/>
+  <circle cx="1050" cy="530" r="80" fill="#fed7d7" opacity="0.3"/>
+  <circle cx="200" cy="500" r="50" fill="#fff5f5" opacity="0.4"/>
+  <circle cx="1000" cy="130" r="60" fill="#fff5f5" opacity="0.35"/>
+
+  <!-- Phone frame -->
+  <g filter="url(#phoneShadow2)">
+    <rect x="375" y="10" width="450" height="660" rx="36" ry="36" fill="#1a202c"/>
+    <rect x="383" y="18" width="434" height="644" rx="30" ry="30" fill="#ffffff"/>
+  </g>
+
+  <!-- Screen content -->
+  <g clip-path="url(#screenClip2)">
+    <!-- Status bar -->
+    <rect x="383" y="18" width="434" height="36" fill="#ffffff"/>
+    <text x="410" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#718096" font-weight="500">9:41</text>
+    <g transform="translate(760, 32)">
+      <rect x="0" y="4" width="3" height="6" rx="1" fill="#718096"/>
+      <rect x="5" y="2" width="3" height="8" rx="1" fill="#718096"/>
+      <rect x="10" y="0" width="3" height="10" rx="1" fill="#718096"/>
+      <rect x="15" y="-2" width="3" height="12" rx="1" fill="#718096"/>
+      <rect x="28" y="0" width="20" height="10" rx="2" fill="none" stroke="#718096" stroke-width="1.2"/>
+      <rect x="48" y="3" width="2" height="4" rx="1" fill="#718096"/>
+      <rect x="30" y="2" width="14" height="6" rx="1" fill="#48bb78"/>
+    </g>
+
+    <!-- Header -->
+    <rect x="383" y="54" width="434" height="56" fill="#ffffff"/>
+    <text x="415" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#1a202c" font-weight="700">Today's Tasks</text>
+    <!-- Date pill -->
+    <rect x="700" y="72" width="90" height="26" rx="13" fill="#fff5f5"/>
+    <text x="745" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#e53e3e" font-weight="600" text-anchor="middle">Sep 10</text>
+
+    <!-- Task list area -->
+    <rect x="383" y="110" width="434" height="340" fill="#ffffff"/>
+
+    <!-- Task 1: Completed -->
+    <g transform="translate(0, 120)">
+      <rect x="395" y="0" width="410" height="56" rx="10" fill="#f7fafc"/>
+      <!-- Checkbox checked -->
+      <rect x="415" y="16" width="22" height="22" rx="6" fill="#48bb78"/>
+      <polyline points="421,28 426,33 435,23" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Task text -->
+      <text x="450" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#a0aec0" font-weight="500" text-decoration="line-through">Review PR comments</text>
+      <!-- Tomato count -->
+      <text x="754" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#a0aec0" text-anchor="end">2 🍅</text>
+      <!-- Time -->
+      <text x="450" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e0">50 min</text>
+    </g>
+
+    <!-- Task 2: Completed -->
+    <g transform="translate(0, 184)">
+      <rect x="395" y="0" width="410" height="56" rx="10" fill="#f7fafc"/>
+      <rect x="415" y="16" width="22" height="22" rx="6" fill="#48bb78"/>
+      <polyline points="421,28 426,33 435,23" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="450" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#a0aec0" font-weight="500" text-decoration="line-through">Update documentation</text>
+      <text x="754" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#a0aec0" text-anchor="end">1 🍅</text>
+      <text x="450" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e0">25 min</text>
+    </g>
+
+    <!-- Task 3: Active / Highlighted -->
+    <g transform="translate(0, 248)">
+      <rect x="395" y="0" width="410" height="56" rx="10" fill="#fff5f5" stroke="#e53e3e" stroke-width="1.5"/>
+      <!-- Active indicator -->
+      <rect x="395" y="0" width="4" height="56" rx="2" fill="#e53e3e"/>
+      <!-- Empty checkbox -->
+      <rect x="415" y="16" width="22" height="22" rx="6" fill="#ffffff" stroke="#e53e3e" stroke-width="1.5"/>
+      <text x="450" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#1a202c" font-weight="600">Design homepage layout</text>
+      <text x="754" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#e53e3e" font-weight="600" text-anchor="end">3 🍅</text>
+      <!-- In progress badge -->
+      <rect x="450" y="36" width="72" height="18" rx="9" fill="#fed7d7"/>
+      <text x="486" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#e53e3e" font-weight="600" text-anchor="middle">IN PROGRESS</text>
+    </g>
+
+    <!-- Task 4: Pending -->
+    <g transform="translate(0, 312)">
+      <rect x="395" y="0" width="410" height="56" rx="10" fill="#ffffff"/>
+      <rect x="415" y="16" width="22" height="22" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.5"/>
+      <text x="450" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#4a5568" font-weight="500">Write unit tests</text>
+      <text x="754" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#718096" text-anchor="end">2 🍅</text>
+      <text x="450" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e0">Est. 50 min</text>
+    </g>
+
+    <!-- Task 5: Pending -->
+    <g transform="translate(0, 376)">
+      <rect x="395" y="0" width="410" height="56" rx="10" fill="#ffffff"/>
+      <rect x="415" y="16" width="22" height="22" rx="6" fill="#ffffff" stroke="#cbd5e0" stroke-width="1.5"/>
+      <text x="450" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#4a5568" font-weight="500">Team meeting notes</text>
+      <text x="754" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#718096" text-anchor="end">1 🍅</text>
+      <text x="450" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e0">Est. 25 min</text>
+    </g>
+
+    <!-- Summary bar -->
+    <rect x="395" y="445" width="410" height="42" rx="12" fill="#f7fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="600" y="471" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#4a5568" font-weight="600" text-anchor="middle">5 tasks  ·  9 🍅  ·  3h 45m</text>
+
+    <!-- Weekly chart section -->
+    <rect x="383" y="498" width="434" height="82" fill="#ffffff"/>
+    <text x="415" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#718096" font-weight="600">This Week</text>
+
+    <!-- Bar chart -->
+    <g transform="translate(415, 570)">
+      <!-- Grid lines -->
+      <line x1="0" y1="-40" x2="370" y2="-40" stroke="#f7fafc" stroke-width="1"/>
+      <line x1="0" y1="-20" x2="370" y2="-20" stroke="#f7fafc" stroke-width="1"/>
+      <line x1="0" y1="0" x2="370" y2="0" stroke="#edf2f7" stroke-width="1"/>
+
+      <!-- Mon -->
+      <rect x="8" y="-32" width="28" height="32" rx="4" fill="#fc8181"/>
+      <text x="22" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#a0aec0" text-anchor="middle">M</text>
+
+      <!-- Tue -->
+      <rect x="62" y="-40" width="28" height="40" rx="4" fill="#e53e3e"/>
+      <text x="76" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#a0aec0" text-anchor="middle">T</text>
+
+      <!-- Wed -->
+      <rect x="116" y="-24" width="28" height="24" rx="4" fill="#fc8181"/>
+      <text x="130" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#a0aec0" text-anchor="middle">W</text>
+
+      <!-- Thu -->
+      <rect x="170" y="-36" width="28" height="36" rx="4" fill="#e53e3e"/>
+      <text x="184" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#a0aec0" text-anchor="middle">T</text>
+
+      <!-- Fri (today, highlighted) -->
+      <rect x="224" y="-28" width="28" height="28" rx="4" fill="#e53e3e"/>
+      <circle cx="238" cy="-33" r="3" fill="#e53e3e"/>
+      <text x="238" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#e53e3e" font-weight="600" text-anchor="middle">F</text>
+
+      <!-- Sat -->
+      <rect x="278" y="-8" width="28" height="8" rx="4" fill="#fed7d7"/>
+      <text x="292" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#a0aec0" text-anchor="middle">S</text>
+
+      <!-- Sun -->
+      <rect x="332" y="-4" width="28" height="4" rx="2" fill="#fed7d7"/>
+      <text x="346" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#a0aec0" text-anchor="middle">S</text>
+    </g>
+
+    <!-- Bottom tab bar -->
+    <rect x="383" y="580" width="434" height="82" fill="#ffffff"/>
+    <line x1="383" y1="580" x2="817" y2="580" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Timer tab -->
+    <g transform="translate(478, 602)">
+      <circle cx="0" cy="0" r="12" fill="none" stroke="#a0aec0" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="0" y2="-7" stroke="#a0aec0" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="5" y2="2" stroke="#a0aec0" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="0" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#a0aec0" font-weight="500" text-anchor="middle">Timer</text>
+    </g>
+
+    <!-- Tasks tab (active) -->
+    <g transform="translate(600, 602)">
+      <rect x="-10" y="-10" width="20" height="20" rx="3" fill="none" stroke="#e53e3e" stroke-width="1.5"/>
+      <polyline points="-4,-1 -1,3 5,-4" fill="none" stroke="#e53e3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="0" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#e53e3e" font-weight="600" text-anchor="middle">Tasks</text>
+    </g>
+
+    <!-- Stats tab -->
+    <g transform="translate(722, 602)">
+      <rect x="-8" y="4" width="5" height="8" rx="1" fill="none" stroke="#a0aec0" stroke-width="1.5"/>
+      <rect x="-2" y="-2" width="5" height="14" rx="1" fill="none" stroke="#a0aec0" stroke-width="1.5"/>
+      <rect x="4" y="-8" width="5" height="20" rx="1" fill="none" stroke="#a0aec0" stroke-width="1.5"/>
+      <text x="0" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#a0aec0" font-weight="500" text-anchor="middle">Stats</text>
+    </g>
+
+    <!-- Home indicator -->
+    <rect x="560" y="648" width="80" height="4" rx="2" fill="#cbd5e0"/>
+  </g>
+
+  <!-- Decorative small tomatoes -->
+  <g transform="translate(300, 320)" opacity="0.15">
+    <circle cx="0" cy="0" r="18" fill="#e53e3e"/>
+    <ellipse cx="0" cy="-16" rx="7" ry="4" fill="#48bb78"/>
+  </g>
+  <g transform="translate(900, 340)" opacity="0.15">
+    <circle cx="0" cy="0" r="22" fill="#e53e3e"/>
+    <ellipse cx="0" cy="-20" rx="8" ry="5" fill="#48bb78"/>
+  </g>
+  <g transform="translate(130, 360)" opacity="0.1">
+    <circle cx="0" cy="0" r="12" fill="#e53e3e"/>
+    <ellipse cx="0" cy="-10" rx="5" ry="3" fill="#48bb78"/>
+  </g>
+  <g transform="translate(1070, 250)" opacity="0.12">
+    <circle cx="0" cy="0" r="15" fill="#e53e3e"/>
+    <ellipse cx="0" cy="-13" rx="6" ry="3" fill="#48bb78"/>
+  </g>
+</svg>

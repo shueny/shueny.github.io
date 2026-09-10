@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <filter id="shadow1" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <filter id="shadow2" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.06"/>
+    </filter>
+    <clipPath id="roundedOuter">
+      <rect x="20" y="20" width="1160" height="640" rx="16"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" fill="#f8fafc"/>
+
+  <!-- App container -->
+  <g clip-path="url(#roundedOuter)">
+    <rect x="20" y="20" width="1160" height="640" rx="16" fill="#ffffff" filter="url(#shadow1)"/>
+
+    <!-- Top bar -->
+    <rect x="20" y="20" width="1160" height="56" fill="#4f46e5"/>
+    <!-- Top bar title -->
+    <text x="310" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#ffffff">German Tutor</text>
+    <!-- Microphone icon -->
+    <g transform="translate(1120, 36)">
+      <rect x="-5" y="0" width="10" height="16" rx="5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+      <path d="M-9 12 Q-9 22 0 22 Q9 22 9 12" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+      <line x1="0" y1="22" x2="0" y2="27" stroke="#ffffff" stroke-width="1.5"/>
+      <line x1="-5" y1="27" x2="5" y2="27" stroke="#ffffff" stroke-width="1.5"/>
+    </g>
+    <!-- Settings dots -->
+    <g transform="translate(1150, 48)">
+      <circle cx="0" cy="-8" r="2" fill="#ffffff" opacity="0.8"/>
+      <circle cx="0" cy="0" r="2" fill="#ffffff" opacity="0.8"/>
+      <circle cx="0" cy="8" r="2" fill="#ffffff" opacity="0.8"/>
+    </g>
+    <!-- DE flag indicator -->
+    <g transform="translate(270, 40)">
+      <rect x="0" y="0" width="24" height="16" rx="2" fill="#000000"/>
+      <rect x="0" y="5.3" width="24" height="5.3" fill="#DD0000"/>
+      <rect x="0" y="10.6" width="24" height="5.4" rx="0 0 2 2" fill="#FFCC00"/>
+    </g>
+
+    <!-- Left sidebar -->
+    <rect x="20" y="76" width="260" height="584" fill="#f1f5f9"/>
+    <line x1="280" y1="76" x2="280" y2="660" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- User avatar area -->
+    <g transform="translate(150, 110)">
+      <circle cx="0" cy="0" r="28" fill="#4f46e5"/>
+      <text x="0" y="6" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">ST</text>
+    </g>
+    <text x="150" y="155" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#334155" text-anchor="middle">Student</text>
+    <text x="150" y="172" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Level B1 - Intermediate</text>
+
+    <!-- Divider -->
+    <line x1="40" y1="190" x2="260" y2="190" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Recent conversations header -->
+    <text x="40" y="215" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="0.5">RECENT CONVERSATIONS</text>
+
+    <!-- Conversation 1 (active) -->
+    <rect x="30" y="228" width="240" height="52" rx="8" fill="#4f46e5" opacity="0.1"/>
+    <rect x="30" y="228" width="3" height="52" rx="1.5" fill="#4f46e5"/>
+    <circle cx="52" cy="254" r="14" fill="#dbeafe"/>
+    <text x="52" y="258" font-family="system-ui, sans-serif" font-size="12" fill="#4f46e5" text-anchor="middle">🗣</text>
+    <text x="76" y="248" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Directions Practice</text>
+    <text x="76" y="266" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Active now</text>
+
+    <!-- Conversation 2 -->
+    <rect x="30" y="288" width="240" height="52" rx="8" fill="transparent"/>
+    <circle cx="52" cy="314" r="14" fill="#f1f5f9"/>
+    <text x="52" y="318" font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">👋</text>
+    <text x="76" y="308" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#475569">Greetings Practice</text>
+    <text x="76" y="326" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">2 hours ago</text>
+
+    <!-- Conversation 3 -->
+    <rect x="30" y="348" width="240" height="52" rx="8" fill="transparent"/>
+    <circle cx="52" cy="374" r="14" fill="#f1f5f9"/>
+    <text x="52" y="378" font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">🍽</text>
+    <text x="76" y="368" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#475569">Restaurant Ordering</text>
+    <text x="76" y="386" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Yesterday</text>
+
+    <!-- Conversation 4 -->
+    <rect x="30" y="408" width="240" height="52" rx="8" fill="transparent"/>
+    <circle cx="52" cy="434" r="14" fill="#f1f5f9"/>
+    <text x="52" y="438" font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">📝</text>
+    <text x="76" y="428" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#475569">Grammar Review</text>
+    <text x="76" y="446" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">3 days ago</text>
+
+    <!-- New Chat button -->
+    <rect x="40" y="600" width="220" height="40" rx="8" fill="#4f46e5"/>
+    <text x="150" y="625" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#ffffff" text-anchor="middle">+ New Conversation</text>
+
+    <!-- Main chat area -->
+    <rect x="280" y="76" width="900" height="584" fill="#ffffff"/>
+
+    <!-- Chat topic header -->
+    <rect x="280" y="76" width="900" height="48" fill="#ffffff"/>
+    <line x1="280" y1="124" x2="1180" y2="124" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="310" y="105" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="#1e293b">Directions Practice — Asking for Directions</text>
+    <text x="310" y="117" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Topic: Navigation &amp; Transportation</text>
+
+    <!-- AI greeting message -->
+    <g transform="translate(310, 144)">
+      <circle cx="16" cy="16" r="16" fill="#4f46e5"/>
+      <text x="16" y="21" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">AI</text>
+      <rect x="42" y="0" width="520" height="60" rx="12" fill="#f1f5f9"/>
+      <text x="58" y="20" font-family="system-ui, sans-serif" font-size="13" fill="#334155">Hallo! Today we'll practice asking for directions.</text>
+      <text x="58" y="38" font-family="system-ui, sans-serif" font-size="13" fill="#334155">Try asking me: "How do I get to the train station?"</text>
+      <text x="58" y="52" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">in German</text>
+    </g>
+
+    <!-- User message -->
+    <g transform="translate(310, 230)">
+      <rect x="448" y="0" width="390" height="44" rx="12" fill="#dbeafe"/>
+      <text x="466" y="20" font-family="system-ui, sans-serif" font-size="14" fill="#1e40af" font-style="italic">"Wie komme ich zum Bahnhof?"</text>
+      <text x="790" y="38" font-family="system-ui, sans-serif" font-size="11" fill="#93c5fd">2:34 PM</text>
+      <!-- User avatar -->
+      <circle cx="854" cy="22" r="16" fill="#6366f1"/>
+      <text x="854" y="27" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">You</text>
+    </g>
+
+    <!-- AI response -->
+    <g transform="translate(310, 296)">
+      <circle cx="16" cy="16" r="16" fill="#4f46e5"/>
+      <text x="16" y="21" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">AI</text>
+      <rect x="42" y="0" width="580" height="100" rx="12" fill="#f1f5f9"/>
+      <text x="58" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#16a34a">✓ Great pronunciation!</text>
+      <text x="58" y="42" font-family="system-ui, sans-serif" font-size="13" fill="#334155">"Wie komme ich zum Bahnhof?" means</text>
+      <text x="58" y="58" font-family="system-ui, sans-serif" font-size="13" fill="#334155">"How do I get to the train station?"</text>
+      <text x="58" y="82" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Here are some useful variations you can try...</text>
+    </g>
+
+    <!-- Pronunciation score indicator -->
+    <g transform="translate(352, 410)">
+      <rect x="0" y="0" width="280" height="48" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+      <!-- Mic icon -->
+      <g transform="translate(18, 14)">
+        <rect x="-4" y="0" width="8" height="12" rx="4" fill="#16a34a"/>
+        <path d="M-7 9 Q-7 17 0 17 Q7 17 7 9" fill="none" stroke="#16a34a" stroke-width="1.2"/>
+        <line x1="0" y1="17" x2="0" y2="20" stroke="#16a34a" stroke-width="1.2"/>
+      </g>
+      <text x="36" y="19" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#15803d">Pronunciation Score</text>
+      <text x="240" y="19" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#16a34a">92%</text>
+      <!-- Score bar background -->
+      <rect x="36" y="28" width="224" height="8" rx="4" fill="#dcfce7"/>
+      <!-- Score bar fill -->
+      <rect x="36" y="28" width="206" height="8" rx="4" fill="#22c55e"/>
+    </g>
+
+    <!-- Variation suggestions -->
+    <g transform="translate(352, 475)">
+      <rect x="0" y="0" width="480" height="110" rx="10" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1"/>
+      <text x="16" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#4338ca">💡 Try these variations:</text>
+      <g transform="translate(16, 38)">
+        <rect x="0" y="0" width="440" height="24" rx="6" fill="#ffffff"/>
+        <text x="10" y="16" font-family="system-ui, sans-serif" font-size="12" fill="#4f46e5">"Wo ist der nächste Bahnhof?"</text>
+        <text x="274" y="16" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">— Where is the nearest station?</text>
+      </g>
+      <g transform="translate(16, 66)">
+        <rect x="0" y="0" width="440" height="24" rx="6" fill="#ffffff"/>
+        <text x="10" y="16" font-family="system-ui, sans-serif" font-size="12" fill="#4f46e5">"Können Sie mir den Weg zeigen?"</text>
+        <text x="274" y="16" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">— Can you show me the way?</text>
+      </g>
+    </g>
+
+    <!-- Input bar -->
+    <rect x="280" y="608" width="900" height="52" fill="#ffffff"/>
+    <line x1="280" y1="608" x2="1180" y2="608" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="310" y="618" width="730" height="36" rx="18" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="340" y="641" font-family="system-ui, sans-serif" font-size="13" fill="#94a3b8">Type or speak your response in German...</text>
+    <!-- Mic button -->
+    <circle cx="1080" cy="636" r="18" fill="#4f46e5"/>
+    <g transform="translate(1080, 630)">
+      <rect x="-4" y="0" width="8" height="10" rx="4" fill="#ffffff"/>
+      <path d="M-7 7 Q-7 14 0 14 Q7 14 7 7" fill="none" stroke="#ffffff" stroke-width="1.3"/>
+      <line x1="0" y1="14" x2="0" y2="17" stroke="#ffffff" stroke-width="1.3"/>
+    </g>
+    <!-- Send button -->
+    <circle cx="1130" cy="636" r="18" fill="#6366f1"/>
+    <polygon points="1122,636 1138,636 1130,628" fill="#ffffff"/>
+    <rect x="1127" y="636" width="6" height="8" rx="1" fill="#ffffff"/>
+  </g>
+</svg>
