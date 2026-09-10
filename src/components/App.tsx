@@ -11,7 +11,6 @@ const TechStack = lazy(() => import('./TechStack'));
 const ImpactDashboard = lazy(() => import('./ImpactDashboard'));
 const ProjectsGrid = lazy(() => import('./ProjectsGrid'));
 const About = lazy(() => import('./About'));
-const ExperienceList = lazy(() => import('./ExperienceList'));
 const Contact = lazy(() => import('./Contact'));
 const Footer = lazy(() => import('./Footer'));
 const CookieConsent = lazy(() => import('./CookieConsent'));
@@ -72,7 +71,7 @@ const LazySection: React.FC<{
 const App: React.FC = () => {
   // Tracks how many lazy sections are unlocked.
   // 0 = only Hero visible
-  // 1 = ProjectsGrid, 2 = Services, 3 = TechStack, … 8 = Footer + CookieConsent
+  // 1 = ProjectsGrid, 2 = Services, 3 = TechStack, … 7 = Footer + CookieConsent
   const [unlockedCount, setUnlockedCount] = useState(0);
   const servicesRef = useRef<HTMLDivElement>(null);
 
@@ -133,20 +132,16 @@ const App: React.FC = () => {
           </LazySection>
 
           <LazySection shouldLoad={unlockedCount >= 6} onVisible={() => unlock(7)}>
-            <ExperienceList />
-          </LazySection>
-
-          <LazySection shouldLoad={unlockedCount >= 7} onVisible={() => unlock(8)}>
             <Contact />
           </LazySection>
         </main>
 
-        <LazySection shouldLoad={unlockedCount >= 8} onVisible={() => {}} fallback={null}>
+        <LazySection shouldLoad={unlockedCount >= 7} onVisible={() => {}} fallback={null}>
           <Footer />
         </LazySection>
 
         {/* Delay CookieConsent until page is fully loaded */}
-        {unlockedCount >= 8 && (
+        {unlockedCount >= 7 && (
           <Suspense fallback={null}>
             <CookieConsent />
           </Suspense>

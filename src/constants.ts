@@ -449,6 +449,43 @@ export const PROJECTS_DATA: Project[] = [
     techDeepDive:
       'Islands are the headline, but the mobile score came from the unglamorous parts: self-hosting Outfit and Playfair Display as latin subsets to remove render-blocking CDN round-trips, inlining critical hero CSS to stop layout shift, splitting the React vendor chunk so islands do not drag in each other\'s dependencies, and converting the image set to WebP. The three.js hero accent is deliberately the strictest case — lazy-loaded, desktop-only, and disabled under prefers-reduced-motion, so the decorative layer can never cost a mobile visitor anything.',
   },
+  {
+    id: 'p-gcd-angela',
+    title: 'Global Career Discovery — Brand Website',
+    description:
+      'A single-page brand site for career counsellor Angela Baxter: three visual directions explored, one built, payment and booking integrations wired, deployed with CI — zero to live in a week so she could take her first pilot clients immediately.',
+    tags: [
+      'Astro 5',
+      'Zero JS Bundle',
+      'Stripe',
+      'Calendly',
+      'SEO',
+      'JSON-LD',
+      'Vercel',
+      'Content Collections',
+    ],
+    image: getAssetUrl('images/gcd-angela-cover.webp'),
+    banner: getAssetUrl('images/gcd-angela-cover.webp'),
+    link: 'https://www.angelacareerpath.com',
+    visualDescription:
+      'Desktop screenshot of the GCD homepage: cream background with navy text, gold SVG career path illustration, and dual call-to-action buttons.',
+    category: 'frontend',
+    domains: ['consumer', 'mvp'],
+    problem:
+      'Angela Baxter, a career counsellor with 20 years of experience, was launching a pilot "Career Discovery" program but had no web presence. Her existing tools — Jotform for self-assessments, Calendly for booking, Stripe for payments — lived in separate places with no single path connecting them. She needed a site that could explain what she offers and close the sale, not a brochure.',
+    solution:
+      'I designed and built a single-page Astro 5 site in one week: three visual directions (warm/bold/editorial) narrowed to one, a 10-section page with cream-and-navy rhythm, and an interactive gold SVG "career path" in the hero that tells the story through motion instead of copy. All payment and booking links wired via Stripe Payment Links and Calendly — zero backend, zero payment data handled.',
+    features: [
+      'Three visual directions explored before build',
+      'Interactive SVG hero with hover-reveal career path nodes',
+      'Zero JavaScript bundle — only two inline scripts (hero + scroll reveal)',
+      'Stripe × 3 + Calendly + Jotform link-based integrations',
+      'Content Collections schemas for future programmatic SEO pages',
+      'JSON-LD (Person, ProfessionalService, WebSite) for search presence',
+    ],
+    techDeepDive:
+      'Astro 5 with fully static output. The entire HTML is 18 KB (5.5 KB gzipped), one CSS file with CSS custom properties, and zero JS bundle files — build completes in 1.3 seconds. Five Content Collection schemas (guides, testimonials, FAQs, countries, audiences) are defined up front for programmatic SEO pages in Phase 2. Deployment is Vercel with GitHub Actions gating every PR on `astro check` + build. Solved deployment source confusion (CLI push vs Git-driven), commit email blocks, price mismatches between page copy and Stripe links, and production domain SEO alignment across canonical, sitemap, robots, and JSON-LD.',
+  },
 ];
 
 export const ANALYSIS_REPORT = [

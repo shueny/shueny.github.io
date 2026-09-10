@@ -613,6 +613,26 @@ export const translations: Record<Language, Translations> = {
             'WebP image pipeline, service-worker caching, critical CSS inlining',
           ],
         },
+        {
+          id: 'p-gcd-angela',
+          title: 'Global Career Discovery — Brand Website',
+          description:
+            'A single-page brand site for career counsellor Angela Baxter: three visual directions explored, one built, payment and booking integrations wired, deployed with CI — zero to live in a week so she could take her first pilot clients immediately.',
+          problem:
+            'Angela Baxter, a career counsellor with 20 years of experience, was launching a pilot "Career Discovery" program but had no web presence. Her existing tools — Jotform, Calendly, Stripe — lived in separate places with no single path connecting them.',
+          solution:
+            'I designed and built a single-page Astro 5 site in one week: three visual directions narrowed to one, a 10-section page with cream-and-navy rhythm, and an interactive gold SVG career path in the hero. All payment and booking links wired via Stripe Payment Links and Calendly — zero backend.',
+          techDeepDive:
+            'Astro 5 with fully static output. HTML 18 KB (5.5 KB gzipped), one CSS file, zero JS bundle files — build in 1.3 seconds. Five Content Collection schemas defined for future programmatic SEO pages. Deployment on Vercel with GitHub Actions CI.',
+          features: [
+            'Three visual directions explored before build',
+            'Interactive SVG hero with hover-reveal career path nodes',
+            'Zero JavaScript bundle — only two inline scripts',
+            'Stripe × 3 + Calendly + Jotform link-based integrations',
+            'Content Collections schemas for future SEO pages',
+            'JSON-LD (Person, ProfessionalService, WebSite)',
+          ],
+        },
       ],
     },
     about: {
@@ -1132,6 +1152,26 @@ export const translations: Record<Language, Translations> = {
             'WebP-Bildpipeline, Service-Worker-Caching, kritisches CSS inline',
           ],
         },
+        {
+          id: 'p-gcd-angela',
+          title: 'Global Career Discovery — Marken-Website',
+          description:
+            'Eine einseitige Marken-Website für die Karriereberaterin Angela Baxter: drei visuelle Richtungen erkundet, eine gebaut, Zahlungs- und Buchungsintegrationen verdrahtet, mit CI bereitgestellt — in einer Woche von null auf live.',
+          problem:
+            'Angela Baxter, eine Karriereberaterin mit 20 Jahren Erfahrung, startete ein Pilotprogramm „Career Discovery", hatte aber keine Webpräsenz. Ihre vorhandenen Tools — Jotform, Calendly, Stripe — existierten verstreut ohne verbindenden Pfad.',
+          solution:
+            'Ich entwarf und baute eine einseitige Astro-5-Seite in einer Woche: drei visuelle Richtungen zu einer verdichtet, 10 Sektionen mit Creme-und-Navy-Rhythmus und ein interaktiver goldener SVG-Karrierepfad im Hero. Alle Zahlungs- und Buchungslinks über Stripe Payment Links und Calendly — kein Backend.',
+          techDeepDive:
+            'Astro 5 mit vollständig statischer Ausgabe. HTML 18 KB (5,5 KB gzipped), eine CSS-Datei, null JS-Bundle-Dateien — Build in 1,3 Sekunden. Fünf Content-Collection-Schemas für zukünftige programmatische SEO-Seiten definiert. Deployment auf Vercel mit GitHub Actions CI.',
+          features: [
+            'Drei visuelle Richtungen vor dem Build erkundet',
+            'Interaktiver SVG-Hero mit Hover-Reveal-Karrierepfad-Knoten',
+            'Null JavaScript-Bundle — nur zwei Inline-Skripte',
+            'Stripe × 3 + Calendly + Jotform link-basierte Integrationen',
+            'Content-Collections-Schemas für zukünftige SEO-Seiten',
+            'JSON-LD (Person, ProfessionalService, WebSite)',
+          ],
+        },
       ],
     },
     about: {
@@ -1636,6 +1676,26 @@ export const translations: Record<Language, Translations> = {
             '自架字體子集，取代會阻擋渲染的 CDN 請求',
             '三語部落格（EN/DE/ZH），含語系過濾與 JSON-LD',
             'WebP 圖片流程、Service Worker 快取、關鍵 CSS inline',
+          ],
+        },
+        {
+          id: 'p-gcd-angela',
+          title: 'Global Career Discovery — 品牌官網',
+          description:
+            '為資深職涯顧問 Angela Baxter 打造的單頁品牌官網：探索三個視覺方向、前端實作、付款與預約串接，到部署與 CI，一週內從零上線，讓她能立刻開始接首批試營運學員。',
+          problem:
+            'Angela Baxter 是一位擁有 20 年經驗的職涯顧問，正在推出「Career Discovery」試營運方案，但完全沒有網站。她現有的工具——Jotform、Calendly、Stripe——散落各處，沒有一條路把它們串起來。',
+          solution:
+            '我在一週內設計並建構了一個 Astro 5 單頁網站：三個視覺方向收斂為一個，10 個區塊以米色與深藍交替的節奏排列，Hero 區有一條互動式金色 SVG 職涯路徑。所有付款與預約都以 Stripe Payment Links 和 Calendly 連結串接——零後端。',
+          techDeepDive:
+            'Astro 5 純靜態輸出。HTML 18 KB（gzip 後 5.5 KB），一支 CSS、零 JS bundle，build 1.3 秒。五個 Content Collection schema 已預先定義，為第二階段的程式化 SEO 頁面做準備。部署在 Vercel，GitHub Actions CI 把關每支 PR。',
+          features: [
+            '建構前探索三個視覺方向',
+            '互動式 SVG Hero，hover 彈出職涯路徑節點說明',
+            '零 JavaScript bundle——僅兩段 inline script',
+            'Stripe × 3 + Calendly + Jotform 連結式串接',
+            'Content Collections schema 預備未來 SEO 頁面',
+            'JSON-LD（Person、ProfessionalService、WebSite）',
           ],
         },
       ],
