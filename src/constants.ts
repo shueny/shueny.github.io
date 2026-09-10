@@ -189,8 +189,9 @@ export const PROJECTS_DATA: Project[] = [
     image: getAssetUrl('images/gcd-angela-cover.webp'),
     banner: getAssetUrl('images/gcd-angela-cover.webp'),
     gallery: [
-      getAssetUrl('images/gcd-angela-gallery-1.svg'),
-      getAssetUrl('images/gcd-angela-gallery-2.svg'),
+      getAssetUrl('images/gcd-angela-gallery-1.png'),
+      getAssetUrl('images/gcd-angela-gallery-2.png'),
+      getAssetUrl('images/gcd-angela-gallery-3.png'),
     ],
     link: 'https://www.angelacareerpath.com',
     visualDescription:
