@@ -84,7 +84,6 @@ const AnimatedSectionTitle: React.FC<AnimatedSectionTitleProps> = ({
         style={{
           color: 'transparent',
           WebkitTextStroke: `1px ${strokeColor}`,
-          textStroke: `1px ${strokeColor}`,
         }}
       >
         {textMain}

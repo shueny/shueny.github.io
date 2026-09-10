@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <linearGradient id="headerGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <filter id="cardShadow2" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="resultShadow" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" rx="12" fill="#f8fafc"/>
+  <rect x="0.5" y="0.5" width="1199" height="679" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Top Header Bar -->
+  <rect width="1200" height="52" rx="12" fill="url(#headerGrad2)"/>
+  <rect y="12" width="1200" height="40" fill="url(#headerGrad2)"/>
+
+  <!-- Logo -->
+  <circle cx="28" cy="26" r="14" fill="rgba(255,255,255,0.2)"/>
+  <text x="28" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">T</text>
+  <text x="52" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="700" fill="white" letter-spacing="0.5">ToxIntel</text>
+
+  <!-- Nav items -->
+  <text x="180" y="32" font-family="system-ui, sans-serif" font-size="12" fill="rgba(255,255,255,0.7)">Dashboard</text>
+  <text x="270" y="32" font-family="system-ui, sans-serif" font-size="12" fill="rgba(255,255,255,0.7)">Analysis</text>
+  <rect x="340" y="14" width="115" height="26" rx="5" fill="rgba(255,255,255,0.25)"/>
+  <text x="397" y="32" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Similarity Search</text>
+  <text x="490" y="32" font-family="system-ui, sans-serif" font-size="12" fill="rgba(255,255,255,0.7)">Reports</text>
+
+  <!-- Status (right side) -->
+  <circle cx="1100" cy="26" r="4" fill="#34d399"/>
+  <text x="1112" y="30" font-family="system-ui, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Online</text>
+  <rect x="1148" y="16" width="28" height="20" rx="4" fill="rgba(255,255,255,0.15)"/>
+  <text x="1162" y="30" font-family="system-ui, sans-serif" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">⚙</text>
+
+  <!-- Page Title Section -->
+  <text x="40" y="90" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Molecular Similarity Search</text>
+  <text x="40" y="110" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Find structurally similar compounds from the toxicology database</text>
+
+  <!-- Search Bar -->
+  <rect x="40" y="124" width="1120" height="46" rx="10" fill="white" filter="url(#cardShadow2)"/>
+  <rect x="40.5" y="124.5" width="1119" height="45" rx="10" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Search icon -->
+  <circle cx="66" cy="147" r="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="72" y1="153" x2="78" y2="159" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="90" y="144" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Query Compound</text>
+  <text x="90" y="158" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#0f172a">Aflatoxin B1</text>
+  <!-- Divider -->
+  <line x1="240" y1="134" x2="240" y2="160" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="260" y="144" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Method</text>
+  <text x="260" y="158" font-family="system-ui, sans-serif" font-size="12" fill="#1e293b">Tanimoto (ECFP4)</text>
+  <line x1="400" y1="134" x2="400" y2="160" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="420" y="144" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Threshold</text>
+  <text x="420" y="158" font-family="system-ui, sans-serif" font-size="12" fill="#1e293b">≥ 60%</text>
+  <line x1="500" y1="134" x2="500" y2="160" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="520" y="144" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Database</text>
+  <text x="520" y="158" font-family="system-ui, sans-serif" font-size="12" fill="#1e293b">ToxRef 2024 (48,392 compounds)</text>
+  <!-- Search button -->
+  <rect x="1040" y="132" width="100" height="30" rx="6" fill="url(#headerGrad2)"/>
+  <text x="1090" y="152" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Search</text>
+
+  <!-- Results count -->
+  <text x="40" y="200" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#475569">Top Results</text>
+  <rect x="120" y="188" width="60" height="20" rx="10" fill="#f0fdfa"/>
+  <text x="150" y="202" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#0d9488" text-anchor="middle">12 hits</text>
+
+  <!-- Result Cards Row -->
+  <!-- Card 1: Aflatoxin B2 -->
+  <rect x="40" y="216" width="360" height="160" rx="10" fill="white" filter="url(#resultShadow)"/>
+  <rect x="40.5" y="216.5" width="359" height="159" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <!-- Rank badge -->
+  <rect x="52" y="228" width="22" height="22" rx="6" fill="#f0fdfa"/>
+  <text x="63" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">#1</text>
+  <text x="84" y="244" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Aflatoxin B2</text>
+  <!-- Similarity badge (green) -->
+  <rect x="310" y="228" width="76" height="24" rx="12" fill="#dcfce7"/>
+  <text x="348" y="244" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#16a34a" text-anchor="middle">94.2%</text>
+
+  <text x="64" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Formula</text>
+  <text x="64" y="282" font-family="ui-monospace, monospace" font-size="11" fill="#1e293b">C₁₇H₁₄O₆</text>
+  <text x="180" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">MW</text>
+  <text x="180" y="282" font-family="ui-monospace, monospace" font-size="11" fill="#1e293b">314.29</text>
+  <text x="260" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Toxicity</text>
+  <rect x="260" y="272" width="52" height="16" rx="3" fill="#fef2f2"/>
+  <text x="286" y="284" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#dc2626" text-anchor="middle">Class 1</text>
+
+  <!-- Mini structure placeholder -->
+  <rect x="64" y="298" width="320" height="64" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5"/>
+  <g transform="translate(224,330)" stroke="#0d9488" stroke-width="1" fill="none" opacity="0.6">
+    <polygon points="-40,-16 -20,-28 0,-16 0,8 -20,20 -40,8"/>
+    <polygon points="0,-16 20,-28 40,-16 40,8 20,20 0,8"/>
+    <line x1="-40" y1="-16" x2="-52" y2="-28"/>
+    <line x1="40" y1="-16" x2="52" y2="-28"/>
+    <line x1="40" y1="8" x2="52" y2="20"/>
+    <line x1="-40" y1="8" x2="-52" y2="20"/>
+  </g>
+
+  <!-- Card 2: Aflatoxin G1 -->
+  <rect x="420" y="216" width="360" height="160" rx="10" fill="white" filter="url(#resultShadow)"/>
+  <rect x="420.5" y="216.5" width="359" height="159" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <rect x="432" y="228" width="22" height="22" rx="6" fill="#f0fdfa"/>
+  <text x="443" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">#2</text>
+  <text x="464" y="244" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Aflatoxin G1</text>
+  <!-- Similarity badge (green) -->
+  <rect x="690" y="228" width="76" height="24" rx="12" fill="#dcfce7"/>
+  <text x="728" y="244" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#16a34a" text-anchor="middle">87.8%</text>
+
+  <text x="444" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Formula</text>
+  <text x="444" y="282" font-family="ui-monospace, monospace" font-size="11" fill="#1e293b">C₁₇H₁₂O₇</text>
+  <text x="560" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">MW</text>
+  <text x="560" y="282" font-family="ui-monospace, monospace" font-size="11" fill="#1e293b">328.27</text>
+  <text x="640" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Toxicity</text>
+  <rect x="640" y="272" width="52" height="16" rx="3" fill="#fef2f2"/>
+  <text x="666" y="284" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#dc2626" text-anchor="middle">Class 1</text>
+
+  <!-- Mini structure placeholder -->
+  <rect x="444" y="298" width="320" height="64" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5"/>
+  <g transform="translate(604,330)" stroke="#0891b2" stroke-width="1" fill="none" opacity="0.6">
+    <polygon points="-40,-16 -20,-28 0,-16 0,8 -20,20 -40,8"/>
+    <polygon points="0,-16 20,-28 40,-16 40,8 20,20 0,8"/>
+    <line x1="-20" y1="20" x2="-20" y2="32"/>
+    <line x1="20" y1="20" x2="20" y2="32"/>
+    <circle cx="-52" cy="-28" r="4" stroke="#ef4444" stroke-width="1"/>
+    <circle cx="52" cy="-28" r="4" stroke="#ef4444" stroke-width="1"/>
+  </g>
+
+  <!-- Card 3: Sterigmatocystin -->
+  <rect x="800" y="216" width="360" height="160" rx="10" fill="white" filter="url(#resultShadow)"/>
+  <rect x="800.5" y="216.5" width="359" height="159" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <rect x="812" y="228" width="22" height="22" rx="6" fill="#f0fdfa"/>
+  <text x="823" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">#3</text>
+  <text x="844" y="244" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#0f172a">Sterigmatocystin</text>
+  <!-- Similarity badge (yellow) -->
+  <rect x="1070" y="228" width="76" height="24" rx="12" fill="#fef9c3"/>
+  <text x="1108" y="244" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#a16207" text-anchor="middle">72.1%</text>
+
+  <text x="824" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Formula</text>
+  <text x="824" y="282" font-family="ui-monospace, monospace" font-size="11" fill="#1e293b">C₁₈H₁₂O₆</text>
+  <text x="940" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">MW</text>
+  <text x="940" y="282" font-family="ui-monospace, monospace" font-size="11" fill="#1e293b">324.28</text>
+  <text x="1020" y="268" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Toxicity</text>
+  <rect x="1020" y="272" width="52" height="16" rx="3" fill="#fff7ed"/>
+  <text x="1046" y="284" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c2410c" text-anchor="middle">Class 2</text>
+
+  <!-- Mini structure placeholder -->
+  <rect x="824" y="298" width="320" height="64" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5"/>
+  <g transform="translate(984,330)" stroke="#0d9488" stroke-width="1" fill="none" opacity="0.6">
+    <polygon points="-50,-16 -30,-28 -10,-16 -10,8 -30,20 -50,8"/>
+    <polygon points="-10,-16 10,-28 30,-16 30,8 10,20 -10,8"/>
+    <line x1="30" y1="-16" x2="50" y2="-28"/>
+    <line x1="30" y1="8" x2="50" y2="20"/>
+    <line x1="-50" y1="-16" x2="-62" y2="-28"/>
+    <line x1="-50" y1="8" x2="-62" y2="20"/>
+    <circle cx="50" cy="-28" r="4" stroke="#ef4444" stroke-width="1"/>
+  </g>
+
+  <!-- Comparison Table -->
+  <text x="40" y="410" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Detailed Comparison</text>
+
+  <!-- Table Container -->
+  <rect x="40" y="422" width="1120" height="240" rx="10" fill="white" filter="url(#cardShadow2)"/>
+  <rect x="40.5" y="422.5" width="1119" height="239" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Table Header -->
+  <rect x="40" y="422" width="1120" height="36" rx="10" fill="#f8fafc"/>
+  <rect x="40" y="448" width="1120" height="10" fill="#f8fafc"/>
+  <line x1="40" y1="458" x2="1160" y2="458" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <text x="72" y="446" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Compound</text>
+  <text x="320" y="446" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Formula</text>
+  <text x="520" y="446" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">MW (g/mol)</text>
+  <text x="700" y="446" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Toxicity Class</text>
+  <text x="900" y="446" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Similarity</text>
+  <text x="1060" y="446" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Action</text>
+
+  <!-- Row 1 -->
+  <text x="72" y="482" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#0f172a">Aflatoxin B2</text>
+  <text x="320" y="482" font-family="ui-monospace, monospace" font-size="11" fill="#475569">C₁₇H₁₄O₆</text>
+  <text x="520" y="482" font-family="ui-monospace, monospace" font-size="11" fill="#475569">314.29</text>
+  <rect x="700" y="470" width="52" height="18" rx="3" fill="#fef2f2"/>
+  <text x="726" y="483" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#dc2626" text-anchor="middle">Class 1</text>
+  <!-- Similarity bar -->
+  <rect x="900" y="474" width="100" height="8" rx="4" fill="#f1f5f9"/>
+  <rect x="900" y="474" width="94" height="8" rx="4" fill="#16a34a"/>
+  <text x="1010" y="483" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#16a34a">94.2%</text>
+  <rect x="1060" y="470" width="60" height="20" rx="5" fill="#f0fdfa" stroke="#0d9488" stroke-width="0.5"/>
+  <text x="1090" y="484" font-family="system-ui, sans-serif" font-size="10" fill="#0d9488" text-anchor="middle">View</text>
+
+  <line x1="60" y1="496" x2="1140" y2="496" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 2 -->
+  <text x="72" y="518" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#0f172a">Aflatoxin G1</text>
+  <text x="320" y="518" font-family="ui-monospace, monospace" font-size="11" fill="#475569">C₁₇H₁₂O₇</text>
+  <text x="520" y="518" font-family="ui-monospace, monospace" font-size="11" fill="#475569">328.27</text>
+  <rect x="700" y="506" width="52" height="18" rx="3" fill="#fef2f2"/>
+  <text x="726" y="519" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#dc2626" text-anchor="middle">Class 1</text>
+  <rect x="900" y="510" width="100" height="8" rx="4" fill="#f1f5f9"/>
+  <rect x="900" y="510" width="88" height="8" rx="4" fill="#16a34a"/>
+  <text x="1010" y="519" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#16a34a">87.8%</text>
+  <rect x="1060" y="506" width="60" height="20" rx="5" fill="#f0fdfa" stroke="#0d9488" stroke-width="0.5"/>
+  <text x="1090" y="520" font-family="system-ui, sans-serif" font-size="10" fill="#0d9488" text-anchor="middle">View</text>
+
+  <line x1="60" y1="532" x2="1140" y2="532" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 3 -->
+  <text x="72" y="554" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#0f172a">Sterigmatocystin</text>
+  <text x="320" y="554" font-family="ui-monospace, monospace" font-size="11" fill="#475569">C₁₈H₁₂O₆</text>
+  <text x="520" y="554" font-family="ui-monospace, monospace" font-size="11" fill="#475569">324.28</text>
+  <rect x="700" y="542" width="52" height="18" rx="3" fill="#fff7ed"/>
+  <text x="726" y="555" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c2410c" text-anchor="middle">Class 2</text>
+  <rect x="900" y="546" width="100" height="8" rx="4" fill="#f1f5f9"/>
+  <rect x="900" y="546" width="72" height="8" rx="4" fill="#eab308"/>
+  <text x="1010" y="555" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#a16207">72.1%</text>
+  <rect x="1060" y="542" width="60" height="20" rx="5" fill="#f0fdfa" stroke="#0d9488" stroke-width="0.5"/>
+  <text x="1090" y="556" font-family="system-ui, sans-serif" font-size="10" fill="#0d9488" text-anchor="middle">View</text>
+
+  <line x1="60" y1="568" x2="1140" y2="568" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 4 -->
+  <text x="72" y="590" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#0f172a">Aflatoxin G2</text>
+  <text x="320" y="590" font-family="ui-monospace, monospace" font-size="11" fill="#475569">C₁₇H₁₄O₇</text>
+  <text x="520" y="590" font-family="ui-monospace, monospace" font-size="11" fill="#475569">330.29</text>
+  <rect x="700" y="578" width="52" height="18" rx="3" fill="#fef2f2"/>
+  <text x="726" y="591" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#dc2626" text-anchor="middle">Class 1</text>
+  <rect x="900" y="582" width="100" height="8" rx="4" fill="#f1f5f9"/>
+  <rect x="900" y="582" width="68" height="8" rx="4" fill="#eab308"/>
+  <text x="1010" y="591" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#a16207">68.4%</text>
+  <rect x="1060" y="578" width="60" height="20" rx="5" fill="#f0fdfa" stroke="#0d9488" stroke-width="0.5"/>
+  <text x="1090" y="592" font-family="system-ui, sans-serif" font-size="10" fill="#0d9488" text-anchor="middle">View</text>
+
+  <line x1="60" y1="604" x2="1140" y2="604" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 5 -->
+  <text x="72" y="626" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#0f172a">Versicolorin A</text>
+  <text x="320" y="626" font-family="ui-monospace, monospace" font-size="11" fill="#475569">C₁₈H₁₂O₇</text>
+  <text x="520" y="626" font-family="ui-monospace, monospace" font-size="11" fill="#475569">340.28</text>
+  <rect x="700" y="614" width="52" height="18" rx="3" fill="#fff7ed"/>
+  <text x="726" y="627" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c2410c" text-anchor="middle">Class 2</text>
+  <rect x="900" y="618" width="100" height="8" rx="4" fill="#f1f5f9"/>
+  <rect x="900" y="618" width="63" height="8" rx="4" fill="#eab308"/>
+  <text x="1010" y="627" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#a16207">63.5%</text>
+  <rect x="1060" y="614" width="60" height="20" rx="5" fill="#f0fdfa" stroke="#0d9488" stroke-width="0.5"/>
+  <text x="1090" y="628" font-family="system-ui, sans-serif" font-size="10" fill="#0d9488" text-anchor="middle">View</text>
+
+  <!-- Pagination hint -->
+  <text x="600" y="654" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Showing 5 of 12 results · Sorted by similarity (descending)</text>
+</svg>

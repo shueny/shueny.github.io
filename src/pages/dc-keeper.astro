@@ -1,0 +1,776 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { siteConfig } from '@/config/site'
+---
+
+<BaseLayout
+  title="DC Keeper — Data-Centre Asset Management Platform"
+  description="Enterprise-grade data-centre inventory management: 9 modules, 284 screens, 4 permission roles, and a unified approval workflow. Built with React 18, TanStack Query & zustand."
+  image={siteConfig.ogImage}
+>
+
+<!-- Override portfolio theme — DC Keeper has its own brand palette -->
+<style is:global>
+  /* DC Keeper brand tokens */
+  :root {
+    --dc-primary: #4f46e5;
+    --dc-primary-light: #818cf8;
+    --dc-primary-dark: #3730a3;
+    --dc-dark: #0f172a;
+    --dc-dark-2: #1e293b;
+    --dc-dark-3: #334155;
+    --dc-accent: #06b6d4;
+    --dc-accent-light: #22d3ee;
+    --dc-surface: #f8fafc;
+    --dc-border: #e2e8f0;
+    --dc-success: #10b981;
+    --dc-warning: #f59e0b;
+    --dc-text: #334155;
+    --dc-text-muted: #64748b;
+  }
+</style>
+
+<style>
+  /* Page-scoped styles */
+  .dc-page {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    color: var(--dc-text);
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  /* Hero gradient */
+  .dc-hero {
+    background: linear-gradient(135deg, var(--dc-dark) 0%, var(--dc-dark-2) 40%, var(--dc-primary-dark) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .dc-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .dc-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Feature card hover */
+  .dc-feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .dc-feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);
+  }
+
+  /* Icon circle */
+  .dc-icon-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Stats card */
+  .dc-stat {
+    text-align: center;
+  }
+  .dc-stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--dc-primary) 0%, var(--dc-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Module card */
+  .dc-module-card {
+    background: white;
+    border: 1px solid var(--dc-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
+  .dc-module-card:hover {
+    border-color: var(--dc-primary-light);
+    box-shadow: 0 4px 16px rgba(79,70,229,0.1);
+  }
+
+  /* Tech badge */
+  .dc-tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid var(--dc-border);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--dc-text);
+    transition: all 0.3s ease;
+  }
+  .dc-tech-badge:hover {
+    border-color: var(--dc-primary);
+    color: var(--dc-primary);
+    box-shadow: 0 2px 8px rgba(79,70,229,0.1);
+  }
+
+  /* Flow step */
+  .dc-flow-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+  }
+  .dc-flow-connector {
+    position: absolute;
+    top: 28px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--dc-primary), var(--dc-accent));
+    opacity: 0.3;
+  }
+
+  /* Section divider */
+  .dc-section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dc-primary);
+  }
+  .dc-section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--dc-dark);
+    line-height: 1.2;
+  }
+  .dc-section-subtitle {
+    font-size: 1.125rem;
+    color: var(--dc-text-muted);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  /* Dashboard mockup */
+  .dc-mockup {
+    background: var(--dc-dark-2);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    box-shadow: 0 25px 60px -12px rgba(0,0,0,0.4);
+  }
+  .dc-mockup-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .dc-mockup-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* Navbar */
+  .dc-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s ease;
+  }
+  .dc-nav.scrolled {
+    background: rgba(15,23,42,0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  /* CTA buttons */
+  .dc-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--dc-primary);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  .dc-btn-primary:hover {
+    background: var(--dc-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(79,70,229,0.3);
+  }
+  .dc-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .dc-btn-outline:hover {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .dc-stat-number {
+      font-size: 2rem;
+    }
+    .dc-flow-connector {
+      display: none;
+    }
+  }
+</style>
+
+<div class="dc-page">
+
+  <!-- ═══════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════ -->
+  <nav class="dc-nav" id="dc-nav">
+    <div style="max-width:1200px; margin:0 auto; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between;">
+      <a href="/" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+        <div style="width:36px; height:36px; background:var(--dc-primary); border-radius:8px; display:flex; align-items:center; justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+          </svg>
+        </div>
+        <span style="font-weight:700; font-size:1.125rem; color:white; letter-spacing:-0.01em;">DC Keeper</span>
+      </a>
+      <div style="display:flex; align-items:center; gap:2rem;">
+        <a href="#features" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.875rem; font-weight:500; transition:color 0.2s;" onmouseenter="this.style.color='white'" onmouseleave="this.style.color='rgba(255,255,255,0.7)'">Features</a>
+        <a href="#modules" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.875rem; font-weight:500; transition:color 0.2s; display:none;" class="md-show" onmouseenter="this.style.color='white'" onmouseleave="this.style.color='rgba(255,255,255,0.7)'">Modules</a>
+        <a href="#tech" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.875rem; font-weight:500; transition:color 0.2s; display:none;" class="md-show" onmouseenter="this.style.color='white'" onmouseleave="this.style.color='rgba(255,255,255,0.7)'">Tech Stack</a>
+        <a href="#architecture" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.875rem; font-weight:500; transition:color 0.2s; display:none;" class="md-show" onmouseenter="this.style.color='white'" onmouseleave="this.style.color='rgba(255,255,255,0.7)'">Architecture</a>
+        <a href="/" class="dc-btn-primary" style="padding:0.5rem 1.25rem; font-size:0.8125rem;">
+          ← Portfolio
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <style>
+    @media (min-width: 768px) {
+      .md-show { display: inline !important; }
+    }
+  </style>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="dc-hero" style="padding: 8rem 1.5rem 5rem;">
+    <div style="max-width:1200px; margin:0 auto; position:relative; z-index:1;">
+      <div style="display:grid; grid-template-columns:1fr; gap:3rem; align-items:center;">
+
+        <!-- Text -->
+        <div style="max-width:640px;">
+          <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.375rem 1rem; background:rgba(79,70,229,0.2); border:1px solid rgba(79,70,229,0.3); border-radius:999px; margin-bottom:1.5rem;">
+            <span style="width:6px; height:6px; background:var(--dc-accent-light); border-radius:50%;"></span>
+            <span style="font-size:0.75rem; font-weight:600; color:var(--dc-accent-light); letter-spacing:0.05em;">ENTERPRISE PLATFORM</span>
+          </div>
+
+          <h1 style="font-size:clamp(2.25rem, 5vw, 3.5rem); font-weight:800; color:white; line-height:1.1; margin:0 0 1.25rem;">
+            Data-Centre Asset<br/>
+            <span style="background:linear-gradient(135deg, var(--dc-primary-light), var(--dc-accent-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Management Platform</span>
+          </h1>
+
+          <p style="font-size:1.125rem; color:rgba(255,255,255,0.65); line-height:1.7; margin:0 0 2rem; max-width:520px;">
+            9 modules, 284 screens, 4 permission roles — and every write operation routed through a single, reusable approval flow. Architecture decisions that compound across the entire product.
+          </p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:3rem;">
+            <a href="#features" class="dc-btn-primary">
+              Explore Features
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#architecture" class="dc-btn-outline">
+              View Architecture
+            </a>
+          </div>
+
+          <!-- Mini stats row -->
+          <div style="display:flex; flex-wrap:wrap; gap:2rem;">
+            <div>
+              <div style="font-size:1.75rem; font-weight:800; color:white;">9</div>
+              <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); font-weight:500;">Modules</div>
+            </div>
+            <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+            <div>
+              <div style="font-size:1.75rem; font-weight:800; color:white;">284</div>
+              <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); font-weight:500;">Screens</div>
+            </div>
+            <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+            <div>
+              <div style="font-size:1.75rem; font-weight:800; color:white;">4</div>
+              <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); font-weight:500;">Permission Roles</div>
+            </div>
+            <div style="width:1px; background:rgba(255,255,255,0.1);"></div>
+            <div>
+              <div style="font-size:1.75rem; font-weight:800; color:white;">0</div>
+              <div style="font-size:0.75rem; color:rgba(255,255,255,0.5); font-weight:500;">Runtime Errors</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Mockup -->
+      <div style="margin-top:3rem;">
+        <div class="dc-mockup">
+          <div class="dc-mockup-bar">
+            <div class="dc-mockup-dot" style="background:#ef4444;"></div>
+            <div class="dc-mockup-dot" style="background:#f59e0b;"></div>
+            <div class="dc-mockup-dot" style="background:#22c55e;"></div>
+            <span style="margin-left:auto; font-size:0.6875rem; color:rgba(255,255,255,0.4);">DC Keeper — Asset Dashboard</span>
+          </div>
+          <!-- Simulated dashboard UI -->
+          <div style="padding:1.25rem; display:grid; grid-template-columns:200px 1fr; gap:1rem; min-height:360px;">
+            <!-- Sidebar -->
+            <div style="background:rgba(0,0,0,0.3); border-radius:8px; padding:1rem;">
+              <div style="font-size:0.6875rem; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.75rem;">Navigation</div>
+              {['Dashboard', 'Assets', 'Racks', 'Network', 'Power', 'Approvals', 'Users', 'Import', 'Reports'].map((item, i) => (
+                <div style={`padding:0.5rem 0.75rem; border-radius:6px; font-size:0.75rem; color:${i === 0 ? 'white' : 'rgba(255,255,255,0.5)'}; margin-bottom:0.25rem; ${i === 0 ? 'background:var(--dc-primary);' : ''} cursor:pointer;`}>
+                  {item}
+                </div>
+              ))}
+            </div>
+            <!-- Main content area -->
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+              <!-- Top stats row -->
+              <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:0.75rem;">
+                {[
+                  { label: 'Total Assets', value: '12,847', color: '#6366f1' },
+                  { label: 'Active Racks', value: '342', color: '#06b6d4' },
+                  { label: 'Pending Approvals', value: '18', color: '#f59e0b' },
+                  { label: 'Utilization', value: '87.3%', color: '#10b981' },
+                ].map(stat => (
+                  <div style={`background:rgba(0,0,0,0.2); border-radius:8px; padding:0.875rem; border-left:3px solid ${stat.color};`}>
+                    <div style="font-size:0.625rem; color:rgba(255,255,255,0.4); margin-bottom:0.25rem;">{stat.label}</div>
+                    <div style="font-size:1.125rem; font-weight:700; color:white;">{stat.value}</div>
+                  </div>
+                ))}
+              </div>
+              <!-- Table mockup -->
+              <div style="background:rgba(0,0,0,0.2); border-radius:8px; flex:1; padding:0.875rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                  <span style="font-size:0.75rem; font-weight:600; color:rgba(255,255,255,0.7);">Recent Asset Changes</span>
+                  <div style="display:flex; gap:0.5rem;">
+                    <div style="padding:0.25rem 0.75rem; background:var(--dc-primary); border-radius:4px; font-size:0.625rem; color:white; font-weight:600;">+ New Asset</div>
+                    <div style="padding:0.25rem 0.75rem; background:rgba(255,255,255,0.1); border-radius:4px; font-size:0.625rem; color:rgba(255,255,255,0.6);">Export</div>
+                  </div>
+                </div>
+                <!-- Table header -->
+                <div style="display:grid; grid-template-columns:2fr 1.5fr 1fr 1fr 1fr; gap:0.5rem; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); margin-bottom:0.25rem;">
+                  {['Asset Name', 'Location', 'Status', 'Role', 'Action'].map(h => (
+                    <span style="font-size:0.625rem; font-weight:600; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.05em;">{h}</span>
+                  ))}
+                </div>
+                <!-- Table rows -->
+                {[
+                  { name: 'Dell R750 Server', loc: 'Rack A-14, U22', status: 'Active', statusColor: '#10b981', role: 'Admin' },
+                  { name: 'Cisco Nexus 9336', loc: 'Rack B-07, U40', status: 'Pending', statusColor: '#f59e0b', role: 'Reviewer' },
+                  { name: 'APC Smart-UPS 3kVA', loc: 'Rack C-01, U01', status: 'Active', statusColor: '#10b981', role: 'Viewer' },
+                  { name: 'HPE ProLiant DL380', loc: 'Rack A-22, U18', status: 'Review', statusColor: '#6366f1', role: 'Initiator' },
+                  { name: 'Juniper EX4300', loc: 'Rack D-03, U36', status: 'Active', statusColor: '#10b981', role: 'Admin' },
+                ].map(row => (
+                  <div style="display:grid; grid-template-columns:2fr 1.5fr 1fr 1fr 1fr; gap:0.5rem; padding:0.4rem 0; border-bottom:1px solid rgba(255,255,255,0.03); align-items:center;">
+                    <span style="font-size:0.6875rem; color:rgba(255,255,255,0.8); font-weight:500;">{row.name}</span>
+                    <span style="font-size:0.6875rem; color:rgba(255,255,255,0.5);">{row.loc}</span>
+                    <span style={`font-size:0.625rem; font-weight:600; color:${row.statusColor};`}>● {row.status}</span>
+                    <span style="font-size:0.6875rem; color:rgba(255,255,255,0.5);">{row.role}</span>
+                    <span style="font-size:0.625rem; color:var(--dc-primary-light); cursor:pointer;">View →</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FEATURES SECTION
+  ═══════════════════════════════════════════════ -->
+  <section id="features" style="padding:5rem 1.5rem; background:var(--dc-surface);">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span class="dc-section-label">Core Capabilities</span>
+        <h2 class="dc-section-title" style="margin:0.75rem 0;">Built for Scale, Not for Screens</h2>
+        <p class="dc-section-subtitle" style="margin:0 auto;">
+          The architecture handles the complexity so each new module is composition, not invention. Every decision was made once and applied everywhere.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+
+        <!-- Feature 1: Approval Flow -->
+        <div class="dc-feature-card" style="background:white; border-radius:16px; padding:2rem; border:1px solid var(--dc-border);">
+          <div class="dc-icon-circle" style="background:rgba(79,70,229,0.1); margin-bottom:1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dc-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.125rem; font-weight:700; color:var(--dc-dark); margin:0 0 0.5rem;">Three-Stage Approval Flow</h3>
+          <p style="font-size:0.875rem; color:var(--dc-text-muted); line-height:1.7; margin:0;">
+            Initiator → Reviewer → Executive. One configurable component serves every module — not a per-module reimplementation. Audit trails are consistent by design.
+          </p>
+        </div>
+
+        <!-- Feature 2: RBAC -->
+        <div class="dc-feature-card" style="background:white; border-radius:16px; padding:2rem; border:1px solid var(--dc-border);">
+          <div class="dc-icon-circle" style="background:rgba(6,182,212,0.1); margin-bottom:1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dc-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.125rem; font-weight:700; color:var(--dc-dark); margin:0 0 0.5rem;">Four-Role RBAC</h3>
+          <p style="font-size:0.875rem; color:var(--dc-text-muted); line-height:1.7; margin:0;">
+            Module-level access control with field-level amount masking. A context-based permission guard ensures every component respects the role boundary without custom logic.
+          </p>
+        </div>
+
+        <!-- Feature 3: Batch Import -->
+        <div class="dc-feature-card" style="background:white; border-radius:16px; padding:2rem; border:1px solid var(--dc-border);">
+          <div class="dc-icon-circle" style="background:rgba(16,185,129,0.1); margin-bottom:1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dc-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.125rem; font-weight:700; color:var(--dc-dark); margin:0 0 0.5rem;">Batch .xlsx Import</h3>
+          <p style="font-size:0.875rem; color:var(--dc-text-muted); line-height:1.7; margin:0;">
+            Three-step stepper: upload → validate → confirm. Per-cell error reporting highlights exactly what failed and why, so operators fix data before it enters the system.
+          </p>
+        </div>
+
+        <!-- Feature 4: Component Library -->
+        <div class="dc-feature-card" style="background:white; border-radius:16px; padding:2rem; border:1px solid var(--dc-border);">
+          <div class="dc-icon-circle" style="background:rgba(245,158,11,0.1); margin-bottom:1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dc-warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.125rem; font-weight:700; color:var(--dc-dark); margin:0 0 0.5rem;">Shared Component Library</h3>
+          <p style="font-size:0.875rem; color:var(--dc-text-muted); line-height:1.7; margin:0;">
+            A live showcase page for every primitive: tables, forms, steppers, modals. The "golden path" for assembling a standard page means new modules are wiring, not invention.
+          </p>
+        </div>
+
+        <!-- Feature 5: i18n -->
+        <div class="dc-feature-card" style="background:white; border-radius:16px; padding:2rem; border:1px solid var(--dc-border);">
+          <div class="dc-icon-circle" style="background:rgba(99,102,241,0.1); margin-bottom:1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dc-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.125rem; font-weight:700; color:var(--dc-dark); margin:0 0 0.5rem;">Multi-Language (i18next)</h3>
+          <p style="font-size:0.875rem; color:var(--dc-text-muted); line-height:1.7; margin:0;">
+            Full internationalization with i18next: every label, validation message, and tooltip is translatable. Namespace-per-module keeps translation files manageable at scale.
+          </p>
+        </div>
+
+        <!-- Feature 6: Mock API -->
+        <div class="dc-feature-card" style="background:white; border-radius:16px; padding:2rem; border:1px solid var(--dc-border);">
+          <div class="dc-icon-circle" style="background:rgba(6,182,212,0.1); margin-bottom:1.25rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--dc-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.125rem; font-weight:700; color:var(--dc-dark); margin:0 0 0.5rem;">Contract-First Development</h3>
+          <p style="font-size:0.875rem; color:var(--dc-text-muted); line-height:1.7; margin:0;">
+            A mock API layer (axios-mock-adapter) let the frontend be built and tested against the agreed contract before the backend existed — the two tracks never blocked each other.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       MODULES SECTION
+  ═══════════════════════════════════════════════ -->
+  <section id="modules" style="padding:5rem 1.5rem; background:white;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span class="dc-section-label">9 Modules</span>
+        <h2 class="dc-section-title" style="margin:0.75rem 0;">Every Module, One Architecture</h2>
+        <p class="dc-section-subtitle" style="margin:0 auto;">
+          Each module follows the same composition pattern: CRUD pages, batch imports, approval flows, and permission guards assembled from shared primitives.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+        {[
+          { icon: '🖥️', name: 'Dashboard', desc: 'Overview & KPIs' },
+          { icon: '📦', name: 'Asset Registry', desc: 'Full inventory CRUD' },
+          { icon: '🗄️', name: 'Rack Management', desc: 'Elevation & capacity' },
+          { icon: '🌐', name: 'Network', desc: 'Topology & ports' },
+          { icon: '⚡', name: 'Power & Cooling', desc: 'UPS, PDU, CRAC' },
+          { icon: '✅', name: 'Approvals', desc: '3-stage workflow' },
+          { icon: '👥', name: 'User & Roles', desc: 'RBAC management' },
+          { icon: '📥', name: 'Batch Import', desc: '.xlsx upload stepper' },
+          { icon: '📊', name: 'Reports', desc: 'Export & analytics' },
+        ].map(mod => (
+          <div class="dc-module-card">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">{mod.icon}</div>
+            <div style="font-size:0.9375rem; font-weight:700; color:var(--dc-dark); margin-bottom:0.25rem;">{mod.name}</div>
+            <div style="font-size:0.8125rem; color:var(--dc-text-muted);">{mod.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       APPROVAL FLOW SECTION
+  ═══════════════════════════════════════════════ -->
+  <section style="padding:5rem 1.5rem; background:var(--dc-surface);">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span class="dc-section-label">Workflow</span>
+        <h2 class="dc-section-title" style="margin:0.75rem 0;">One Approval Flow for Everything</h2>
+        <p class="dc-section-subtitle" style="margin:0 auto;">
+          Every write operation in every module routes through the same three-stage approval component. Configure it per module — the audit trail stays consistent.
+        </p>
+      </div>
+
+      <!-- Flow visualization -->
+      <div style="display:flex; justify-content:center; gap:0; flex-wrap:wrap; max-width:800px; margin:0 auto;">
+        {[
+          { step: '1', title: 'Initiator', desc: 'Creates or edits an asset record', color: 'var(--dc-primary)' },
+          { step: '2', title: 'Reviewer', desc: 'Validates data accuracy & compliance', color: 'var(--dc-accent)' },
+          { step: '3', title: 'Executive', desc: 'Final sign-off (optional, configurable)', color: 'var(--dc-success)' },
+        ].map((item, i) => (
+          <div class="dc-flow-step" style="min-width:200px; padding:1rem;">
+            {i < 2 && <div class="dc-flow-connector"></div>}
+            <div style={`width:56px; height:56px; border-radius:50%; background:${item.color}; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; box-shadow:0 4px 16px ${item.color}33;`}>
+              <span style="font-size:1.25rem; font-weight:800; color:white;">{item.step}</span>
+            </div>
+            <h4 style="font-size:1rem; font-weight:700; color:var(--dc-dark); margin:0 0 0.375rem;">{item.title}</h4>
+            <p style="font-size:0.8125rem; color:var(--dc-text-muted); margin:0; line-height:1.6;">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- RBAC visualization -->
+      <div style="margin-top:3.5rem; background:white; border-radius:16px; border:1px solid var(--dc-border); overflow:hidden;">
+        <div style="padding:1.25rem 1.5rem; border-bottom:1px solid var(--dc-border); display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-size:0.875rem; font-weight:700; color:var(--dc-dark);">Role-Based Access Matrix</span>
+          <span style="font-size:0.75rem; color:var(--dc-text-muted);">4 roles × 9 modules</span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; font-size:0.8125rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--dc-border);">
+                <th style="padding:0.75rem 1.5rem; text-align:left; color:var(--dc-text-muted); font-weight:600;">Permission</th>
+                <th style="padding:0.75rem 1rem; text-align:center; color:var(--dc-primary); font-weight:700;">Admin</th>
+                <th style="padding:0.75rem 1rem; text-align:center; color:var(--dc-accent); font-weight:700;">Reviewer</th>
+                <th style="padding:0.75rem 1rem; text-align:center; color:var(--dc-warning); font-weight:700;">Operator</th>
+                <th style="padding:0.75rem 1rem; text-align:center; color:var(--dc-text-muted); font-weight:700;">Viewer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { perm: 'View assets', admin: true, reviewer: true, operator: true, viewer: true },
+                { perm: 'Create / Edit', admin: true, reviewer: false, operator: true, viewer: false },
+                { perm: 'Approve changes', admin: true, reviewer: true, operator: false, viewer: false },
+                { perm: 'Batch import', admin: true, reviewer: false, operator: true, viewer: false },
+                { perm: 'View amounts', admin: true, reviewer: true, operator: false, viewer: false },
+                { perm: 'Manage users', admin: true, reviewer: false, operator: false, viewer: false },
+              ].map(row => (
+                <tr style="border-bottom:1px solid var(--dc-border);">
+                  <td style="padding:0.625rem 1.5rem; font-weight:500; color:var(--dc-dark);">{row.perm}</td>
+                  <td style="padding:0.625rem 1rem; text-align:center;">{row.admin ? '✅' : '—'}</td>
+                  <td style="padding:0.625rem 1rem; text-align:center;">{row.reviewer ? '✅' : '—'}</td>
+                  <td style="padding:0.625rem 1rem; text-align:center;">{row.operator ? '✅' : '—'}</td>
+                  <td style="padding:0.625rem 1rem; text-align:center;">{row.viewer ? '✅' : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TECH STACK SECTION
+  ═══════════════════════════════════════════════ -->
+  <section id="tech" style="padding:5rem 1.5rem; background:white;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span class="dc-section-label">Technology</span>
+        <h2 class="dc-section-title" style="margin:0.75rem 0;">Modern Stack, Clear Boundaries</h2>
+        <p class="dc-section-subtitle" style="margin:0 auto;">
+          Every technology choice maps to a single responsibility. Server state, UI state, and permissions each have exactly one home.
+        </p>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        {[
+          { name: 'React 18', desc: 'UI layer' },
+          { name: 'TypeScript', desc: 'Type safety' },
+          { name: 'TanStack Query', desc: 'Server state' },
+          { name: 'zustand', desc: 'UI state' },
+          { name: 'i18next', desc: 'Internationalization' },
+          { name: 'RBAC Guards', desc: 'Permissions' },
+          { name: 'axios-mock-adapter', desc: 'Contract testing' },
+          { name: 'Design System', desc: 'Shared primitives' },
+        ].map(tech => (
+          <div class="dc-tech-badge">
+            <span style="width:8px; height:8px; border-radius:50%; background:var(--dc-primary);"></span>
+            <span>{tech.name}</span>
+            <span style="color:var(--dc-text-muted); font-size:0.75rem;">— {tech.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ARCHITECTURE SECTION
+  ═══════════════════════════════════════════════ -->
+  <section id="architecture" style="padding:5rem 1.5rem; background:var(--dc-dark); color:white;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span class="dc-section-label" style="color:var(--dc-accent-light);">Architecture Decisions</span>
+        <h2 style="font-size:clamp(1.75rem, 4vw, 2.5rem); font-weight:700; color:white; line-height:1.2; margin:0.75rem 0;">The Calls That Shaped Everything</h2>
+        <p style="font-size:1.125rem; color:rgba(255,255,255,0.6); line-height:1.7; max-width:640px; margin:0 auto;">
+          The vendor admin template arrived with Redux-Saga wired through everything. Instead of extending it, I froze it — and built clear boundaries.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
+
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:2rem;">
+          <div style="font-size:0.6875rem; font-weight:700; color:var(--dc-accent-light); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.75rem;">Decision 01</div>
+          <h4 style="font-size:1.0625rem; font-weight:700; color:white; margin:0 0 0.75rem;">Froze Redux-Saga, Adopted TanStack Query</h4>
+          <p style="font-size:0.875rem; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">
+            Cache invalidation after a mutation became declarative instead of hand-managed. Every module benefits from the same fetch/error/cache pattern automatically.
+          </p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:2rem;">
+          <div style="font-size:0.6875rem; font-weight:700; color:var(--dc-accent-light); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.75rem;">Decision 02</div>
+          <h4 style="font-size:1.0625rem; font-weight:700; color:white; margin:0 0 0.75rem;">Config-Driven Approvals, Not Per-Module Code</h4>
+          <p style="font-size:0.875rem; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">
+            Approvals are a single component driven by configuration. This is what makes the audit trail consistent — each module declares its workflow, the component enforces it.
+          </p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:2rem;">
+          <div style="font-size:0.6875rem; font-weight:700; color:var(--dc-accent-light); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.75rem;">Decision 03</div>
+          <h4 style="font-size:1.0625rem; font-weight:700; color:white; margin:0 0 0.75rem;">Mock API Layer for Parallel Development</h4>
+          <p style="font-size:0.875rem; color:rgba(255,255,255,0.6); line-height:1.7; margin:0;">
+            The frontend was built and tested against the agreed API contract before the backend existed. The schedule depended on those two tracks not blocking each other.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       IMPACT STATS
+  ═══════════════════════════════════════════════ -->
+  <section style="padding:4rem 1.5rem; background:white; border-top:1px solid var(--dc-border);">
+    <div style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:2rem;">
+      {[
+        { number: '284', label: 'Screens Built', suffix: '' },
+        { number: '9', label: 'Product Modules', suffix: '' },
+        { number: '1', label: 'Approval Component', suffix: '' },
+        { number: '0', label: 'Runtime Errors', suffix: '' },
+      ].map(stat => (
+        <div class="dc-stat">
+          <div class="dc-stat-number">{stat.number}{stat.suffix}</div>
+          <div style="font-size:0.875rem; color:var(--dc-text-muted); margin-top:0.5rem; font-weight:500;">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer style="padding:3rem 1.5rem; background:var(--dc-dark); border-top:1px solid rgba(255,255,255,0.05);">
+    <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem;">
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <div style="width:32px; height:32px; background:var(--dc-primary); border-radius:8px; display:flex; align-items:center; justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+          </svg>
+        </div>
+        <span style="font-weight:600; color:rgba(255,255,255,0.8); font-size:0.875rem;">DC Keeper</span>
+      </div>
+      <div style="display:flex; gap:2rem; align-items:center;">
+        <a href="/" style="color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.8125rem; transition:color 0.2s;" onmouseenter="this.style.color='white'" onmouseleave="this.style.color='rgba(255,255,255,0.5)'">← Back to Portfolio</a>
+        <span style="color:rgba(255,255,255,0.3); font-size:0.75rem;">© 2025 Shueny Wang</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Navbar scroll effect -->
+<script is:inline>
+  (function() {
+    var nav = document.getElementById('dc-nav');
+    if (!nav) return;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  })();
+</script>
+
+</BaseLayout>

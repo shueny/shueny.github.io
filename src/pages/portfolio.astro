@@ -1,7 +1,7 @@
 ---
 import MainLayout from "@/layouts/main-layout.astro";
 import type { Portfolio } from "@/lib/types/portfolio";
-import { graphqlRequest } from '@/lib/graphql/client';
+import { portfolioData } from '@/lib/data/portfolio';
 import SplitText from "@/components/ui/split-text";
 import TypeWriter from "@/components/ui/type-writer";
 import { Spinner } from "@/components/ui/spinner";
@@ -29,101 +29,11 @@ const SECTION_ITEMS = [
   { id: "sepcial-experiences", text: "Special Experiences" },
 ];
 
-const query = `
-  query GetPortfolio {
-    portfolio {
-      greeting {
-        name
-        nameEn
-        nameZh
-        hi
-        iam
-        jobTitle
-        hobbies
-        email
-        portfolioUrl
-      }
-      summary {
-        title
-        list
-        email
-        github
-        linkedin
-        portfolioUrl
-      }
-      skills {
-        title
-        list {
-          title
-          icon
-          skills
-        }
-      }
-      projects {
-        title
-        list {
-          title
-          description
-          image 
-          url
-          technologies
-        }
-      }
-      workExperiences {
-        name
-        title
-        period
-        description
-        technologies
-      }
-      education {
-        name
-        title
-        period
-        description
-      }
-      specialExperiences {
-        title
-        description
-        date
-        image
-      }
-    }
-  }
-`;
-
-let data;
-let error;
-
-try {
-  const result = await graphqlRequest<{ portfolio: Portfolio }>(
-    query,
-    {},
-    Astro.url.origin,
-    { useStaticFallback: true }
-  );
-  
-  if (result.errors) {
-    error = result.errors;
-    console.error('GraphQL Errors:', result.errors);
-  } else if (!result.data) {
-    error = new Error('No data received');
-    console.error('No data in response');
-  } else {
-    data = result.data.portfolio;
-    console.log('Received data:', data);
-  }
-} catch (e) {
-  error = e;
-  console.error('Request Error:', e);
-}
-// console.log(data?.summary);
-
-console.log({
-  url: Astro.url.origin,
-  query,
-  result: { data, error }
-});
+// This page is prerendered and the site ships as static output, so there is
+// no live /api/graphql to call at build time. Use the static portfolio data
+// directly instead of a network round-trip that always fell back to it.
+const data = portfolioData as unknown as Portfolio;
+const error = undefined;
 ---
 
 <Toaster richColors closeButton position="top-right" />

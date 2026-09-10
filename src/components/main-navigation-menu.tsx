@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge'
 import { navMenuConfig } from '@/config/nav-menu'
 import type { MenuItem } from '@/types'
 
-const links = navMenuConfig.links
+const links = navMenuConfig.links ?? []
 const pages = navMenuConfig?.pagesNav ? navMenuConfig.pagesNav[0] : []
 const navs = navMenuConfig.examplesNav
 

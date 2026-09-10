@@ -1,0 +1,365 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="roleShadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" rx="12" fill="#f8fafc"/>
+  <rect x="0.5" y="0.5" width="1199" height="679" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- ==================== TITLE BAR ==================== -->
+  <rect width="1200" height="56" rx="12" fill="#ffffff"/>
+  <rect y="12" width="1200" height="44" fill="#ffffff"/>
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Logo -->
+  <rect x="24" y="14" width="32" height="28" rx="6" fill="#4f46e5"/>
+  <text x="40" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="white" text-anchor="middle">DC</text>
+  <text x="66" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#1e293b" letter-spacing="0.3">DC Keeper</text>
+
+  <!-- Breadcrumb -->
+  <text x="200" y="35" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Settings</text>
+  <text x="250" y="35" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">/</text>
+  <text x="264" y="35" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#4f46e5">Permissions</text>
+
+  <!-- Title -->
+  <text x="540" y="35" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Permission Management &#8212; Role Configuration</text>
+
+  <!-- Save button -->
+  <rect x="1080" y="14" width="90" height="28" rx="6" fill="#4f46e5"/>
+  <text x="1125" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Save Changes</text>
+
+  <!-- ==================== LEFT: ROLE CARDS ==================== -->
+  <text x="40" y="88" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1e293b">Roles</text>
+  <text x="40" y="104" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Select a role to view permissions</text>
+
+  <!-- Role 1: Admin (indigo) -->
+  <rect x="24" y="118" width="260" height="68" rx="10" fill="white" filter="url(#roleShadow)"/>
+  <rect x="24.5" y="118.5" width="259" height="67" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <rect x="24" y="118" width="5" height="68" rx="2.5" fill="#4f46e5"/>
+  <!-- Icon -->
+  <rect x="44" y="134" width="36" height="36" rx="8" fill="#eef2ff"/>
+  <text x="62" y="157" font-family="system-ui, sans-serif" font-size="14" fill="#4f46e5" text-anchor="middle">&#9733;</text>
+  <!-- Text -->
+  <text x="92" y="150" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Admin</text>
+  <text x="92" y="168" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Full system access</text>
+  <!-- User count -->
+  <rect x="230" y="140" width="38" height="22" rx="6" fill="#eef2ff"/>
+  <text x="249" y="155" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#4f46e5" text-anchor="middle">3</text>
+
+  <!-- Role 2: Manager (teal) — SELECTED -->
+  <rect x="24" y="196" width="260" height="68" rx="10" fill="white" filter="url(#roleShadow)"/>
+  <rect x="24.5" y="196.5" width="259" height="67" rx="10" fill="none" stroke="#0d9488" stroke-width="1.5"/>
+  <rect x="24" y="196" width="5" height="68" rx="2.5" fill="#0d9488"/>
+  <!-- Selection indicator -->
+  <rect x="24" y="196" width="260" height="68" rx="10" fill="#f0fdfa" opacity="0.5"/>
+  <!-- Icon -->
+  <rect x="44" y="212" width="36" height="36" rx="8" fill="#f0fdfa"/>
+  <text x="62" y="235" font-family="system-ui, sans-serif" font-size="14" fill="#0d9488" text-anchor="middle">&#9670;</text>
+  <!-- Text -->
+  <text x="92" y="228" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Manager</text>
+  <text x="92" y="246" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Approval and oversight</text>
+  <!-- User count -->
+  <rect x="230" y="218" width="38" height="22" rx="6" fill="#f0fdfa"/>
+  <text x="249" y="233" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0d9488" text-anchor="middle">8</text>
+  <!-- Selected indicator -->
+  <circle cx="270" cy="200" r="5" fill="#0d9488"/>
+  <polyline points="267,200 269,202 273,198" fill="none" stroke="white" stroke-width="1.2"/>
+
+  <!-- Role 3: Operator (green) -->
+  <rect x="24" y="274" width="260" height="68" rx="10" fill="white" filter="url(#roleShadow)"/>
+  <rect x="24.5" y="274.5" width="259" height="67" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <rect x="24" y="274" width="5" height="68" rx="2.5" fill="#22c55e"/>
+  <!-- Icon -->
+  <rect x="44" y="290" width="36" height="36" rx="8" fill="#dcfce7"/>
+  <text x="62" y="313" font-family="system-ui, sans-serif" font-size="14" fill="#16a34a" text-anchor="middle">&#9881;</text>
+  <!-- Text -->
+  <text x="92" y="306" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Operator</text>
+  <text x="92" y="324" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Day-to-day operations</text>
+  <!-- User count -->
+  <rect x="230" y="296" width="38" height="22" rx="6" fill="#dcfce7"/>
+  <text x="249" y="311" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#16a34a" text-anchor="middle">24</text>
+
+  <!-- Role 4: Viewer (gray) -->
+  <rect x="24" y="352" width="260" height="68" rx="10" fill="white" filter="url(#roleShadow)"/>
+  <rect x="24.5" y="352.5" width="259" height="67" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <rect x="24" y="352" width="5" height="68" rx="2.5" fill="#94a3b8"/>
+  <!-- Icon -->
+  <rect x="44" y="368" width="36" height="36" rx="8" fill="#f1f5f9"/>
+  <text x="62" y="391" font-family="system-ui, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">&#9673;</text>
+  <!-- Text -->
+  <text x="92" y="384" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Viewer</text>
+  <text x="92" y="402" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Read-only access</text>
+  <!-- User count -->
+  <rect x="230" y="374" width="38" height="22" rx="6" fill="#f1f5f9"/>
+  <text x="249" y="389" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">42</text>
+
+  <!-- Add role button -->
+  <rect x="24" y="434" width="260" height="38" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="154" y="458" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">+ Add New Role</text>
+
+  <!-- ==================== RIGHT: PERMISSION MATRIX TABLE ==================== -->
+  <rect x="308" y="72" width="868" height="520" rx="10" fill="white" filter="url(#cardShadow)"/>
+  <rect x="308.5" y="72.5" width="867" height="519" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Table Header -->
+  <rect x="308" y="72" width="868" height="44" rx="10" fill="#fafbfc"/>
+  <rect x="308" y="106" width="868" height="10" fill="#fafbfc"/>
+  <line x1="308" y1="116" x2="1176" y2="116" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Header: selected role indicator -->
+  <text x="332" y="100" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Permission Matrix</text>
+  <text x="480" y="100" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">&#8212;</text>
+  <rect x="500" y="86" width="72" height="22" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="1"/>
+  <text x="536" y="101" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0d9488" text-anchor="middle">Manager</text>
+
+  <!-- Toggle All switch -->
+  <rect x="1060" y="87" width="100" height="22" rx="6" fill="#f1f5f9"/>
+  <text x="1110" y="102" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Toggle All</text>
+
+  <!-- Column Headers -->
+  <text x="340" y="144" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5">MODULE</text>
+  <text x="570" y="144" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5" text-anchor="middle">VIEW</text>
+  <text x="670" y="144" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5" text-anchor="middle">CREATE</text>
+  <text x="770" y="144" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5" text-anchor="middle">EDIT</text>
+  <text x="870" y="144" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5" text-anchor="middle">DELETE</text>
+  <text x="970" y="144" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5" text-anchor="middle">APPROVE</text>
+  <text x="1090" y="144" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5" text-anchor="middle">EXPORT</text>
+  <line x1="324" y1="156" x2="1160" y2="156" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- ===== ROW: Assets ===== -->
+  <rect x="308" y="160" width="868" height="48" rx="0" fill="#ffffff"/>
+  <rect x="324" y="170" width="28" height="28" rx="6" fill="#eef2ff"/>
+  <text x="338" y="189" font-family="system-ui, sans-serif" font-size="12" fill="#4f46e5" text-anchor="middle">&#9632;</text>
+  <text x="364" y="190" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Assets</text>
+  <!-- View: check -->
+  <circle cx="570" cy="184" r="12" fill="#dcfce7"/>
+  <polyline points="564,184 568,188 576,180" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Create: check -->
+  <circle cx="670" cy="184" r="12" fill="#dcfce7"/>
+  <polyline points="664,184 668,188 676,180" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Edit: check -->
+  <circle cx="770" cy="184" r="12" fill="#dcfce7"/>
+  <polyline points="764,184 768,188 776,180" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Delete: dash -->
+  <circle cx="870" cy="184" r="12" fill="#f1f5f9"/>
+  <line x1="864" y1="184" x2="876" y2="184" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Approve: check -->
+  <circle cx="970" cy="184" r="12" fill="#dcfce7"/>
+  <polyline points="964,184 968,188 976,180" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Export: check -->
+  <circle cx="1090" cy="184" r="12" fill="#dcfce7"/>
+  <polyline points="1084,184 1088,188 1096,180" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="324" y1="208" x2="1160" y2="208" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ===== ROW: Racks ===== -->
+  <rect x="308" y="208" width="868" height="48" rx="0" fill="#fafbfc" opacity="0.5"/>
+  <rect x="324" y="218" width="28" height="28" rx="6" fill="#f0f9ff"/>
+  <text x="338" y="237" font-family="system-ui, sans-serif" font-size="12" fill="#0284c7" text-anchor="middle">&#9642;</text>
+  <text x="364" y="238" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Racks</text>
+  <!-- View: check -->
+  <circle cx="570" cy="232" r="12" fill="#dcfce7"/>
+  <polyline points="564,232 568,236 576,228" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Create: check -->
+  <circle cx="670" cy="232" r="12" fill="#dcfce7"/>
+  <polyline points="664,232 668,236 676,228" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Edit: check -->
+  <circle cx="770" cy="232" r="12" fill="#dcfce7"/>
+  <polyline points="764,232 768,236 776,228" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Delete: dash -->
+  <circle cx="870" cy="232" r="12" fill="#f1f5f9"/>
+  <line x1="864" y1="232" x2="876" y2="232" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Approve: dash -->
+  <circle cx="970" cy="232" r="12" fill="#f1f5f9"/>
+  <line x1="964" y1="232" x2="976" y2="232" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Export: check -->
+  <circle cx="1090" cy="232" r="12" fill="#dcfce7"/>
+  <polyline points="1084,232 1088,236 1096,228" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="324" y1="256" x2="1160" y2="256" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ===== ROW: Network ===== -->
+  <rect x="324" y="266" width="28" height="28" rx="6" fill="#faf5ff"/>
+  <text x="338" y="285" font-family="system-ui, sans-serif" font-size="12" fill="#7c3aed" text-anchor="middle">&#9678;</text>
+  <text x="364" y="286" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Network</text>
+  <!-- View: check -->
+  <circle cx="570" cy="280" r="12" fill="#dcfce7"/>
+  <polyline points="564,280 568,284 576,276" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Create: dash -->
+  <circle cx="670" cy="280" r="12" fill="#f1f5f9"/>
+  <line x1="664" y1="280" x2="676" y2="280" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Edit: check -->
+  <circle cx="770" cy="280" r="12" fill="#dcfce7"/>
+  <polyline points="764,280 768,284 776,276" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Delete: dash -->
+  <circle cx="870" cy="280" r="12" fill="#f1f5f9"/>
+  <line x1="864" y1="280" x2="876" y2="280" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Approve: dash -->
+  <circle cx="970" cy="280" r="12" fill="#f1f5f9"/>
+  <line x1="964" y1="280" x2="976" y2="280" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Export: check -->
+  <circle cx="1090" cy="280" r="12" fill="#dcfce7"/>
+  <polyline points="1084,280 1088,284 1096,276" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="324" y1="304" x2="1160" y2="304" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ===== ROW: Power ===== -->
+  <rect x="308" y="304" width="868" height="48" rx="0" fill="#fafbfc" opacity="0.5"/>
+  <rect x="324" y="314" width="28" height="28" rx="6" fill="#fffbeb"/>
+  <text x="338" y="333" font-family="system-ui, sans-serif" font-size="12" fill="#d97706" text-anchor="middle">&#9889;</text>
+  <text x="364" y="334" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Power</text>
+  <!-- View: check -->
+  <circle cx="570" cy="328" r="12" fill="#dcfce7"/>
+  <polyline points="564,328 568,332 576,324" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Create: dash -->
+  <circle cx="670" cy="328" r="12" fill="#f1f5f9"/>
+  <line x1="664" y1="328" x2="676" y2="328" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Edit: check -->
+  <circle cx="770" cy="328" r="12" fill="#dcfce7"/>
+  <polyline points="764,328 768,332 776,324" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Delete: dash -->
+  <circle cx="870" cy="328" r="12" fill="#f1f5f9"/>
+  <line x1="864" y1="328" x2="876" y2="328" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Approve: dash -->
+  <circle cx="970" cy="328" r="12" fill="#f1f5f9"/>
+  <line x1="964" y1="328" x2="976" y2="328" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Export: dash -->
+  <circle cx="1090" cy="328" r="12" fill="#f1f5f9"/>
+  <line x1="1084" y1="328" x2="1096" y2="328" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="324" y1="352" x2="1160" y2="352" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ===== ROW: Cooling ===== -->
+  <rect x="324" y="362" width="28" height="28" rx="6" fill="#f0f9ff"/>
+  <text x="338" y="381" font-family="system-ui, sans-serif" font-size="12" fill="#0ea5e9" text-anchor="middle">&#10052;</text>
+  <text x="364" y="382" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Cooling</text>
+  <!-- View: check -->
+  <circle cx="570" cy="376" r="12" fill="#dcfce7"/>
+  <polyline points="564,376 568,380 576,372" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Create: dash -->
+  <circle cx="670" cy="376" r="12" fill="#f1f5f9"/>
+  <line x1="664" y1="376" x2="676" y2="376" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Edit: check -->
+  <circle cx="770" cy="376" r="12" fill="#dcfce7"/>
+  <polyline points="764,376 768,380 776,372" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Delete: dash -->
+  <circle cx="870" cy="376" r="12" fill="#f1f5f9"/>
+  <line x1="864" y1="376" x2="876" y2="376" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Approve: dash -->
+  <circle cx="970" cy="376" r="12" fill="#f1f5f9"/>
+  <line x1="964" y1="376" x2="976" y2="376" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Export: dash -->
+  <circle cx="1090" cy="376" r="12" fill="#f1f5f9"/>
+  <line x1="1084" y1="376" x2="1096" y2="376" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="324" y1="400" x2="1160" y2="400" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ===== ROW: Approvals ===== -->
+  <rect x="308" y="400" width="868" height="48" rx="0" fill="#fafbfc" opacity="0.5"/>
+  <rect x="324" y="410" width="28" height="28" rx="6" fill="#fef3c7"/>
+  <text x="338" y="429" font-family="system-ui, sans-serif" font-size="12" fill="#f59e0b" text-anchor="middle">&#10003;</text>
+  <text x="364" y="430" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Approvals</text>
+  <!-- View: check -->
+  <circle cx="570" cy="424" r="12" fill="#dcfce7"/>
+  <polyline points="564,424 568,428 576,420" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Create: check -->
+  <circle cx="670" cy="424" r="12" fill="#dcfce7"/>
+  <polyline points="664,424 668,428 676,420" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Edit: check -->
+  <circle cx="770" cy="424" r="12" fill="#dcfce7"/>
+  <polyline points="764,424 768,428 776,420" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Delete: dash -->
+  <circle cx="870" cy="424" r="12" fill="#f1f5f9"/>
+  <line x1="864" y1="424" x2="876" y2="424" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Approve: check -->
+  <circle cx="970" cy="424" r="12" fill="#dcfce7"/>
+  <polyline points="964,424 968,428 976,420" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Export: check -->
+  <circle cx="1090" cy="424" r="12" fill="#dcfce7"/>
+  <polyline points="1084,424 1088,428 1096,420" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="324" y1="448" x2="1160" y2="448" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ===== ROW: Reports ===== -->
+  <rect x="324" y="458" width="28" height="28" rx="6" fill="#fce7f3"/>
+  <text x="338" y="477" font-family="system-ui, sans-serif" font-size="12" fill="#ec4899" text-anchor="middle">&#9638;</text>
+  <text x="364" y="478" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Reports</text>
+  <!-- View: check -->
+  <circle cx="570" cy="472" r="12" fill="#dcfce7"/>
+  <polyline points="564,472 568,476 576,468" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Create: check -->
+  <circle cx="670" cy="472" r="12" fill="#dcfce7"/>
+  <polyline points="664,472 668,476 676,468" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Edit: dash -->
+  <circle cx="770" cy="472" r="12" fill="#f1f5f9"/>
+  <line x1="764" y1="472" x2="776" y2="472" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Delete: dash -->
+  <circle cx="870" cy="472" r="12" fill="#f1f5f9"/>
+  <line x1="864" y1="472" x2="876" y2="472" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Approve: dash -->
+  <circle cx="970" cy="472" r="12" fill="#f1f5f9"/>
+  <line x1="964" y1="472" x2="976" y2="472" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Export: check -->
+  <circle cx="1090" cy="472" r="12" fill="#dcfce7"/>
+  <polyline points="1084,472 1088,476 1096,468" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="324" y1="496" x2="1160" y2="496" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Permission Legend -->
+  <g transform="translate(340, 516)">
+    <circle cx="0" cy="0" r="8" fill="#dcfce7"/>
+    <polyline points="-4,0 -1,3 5,-3" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="14" y="4" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Granted</text>
+
+    <circle cx="100" cy="0" r="8" fill="#f1f5f9"/>
+    <line x1="95" y1="0" x2="105" y2="0" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="114" y="4" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Denied</text>
+
+    <text x="250" y="4" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Manager: 26 of 42 permissions granted (62%)</text>
+  </g>
+
+  <!-- Permissions progress bar -->
+  <rect x="340" y="538" width="380" height="6" rx="3" fill="#f1f5f9"/>
+  <rect x="340" y="538" width="236" height="6" rx="3" fill="#0d9488"/>
+
+  <!-- ==================== BOTTOM SUMMARY BADGE ==================== -->
+  <rect x="24" y="612" width="1152" height="48" rx="10" fill="white" filter="url(#cardShadow)"/>
+  <rect x="24.5" y="612.5" width="1151" height="47" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Summary items -->
+  <g transform="translate(100, 640)">
+    <rect x="-50" y="-14" width="100" height="26" rx="6" fill="#eef2ff"/>
+    <text x="0" y="3" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#4f46e5" text-anchor="middle">9 Modules</text>
+  </g>
+
+  <!-- Separator dot -->
+  <circle cx="210" cy="636" r="2.5" fill="#cbd5e1"/>
+
+  <g transform="translate(310, 640)">
+    <rect x="-55" y="-14" width="110" height="26" rx="6" fill="#f0fdfa"/>
+    <text x="0" y="3" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#0d9488" text-anchor="middle">284 Screens</text>
+  </g>
+
+  <!-- Separator dot -->
+  <circle cx="420" cy="636" r="2.5" fill="#cbd5e1"/>
+
+  <g transform="translate(540, 640)">
+    <rect x="-75" y="-14" width="150" height="26" rx="6" fill="#dcfce7"/>
+    <text x="0" y="3" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#16a34a" text-anchor="middle">4 Permission Roles</text>
+  </g>
+
+  <!-- Separator dot -->
+  <circle cx="670" cy="636" r="2.5" fill="#cbd5e1"/>
+
+  <g transform="translate(790, 640)">
+    <rect x="-70" y="-14" width="140" height="26" rx="6" fill="#fef9c3"/>
+    <text x="0" y="3" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#ca8a04" text-anchor="middle">77 Users Total</text>
+  </g>
+
+  <!-- Separator dot -->
+  <circle cx="910" cy="636" r="2.5" fill="#cbd5e1"/>
+
+  <g transform="translate(1040, 640)">
+    <rect x="-70" y="-14" width="140" height="26" rx="6" fill="#faf5ff"/>
+    <text x="0" y="3" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#7c3aed" text-anchor="middle">RBAC Enabled</text>
+  </g>
+</svg>

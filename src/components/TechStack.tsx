@@ -1,12 +1,19 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import type { Translations } from '@/i18n/translations';
 import { SectionId } from '@/types';
 import AnimatedSectionTitle from './ui/AnimatedSectionTitle';
 
 // 定義技能資料結構 (若不需多語系切換技能名稱，直接寫在這裡最快)
 // 包含了從您簡歷和 V1 中提取的所有關鍵字
 // 注意：分類標題現在從翻譯文件中獲取
-const getSkillCategories = (t: any) => [
+interface SkillCategory {
+  id: string;
+  title: string;
+  skills: string[];
+}
+
+const getSkillCategories = (t: Translations): SkillCategory[] => [
   {
     id: 'frontend_arch',
     title: t.techStack.categories.frontendArch, // 強調架構能力
@@ -114,7 +121,7 @@ const TechStack: React.FC = () => {
 
         {/* Skills Grid - 極簡列表風格 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 border-t border-orange-100 pt-12">
-          {SKILL_CATEGORIES.map((category: any) => (
+          {SKILL_CATEGORIES.map((category) => (
             <div key={category.id} className="group">
               {/* Category Title with Serif Font */}
               <h3 className="text-xl font-serif font-bold text-primary mb-6 flex items-center">

@@ -33,14 +33,25 @@ import myImage1 from "../assets/images/starlog-placeholder-1.jpg";
             {...(item.forceReload ? { "data-astro-reload": true } : {})}
           >
             <div class="relative aspect-[4/2]">
-              <Image
-                loading="eager"
-                width={740}
-                height={350}
-                src={item.image || myImage1}
-                alt={item.title || "Placeholder image"}
-                class="size-full object-cover object-top"
-              />
+              {typeof item.image === "string" ? (
+                <Image
+                  loading="eager"
+                  width={740}
+                  height={350}
+                  src={item.image}
+                  alt={item.title || "Placeholder image"}
+                  class="size-full object-cover object-top"
+                />
+              ) : (
+                <Image
+                  loading="eager"
+                  width={740}
+                  height={350}
+                  src={item.image || myImage1}
+                  alt={item.title || "Placeholder image"}
+                  class="size-full object-cover object-top"
+                />
+              )}
               {item.disabled && (
                 <p class="absolute z-10 top-3 right-3 text-foreground bg-gray-900 bg-opacity-35 rounded-full flex items-center justify-center p-1.5">
                   <span class="sr-only">Work on it actually!</span>

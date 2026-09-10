@@ -172,6 +172,48 @@ export const EXPERIENCE_DATA: Experience[] = [
 
 export const PROJECTS_DATA: Project[] = [
   {
+    id: 'p-gcd-angela',
+    title: 'Global Career Discovery — Brand Website',
+    description:
+      'A single-page brand site for career counsellor Angela Baxter: three visual directions explored, one built, payment and booking integrations wired, deployed with CI — zero to live in a week so she could take her first pilot clients immediately.',
+    tags: [
+      'Astro 5',
+      'Zero JS Bundle',
+      'Stripe',
+      'Calendly',
+      'SEO',
+      'JSON-LD',
+      'Vercel',
+      'Content Collections',
+    ],
+    image: getAssetUrl('images/gcd-angela-cover.webp'),
+    banner: getAssetUrl('images/gcd-angela-cover.webp'),
+    gallery: [
+      getAssetUrl('images/gcd-angela-gallery-1.png'),
+      getAssetUrl('images/gcd-angela-gallery-2.png'),
+      getAssetUrl('images/gcd-angela-gallery-3.png'),
+    ],
+    link: 'https://www.angelacareerpath.com',
+    visualDescription:
+      'Desktop screenshot of the GCD homepage: cream background with navy text, gold SVG career path illustration, and dual call-to-action buttons.',
+    category: 'frontend',
+    domains: ['consumer', 'mvp'],
+    problem:
+      'Angela Baxter, a career counsellor with 20 years of experience, was launching a pilot "Career Discovery" program but had no web presence. Her existing tools — Jotform for self-assessments, Calendly for booking, Stripe for payments — lived in separate places with no single path connecting them. She needed a site that could explain what she offers and close the sale, not a brochure.',
+    solution:
+      'I designed and built a single-page Astro 5 site in one week: three visual directions (warm/bold/editorial) narrowed to one, a 10-section page with cream-and-navy rhythm, and an interactive gold SVG "career path" in the hero that tells the story through motion instead of copy. All payment and booking links wired via Stripe Payment Links and Calendly — zero backend, zero payment data handled.',
+    features: [
+      'Three visual directions explored before build',
+      'Interactive SVG hero with hover-reveal career path nodes',
+      'Zero JavaScript bundle — only two inline scripts (hero + scroll reveal)',
+      'Stripe × 3 + Calendly + Jotform link-based integrations',
+      'Content Collections schemas for future programmatic SEO pages',
+      'JSON-LD (Person, ProfessionalService, WebSite) for search presence',
+    ],
+    techDeepDive:
+      'Astro 5 with fully static output. The entire HTML is 18 KB (5.5 KB gzipped), one CSS file with CSS custom properties, and zero JS bundle files — build completes in 1.3 seconds. Five Content Collection schemas (guides, testimonials, FAQs, countries, audiences) are defined up front for programmatic SEO pages in Phase 2. Deployment is Vercel with GitHub Actions gating every PR on `astro check` + build. Solved deployment source confusion (CLI push vs Git-driven), commit email blocks, price mismatches between page copy and Stripe links, and production domain SEO alignment across canonical, sitemap, robots, and JSON-LD.',
+  },
+  {
     id: 'p1',
     title: 'Personal AI German Tutor',
     description:
@@ -185,9 +227,14 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: getAssetUrl('images/german-tutor-cover.webp'),
     banner: getAssetUrl('images/german-tutor-cover.webp'),
+    gallery: [
+      getAssetUrl('images/german-tutor-gallery-1.svg'),
+      getAssetUrl('images/german-tutor-gallery-2.svg'),
+    ],
     visualDescription:
       'GIF: Mobile chat interface showing voice waves and instant text corrections.',
     category: 'fullstack',
+    domains: ['ai', 'consumer'],
 
     // ⭐️ 核心修改：從單純的「App太死板」提升到解決「開口恐懼症 (Sprechhemmung)」
     problem:
@@ -232,6 +279,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'UI Screenshot: Clean mobile dashboard showing "Recent Transactions" with auto-converted dual currency (NT$ / €) and category icons.',
     category: 'fullstack',
+    domains: ['ai', 'fintech', 'consumer'],
     problem:
       "Spreadsheets were killing the holiday vibe. During a multi-country trip, I realized splitting bills across EUR, JPY, and TWD was a logistical nightmare. My goal was simple yet ambitious: Eliminate manual data entry entirely. I wanted a 'fire-and-forget' solution where users snap a photo, and the system handles the math, currency, and splits instantly.",
     solution:
@@ -254,9 +302,14 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['FastAPI', 'React', 'LangGraph', 'pgvector', 'Gemini'],
     image: getAssetUrl('images/job-analyzer-cover.webp'),
     banner: getAssetUrl('images/job-analyzer-cover.webp'),
+    gallery: [
+      getAssetUrl('images/pilotfit-gallery-1.svg'),
+      getAssetUrl('images/pilotfit-gallery-2.svg'),
+    ],
     visualDescription:
       'Image: Split screen showing raw text input vs. structured JSON dashboard.',
     category: 'fullstack',
+    domains: ['ai', 'data'],
 
     problem:
       "Job hunting is a data problem disguised as a document problem. Reading hundreds of unstructured JDs creates cognitive overload, making it difficult to objectively quantify skill gaps (e.g., 'Do I lack React or just Next.js?'). I needed a tool to find the signal in the noise.",
@@ -290,6 +343,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'UI Screenshot: Professional financial dashboard showing dense asset tables and institutional metrics.',
     category: 'frontend',
+    domains: ['fintech', 'data'],
 
     // ⭐️ 核心修改：強調 "Data Integrity" (數據完整性)，這對金融業至關重要
     problem:
@@ -318,10 +372,16 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Astro', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     image: getAssetUrl('images/lucky-duck-card.png'),
     banner: getAssetUrl('images/lucky-duck-card.png'),
+    gallery: [
+      getAssetUrl('images/lucky-duck-gallery-1.png'),
+      getAssetUrl('images/lucky-duck-gallery-2.png'),
+      getAssetUrl('images/lucky-duck-gallery-3.png'),
+    ],
     link: '/lucky-duck',
     visualDescription:
       'Interactive phone prototype walking through Landing, Signup/Wallet, Reward Discovery, Portfolio and Celebration in light & dark themes.',
     category: 'design',
+    domains: ['mvp', 'consumer'],
     problem:
       "The hard part of a rewards product isn't building another marketplace — it's building enough momentum that people come back. A pile of disconnected screens doesn't prove that; it needs a coherent flow where every screen earns the next tap and maps to a real growth loop.",
     solution:
@@ -343,10 +403,15 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Vue 3', 'Pinia', 'CSS Scroll Snap', 'PWA'],
     image: getAssetUrl('images/tomato-todo-cover.svg'),
     banner: getAssetUrl('images/tomato-todo-cover.svg'),
+    gallery: [
+      getAssetUrl('images/tomato-todo-gallery-1.svg'),
+      getAssetUrl('images/tomato-todo-gallery-2.svg'),
+    ],
     link: 'https://shueny.github.io/vue-daily-tomato-todo/',
     visualDescription:
       'Interactive phone mockup: day-card carousel, collapsible calendar and full-screen Pomodoro focus overlay.',
     category: 'frontend',
+    domains: ['consumer', 'mvp'],
     problem:
       'Most todo apps treat time as a label and focus as an afterthought: tasks pile up in one endless list, and the Pomodoro timer lives in a corner you ignore. I wanted planning by day and focusing on one task to be the same motion, not two separate apps.',
     solution:
@@ -375,9 +440,16 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: getAssetUrl('images/datacenter-assets-cover.svg'),
     banner: getAssetUrl('images/datacenter-assets-cover.svg'),
+    gallery: [
+      getAssetUrl('images/dc-keeper-gallery-1.svg'),
+      getAssetUrl('images/dc-keeper-gallery-2.svg'),
+      getAssetUrl('images/dc-keeper-gallery-3.svg'),
+    ],
+    link: '/dc-keeper',
     visualDescription:
-      'Rack elevation view alongside a three-stage approval flow panel with role-based amount masking.',
+      'SaaS-style landing page showing the DC Keeper dashboard with asset inventory, rack management, and approval flow.',
     category: 'frontend',
+    domains: ['enterprise'],
     problem:
       'A build this size fails by duplication, not by difficulty. Nine modules each needing CRUD, batch import, approvals, permissions and state pages is roughly 284 screens — and if every module solves those problems in its own way, the codebase becomes nine codebases. The real risk was not any single feature; it was the second engineer joining and having no single way to build a page.',
     solution:
@@ -399,9 +471,14 @@ export const PROJECTS_DATA: Project[] = [
     tags: ['Nuxt 3', 'Vue 3', 'Plotly.js', 'Data Visualization', 'Vitest', 'Playwright'],
     image: getAssetUrl('images/toxintel-cover.svg'),
     banner: getAssetUrl('images/toxintel-cover.svg'),
+    gallery: [
+      getAssetUrl('images/toxintel-gallery-1.svg'),
+      getAssetUrl('images/toxintel-gallery-2.svg'),
+    ],
     visualDescription:
       'Mass spectrum with a flagged peak, rendered molecular structure, and a similarity heatmap strip.',
     category: 'frontend',
+    domains: ['data', 'enterprise'],
     problem:
       'Researchers were reading spectral results in one tool, comparing candidate molecules in another, and rebuilding the write-up by hand in a third. The analysis was not the bottleneck — moving between the analysis and the document was. And in this domain the interface carries real risk: if the UI implies more certainty than the data supports, it does damage that a prettier chart cannot undo.',
     solution:
@@ -427,6 +504,7 @@ export const PROJECTS_DATA: Project[] = [
     visualDescription:
       'Static HTML shell with dashed hydration islands beside a panel of Lighthouse score rings.',
     category: 'frontend',
+    domains: ['mvp'],
     problem:
       'The previous version shipped the entire page as a React bundle: a hero that is pure text still cost a full hydration pass before anything rendered. On desktop the damage was invisible. On a mid-range phone it was the whole first impression — and a frontend engineer whose own portfolio has bad Core Web Vitals has an argument problem.',
     solution:

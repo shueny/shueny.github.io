@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { siteConfig } from '@/config/site'
+import NavbarIsland from '@/components/islands/NavbarIsland';
+import ExperienceListIsland from '@/components/islands/ExperienceListIsland';
+import FooterIsland from '@/components/islands/FooterIsland';
+import CookieConsentIsland from '@/components/islands/CookieConsentIsland';
+---
+
+<BaseLayout
+  title="Experience — Shueny Wang"
+  description="Nine years of frontend engineering — from e-commerce to cybersecurity to AI. Work history, key achievements, education, and special experiences."
+  image={siteConfig.ogImage}
+>
+  <NavbarIsland client:load />
+
+  <main>
+    <ExperienceListIsland client:load />
+  </main>
+
+  <FooterIsland client:idle />
+  <CookieConsentIsland client:idle />
+</BaseLayout>

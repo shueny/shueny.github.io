@@ -9,7 +9,6 @@ import ImpactDashboardIsland from '@/components/islands/ImpactDashboardIsland';
 import ProjectsGridIsland from '@/components/islands/ProjectsGridIsland';
 import WritingSection from '@/components/WritingSection.astro';
 import AboutIsland from '@/components/islands/AboutIsland';
-import ExperienceListIsland from '@/components/islands/ExperienceListIsland';
 import ContactIsland from '@/components/islands/ContactIsland';
 import FooterIsland from '@/components/islands/FooterIsland';
 import CookieConsentIsland from '@/components/islands/CookieConsentIsland';
@@ -33,19 +32,18 @@ import CookieConsentIsland from '@/components/islands/CookieConsentIsland';
   <main>
     <HeroStatic />
 
+    <!-- Featured work sits directly under the hero so a visitor sees proof first -->
+    <ProjectsGridIsland client:visible />
+
     <ServicesIsland client:visible />
 
     <TechStackIsland client:visible />
 
     <ImpactDashboardIsland client:visible />
 
-    <ProjectsGridIsland client:visible />
-
     <WritingSection />
 
     <AboutIsland client:visible />
-
-    <ExperienceListIsland client:visible />
 
     <ContactIsland client:visible />
   </main>

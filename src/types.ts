@@ -7,6 +7,18 @@ export interface SalaryData {
   experience?: string;
 }
 
+/**
+ * Who a project is for. Drives the "What are you building?" filter in the
+ * portfolio so a prospective client can jump straight to relevant work.
+ */
+export type ProjectDomain =
+  | 'ai'
+  | 'fintech'
+  | 'enterprise'
+  | 'data'
+  | 'consumer'
+  | 'mvp';
+
 export interface Project {
   id: string;
   title: string;
@@ -17,6 +29,7 @@ export interface Project {
   banner?: string; // Banner image for project card
   gallery?: string[]; // Array of screenshot URLs
   category: 'frontend' | 'fullstack' | 'design';
+  domains: ProjectDomain[]; // first entry is the primary domain shown on the card
   visualDescription?: string;
   // Case Study Specifics
   problem?: string;
@@ -94,12 +107,6 @@ export interface NavMenuGroup {
   items: NavMenuItem[];
 }
 
-export interface NavMenuConfig {
-  links: NavLink[];
-  pagesNav?: NavMenuGroup[];
-  examplesNav?: NavMenuGroup[];
-}
-
 // For Astro image imports
 export interface ImageMetadata {
   src: string;
@@ -136,7 +143,6 @@ export interface AboutSection {
 }
 
 // Re-export types from types/index.d.ts
-// Note: NavMenuConfig is excluded as it's already defined in this file with a different structure
 export type {
   NavItem,
   MenuItem,
@@ -145,6 +151,7 @@ export type {
   SiteConfig,
   DocsConfig,
   FedConfig,
+  NavMenuConfig,
   MarketingConfig,
   DashboardConfig,
   SubscriptionPlan,

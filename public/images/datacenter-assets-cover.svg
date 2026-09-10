@@ -1,98 +1,162 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-label="Data-centre asset management platform with a three-stage approval flow">
-  <defs>
-    <linearGradient id="dcbg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1c1917"/>
-      <stop offset="1" stop-color="#292524"/>
-    </linearGradient>
-    <linearGradient id="dcaccent" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#ea580c"/>
-      <stop offset="1" stop-color="#f97316"/>
-    </linearGradient>
-    <filter id="dcsoft" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
-    </filter>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" fill="none" role="img" aria-label="Data-centre asset management dashboard with approval flow">
+  <!-- Background -->
+  <rect width="1200" height="680" rx="16" fill="#f8fafc"/>
 
-  <rect width="800" height="450" fill="url(#dcbg)"/>
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="200" height="680" rx="16" fill="#f1f5f9"/>
+  <rect x="16" y="0" width="184" height="680" fill="#f1f5f9"/>
 
-  <!-- faint grid -->
-  <g stroke="#f97316" stroke-width="1" opacity="0.07">
-    <path d="M0 90 H800 M0 180 H800 M0 270 H800 M0 360 H800"/>
-    <path d="M100 0 V450 M200 0 V450 M300 0 V450 M400 0 V450 M500 0 V450 M600 0 V450 M700 0 V450"/>
-  </g>
+  <!-- Sidebar - Logo area -->
+  <rect x="24" y="24" width="32" height="32" rx="8" fill="#4f46e5"/>
+  <text x="64" y="46" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1e293b">DC Keeper</text>
 
-  <!-- rack cabinets -->
-  <g filter="url(#dcsoft)">
-    <rect x="64" y="96" width="104" height="238" rx="10" fill="#0c0a09" stroke="#44403c" stroke-width="2"/>
-    <rect x="184" y="96" width="104" height="238" rx="10" fill="#0c0a09" stroke="#44403c" stroke-width="2"/>
-    <rect x="304" y="96" width="104" height="238" rx="10" fill="#0c0a09" stroke="#44403c" stroke-width="2"/>
-  </g>
+  <!-- Sidebar - Nav items -->
+  <rect x="16" y="80" width="168" height="36" rx="8" fill="#4f46e5"/>
+  <text x="44" y="103" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="white">Dashboard</text>
+  <circle cx="28" cy="99" r="3" fill="white" opacity="0.6"/>
 
-  <!-- rack units -->
-  <g>
-    <!-- rack 1 -->
-    <rect x="78" y="112" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="78" y="136" width="76" height="16" rx="4" fill="#ea580c"/>
-    <rect x="78" y="160" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="78" y="184" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="78" y="208" width="76" height="16" rx="4" fill="#22c55e"/>
-    <rect x="78" y="232" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="78" y="256" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="78" y="280" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="78" y="304" width="76" height="16" rx="4" fill="#ea580c"/>
-    <!-- rack 2 -->
-    <rect x="198" y="112" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="198" y="136" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="198" y="160" width="76" height="16" rx="4" fill="#22c55e"/>
-    <rect x="198" y="184" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="198" y="208" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="198" y="232" width="76" height="16" rx="4" fill="#ea580c"/>
-    <rect x="198" y="256" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="198" y="280" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="198" y="304" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <!-- rack 3 -->
-    <rect x="318" y="112" width="76" height="16" rx="4" fill="#ea580c"/>
-    <rect x="318" y="136" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="318" y="160" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="318" y="184" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="318" y="208" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="318" y="232" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="318" y="256" width="76" height="16" rx="4" fill="#22c55e"/>
-    <rect x="318" y="280" width="76" height="16" rx="4" fill="#3f3f46"/>
-    <rect x="318" y="304" width="76" height="16" rx="4" fill="#3f3f46"/>
-  </g>
+  <circle cx="28" cy="136" r="3" fill="#94a3b8"/>
+  <text x="44" y="140" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Assets</text>
+  <circle cx="28" cy="166" r="3" fill="#94a3b8"/>
+  <text x="44" y="170" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Racks</text>
+  <circle cx="28" cy="196" r="3" fill="#94a3b8"/>
+  <text x="44" y="200" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Network</text>
+  <circle cx="28" cy="226" r="3" fill="#94a3b8"/>
+  <text x="44" y="230" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Power</text>
+  <circle cx="28" cy="256" r="3" fill="#94a3b8"/>
+  <text x="44" y="260" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Approvals</text>
+  <circle cx="28" cy="286" r="3" fill="#94a3b8"/>
+  <text x="44" y="290" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Users &amp; Roles</text>
+  <circle cx="28" cy="316" r="3" fill="#94a3b8"/>
+  <text x="44" y="320" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Import</text>
+  <circle cx="28" cy="346" r="3" fill="#94a3b8"/>
+  <text x="44" y="350" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Reports</text>
 
-  <!-- approval flow panel -->
-  <g filter="url(#dcsoft)">
-    <rect x="464" y="96" width="272" height="238" rx="16" fill="#1c1917" stroke="#44403c" stroke-width="2"/>
-  </g>
-  <text x="492" y="134" font-family="Outfit, Arial, sans-serif" font-size="14" font-weight="800" fill="#a8a29e" letter-spacing="1.5">APPROVAL FLOW</text>
+  <!-- KPI Card 1 - Total Assets -->
+  <rect x="224" y="24" width="220" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="224" y="24" width="4" height="100" rx="2" fill="#4f46e5"/>
+  <text x="244" y="52" font-family="system-ui,sans-serif" font-size="11" fill="#94a3b8" font-weight="500">TOTAL ASSETS</text>
+  <text x="244" y="90" font-family="system-ui,sans-serif" font-size="32" font-weight="700" fill="#1e293b">12,847</text>
 
-  <!-- stage 1 -->
-  <circle cx="504" cy="176" r="15" fill="url(#dcaccent)"/>
-  <path d="M497 176 l5 5 l9 -11" stroke="#1c1917" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="532" y="169" width="118" height="10" rx="5" fill="#57534e"/>
-  <rect x="532" y="185" width="72" height="7" rx="3.5" fill="#3f3f46"/>
-  <path d="M504 191 V213" stroke="#44403c" stroke-width="2"/>
+  <!-- KPI Card 2 - Active Racks -->
+  <rect x="464" y="24" width="220" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="464" y="24" width="4" height="100" rx="2" fill="#06b6d4"/>
+  <text x="484" y="52" font-family="system-ui,sans-serif" font-size="11" fill="#94a3b8" font-weight="500">ACTIVE RACKS</text>
+  <text x="484" y="90" font-family="system-ui,sans-serif" font-size="32" font-weight="700" fill="#1e293b">342</text>
 
-  <!-- stage 2 -->
-  <circle cx="504" cy="228" r="15" fill="url(#dcaccent)"/>
-  <path d="M497 228 l5 5 l9 -11" stroke="#1c1917" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="532" y="221" width="140" height="10" rx="5" fill="#57534e"/>
-  <rect x="532" y="237" width="90" height="7" rx="3.5" fill="#3f3f46"/>
-  <path d="M504 243 V265" stroke="#44403c" stroke-width="2" stroke-dasharray="4 4"/>
+  <!-- KPI Card 3 - Pending Approvals -->
+  <rect x="704" y="24" width="220" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="704" y="24" width="4" height="100" rx="2" fill="#f59e0b"/>
+  <text x="724" y="52" font-family="system-ui,sans-serif" font-size="11" fill="#94a3b8" font-weight="500">PENDING APPROVALS</text>
+  <text x="724" y="90" font-family="system-ui,sans-serif" font-size="32" font-weight="700" fill="#1e293b">18</text>
 
-  <!-- stage 3 (optional) -->
-  <circle cx="504" cy="280" r="15" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="4 4"/>
-  <rect x="532" y="273" width="104" height="10" rx="5" fill="#3f3f46"/>
-  <rect x="532" y="289" width="128" height="7" rx="3.5" fill="#292524"/>
+  <!-- KPI Card 4 - Utilization -->
+  <rect x="944" y="24" width="232" height="100" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="944" y="24" width="4" height="100" rx="2" fill="#10b981"/>
+  <text x="964" y="52" font-family="system-ui,sans-serif" font-size="11" fill="#94a3b8" font-weight="500">UTILIZATION</text>
+  <text x="964" y="90" font-family="system-ui,sans-serif" font-size="32" font-weight="700" fill="#1e293b">87.3%</text>
 
-  <!-- role masking chip -->
-  <rect x="656" y="266" width="56" height="28" rx="14" fill="#292524" stroke="#57534e" stroke-width="1.5"/>
-  <text x="684" y="285" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-size="15" font-weight="800" fill="#ea580c">***</text>
+  <!-- Action buttons -->
+  <rect x="1040" y="148" width="80" height="28" rx="6" fill="#4f46e5"/>
+  <text x="1054" y="167" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="white">+ New</text>
+  <rect x="1128" y="148" width="48" height="28" rx="6" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="1136" y="167" font-family="system-ui,sans-serif" font-size="11" font-weight="500" fill="#64748b">Export</text>
 
-  <!-- title -->
-  <text x="64" y="398" font-family="Outfit, Arial, sans-serif" font-size="30" font-weight="800" fill="#fafaf9">Data-Centre Assets</text>
-  <text x="64" y="424" font-family="Outfit, Arial, sans-serif" font-size="15" font-weight="600" fill="#a8a29e">Client platform · 9 modules · 284 screens · RBAC</text>
-  <text x="736" y="424" text-anchor="end" font-family="Outfit, Arial, sans-serif" font-size="15" font-weight="700" fill="#ea580c">React 18</text>
+  <!-- Table Header -->
+  <rect x="224" y="148" width="800" height="40" rx="8" fill="#f8fafc"/>
+  <text x="244" y="173" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="0.5">ASSET NAME</text>
+  <text x="484" y="173" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="0.5">LOCATION</text>
+  <text x="700" y="173" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="0.5">STATUS</text>
+  <text x="880" y="173" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="0.5">ROLE</text>
+  <text x="1000" y="173" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="0.5">ACTION</text>
+
+  <!-- Table Row 1 -->
+  <line x1="224" y1="236" x2="1176" y2="236" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="244" y="217" font-family="system-ui,sans-serif" font-size="13" font-weight="500" fill="#1e293b">Dell R750 Server</text>
+  <text x="484" y="217" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Rack A-14, U22</text>
+  <rect x="700" y="205" width="56" height="22" rx="11" fill="#dcfce7"/>
+  <text x="712" y="220" font-family="system-ui,sans-serif" font-size="11" font-weight="500" fill="#16a34a">Active</text>
+  <text x="880" y="217" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Admin</text>
+  <text x="1000" y="217" font-family="system-ui,sans-serif" font-size="12" font-weight="500" fill="#4f46e5">View →</text>
+
+  <!-- Table Row 2 -->
+  <rect x="224" y="236" width="952" height="48" fill="#fafbfd"/>
+  <line x1="224" y1="284" x2="1176" y2="284" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="244" y="265" font-family="system-ui,sans-serif" font-size="13" font-weight="500" fill="#1e293b">Cisco Nexus 9336</text>
+  <text x="484" y="265" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Rack B-07, U40</text>
+  <rect x="700" y="253" width="68" height="22" rx="11" fill="#fef3c7"/>
+  <text x="712" y="268" font-family="system-ui,sans-serif" font-size="11" font-weight="500" fill="#d97706">Pending</text>
+  <text x="880" y="265" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Reviewer</text>
+  <text x="1000" y="265" font-family="system-ui,sans-serif" font-size="12" font-weight="500" fill="#4f46e5">View →</text>
+
+  <!-- Table Row 3 -->
+  <line x1="224" y1="332" x2="1176" y2="332" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="244" y="313" font-family="system-ui,sans-serif" font-size="13" font-weight="500" fill="#1e293b">APC Smart-UPS 3kVA</text>
+  <text x="484" y="313" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Rack C-01, U01</text>
+  <rect x="700" y="301" width="56" height="22" rx="11" fill="#dcfce7"/>
+  <text x="712" y="316" font-family="system-ui,sans-serif" font-size="11" font-weight="500" fill="#16a34a">Active</text>
+  <text x="880" y="313" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Viewer</text>
+  <text x="1000" y="313" font-family="system-ui,sans-serif" font-size="12" font-weight="500" fill="#4f46e5">View →</text>
+
+  <!-- Table Row 4 -->
+  <rect x="224" y="332" width="952" height="48" fill="#fafbfd"/>
+  <line x1="224" y1="380" x2="1176" y2="380" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="244" y="361" font-family="system-ui,sans-serif" font-size="13" font-weight="500" fill="#1e293b">HPE ProLiant DL380</text>
+  <text x="484" y="361" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Rack A-22, U18</text>
+  <rect x="700" y="349" width="60" height="22" rx="11" fill="#e0e7ff"/>
+  <text x="712" y="364" font-family="system-ui,sans-serif" font-size="11" font-weight="500" fill="#4f46e5">Review</text>
+  <text x="880" y="361" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Initiator</text>
+  <text x="1000" y="361" font-family="system-ui,sans-serif" font-size="12" font-weight="500" fill="#4f46e5">View →</text>
+
+  <!-- Table Row 5 -->
+  <line x1="224" y1="428" x2="1176" y2="428" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="244" y="409" font-family="system-ui,sans-serif" font-size="13" font-weight="500" fill="#1e293b">Juniper EX4300</text>
+  <text x="484" y="409" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Rack D-03, U36</text>
+  <rect x="700" y="397" width="56" height="22" rx="11" fill="#dcfce7"/>
+  <text x="712" y="412" font-family="system-ui,sans-serif" font-size="11" font-weight="500" fill="#16a34a">Active</text>
+  <text x="880" y="409" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Admin</text>
+  <text x="1000" y="409" font-family="system-ui,sans-serif" font-size="12" font-weight="500" fill="#4f46e5">View →</text>
+
+  <!-- Approval Flow Section -->
+  <rect x="224" y="452" width="952" height="204" rx="12" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="244" y="480" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#1e293b" letter-spacing="0.5">APPROVAL FLOW</text>
+
+  <!-- Step 1 -->
+  <rect x="260" y="500" width="240" height="64" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <circle cx="284" cy="532" r="12" fill="#16a34a"/>
+  <path d="M279 532 l3 4 l6 -8" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="304" y="525" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Initiator</text>
+  <text x="304" y="543" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Submit request</text>
+
+  <!-- Arrow 1 -->
+  <path d="M510 532 L540 532" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+  <path d="M536 528 L542 532 L536 536" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Step 2 -->
+  <rect x="552" y="500" width="240" height="64" rx="10" fill="#fefce8" stroke="#fde68a" stroke-width="1"/>
+  <circle cx="576" cy="532" r="12" fill="#f59e0b"/>
+  <path d="M571 528 L581 528 M571 532 L579 532 M571 536 L581 536" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <text x="596" y="525" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Reviewer</text>
+  <text x="596" y="543" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Verify &amp; approve</text>
+
+  <!-- Arrow 2 -->
+  <path d="M802 532 L832 532" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+  <path d="M828 528 L834 532 L828 536" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Step 3 -->
+  <rect x="844" y="500" width="240" height="64" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <circle cx="868" cy="532" r="12" fill="#4f46e5"/>
+  <path d="M863 529 l5 5 l5 -5" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="888" y="525" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1e293b">Executive</text>
+  <text x="888" y="543" font-family="system-ui,sans-serif" font-size="11" fill="#64748b">Final sign-off</text>
+
+  <!-- RBAC badges row -->
+  <rect x="260" y="584" width="64" height="24" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="274" y="600" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#16a34a">RBAC</text>
+  <rect x="334" y="584" width="80" height="24" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="348" y="600" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#4f46e5">4 Roles</text>
+  <rect x="424" y="584" width="100" height="24" rx="12" fill="#fefce8" stroke="#fde68a" stroke-width="1"/>
+  <text x="438" y="600" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#d97706">284 Screens</text>
+  <rect x="534" y="584" width="100" height="24" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1"/>
+  <text x="548" y="600" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#7c3aed">9 Modules</text>
 </svg>

@@ -173,6 +173,28 @@ export interface Translations {
       fullstack: string;
       design: string;
     };
+    // Search + filter UI
+    filterLabel: string; // "What are you building?"
+    searchPlaceholder: string;
+    searchAriaLabel: string;
+    domains: {
+      all: string;
+      ai: string;
+      fintech: string;
+      enterprise: string;
+      data: string;
+      consumer: string;
+      mvp: string;
+    };
+    resultsCount: string; // "{count} of {total} projects"
+    noResults: string;
+    clearFilters: string;
+    // Carousel
+    prevProject: string;
+    nextProject: string;
+    goToPage: string; // "Go to page {page}"
+    showingRange: string; // "{from}–{to} of {total}"
+    showingOne: string; // "{index} of {total}" (one card per screen)
     data: Array<{
       id: string;
       title: string;
@@ -407,7 +429,101 @@ export const translations: Record<Language, Translations> = {
         fullstack: 'Full Stack',
         design: 'Design',
       },
+      filterLabel: 'What am I building?',
+      searchPlaceholder: 'Search by stack, industry or keyword…',
+      searchAriaLabel: 'Search projects',
+      domains: {
+        all: 'All work',
+        ai: 'AI products',
+        fintech: 'Fintech',
+        enterprise: 'Enterprise platforms',
+        data: 'Data & research',
+        consumer: 'Consumer apps',
+        mvp: 'MVP & design',
+      },
+      resultsCount: '{count} of {total} projects',
+      noResults: 'Nothing matches that yet. Try another keyword, or clear the filters to see everything.',
+      clearFilters: 'Clear filters',
+      prevProject: 'Previous projects',
+      nextProject: 'Next projects',
+      goToPage: 'Go to page {page}',
+      showingRange: '{from}–{to} of {total}',
+      showingOne: '{index} of {total}',
       data: [
+        {
+          id: 'p-gcd-angela',
+          title: 'Global Career Discovery — Brand Website',
+          description:
+            'A single-page brand site for career counsellor Angela Baxter: three visual directions explored, one built, payment and booking integrations wired, deployed with CI — zero to live in a week so she could take her first pilot clients immediately.',
+          problem:
+            'Angela Baxter, a career counsellor with 20 years of experience, was launching a pilot "Career Discovery" program but had no web presence. Her existing tools — Jotform, Calendly, Stripe — lived in separate places with no single path connecting them.',
+          solution:
+            'I designed and built a single-page Astro 5 site in one week: three visual directions narrowed to one, a 10-section page with cream-and-navy rhythm, and an interactive gold SVG career path in the hero. All payment and booking links wired via Stripe Payment Links and Calendly — zero backend.',
+          techDeepDive:
+            'Astro 5 with fully static output. HTML 18 KB (5.5 KB gzipped), one CSS file, zero JS bundle files — build in 1.3 seconds. Five Content Collection schemas defined for future programmatic SEO pages. Deployment on Vercel with GitHub Actions CI.',
+          features: [
+            'Three visual directions explored before build',
+            'Interactive SVG hero with hover-reveal career path nodes',
+            'Zero JavaScript bundle — only two inline scripts',
+            'Stripe × 3 + Calendly + Jotform link-based integrations',
+            'Content Collections schemas for future SEO pages',
+            'JSON-LD (Person, ProfessionalService, WebSite)',
+          ],
+        },
+        {
+          id: 'p3',
+          title: 'Pilotfit — AI Job Search Platform',
+          description:
+            'A full-stack AI platform that turns the chaos of job searching into structured strategy, built solo and running with real beta users.',
+          problem:
+            "Job hunting is a data problem disguised as a document problem. Reading hundreds of unstructured JDs creates cognitive overload, making it difficult to objectively quantify skill gaps (e.g., 'Do I lack React or just Next.js?'). I needed a tool to find the signal in the noise.",
+          solution:
+            'I built the platform solo, end to end: a FastAPI backend, a React frontend, and an agent layer that turns raw job postings into structured strategy. It runs with real beta users, which keeps the engineering honest: reliability, cost, and trust matter more than demo polish.',
+          techDeepDive:
+            'Under the hood: hybrid RAG search combining pgvector embeddings with structured filters, a LangGraph coaching agent that maintains context across sessions, and tiered model routing that cut inference costs by 84 percent without degrading output quality. The frontend renders agent state transparently, so users always know what the system is doing and why. The lesson this project taught me: in AI products, the model is 20 percent of the work; reliability, cost, and interface trust are the other 80.',
+          features: [
+            'Hybrid RAG Search (pgvector + Structured Filters)',
+            'LangGraph Coaching Agent with Cross-Session Memory',
+            'Tiered Model Routing (84% Inference Cost Reduction)',
+            'Transparent Agent-State Rendering',
+          ],
+        },
+        {
+          id: 'p-toxintel',
+          title: 'Toxicology Research Platform',
+          description:
+            'A Nuxt 3 analysis platform built for a university toxicology research team: mass-spectrum visualization, molecular similarity search, and reports that export straight out of a live analysis. Scientific tooling has a different bar — a plausible-looking chart is worse than no chart.',
+          problem:
+            'Researchers were reading spectral results in one tool, comparing candidate molecules in another, and rebuilding the write-up by hand in a third. The analysis was not the bottleneck — moving between the analysis and the document was. And in this domain the interface carries real risk: if the UI implies more certainty than the data supports, it does damage that a prettier chart cannot undo.',
+          solution:
+            'I built the analysis and the report as one continuous surface. Spectra render interactively with Plotly, candidate matches surface as a similarity heatmap and a comparison table, chemical structures draw from SMILES notation in the browser, and the finished analysis exports to PDF or Word carrying the same state the researcher was just looking at — no re-entry, no drift between screen and document.',
+          techDeepDive:
+            'Nuxt 3 static generation keeps hosting simple for the client while the analysis views stay fully interactive. Data access is centralized in composables (one per resource) so every screen shares the same fetching, error and toast behaviour rather than each page inventing its own. Export was the subtle part: PDF and Word are generated from the same structured analysis state as the on-screen view, so the document cannot silently disagree with the chart. The suite runs Vitest for components and composables plus Playwright end-to-end — in research tooling, a silently wrong number is the failure mode worth testing against.',
+          features: [
+            'Interactive mass-spectrum visualization with peak inspection',
+            'Molecular similarity heatmap and candidate comparison table',
+            'In-browser chemical structure rendering from SMILES',
+            'PDF and Word report export from live analysis state',
+          ],
+        },
+        {
+          id: 'p-datacenter-assets',
+          title: 'Data-Centre Asset Management Platform',
+          description:
+            'Lead frontend on a client platform for managing data-centre inventory: 9 modules, 284 screens, four permission roles, and every write operation routed through a shared approval flow. The work here is architecture, not screens — decide once, compose everywhere.',
+          problem:
+            'A build this size fails by duplication, not by difficulty. Nine modules each needing CRUD, batch import, approvals, permissions and state pages is roughly 284 screens — and if every module solves those problems in its own way, the codebase becomes nine codebases. The real risk was not any single feature; it was the second engineer joining and having no single way to build a page.',
+          solution:
+            'I set the architecture first and made it non-negotiable. API-first boundaries keep business logic on the server, so the frontend stays a thin, testable layer. Server state goes through TanStack Query, global UI state through zustand, permissions through a context guard — one home per concern. Then I built the shared component library every module composes from, and a documented "golden path" for how a standard page is assembled, so new modules are wiring, not invention.',
+          techDeepDive:
+            'The decisive calls were about boundaries. The vendor admin template arrived with Redux-Saga wired through everything; I froze it rather than extending it, and routed all new data flow through TanStack Query so cache invalidation after a mutation is declarative instead of hand-managed. Approvals are a single component driven by config, not a per-module reimplementation, which is what makes the audit trail consistent. A mock API layer let the frontend be built and tested against the agreed contract before the backend existed — the schedule depended on those two tracks not blocking each other.',
+          features: [
+            'Reusable three-stage approval flow (initiator → reviewer → optional executive)',
+            'Four-role RBAC with module-level access and field-level amount masking',
+            'Batch .xlsx import as a three-step stepper with per-cell error reporting',
+            'Shared component library plus a live showcase page for every primitive',
+          ],
+        },
         {
           id: 'p-lucky-duck',
           title: 'Lucky Duck — Rewards Platform MVP',
@@ -464,24 +580,6 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
-          id: 'p3',
-          title: 'Pilotfit — AI Job Search Platform',
-          description:
-            'A full-stack AI platform that turns the chaos of job searching into structured strategy, built solo and running with real beta users.',
-          problem:
-            "Job hunting is a data problem disguised as a document problem. Reading hundreds of unstructured JDs creates cognitive overload, making it difficult to objectively quantify skill gaps (e.g., 'Do I lack React or just Next.js?'). I needed a tool to find the signal in the noise.",
-          solution:
-            'I built the platform solo, end to end: a FastAPI backend, a React frontend, and an agent layer that turns raw job postings into structured strategy. It runs with real beta users, which keeps the engineering honest: reliability, cost, and trust matter more than demo polish.',
-          techDeepDive:
-            'Under the hood: hybrid RAG search combining pgvector embeddings with structured filters, a LangGraph coaching agent that maintains context across sessions, and tiered model routing that cut inference costs by 84 percent without degrading output quality. The frontend renders agent state transparently, so users always know what the system is doing and why. The lesson this project taught me: in AI products, the model is 20 percent of the work; reliability, cost, and interface trust are the other 80.',
-          features: [
-            'Hybrid RAG Search (pgvector + Structured Filters)',
-            'LangGraph Coaching Agent with Cross-Session Memory',
-            'Tiered Model Routing (84% Inference Cost Reduction)',
-            'Transparent Agent-State Rendering',
-          ],
-        },
-        {
           id: 'p4',
           title: 'Institutional Fintech Dashboard',
           description:
@@ -515,42 +613,6 @@ export const translations: Record<Language, Translations> = {
             'Collapsible Calendar with Task-Status Dots',
             'Date Chip That Follows the Day in View',
             'Full-Screen Pomodoro Focus Overlay (25/5 & 50/10)',
-          ],
-        },
-        {
-          id: 'p-datacenter-assets',
-          title: 'Data-Centre Asset Management Platform',
-          description:
-            'Lead frontend on a client platform for managing data-centre inventory: 9 modules, 284 screens, four permission roles, and every write operation routed through a shared approval flow. The work here is architecture, not screens — decide once, compose everywhere.',
-          problem:
-            'A build this size fails by duplication, not by difficulty. Nine modules each needing CRUD, batch import, approvals, permissions and state pages is roughly 284 screens — and if every module solves those problems in its own way, the codebase becomes nine codebases. The real risk was not any single feature; it was the second engineer joining and having no single way to build a page.',
-          solution:
-            'I set the architecture first and made it non-negotiable. API-first boundaries keep business logic on the server, so the frontend stays a thin, testable layer. Server state goes through TanStack Query, global UI state through zustand, permissions through a context guard — one home per concern. Then I built the shared component library every module composes from, and a documented "golden path" for how a standard page is assembled, so new modules are wiring, not invention.',
-          techDeepDive:
-            'The decisive calls were about boundaries. The vendor admin template arrived with Redux-Saga wired through everything; I froze it rather than extending it, and routed all new data flow through TanStack Query so cache invalidation after a mutation is declarative instead of hand-managed. Approvals are a single component driven by config, not a per-module reimplementation, which is what makes the audit trail consistent. A mock API layer let the frontend be built and tested against the agreed contract before the backend existed — the schedule depended on those two tracks not blocking each other.',
-          features: [
-            'Reusable three-stage approval flow (initiator → reviewer → optional executive)',
-            'Four-role RBAC with module-level access and field-level amount masking',
-            'Batch .xlsx import as a three-step stepper with per-cell error reporting',
-            'Shared component library plus a live showcase page for every primitive',
-          ],
-        },
-        {
-          id: 'p-toxintel',
-          title: 'Toxicology Research Platform',
-          description:
-            'A Nuxt 3 analysis platform built for a university toxicology research team: mass-spectrum visualization, molecular similarity search, and reports that export straight out of a live analysis. Scientific tooling has a different bar — a plausible-looking chart is worse than no chart.',
-          problem:
-            'Researchers were reading spectral results in one tool, comparing candidate molecules in another, and rebuilding the write-up by hand in a third. The analysis was not the bottleneck — moving between the analysis and the document was. And in this domain the interface carries real risk: if the UI implies more certainty than the data supports, it does damage that a prettier chart cannot undo.',
-          solution:
-            'I built the analysis and the report as one continuous surface. Spectra render interactively with Plotly, candidate matches surface as a similarity heatmap and a comparison table, chemical structures draw from SMILES notation in the browser, and the finished analysis exports to PDF or Word carrying the same state the researcher was just looking at — no re-entry, no drift between screen and document.',
-          techDeepDive:
-            'Nuxt 3 static generation keeps hosting simple for the client while the analysis views stay fully interactive. Data access is centralized in composables (one per resource) so every screen shares the same fetching, error and toast behaviour rather than each page inventing its own. Export was the subtle part: PDF and Word are generated from the same structured analysis state as the on-screen view, so the document cannot silently disagree with the chart. The suite runs Vitest for components and composables plus Playwright end-to-end — in research tooling, a silently wrong number is the failure mode worth testing against.',
-          features: [
-            'Interactive mass-spectrum visualization with peak inspection',
-            'Molecular similarity heatmap and candidate comparison table',
-            'In-browser chemical structure rendering from SMILES',
-            'PDF and Word report export from live analysis state',
           ],
         },
         {
@@ -906,7 +968,101 @@ export const translations: Record<Language, Translations> = {
         fullstack: 'Full Stack',
         design: 'Design',
       },
+      filterLabel: 'Was baue ich?',
+      searchPlaceholder: 'Nach Stack, Branche oder Stichwort suchen…',
+      searchAriaLabel: 'Projekte durchsuchen',
+      domains: {
+        all: 'Alle Projekte',
+        ai: 'KI-Produkte',
+        fintech: 'Fintech',
+        enterprise: 'Enterprise-Plattformen',
+        data: 'Daten & Forschung',
+        consumer: 'Consumer-Apps',
+        mvp: 'MVP & Design',
+      },
+      resultsCount: '{count} von {total} Projekten',
+      noResults: 'Dazu passt noch nichts. Probieren Sie ein anderes Stichwort oder setzen Sie die Filter zurück.',
+      clearFilters: 'Filter zurücksetzen',
+      prevProject: 'Vorherige Projekte',
+      nextProject: 'Nächste Projekte',
+      goToPage: 'Zu Seite {page}',
+      showingRange: '{from}–{to} von {total}',
+      showingOne: '{index} von {total}',
       data: [
+        {
+          id: 'p-gcd-angela',
+          title: 'Global Career Discovery — Marken-Website',
+          description:
+            'Eine einseitige Marken-Website für die Karriereberaterin Angela Baxter: drei visuelle Richtungen erkundet, eine gebaut, Zahlungs- und Buchungsintegrationen verdrahtet, mit CI bereitgestellt — in einer Woche von null auf live.',
+          problem:
+            'Angela Baxter, eine Karriereberaterin mit 20 Jahren Erfahrung, startete ein Pilotprogramm „Career Discovery", hatte aber keine Webpräsenz. Ihre vorhandenen Tools — Jotform, Calendly, Stripe — existierten verstreut ohne verbindenden Pfad.',
+          solution:
+            'Ich entwarf und baute eine einseitige Astro-5-Seite in einer Woche: drei visuelle Richtungen zu einer verdichtet, 10 Sektionen mit Creme-und-Navy-Rhythmus und ein interaktiver goldener SVG-Karrierepfad im Hero. Alle Zahlungs- und Buchungslinks über Stripe Payment Links und Calendly — kein Backend.',
+          techDeepDive:
+            'Astro 5 mit vollständig statischer Ausgabe. HTML 18 KB (5,5 KB gzipped), eine CSS-Datei, null JS-Bundle-Dateien — Build in 1,3 Sekunden. Fünf Content-Collection-Schemas für zukünftige programmatische SEO-Seiten definiert. Deployment auf Vercel mit GitHub Actions CI.',
+          features: [
+            'Drei visuelle Richtungen vor dem Build erkundet',
+            'Interaktiver SVG-Hero mit Hover-Reveal-Karrierepfad-Knoten',
+            'Null JavaScript-Bundle — nur zwei Inline-Skripte',
+            'Stripe × 3 + Calendly + Jotform link-basierte Integrationen',
+            'Content-Collections-Schemas für zukünftige SEO-Seiten',
+            'JSON-LD (Person, ProfessionalService, WebSite)',
+          ],
+        },
+        {
+          id: 'p3',
+          title: 'Pilotfit — KI-Plattform für die Jobsuche',
+          description:
+            'Eine Full-Stack-KI-Plattform, die das Chaos der Jobsuche in strukturierte Strategie verwandelt, solo gebaut und mit echten Beta-Nutzern im Betrieb.',
+          problem:
+            "Jobsuche ist ein Datenproblem, das als Dokumentproblem getarnt ist. Das Lesen von Hunderten unstrukturierter Stellenbeschreibungen erzeugt kognitive Überlastung und macht es schwierig, Qualifikationslücken objektiv zu quantifizieren (z.B. 'Fehlt mir React oder nur Next.js?'). Ich brauchte ein Tool, um das Signal im Rauschen zu finden.",
+          solution:
+            'Ich habe die Plattform solo und end-to-end gebaut: FastAPI-Backend, React-Frontend und eine Agenten-Schicht, die rohe Stellenanzeigen in strukturierte Strategie übersetzt. Sie läuft mit echten Beta-Nutzern, was das Engineering ehrlich hält: Zuverlässigkeit, Kosten und Vertrauen zählen mehr als Demo-Politur.',
+          techDeepDive:
+            'Unter der Haube: hybride RAG-Suche, die pgvector-Embeddings mit strukturierten Filtern kombiniert, ein LangGraph-Coaching-Agent, der Kontext über Sessions hinweg hält, und gestuftes Model-Routing, das die Inferenzkosten um 84 Prozent senkte, ohne die Ausgabequalität zu verschlechtern. Das Frontend stellt den Agentenzustand transparent dar, sodass Nutzer immer wissen, was das System tut und warum. Die Lektion dieses Projekts: In KI-Produkten ist das Modell 20 Prozent der Arbeit; Zuverlässigkeit, Kosten und Interface-Vertrauen sind die anderen 80.',
+          features: [
+            'Hybride RAG-Suche (pgvector + strukturierte Filter)',
+            'LangGraph-Coaching-Agent mit Session-übergreifendem Gedächtnis',
+            'Gestuftes Model-Routing (84% geringere Inferenzkosten)',
+            'Transparente Darstellung des Agentenzustands',
+          ],
+        },
+        {
+          id: 'p-toxintel',
+          title: 'Toxikologie-Forschungsplattform',
+          description:
+            'Eine Nuxt-3-Analyseplattform für ein universitäres Toxikologie-Forschungsteam: Massenspektren-Visualisierung, Suche nach molekularer Ähnlichkeit und Berichte, die direkt aus der laufenden Analyse exportiert werden. Wissenschaftliche Werkzeuge haben einen anderen Maßstab — ein plausibel aussehendes Diagramm ist schlimmer als gar keines.',
+          problem:
+            'Forschende lasen Spektralergebnisse in einem Werkzeug, verglichen Kandidatenmoleküle in einem zweiten und bauten die Auswertung im dritten von Hand nach. Nicht die Analyse war der Engpass, sondern der Weg zwischen Analyse und Dokument. Und in dieser Domäne trägt das Interface echtes Risiko: Suggeriert die Oberfläche mehr Sicherheit, als die Daten hergeben, richtet sie Schaden an, den kein schöneres Diagramm ausgleicht.',
+          solution:
+            'Ich habe Analyse und Bericht als eine durchgehende Fläche gebaut. Spektren rendern interaktiv mit Plotly, Kandidatentreffer erscheinen als Ähnlichkeits-Heatmap und Vergleichstabelle, chemische Strukturen werden aus SMILES-Notation im Browser gezeichnet, und die fertige Analyse exportiert nach PDF oder Word — mit genau dem Zustand, den die Forschenden gerade vor sich hatten. Keine Neueingabe, keine Abweichung zwischen Bildschirm und Dokument.',
+          techDeepDive:
+            'Nuxt-3-Static-Generation hält das Hosting für den Kunden einfach, während die Analyseansichten voll interaktiv bleiben. Der Datenzugriff ist in Composables gebündelt (eines pro Ressource), sodass alle Screens dasselbe Verhalten für Laden, Fehler und Toasts teilen, statt dass jede Seite ihr eigenes erfindet. Der Export war der subtile Teil: PDF und Word entstehen aus demselben strukturierten Analysezustand wie die Bildschirmansicht, sodass das Dokument dem Diagramm nicht stillschweigend widersprechen kann. Getestet wird mit Vitest für Komponenten und Composables plus Playwright end-to-end — bei Forschungswerkzeugen ist die still falsche Zahl der Fehlerfall, gegen den sich Testen lohnt.',
+          features: [
+            'Interaktive Massenspektren-Visualisierung mit Peak-Inspektion',
+            'Heatmap zur molekularen Ähnlichkeit und Kandidaten-Vergleichstabelle',
+            'Chemische Strukturdarstellung aus SMILES im Browser',
+            'PDF- und Word-Export direkt aus dem laufenden Analysezustand',
+          ],
+        },
+        {
+          id: 'p-datacenter-assets',
+          title: 'Plattform für Rechenzentrums-Assetverwaltung',
+          description:
+            'Leitender Frontend-Engineer für eine Kundenplattform zur Verwaltung von Rechenzentrums-Inventar: 9 Module, 284 Screens, vier Berechtigungsrollen, und jeder schreibende Vorgang läuft über einen gemeinsamen Freigabe-Workflow. Die Arbeit hier ist Architektur, nicht Screens — einmal entscheiden, überall zusammensetzen.',
+          problem:
+            'Ein Aufbau dieser Größe scheitert an Duplikation, nicht an Schwierigkeit. Neun Module, die jeweils CRUD, Massenimport, Freigaben, Berechtigungen und Zustandsseiten brauchen, ergeben rund 284 Screens — und wenn jedes Modul diese Probleme auf eigene Weise löst, werden aus einer Codebasis neun. Das eigentliche Risiko war kein einzelnes Feature, sondern der zweite Entwickler, der dazustößt und keinen einheitlichen Weg findet, eine Seite zu bauen.',
+          solution:
+            'Ich habe zuerst die Architektur gesetzt und sie verbindlich gemacht. API-First-Grenzen halten die Geschäftslogik auf dem Server, sodass das Frontend eine dünne, testbare Schicht bleibt. Serverdaten laufen über TanStack Query, globaler UI-Zustand über zustand, Berechtigungen über einen Context-Guard — ein Ort pro Belang. Darauf aufbauend die gemeinsame Komponentenbibliothek, aus der sich jedes Modul zusammensetzt, plus ein dokumentierter „Golden Path“ für den Aufbau einer Standardseite, sodass neue Module Verdrahtung sind und keine Neuerfindung.',
+          techDeepDive:
+            'Die entscheidenden Punkte waren Grenzen. Das Admin-Template des Anbieters hatte Redux-Saga überall verdrahtet; ich habe es eingefroren statt erweitert und allen neuen Datenfluss über TanStack Query geführt, sodass Cache-Invalidierung nach einer Mutation deklarativ statt handgesteuert ist. Freigaben sind eine einzige, konfigurationsgetriebene Komponente statt einer Neuimplementierung pro Modul — genau das macht den Audit-Trail konsistent. Eine Mock-API-Schicht erlaubte es, das Frontend gegen den vereinbarten Vertrag zu bauen und zu testen, bevor das Backend existierte; der Zeitplan hing daran, dass sich beide Stränge nicht blockieren.',
+          features: [
+            'Wiederverwendbarer dreistufiger Freigabe-Workflow (Einreicher → Prüfer → optionale Geschäftsleitung)',
+            'RBAC mit vier Rollen, Modulzugriff und feldgenauer Betragsmaskierung',
+            'Massenimport (.xlsx) als dreistufiger Stepper mit zellgenauer Fehlermeldung',
+            'Gemeinsame Komponentenbibliothek plus Live-Showcase für jedes Primitive',
+          ],
+        },
         {
           id: 'p-lucky-duck',
           title: 'Lucky Duck — Rewards-Plattform MVP',
@@ -963,24 +1119,6 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
-          id: 'p3',
-          title: 'Pilotfit — KI-Plattform für die Jobsuche',
-          description:
-            'Eine Full-Stack-KI-Plattform, die das Chaos der Jobsuche in strukturierte Strategie verwandelt, solo gebaut und mit echten Beta-Nutzern im Betrieb.',
-          problem:
-            "Jobsuche ist ein Datenproblem, das als Dokumentproblem getarnt ist. Das Lesen von Hunderten unstrukturierter Stellenbeschreibungen erzeugt kognitive Überlastung und macht es schwierig, Qualifikationslücken objektiv zu quantifizieren (z.B. 'Fehlt mir React oder nur Next.js?'). Ich brauchte ein Tool, um das Signal im Rauschen zu finden.",
-          solution:
-            'Ich habe die Plattform solo und end-to-end gebaut: FastAPI-Backend, React-Frontend und eine Agenten-Schicht, die rohe Stellenanzeigen in strukturierte Strategie übersetzt. Sie läuft mit echten Beta-Nutzern, was das Engineering ehrlich hält: Zuverlässigkeit, Kosten und Vertrauen zählen mehr als Demo-Politur.',
-          techDeepDive:
-            'Unter der Haube: hybride RAG-Suche, die pgvector-Embeddings mit strukturierten Filtern kombiniert, ein LangGraph-Coaching-Agent, der Kontext über Sessions hinweg hält, und gestuftes Model-Routing, das die Inferenzkosten um 84 Prozent senkte, ohne die Ausgabequalität zu verschlechtern. Das Frontend stellt den Agentenzustand transparent dar, sodass Nutzer immer wissen, was das System tut und warum. Die Lektion dieses Projekts: In KI-Produkten ist das Modell 20 Prozent der Arbeit; Zuverlässigkeit, Kosten und Interface-Vertrauen sind die anderen 80.',
-          features: [
-            'Hybride RAG-Suche (pgvector + strukturierte Filter)',
-            'LangGraph-Coaching-Agent mit Session-übergreifendem Gedächtnis',
-            'Gestuftes Model-Routing (84% geringere Inferenzkosten)',
-            'Transparente Darstellung des Agentenzustands',
-          ],
-        },
-        {
           id: 'p4',
           title: 'Institutionelles Fintech-Dashboard',
           description:
@@ -1014,42 +1152,6 @@ export const translations: Record<Language, Translations> = {
             'Ausklappbarer Kalender mit Status-Punkten',
             'Datums-Chip, der dem sichtbaren Tag folgt',
             'Vollbild-Pomodoro-Fokus-Overlay (25/5 & 50/10)',
-          ],
-        },
-        {
-          id: 'p-datacenter-assets',
-          title: 'Plattform für Rechenzentrums-Assetverwaltung',
-          description:
-            'Leitender Frontend-Engineer für eine Kundenplattform zur Verwaltung von Rechenzentrums-Inventar: 9 Module, 284 Screens, vier Berechtigungsrollen, und jeder schreibende Vorgang läuft über einen gemeinsamen Freigabe-Workflow. Die Arbeit hier ist Architektur, nicht Screens — einmal entscheiden, überall zusammensetzen.',
-          problem:
-            'Ein Aufbau dieser Größe scheitert an Duplikation, nicht an Schwierigkeit. Neun Module, die jeweils CRUD, Massenimport, Freigaben, Berechtigungen und Zustandsseiten brauchen, ergeben rund 284 Screens — und wenn jedes Modul diese Probleme auf eigene Weise löst, werden aus einer Codebasis neun. Das eigentliche Risiko war kein einzelnes Feature, sondern der zweite Entwickler, der dazustößt und keinen einheitlichen Weg findet, eine Seite zu bauen.',
-          solution:
-            'Ich habe zuerst die Architektur gesetzt und sie verbindlich gemacht. API-First-Grenzen halten die Geschäftslogik auf dem Server, sodass das Frontend eine dünne, testbare Schicht bleibt. Serverdaten laufen über TanStack Query, globaler UI-Zustand über zustand, Berechtigungen über einen Context-Guard — ein Ort pro Belang. Darauf aufbauend die gemeinsame Komponentenbibliothek, aus der sich jedes Modul zusammensetzt, plus ein dokumentierter „Golden Path“ für den Aufbau einer Standardseite, sodass neue Module Verdrahtung sind und keine Neuerfindung.',
-          techDeepDive:
-            'Die entscheidenden Punkte waren Grenzen. Das Admin-Template des Anbieters hatte Redux-Saga überall verdrahtet; ich habe es eingefroren statt erweitert und allen neuen Datenfluss über TanStack Query geführt, sodass Cache-Invalidierung nach einer Mutation deklarativ statt handgesteuert ist. Freigaben sind eine einzige, konfigurationsgetriebene Komponente statt einer Neuimplementierung pro Modul — genau das macht den Audit-Trail konsistent. Eine Mock-API-Schicht erlaubte es, das Frontend gegen den vereinbarten Vertrag zu bauen und zu testen, bevor das Backend existierte; der Zeitplan hing daran, dass sich beide Stränge nicht blockieren.',
-          features: [
-            'Wiederverwendbarer dreistufiger Freigabe-Workflow (Einreicher → Prüfer → optionale Geschäftsleitung)',
-            'RBAC mit vier Rollen, Modulzugriff und feldgenauer Betragsmaskierung',
-            'Massenimport (.xlsx) als dreistufiger Stepper mit zellgenauer Fehlermeldung',
-            'Gemeinsame Komponentenbibliothek plus Live-Showcase für jedes Primitive',
-          ],
-        },
-        {
-          id: 'p-toxintel',
-          title: 'Toxikologie-Forschungsplattform',
-          description:
-            'Eine Nuxt-3-Analyseplattform für ein universitäres Toxikologie-Forschungsteam: Massenspektren-Visualisierung, Suche nach molekularer Ähnlichkeit und Berichte, die direkt aus der laufenden Analyse exportiert werden. Wissenschaftliche Werkzeuge haben einen anderen Maßstab — ein plausibel aussehendes Diagramm ist schlimmer als gar keines.',
-          problem:
-            'Forschende lasen Spektralergebnisse in einem Werkzeug, verglichen Kandidatenmoleküle in einem zweiten und bauten die Auswertung im dritten von Hand nach. Nicht die Analyse war der Engpass, sondern der Weg zwischen Analyse und Dokument. Und in dieser Domäne trägt das Interface echtes Risiko: Suggeriert die Oberfläche mehr Sicherheit, als die Daten hergeben, richtet sie Schaden an, den kein schöneres Diagramm ausgleicht.',
-          solution:
-            'Ich habe Analyse und Bericht als eine durchgehende Fläche gebaut. Spektren rendern interaktiv mit Plotly, Kandidatentreffer erscheinen als Ähnlichkeits-Heatmap und Vergleichstabelle, chemische Strukturen werden aus SMILES-Notation im Browser gezeichnet, und die fertige Analyse exportiert nach PDF oder Word — mit genau dem Zustand, den die Forschenden gerade vor sich hatten. Keine Neueingabe, keine Abweichung zwischen Bildschirm und Dokument.',
-          techDeepDive:
-            'Nuxt-3-Static-Generation hält das Hosting für den Kunden einfach, während die Analyseansichten voll interaktiv bleiben. Der Datenzugriff ist in Composables gebündelt (eines pro Ressource), sodass alle Screens dasselbe Verhalten für Laden, Fehler und Toasts teilen, statt dass jede Seite ihr eigenes erfindet. Der Export war der subtile Teil: PDF und Word entstehen aus demselben strukturierten Analysezustand wie die Bildschirmansicht, sodass das Dokument dem Diagramm nicht stillschweigend widersprechen kann. Getestet wird mit Vitest für Komponenten und Composables plus Playwright end-to-end — bei Forschungswerkzeugen ist die still falsche Zahl der Fehlerfall, gegen den sich Testen lohnt.',
-          features: [
-            'Interaktive Massenspektren-Visualisierung mit Peak-Inspektion',
-            'Heatmap zur molekularen Ähnlichkeit und Kandidaten-Vergleichstabelle',
-            'Chemische Strukturdarstellung aus SMILES im Browser',
-            'PDF- und Word-Export direkt aus dem laufenden Analysezustand',
           ],
         },
         {
@@ -1392,7 +1494,101 @@ export const translations: Record<Language, Translations> = {
         fullstack: '全端',
         design: '設計',
       },
+      filterLabel: '我在打造什麼？',
+      searchPlaceholder: '搜尋技術、產業或關鍵字…',
+      searchAriaLabel: '搜尋專案',
+      domains: {
+        all: '全部作品',
+        ai: 'AI 產品',
+        fintech: '金融科技',
+        enterprise: '企業平台',
+        data: '資料與研究',
+        consumer: '消費者應用',
+        mvp: 'MVP 與設計',
+      },
+      resultsCount: '共 {total} 個專案，符合 {count} 個',
+      noResults: '目前沒有符合的專案。換個關鍵字，或清除篩選查看全部作品。',
+      clearFilters: '清除篩選',
+      prevProject: '上一組專案',
+      nextProject: '下一組專案',
+      goToPage: '前往第 {page} 頁',
+      showingRange: '第 {from}–{to} 個，共 {total} 個',
+      showingOne: '第 {index} 個，共 {total} 個',
       data: [
+        {
+          id: 'p-gcd-angela',
+          title: 'Global Career Discovery — 品牌官網',
+          description:
+            '為資深職涯顧問 Angela Baxter 打造的單頁品牌官網：探索三個視覺方向、前端實作、付款與預約串接，到部署與 CI，一週內從零上線，讓她能立刻開始接首批試營運學員。',
+          problem:
+            'Angela Baxter 是一位擁有 20 年經驗的職涯顧問，正在推出「Career Discovery」試營運方案，但完全沒有網站。她現有的工具——Jotform、Calendly、Stripe——散落各處，沒有一條路把它們串起來。',
+          solution:
+            '我在一週內設計並建構了一個 Astro 5 單頁網站：三個視覺方向收斂為一個，10 個區塊以米色與深藍交替的節奏排列，Hero 區有一條互動式金色 SVG 職涯路徑。所有付款與預約都以 Stripe Payment Links 和 Calendly 連結串接——零後端。',
+          techDeepDive:
+            'Astro 5 純靜態輸出。HTML 18 KB（gzip 後 5.5 KB），一支 CSS、零 JS bundle，build 1.3 秒。五個 Content Collection schema 已預先定義，為第二階段的程式化 SEO 頁面做準備。部署在 Vercel，GitHub Actions CI 把關每支 PR。',
+          features: [
+            '建構前探索三個視覺方向',
+            '互動式 SVG Hero，hover 彈出職涯路徑節點說明',
+            '零 JavaScript bundle——僅兩段 inline script',
+            'Stripe × 3 + Calendly + Jotform 連結式串接',
+            'Content Collections schema 預備未來 SEO 頁面',
+            'JSON-LD（Person、ProfessionalService、WebSite）',
+          ],
+        },
+        {
+          id: 'p3',
+          title: 'Pilotfit — AI 求職平台',
+          description:
+            '一個把求職的混亂轉化為結構化策略的全端 AI 平台，獨立打造，並有真實 beta 使用者在使用。',
+          problem:
+            '求職是一個偽裝成文件問題的資料問題。閱讀數百個非結構化職位描述會造成認知超載，使得客觀量化技能差距變得困難（例如，「我缺少 React 還是只是 Next.js？」）。我需要一個工具來在噪音中找到信號。',
+          solution:
+            '我獨立完成整個平台：FastAPI 後端、React 前端，以及把原始職缺轉化為結構化策略的 agent 層。它有真實 beta 使用者在用，這讓工程必須誠實：可靠性、成本與信任比 demo 的華麗更重要。',
+          techDeepDive:
+            '技術核心：混合式 RAG 搜尋結合 pgvector 向量與結構化篩選；LangGraph 教練 agent 能跨 session 維持上下文，而不是每次對話都重來；分層模型路由在不犧牲輸出品質的前提下，將推論成本降低 84%。前端透明呈現 agent 狀態，讓使用者永遠知道系統在做什麼、為什麼。這個專案教我的一課：在 AI 產品裡，模型只佔兩成工作；可靠性、成本與介面信任才是另外八成。',
+          features: [
+            '混合式 RAG 搜尋（pgvector + 結構化篩選）',
+            '具跨 session 記憶的 LangGraph 教練 agent',
+            '分層模型路由（推論成本降低 84%）',
+            'agent 狀態透明化呈現',
+          ],
+        },
+        {
+          id: 'p-toxintel',
+          title: '毒理研究分析平台',
+          description:
+            '為某醫學大學毒理研究團隊打造的 Nuxt 3 分析平台：質譜視覺化、分子相似度比對，以及直接從當前分析匯出的報告。科學工具的標準不一樣——一張看起來很合理但其實是錯的圖，比沒有圖更糟。',
+          problem:
+            '研究人員在一個工具裡看質譜結果、在另一個工具裡比對候選分子，再到第三個地方手動重打一份報告。瓶頸從來不是分析本身，而是在分析與文件之間來回搬運。而且這個領域的介面本身帶著風險：如果 UI 暗示的確定性超過資料能支撐的程度，那種傷害不是把圖畫漂亮一點就能補回來的。',
+          solution:
+            '我把分析和報告做成同一個連續的介面。質譜用 Plotly 互動呈現，候選比對結果以相似度熱圖與比較表列出，化學結構直接在瀏覽器端由 SMILES 繪製，而完成的分析可以匯出成 PDF 或 Word，帶著研究者剛剛看到的同一份狀態——不用重新輸入，畫面與文件也不會對不起來。',
+          techDeepDive:
+            'Nuxt 3 靜態生成讓客戶端的佈署維持單純，同時分析頁面保有完整互動性。資料存取集中在 composables（一種資源一個），讓所有畫面共用同一套抓取、錯誤與提示行為，而不是每頁各自發明。匯出是比較細膩的部分：PDF 與 Word 由與畫面相同的結構化分析狀態產生，所以文件不可能悄悄跟圖表講不一樣的話。測試用 Vitest 涵蓋元件與 composables，再加上 Playwright 端對端——在研究工具裡，「安靜地算錯一個數字」才是最值得防的失敗模式。',
+          features: [
+            '互動式質譜視覺化，可檢視個別波峰',
+            '分子相似度熱圖與候選分子比較表',
+            '瀏覽器端由 SMILES 繪製化學結構',
+            '由當前分析狀態直接匯出 PDF 與 Word 報告',
+          ],
+        },
+        {
+          id: 'p-datacenter-assets',
+          title: '資料中心資產管理平台',
+          description:
+            '擔任客戶資料中心資產管理平台的前端主導：9 個模組、284 張畫面、四種權限角色，而且所有寫入操作都走同一套審核流程。這個案子的重點是架構，不是畫面——決定一次，到處組裝。',
+          problem:
+            '這種規模的專案不是敗在難，是敗在重複。九個模組各自都要 CRUD、批次匯入、審核、權限與各種狀態頁，加起來大約 284 張畫面；如果每個模組都用自己的方式解，一份程式碼就會變成九份。真正的風險從來不是某一個功能，而是第二個工程師加入時，發現「做一頁」沒有標準做法。',
+          solution:
+            '我先把架構定下來，而且定成不可協商。API First 的邊界讓商業邏輯留在後端，前端維持薄且可測試的一層。伺服器資料統一走 TanStack Query、全域 UI 狀態走 zustand、權限走 Context guard——每一種關注點只有一個家。接著建立所有模組共用的元件庫，以及一份「標準組法」文件，說明一頁標準頁面該怎麼組起來，讓新模組只是接線，而不是重新發明。',
+          techDeepDive:
+            '關鍵決策都在邊界上。廠商的後台模板整套綁著 Redux-Saga，我選擇凍結它而不是繼續擴充，所有新的資料流改走 TanStack Query，讓變更後的快取失效是宣告式的，而不是手動管理。審核流是一個由設定驅動的共用元件，不是每個模組各做一套——這正是稽核軌跡能保持一致的原因。另外用 mock API 層讓前端在後端還不存在時就能照談定的合約開發與測試；整個時程能成立，靠的就是這兩條線不互相卡住。',
+          features: [
+            '可複用的三關審核流（發動者 → 審核者 → 選填的主管核決）',
+            '四角色 RBAC，模組級權限加欄位級金額遮罩',
+            '批次 .xlsx 匯入採三步驟 stepper，錯誤回報到每一格',
+            '共用元件庫，每個元件都有可實測的 showcase 頁',
+          ],
+        },
         {
           id: 'p-lucky-duck',
           title: 'Lucky Duck — 獎勵平台 MVP',
@@ -1449,24 +1645,6 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
-          id: 'p3',
-          title: 'Pilotfit — AI 求職平台',
-          description:
-            '一個把求職的混亂轉化為結構化策略的全端 AI 平台，獨立打造，並有真實 beta 使用者在使用。',
-          problem:
-            '求職是一個偽裝成文件問題的資料問題。閱讀數百個非結構化職位描述會造成認知超載，使得客觀量化技能差距變得困難（例如，「我缺少 React 還是只是 Next.js？」）。我需要一個工具來在噪音中找到信號。',
-          solution:
-            '我獨立完成整個平台：FastAPI 後端、React 前端，以及把原始職缺轉化為結構化策略的 agent 層。它有真實 beta 使用者在用，這讓工程必須誠實：可靠性、成本與信任比 demo 的華麗更重要。',
-          techDeepDive:
-            '技術核心：混合式 RAG 搜尋結合 pgvector 向量與結構化篩選；LangGraph 教練 agent 能跨 session 維持上下文，而不是每次對話都重來；分層模型路由在不犧牲輸出品質的前提下，將推論成本降低 84%。前端透明呈現 agent 狀態，讓使用者永遠知道系統在做什麼、為什麼。這個專案教我的一課：在 AI 產品裡，模型只佔兩成工作；可靠性、成本與介面信任才是另外八成。',
-          features: [
-            '混合式 RAG 搜尋（pgvector + 結構化篩選）',
-            '具跨 session 記憶的 LangGraph 教練 agent',
-            '分層模型路由（推論成本降低 84%）',
-            'agent 狀態透明化呈現',
-          ],
-        },
-        {
           id: 'p4',
           title: '機構金融科技儀表板',
           description:
@@ -1500,42 +1678,6 @@ export const translations: Record<Language, Translations> = {
             '可收合行事曆與任務狀態圓點',
             '跟著檢視日的新增日期 chip',
             '全畫面蕃茄鐘專注遮罩（25/5 與 50/10）',
-          ],
-        },
-        {
-          id: 'p-datacenter-assets',
-          title: '資料中心資產管理平台',
-          description:
-            '擔任客戶資料中心資產管理平台的前端主導：9 個模組、284 張畫面、四種權限角色，而且所有寫入操作都走同一套審核流程。這個案子的重點是架構，不是畫面——決定一次，到處組裝。',
-          problem:
-            '這種規模的專案不是敗在難，是敗在重複。九個模組各自都要 CRUD、批次匯入、審核、權限與各種狀態頁，加起來大約 284 張畫面；如果每個模組都用自己的方式解，一份程式碼就會變成九份。真正的風險從來不是某一個功能，而是第二個工程師加入時，發現「做一頁」沒有標準做法。',
-          solution:
-            '我先把架構定下來，而且定成不可協商。API First 的邊界讓商業邏輯留在後端，前端維持薄且可測試的一層。伺服器資料統一走 TanStack Query、全域 UI 狀態走 zustand、權限走 Context guard——每一種關注點只有一個家。接著建立所有模組共用的元件庫，以及一份「標準組法」文件，說明一頁標準頁面該怎麼組起來，讓新模組只是接線，而不是重新發明。',
-          techDeepDive:
-            '關鍵決策都在邊界上。廠商的後台模板整套綁著 Redux-Saga，我選擇凍結它而不是繼續擴充，所有新的資料流改走 TanStack Query，讓變更後的快取失效是宣告式的，而不是手動管理。審核流是一個由設定驅動的共用元件，不是每個模組各做一套——這正是稽核軌跡能保持一致的原因。另外用 mock API 層讓前端在後端還不存在時就能照談定的合約開發與測試；整個時程能成立，靠的就是這兩條線不互相卡住。',
-          features: [
-            '可複用的三關審核流（發動者 → 審核者 → 選填的主管核決）',
-            '四角色 RBAC，模組級權限加欄位級金額遮罩',
-            '批次 .xlsx 匯入採三步驟 stepper，錯誤回報到每一格',
-            '共用元件庫，每個元件都有可實測的 showcase 頁',
-          ],
-        },
-        {
-          id: 'p-toxintel',
-          title: '毒理研究分析平台',
-          description:
-            '為某醫學大學毒理研究團隊打造的 Nuxt 3 分析平台：質譜視覺化、分子相似度比對，以及直接從當前分析匯出的報告。科學工具的標準不一樣——一張看起來很合理但其實是錯的圖，比沒有圖更糟。',
-          problem:
-            '研究人員在一個工具裡看質譜結果、在另一個工具裡比對候選分子，再到第三個地方手動重打一份報告。瓶頸從來不是分析本身，而是在分析與文件之間來回搬運。而且這個領域的介面本身帶著風險：如果 UI 暗示的確定性超過資料能支撐的程度，那種傷害不是把圖畫漂亮一點就能補回來的。',
-          solution:
-            '我把分析和報告做成同一個連續的介面。質譜用 Plotly 互動呈現，候選比對結果以相似度熱圖與比較表列出，化學結構直接在瀏覽器端由 SMILES 繪製，而完成的分析可以匯出成 PDF 或 Word，帶著研究者剛剛看到的同一份狀態——不用重新輸入，畫面與文件也不會對不起來。',
-          techDeepDive:
-            'Nuxt 3 靜態生成讓客戶端的佈署維持單純，同時分析頁面保有完整互動性。資料存取集中在 composables（一種資源一個），讓所有畫面共用同一套抓取、錯誤與提示行為，而不是每頁各自發明。匯出是比較細膩的部分：PDF 與 Word 由與畫面相同的結構化分析狀態產生，所以文件不可能悄悄跟圖表講不一樣的話。測試用 Vitest 涵蓋元件與 composables，再加上 Playwright 端對端——在研究工具裡，「安靜地算錯一個數字」才是最值得防的失敗模式。',
-          features: [
-            '互動式質譜視覺化，可檢視個別波峰',
-            '分子相似度熱圖與候選分子比較表',
-            '瀏覽器端由 SMILES 繪製化學結構',
-            '由當前分析狀態直接匯出 PDF 與 Word 報告',
           ],
         },
         {

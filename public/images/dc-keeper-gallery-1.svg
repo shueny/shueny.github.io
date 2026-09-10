@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="kpiShadow" x="-3%" y="-5%" width="106%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#4f46e5" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" rx="12" fill="#f8fafc"/>
+  <rect x="0.5" y="0.5" width="1199" height="679" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- ==================== TOP NAV BAR ==================== -->
+  <rect width="1200" height="52" rx="12" fill="#ffffff"/>
+  <rect y="12" width="1200" height="40" fill="#ffffff"/>
+  <line x1="0" y1="52" x2="1200" y2="52" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Logo -->
+  <rect x="220" y="12" width="32" height="28" rx="6" fill="#4f46e5"/>
+  <text x="236" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="white" text-anchor="middle">DC</text>
+  <text x="262" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#1e293b" letter-spacing="0.3">DC Keeper</text>
+
+  <!-- Breadcrumb -->
+  <text x="400" y="33" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Dashboard</text>
+  <text x="464" y="33" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">/</text>
+  <text x="476" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#4f46e5">Assets</text>
+
+  <!-- Right side: search, notification bell, user avatar -->
+  <rect x="960" y="14" width="140" height="26" rx="13" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="980" y="31" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Search assets...</text>
+  <!-- Search icon -->
+  <circle cx="1084" cy="27" r="5" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="1088" y1="31" x2="1091" y2="34" stroke="#94a3b8" stroke-width="1.2"/>
+
+  <!-- Bell -->
+  <g transform="translate(1120, 26)">
+    <path d="M-6 -5 Q-6 -10 0 -10 Q6 -10 6 -5 L7 2 L-7 2 Z" fill="none" stroke="#64748b" stroke-width="1.3"/>
+    <line x1="-2" y1="2" x2="2" y2="2" stroke="#64748b" stroke-width="1.3"/>
+    <circle cx="4" cy="-9" r="3.5" fill="#ef4444"/>
+    <text x="4" y="-7" font-family="system-ui, sans-serif" font-size="5" font-weight="700" fill="white" text-anchor="middle">3</text>
+  </g>
+
+  <!-- User avatar -->
+  <circle cx="1158" cy="26" r="14" fill="#e0e7ff"/>
+  <circle cx="1158" cy="22" r="5" fill="#4f46e5" opacity="0.6"/>
+  <path d="M1148 36 Q1148 30 1158 28 Q1168 30 1168 36" fill="#4f46e5" opacity="0.4"/>
+
+  <!-- ==================== LEFT SIDEBAR ==================== -->
+  <rect x="0" y="52" width="200" height="628" fill="#ffffff"/>
+  <rect x="0" y="52" width="200" height="628" fill="#fafbfc"/>
+  <line x1="200" y1="52" x2="200" y2="680" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Nav items -->
+  <!-- Dashboard (active) -->
+  <rect x="12" y="68" width="176" height="36" rx="8" fill="#eef2ff"/>
+  <rect x="12" y="68" width="3" height="36" rx="1.5" fill="#4f46e5"/>
+  <!-- Dashboard icon -->
+  <rect x="28" y="78" width="7" height="7" rx="1.5" fill="#4f46e5"/>
+  <rect x="37" y="78" width="7" height="7" rx="1.5" fill="#4f46e5"/>
+  <rect x="28" y="87" width="7" height="7" rx="1.5" fill="#4f46e5"/>
+  <rect x="37" y="87" width="7" height="7" rx="1.5" fill="#4f46e5"/>
+  <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4f46e5">Dashboard</text>
+
+  <!-- Assets -->
+  <g transform="translate(0, 44)">
+    <rect x="28" y="78" width="14" height="14" rx="3" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="32" y1="85" x2="39" y2="85" stroke="#64748b" stroke-width="1.2"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Assets</text>
+  </g>
+
+  <!-- Racks -->
+  <g transform="translate(0, 80)">
+    <rect x="28" y="78" width="14" height="14" rx="2" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="28" y1="83" x2="42" y2="83" stroke="#64748b" stroke-width="1"/>
+    <line x1="28" y1="87" x2="42" y2="87" stroke="#64748b" stroke-width="1"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Racks</text>
+  </g>
+
+  <!-- Network -->
+  <g transform="translate(0, 116)">
+    <circle cx="35" cy="85" r="7" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    <circle cx="35" cy="85" r="2" fill="#64748b"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Network</text>
+  </g>
+
+  <!-- Power -->
+  <g transform="translate(0, 152)">
+    <path d="M36 78 L32 86 L37 86 L33 93" fill="none" stroke="#64748b" stroke-width="1.3"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Power</text>
+  </g>
+
+  <!-- Cooling -->
+  <g transform="translate(0, 188)">
+    <path d="M35 78 L35 92 M29 82 L35 86 L41 82 M29 88 L35 84 L41 88" fill="none" stroke="#64748b" stroke-width="1.1"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Cooling</text>
+  </g>
+
+  <!-- Approvals -->
+  <g transform="translate(0, 224)">
+    <circle cx="35" cy="85" r="7" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    <polyline points="31,85 34,88 40,82" fill="none" stroke="#64748b" stroke-width="1.3"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Approvals</text>
+    <rect x="130" y="79" width="22" height="14" rx="7" fill="#f97316"/>
+    <text x="141" y="90" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">18</text>
+  </g>
+
+  <!-- Reports -->
+  <g transform="translate(0, 260)">
+    <rect x="29" y="78" width="12" height="14" rx="2" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="32" y1="83" x2="38" y2="83" stroke="#64748b" stroke-width="1"/>
+    <line x1="32" y1="86" x2="38" y2="86" stroke="#64748b" stroke-width="1"/>
+    <line x1="32" y1="89" x2="36" y2="89" stroke="#64748b" stroke-width="1"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Reports</text>
+  </g>
+
+  <!-- Settings -->
+  <g transform="translate(0, 296)">
+    <circle cx="35" cy="85" r="7" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    <circle cx="35" cy="85" r="2.5" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    <text x="54" y="91" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Settings</text>
+  </g>
+
+  <!-- ==================== MAIN CONTENT AREA ==================== -->
+
+  <!-- ===== KPI CARDS ROW ===== -->
+  <!-- Card 1: Total Assets -->
+  <rect x="220" y="68" width="226" height="92" rx="10" fill="white" filter="url(#kpiShadow)"/>
+  <rect x="220.5" y="68.5" width="225" height="91" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="240" y="94" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Total Assets</text>
+  <text x="240" y="126" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1e293b">12,847</text>
+  <!-- Green up arrow -->
+  <polygon points="400,120 406,112 412,120" fill="#22c55e"/>
+  <text x="418" y="121" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#22c55e">+3.2%</text>
+  <!-- Mini sparkline -->
+  <polyline points="240,148 255,145 270,147 285,142 300,144 315,140 330,138 345,134 360,130 375,128 390,124 410,120" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Card 2: Active Racks -->
+  <rect x="460" y="68" width="226" height="92" rx="10" fill="white" filter="url(#kpiShadow)"/>
+  <rect x="460.5" y="68.5" width="225" height="91" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="480" y="94" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Active Racks</text>
+  <text x="480" y="126" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1e293b">342</text>
+  <!-- Rack icon -->
+  <rect x="630" y="90" width="30" height="50" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="634" y1="100" x2="656" y2="100" stroke="#4f46e5" stroke-width="2" opacity="0.6"/>
+  <line x1="634" y1="106" x2="656" y2="106" stroke="#4f46e5" stroke-width="2" opacity="0.5"/>
+  <line x1="634" y1="112" x2="656" y2="112" stroke="#4f46e5" stroke-width="2" opacity="0.4"/>
+  <line x1="634" y1="118" x2="650" y2="118" stroke="#4f46e5" stroke-width="2" opacity="0.3"/>
+  <line x1="634" y1="124" x2="648" y2="124" stroke="#94a3b8" stroke-width="2" opacity="0.2"/>
+
+  <!-- Card 3: Pending Approvals -->
+  <rect x="700" y="68" width="226" height="92" rx="10" fill="white" filter="url(#kpiShadow)"/>
+  <rect x="700.5" y="68.5" width="225" height="91" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="720" y="94" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Pending Approvals</text>
+  <text x="720" y="126" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1e293b">18</text>
+  <!-- Orange badge -->
+  <rect x="764" y="108" width="50" height="22" rx="11" fill="#fff7ed" stroke="#fb923c" stroke-width="1"/>
+  <text x="789" y="123" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#ea580c" text-anchor="middle">Action</text>
+  <!-- Mini bar chart -->
+  <rect x="870" y="132" width="8" height="14" rx="2" fill="#f97316" opacity="0.3"/>
+  <rect x="882" y="126" width="8" height="20" rx="2" fill="#f97316" opacity="0.4"/>
+  <rect x="894" y="118" width="8" height="28" rx="2" fill="#f97316" opacity="0.6"/>
+  <rect x="906" y="124" width="8" height="22" rx="2" fill="#f97316" opacity="0.5"/>
+
+  <!-- Card 4: Utilization Rate -->
+  <rect x="940" y="68" width="236" height="92" rx="10" fill="white" filter="url(#kpiShadow)"/>
+  <rect x="940.5" y="68.5" width="235" height="91" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="960" y="94" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Utilization Rate</text>
+  <text x="960" y="126" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1e293b">87.3%</text>
+  <!-- Circular progress indicator -->
+  <circle cx="1140" cy="114" r="22" fill="none" stroke="#f1f5f9" stroke-width="4"/>
+  <circle cx="1140" cy="114" r="22" fill="none" stroke="#4f46e5" stroke-width="4" stroke-dasharray="121 139" stroke-linecap="round" transform="rotate(-90 1140 114)"/>
+  <text x="1140" y="119" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#4f46e5" text-anchor="middle">87%</text>
+
+  <!-- ===== ASSET TABLE ===== -->
+  <rect x="220" y="176" width="956" height="486" rx="10" fill="white" filter="url(#cardShadow)"/>
+  <rect x="220.5" y="176.5" width="955" height="485" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Table Header -->
+  <rect x="220" y="176" width="956" height="44" rx="10" fill="#fafbfc"/>
+  <rect x="220" y="210" width="956" height="10" fill="#fafbfc"/>
+  <line x1="220" y1="220" x2="1176" y2="220" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <text x="240" y="204" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b">Asset Inventory</text>
+  <!-- Filter button -->
+  <rect x="980" y="187" width="72" height="26" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="1016" y="205" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Filters</text>
+  <!-- Export button -->
+  <rect x="1062" y="187" width="72" height="26" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="1098" y="205" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Export</text>
+  <!-- Add button -->
+  <rect x="1142" y="187" width="28" height="26" rx="6" fill="#4f46e5"/>
+  <text x="1156" y="205" font-family="system-ui, sans-serif" font-size="16" font-weight="500" fill="white" text-anchor="middle">+</text>
+
+  <!-- Column Headers -->
+  <line x1="240" y1="220" x2="1156" y2="220" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Checkbox col -->
+  <rect x="244" y="232" width="14" height="14" rx="3" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="280" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5">ASSET NAME</text>
+  <text x="490" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5">LOCATION</text>
+  <text x="650" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5">STATUS</text>
+  <text x="780" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5">ROLE</text>
+  <text x="910" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5">LAST UPDATED</text>
+  <text x="1080" y="244" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="0.5">ACTION</text>
+  <line x1="240" y1="254" x2="1156" y2="254" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <rect x="244" y="268" width="14" height="14" rx="3" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.2"/>
+  <polyline points="248,276 251,279 256,273" fill="none" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="270" y="266" width="28" height="20" rx="4" fill="#eef2ff"/>
+  <text x="284" y="280" font-family="system-ui, sans-serif" font-size="9" fill="#4f46e5" text-anchor="middle">SRV</text>
+  <text x="306" y="280" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">Dell PowerEdge R750</text>
+  <text x="306" y="294" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">SN: PE-2024-08471</text>
+  <text x="490" y="284" font-family="system-ui, sans-serif" font-size="12" fill="#475569">DC-North / Rack A-14</text>
+  <rect x="650" y="271" width="60" height="20" rx="10" fill="#dcfce7"/>
+  <text x="680" y="285" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#16a34a" text-anchor="middle">Active</text>
+  <text x="780" y="284" font-family="system-ui, sans-serif" font-size="12" fill="#475569">Operator</text>
+  <text x="910" y="284" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">2024-08-15</text>
+  <text x="1080" y="284" font-family="system-ui, sans-serif" font-size="11" fill="#4f46e5" cursor="pointer">View</text>
+  <text x="1115" y="284" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">|</text>
+  <text x="1128" y="284" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Edit</text>
+  <line x1="240" y1="304" x2="1156" y2="304" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 2 -->
+  <rect x="244" y="316" width="14" height="14" rx="3" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="270" y="314" width="28" height="20" rx="4" fill="#fef3c7"/>
+  <text x="284" y="328" font-family="system-ui, sans-serif" font-size="9" fill="#d97706" text-anchor="middle">SW</text>
+  <text x="306" y="328" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">Cisco Nexus 9336C</text>
+  <text x="306" y="342" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">SN: NX-2024-03218</text>
+  <text x="490" y="332" font-family="system-ui, sans-serif" font-size="12" fill="#475569">DC-South / Rack B-07</text>
+  <rect x="650" y="319" width="72" height="20" rx="10" fill="#fef9c3"/>
+  <text x="686" y="333" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#ca8a04" text-anchor="middle">Pending</text>
+  <text x="780" y="332" font-family="system-ui, sans-serif" font-size="12" fill="#475569">Manager</text>
+  <text x="910" y="332" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">2024-08-14</text>
+  <text x="1080" y="332" font-family="system-ui, sans-serif" font-size="11" fill="#4f46e5">View</text>
+  <text x="1115" y="332" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">|</text>
+  <text x="1128" y="332" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Edit</text>
+  <line x1="240" y1="352" x2="1156" y2="352" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 3 -->
+  <rect x="244" y="364" width="14" height="14" rx="3" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="270" y="362" width="28" height="20" rx="4" fill="#e0f2fe"/>
+  <text x="284" y="376" font-family="system-ui, sans-serif" font-size="9" fill="#0284c7" text-anchor="middle">UPS</text>
+  <text x="306" y="376" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">APC Smart-UPS 3000</text>
+  <text x="306" y="390" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">SN: UP-2024-01547</text>
+  <text x="490" y="380" font-family="system-ui, sans-serif" font-size="12" fill="#475569">DC-North / Rack A-02</text>
+  <rect x="650" y="367" width="60" height="20" rx="10" fill="#dcfce7"/>
+  <text x="680" y="381" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#16a34a" text-anchor="middle">Active</text>
+  <text x="780" y="380" font-family="system-ui, sans-serif" font-size="12" fill="#475569">Admin</text>
+  <text x="910" y="380" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">2024-08-13</text>
+  <text x="1080" y="380" font-family="system-ui, sans-serif" font-size="11" fill="#4f46e5">View</text>
+  <text x="1115" y="380" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">|</text>
+  <text x="1128" y="380" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Edit</text>
+  <line x1="240" y1="400" x2="1156" y2="400" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 4 -->
+  <rect x="244" y="412" width="14" height="14" rx="3" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="270" y="410" width="28" height="20" rx="4" fill="#eef2ff"/>
+  <text x="284" y="424" font-family="system-ui, sans-serif" font-size="9" fill="#4f46e5" text-anchor="middle">SRV</text>
+  <text x="306" y="424" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">HPE ProLiant DL380</text>
+  <text x="306" y="438" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">SN: HP-2024-06329</text>
+  <text x="490" y="428" font-family="system-ui, sans-serif" font-size="12" fill="#475569">DC-East / Rack C-21</text>
+  <rect x="650" y="415" width="88" height="20" rx="10" fill="#dbeafe"/>
+  <text x="694" y="429" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#2563eb" text-anchor="middle">Under Review</text>
+  <text x="780" y="428" font-family="system-ui, sans-serif" font-size="12" fill="#475569">Viewer</text>
+  <text x="910" y="428" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">2024-08-12</text>
+  <text x="1080" y="428" font-family="system-ui, sans-serif" font-size="11" fill="#4f46e5">View</text>
+  <text x="1115" y="428" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">|</text>
+  <text x="1128" y="428" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Edit</text>
+  <line x1="240" y1="448" x2="1156" y2="448" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Row 5 -->
+  <rect x="244" y="460" width="14" height="14" rx="3" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="270" y="458" width="28" height="20" rx="4" fill="#fce7f3"/>
+  <text x="284" y="472" font-family="system-ui, sans-serif" font-size="9" fill="#db2777" text-anchor="middle">PDU</text>
+  <text x="306" y="472" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">Eaton ePDU G3 Metered</text>
+  <text x="306" y="486" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">SN: PD-2024-09281</text>
+  <text x="490" y="476" font-family="system-ui, sans-serif" font-size="12" fill="#475569">DC-South / Rack B-12</text>
+  <rect x="650" y="463" width="60" height="20" rx="10" fill="#dcfce7"/>
+  <text x="680" y="477" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#16a34a" text-anchor="middle">Active</text>
+  <text x="780" y="476" font-family="system-ui, sans-serif" font-size="12" fill="#475569">Operator</text>
+  <text x="910" y="476" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">2024-08-11</text>
+  <text x="1080" y="476" font-family="system-ui, sans-serif" font-size="11" fill="#4f46e5">View</text>
+  <text x="1115" y="476" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">|</text>
+  <text x="1128" y="476" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Edit</text>
+  <line x1="240" y1="496" x2="1156" y2="496" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Pagination -->
+  <text x="240" y="638" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Showing 1-20 of 12,847</text>
+
+  <!-- Pagination controls -->
+  <rect x="1020" y="622" width="28" height="28" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="1034" y="641" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">&lt;</text>
+  <rect x="1056" y="622" width="28" height="28" rx="6" fill="#4f46e5"/>
+  <text x="1070" y="641" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">1</text>
+  <rect x="1092" y="622" width="28" height="28" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="1106" y="641" font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">2</text>
+  <rect x="1128" y="622" width="28" height="28" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="1142" y="641" font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">3</text>
+  <rect x="1164" y="622" width="4" height="4" rx="2" fill="#94a3b8"/>
+  <rect x="1172" y="622" width="4" height="4" rx="2" fill="#94a3b8"/>
+</svg>
