@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680">
+  <defs>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="stepShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
+    <linearGradient id="connectorGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" rx="12" fill="#f8fafc"/>
+  <rect x="0.5" y="0.5" width="1199" height="679" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- ==================== TITLE BAR ==================== -->
+  <rect width="1200" height="60" rx="12" fill="#ffffff"/>
+  <rect y="12" width="1200" height="48" fill="#ffffff"/>
+  <line x1="0" y1="60" x2="1200" y2="60" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Back arrow -->
+  <rect x="24" y="16" width="32" height="28" rx="6" fill="#f1f5f9"/>
+  <polyline points="36,26 32,30 36,34" fill="none" stroke="#64748b" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="72" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#1e293b">Approval Flow</text>
+  <text x="190" y="34" font-family="system-ui, sans-serif" font-size="13" fill="#94a3b8">&#8212;</text>
+  <text x="210" y="34" font-family="system-ui, sans-serif" font-size="13" fill="#64748b">Asset Transfer Request</text>
+
+  <!-- Request ID badge -->
+  <rect x="410" y="18" width="140" height="24" rx="12" fill="#eef2ff" stroke="#c7d2fe" stroke-width="0.5"/>
+  <text x="480" y="35" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#4f46e5" text-anchor="middle">#AT-2024-0382</text>
+
+  <!-- Status badge -->
+  <rect x="570" y="18" width="90" height="24" rx="12" fill="#fef9c3" stroke="#fde68a" stroke-width="0.5"/>
+  <circle cx="588" cy="30" r="3" fill="#f59e0b"/>
+  <text x="620" y="35" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#ca8a04">In Review</text>
+
+  <!-- Priority -->
+  <rect x="1080" y="18" width="80" height="24" rx="12" fill="#fef2f2" stroke="#fecaca" stroke-width="0.5"/>
+  <text x="1120" y="35" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#dc2626" text-anchor="middle">High Priority</text>
+
+  <!-- ==================== APPROVAL FLOW STEPS ==================== -->
+
+  <!-- Flow progress bar background -->
+  <rect x="80" y="116" width="860" height="4" rx="2" fill="#e2e8f0"/>
+  <!-- Progress fill (step 1 done, step 2 in progress) -->
+  <rect x="80" y="116" width="340" height="4" rx="2" fill="#22c55e"/>
+  <rect x="420" y="116" width="100" height="4" rx="2" fill="#f59e0b" opacity="0.5"/>
+
+  <!-- Step 1: Initiator — COMPLETED -->
+  <g transform="translate(160, 90)">
+    <!-- Step circle -->
+    <circle cx="0" cy="28" r="20" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+    <!-- Checkmark -->
+    <polyline points="-7,28 -2,33 8,23" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Step card below -->
+    <rect x="-110" y="58" width="220" height="120" rx="10" fill="white" filter="url(#stepShadow)"/>
+    <rect x="-109.5" y="58.5" width="219" height="119" rx="10" fill="none" stroke="#dcfce7" stroke-width="1"/>
+
+    <!-- Step label -->
+    <rect x="-40" y="64" width="80" height="20" rx="4" fill="#dcfce7"/>
+    <text x="0" y="78" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#16a34a" text-anchor="middle">STEP 1</text>
+
+    <text x="0" y="104" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b" text-anchor="middle">Initiator</text>
+    <text x="0" y="124" font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Submitted by J. Chen</text>
+
+    <!-- Timestamp -->
+    <rect x="-70" y="140" width="140" height="22" rx="4" fill="#f8fafc"/>
+    <text x="0" y="155" font-family="ui-monospace, monospace" font-size="10" fill="#94a3b8" text-anchor="middle">2024-08-10  09:34 AM</text>
+  </g>
+
+  <!-- Connector arrow 1->2 -->
+  <line x1="280" y1="118" x2="390" y2="118" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="387,114 395,118 387,122" fill="#22c55e"/>
+
+  <!-- Step 2: Reviewer — IN PROGRESS -->
+  <g transform="translate(500, 90)">
+    <!-- Step circle -->
+    <circle cx="0" cy="28" r="20" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+    <!-- Clock icon -->
+    <circle cx="0" cy="28" r="8" fill="none" stroke="#d97706" stroke-width="1.5"/>
+    <line x1="0" y1="24" x2="0" y2="28" stroke="#d97706" stroke-width="1.5"/>
+    <line x1="0" y1="28" x2="4" y2="30" stroke="#d97706" stroke-width="1.5"/>
+
+    <!-- Pulsing ring animation -->
+    <circle cx="0" cy="28" r="20" fill="none" stroke="#f59e0b" stroke-width="1" opacity="0.3"/>
+    <circle cx="0" cy="28" r="26" fill="none" stroke="#f59e0b" stroke-width="0.5" opacity="0.15"/>
+
+    <!-- Step card below -->
+    <rect x="-110" y="58" width="220" height="120" rx="10" fill="white" filter="url(#stepShadow)"/>
+    <rect x="-109.5" y="58.5" width="219" height="119" rx="10" fill="none" stroke="#fef3c7" stroke-width="1"/>
+
+    <!-- Step label -->
+    <rect x="-40" y="64" width="80" height="20" rx="4" fill="#fef9c3"/>
+    <text x="0" y="78" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#ca8a04" text-anchor="middle">STEP 2</text>
+
+    <text x="0" y="104" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b" text-anchor="middle">Reviewer</text>
+    <text x="0" y="124" font-family="system-ui, sans-serif" font-size="12" fill="#f59e0b" font-weight="500" text-anchor="middle">Pending: K. Wang</text>
+
+    <!-- Task description -->
+    <rect x="-70" y="140" width="140" height="22" rx="4" fill="#fffbeb"/>
+    <text x="0" y="155" font-family="system-ui, sans-serif" font-size="10" fill="#92400e" text-anchor="middle">Review technical specs</text>
+  </g>
+
+  <!-- Connector arrow 2->3 -->
+  <line x1="620" y1="118" x2="730" y2="118" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="727,114 735,118 727,122" fill="#cbd5e1"/>
+
+  <!-- Step 3: Executive — WAITING -->
+  <g transform="translate(840, 90)">
+    <!-- Step circle -->
+    <circle cx="0" cy="28" r="20" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+    <!-- Number 3 -->
+    <text x="0" y="34" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#94a3b8" text-anchor="middle">3</text>
+
+    <!-- Step card below -->
+    <rect x="-110" y="58" width="220" height="120" rx="10" fill="white" filter="url(#stepShadow)"/>
+    <rect x="-109.5" y="58.5" width="219" height="119" rx="10" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Step label -->
+    <rect x="-40" y="64" width="80" height="20" rx="4" fill="#f1f5f9"/>
+    <text x="0" y="78" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">STEP 3</text>
+
+    <text x="0" y="104" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1e293b" text-anchor="middle">Executive</text>
+    <text x="0" y="124" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Waiting</text>
+
+    <!-- Task description -->
+    <rect x="-70" y="140" width="140" height="22" rx="4" fill="#f8fafc"/>
+    <text x="0" y="155" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Final budget approval</text>
+  </g>
+
+  <!-- ==================== REQUEST DETAILS CARD ==================== -->
+  <rect x="40" y="300" width="740" height="280" rx="10" fill="white" filter="url(#cardShadow)"/>
+  <rect x="40.5" y="300.5" width="739" height="279" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Card header -->
+  <rect x="40" y="300" width="740" height="40" rx="10" fill="#fafbfc"/>
+  <rect x="40" y="330" width="740" height="10" fill="#fafbfc"/>
+  <line x1="40" y1="340" x2="780" y2="340" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="64" y="326" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1e293b">Request Details</text>
+
+  <!-- Detail fields — 2 columns -->
+  <!-- Left column -->
+  <text x="64" y="370" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Asset Name</text>
+  <text x="64" y="388" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Dell PowerEdge R750 (x4)</text>
+  <line x1="64" y1="400" x2="380" y2="400" stroke="#f1f5f9" stroke-width="1"/>
+
+  <text x="64" y="424" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">From Location</text>
+  <text x="64" y="442" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">DC-North / Hall A / Rack A-14</text>
+  <line x1="64" y1="454" x2="380" y2="454" stroke="#f1f5f9" stroke-width="1"/>
+
+  <text x="64" y="478" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Reason for Transfer</text>
+  <text x="64" y="496" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Capacity rebalancing and cooling optimization.</text>
+  <text x="64" y="514" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">Rack A-14 exceeds 85% thermal threshold.</text>
+
+  <!-- Right column -->
+  <text x="420" y="370" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Asset Type</text>
+  <rect x="420" y="376" width="52" height="18" rx="4" fill="#eef2ff"/>
+  <text x="446" y="390" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#4f46e5" text-anchor="middle">Server</text>
+  <line x1="420" y1="400" x2="740" y2="400" stroke="#f1f5f9" stroke-width="1"/>
+
+  <text x="420" y="424" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">To Location</text>
+  <text x="420" y="442" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#1e293b">DC-South / Hall B / Rack B-22</text>
+  <line x1="420" y1="454" x2="740" y2="454" stroke="#f1f5f9" stroke-width="1"/>
+
+  <text x="420" y="478" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Estimated Cost</text>
+  <text x="420" y="500" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#1e293b">$14,200</text>
+  <text x="530" y="500" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">USD</text>
+
+  <!-- Attachment indicator -->
+  <rect x="64" y="536" width="160" height="26" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="80" y="554" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">📎  2 files attached</text>
+
+  <!-- ==================== ACTIVITY LOG (RIGHT SIDEBAR) ==================== -->
+  <rect x="800" y="300" width="360" height="280" rx="10" fill="white" filter="url(#cardShadow)"/>
+  <rect x="800.5" y="300.5" width="359" height="279" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Card header -->
+  <rect x="800" y="300" width="360" height="40" rx="10" fill="#fafbfc"/>
+  <rect x="800" y="330" width="360" height="10" fill="#fafbfc"/>
+  <line x1="800" y1="340" x2="1160" y2="340" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="824" y="326" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1e293b">Activity Log</text>
+  <rect x="1080" y="310" width="60" height="20" rx="4" fill="#f1f5f9"/>
+  <text x="1110" y="325" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">View All</text>
+
+  <!-- Timeline line -->
+  <line x1="840" y1="360" x2="840" y2="556" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Activity 1 -->
+  <circle cx="840" cy="370" r="5" fill="#22c55e" stroke="white" stroke-width="2"/>
+  <text x="860" y="368" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">Request submitted</text>
+  <text x="860" y="384" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">J. Chen &#183; Aug 10, 09:34 AM</text>
+
+  <!-- Activity 2 -->
+  <circle cx="840" cy="418" r="5" fill="#3b82f6" stroke="white" stroke-width="2"/>
+  <text x="860" y="416" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">Documents attached</text>
+  <text x="860" y="432" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">J. Chen &#183; Aug 10, 09:41 AM</text>
+
+  <!-- Activity 3 -->
+  <circle cx="840" cy="466" r="5" fill="#8b5cf6" stroke="white" stroke-width="2"/>
+  <text x="860" y="464" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">Assigned to K. Wang</text>
+  <text x="860" y="480" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">System &#183; Aug 10, 09:42 AM</text>
+
+  <!-- Activity 4 -->
+  <circle cx="840" cy="514" r="5" fill="#f59e0b" stroke="white" stroke-width="2"/>
+  <text x="860" y="512" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#1e293b">Review in progress</text>
+  <text x="860" y="528" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">K. Wang &#183; Aug 11, 02:15 PM</text>
+
+  <!-- Activity 5 (latest, pending) -->
+  <circle cx="840" cy="556" r="5" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="2,2"/>
+  <text x="860" y="554" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">Awaiting reviewer decision...</text>
+
+  <!-- ==================== BOTTOM ACTION BUTTONS ==================== -->
+  <rect x="40" y="600" width="1120" height="60" rx="10" fill="white" filter="url(#cardShadow)"/>
+  <rect x="40.5" y="600.5" width="1119" height="59" rx="10" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+
+  <!-- Comment input area -->
+  <rect x="64" y="614" width="560" height="32" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="84" y="635" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Add a comment or note...</text>
+
+  <!-- Buttons (right aligned) -->
+  <!-- Reject -->
+  <rect x="840" y="614" width="90" height="32" rx="8" fill="none" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="885" y="635" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#dc2626" text-anchor="middle">Reject</text>
+
+  <!-- Request Changes -->
+  <rect x="944" y="614" width="130" height="32" rx="8" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="1009" y="635" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Request Changes</text>
+
+  <!-- Approve -->
+  <rect x="1088" y="614" width="56" height="32" rx="8" fill="#4f46e5"/>
+  <text x="1116" y="635" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Approve</text>
+</svg>
