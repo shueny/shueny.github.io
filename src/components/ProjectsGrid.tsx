@@ -558,14 +558,14 @@ const ProjectsGrid: React.FC = () => {
           </p>
         </div>
 
-        {/* Search + domain filter — lets a prospective client find the work that matches their brief */}
-        <div className="mb-8 rounded-2xl border border-orange-100 bg-white/70 backdrop-blur-sm p-4 md:p-5 shadow-sm">
+        {/* Search + domain filter */}
+        <div className="mb-8">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-col gap-3 min-w-0">
               <span className="text-[11px] font-bold uppercase tracking-widest text-stone-500">
                 {t.projects.filterLabel}
               </span>
-              <div className="flex flex-wrap gap-2" role="group" aria-label={t.projects.filterLabel}>
+              <div className="flex flex-wrap gap-2.5" role="group" aria-label={t.projects.filterLabel}>
                 {(['all', ...availableDomains] as Array<ProjectDomain | 'all'>).map((domain) => {
                   const isActive = activeDomain === domain;
                   const count =
@@ -578,7 +578,7 @@ const ProjectsGrid: React.FC = () => {
                       type="button"
                       onClick={() => setActiveDomain(domain)}
                       aria-pressed={isActive}
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
                         isActive
                           ? 'border-accent bg-accent text-white shadow-md shadow-orange-500/20'
                           : 'border-orange-200 bg-white text-primary hover:border-accent hover:text-accent'
@@ -623,7 +623,7 @@ const ProjectsGrid: React.FC = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t.projects.searchPlaceholder}
                 aria-label={t.projects.searchAriaLabel}
-                className="w-full rounded-full border border-orange-200 bg-white py-2.5 pl-11 pr-10 text-sm text-primary placeholder:text-stone-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                className="w-full rounded-full border border-orange-200 bg-white py-2.5 pl-12 pr-10 text-sm text-primary placeholder:text-stone-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
               />
               {query && (
                 <button
