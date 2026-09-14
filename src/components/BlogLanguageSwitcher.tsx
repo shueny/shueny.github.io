@@ -1,84 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LanguageProvider } from '../contexts/LanguageContext';
+import { MULTILINGUAL_POSTS } from '../lib/multilingual-posts';
 
 interface BlogLanguageSwitcherProps {
   slug: string;
   children: React.ReactNode;
 }
-
-// Map of slugs to their language-specific versions
-const MULTILINGUAL_POSTS: Record<string, { zh?: string; en?: string; de?: string }> = {
-  'mobile-pagespeed-optimizations': {
-    zh: 'mobile-pagespeed-optimizations-zh',
-    en: 'mobile-pagespeed-optimizations',
-  },
-  'mobile-pagespeed-optimizations-zh': {
-    zh: 'mobile-pagespeed-optimizations-zh',
-    en: 'mobile-pagespeed-optimizations',
-  },
-  'from-spa-to-astro-islands': {
-    zh: 'from-spa-to-astro-islands',
-    en: 'from-spa-to-astro-islands-en',
-  },
-  'from-spa-to-astro-islands-en': {
-    zh: 'from-spa-to-astro-islands',
-    en: 'from-spa-to-astro-islands-en',
-  },
-  'local-chat': {
-    zh: 'local-chat-zh',
-    en: 'local-chat',
-  },
-  'local-chat-zh': {
-    zh: 'local-chat-zh',
-    en: 'local-chat',
-  },
-  'astro-islands-lighthouse-optimization': {
-    en: 'astro-islands-lighthouse-optimization',
-    zh: 'astro-islands-lighthouse-optimization-zh',
-    de: 'astro-islands-lighthouse-optimization-de',
-  },
-  'astro-islands-lighthouse-optimization-zh': {
-    en: 'astro-islands-lighthouse-optimization',
-    zh: 'astro-islands-lighthouse-optimization-zh',
-    de: 'astro-islands-lighthouse-optimization-de',
-  },
-  'astro-islands-lighthouse-optimization-de': {
-    en: 'astro-islands-lighthouse-optimization',
-    zh: 'astro-islands-lighthouse-optimization-zh',
-    de: 'astro-islands-lighthouse-optimization-de',
-  },
-  'daily-tomato-todo': {
-    en: 'daily-tomato-todo',
-    zh: 'daily-tomato-todo-zh',
-    de: 'daily-tomato-todo-de',
-  },
-  'daily-tomato-todo-zh': {
-    en: 'daily-tomato-todo',
-    zh: 'daily-tomato-todo-zh',
-    de: 'daily-tomato-todo-de',
-  },
-  'daily-tomato-todo-de': {
-    en: 'daily-tomato-todo',
-    zh: 'daily-tomato-todo-zh',
-    de: 'daily-tomato-todo-de',
-  },
-  'seo-content-prioritization-ai-search': {
-    en: 'seo-content-prioritization-ai-search',
-    zh: 'seo-content-prioritization-ai-search-zh',
-    de: 'seo-content-prioritization-ai-search-de',
-  },
-  'seo-content-prioritization-ai-search-zh': {
-    en: 'seo-content-prioritization-ai-search',
-    zh: 'seo-content-prioritization-ai-search-zh',
-    de: 'seo-content-prioritization-ai-search-de',
-  },
-  'seo-content-prioritization-ai-search-de': {
-    en: 'seo-content-prioritization-ai-search',
-    zh: 'seo-content-prioritization-ai-search-zh',
-    de: 'seo-content-prioritization-ai-search-de',
-  },
-};
 
 const BlogLanguageSwitcherContent: React.FC<BlogLanguageSwitcherProps> = ({
   slug,
