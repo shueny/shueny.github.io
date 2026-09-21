@@ -3,11 +3,6 @@ import { SectionId } from '../types';
 import { useLanguage, LanguageProvider } from '../contexts/LanguageContext';
 
 // Inline SVG icons to avoid pulling lucide-react into the critical path
-const FileTextIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" />
-  </svg>
-);
 const GlobeIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
@@ -217,17 +212,6 @@ const NavbarContent: React.FC = () => {
           </div>
 
           <div className="hidden sm:block w-px h-5 bg-stone-300/50 flex-shrink-0"></div>
-
-          <a
-            href="/files/2026-08_Resume_ShuenyWang_ProductFullstack.pdf"
-            download
-            // Accessibility: Minimum touch target size 44x44px and better contrast
-            className="p-2.5 sm:p-3 text-stone-800 hover:text-accent transition-colors group relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
-            title={t.common.downloadResume}
-            aria-label={t.common.downloadResume}
-          >
-            <FileTextIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-          </a>
 
           <div className="relative language-switcher flex-shrink-0">
             <button
