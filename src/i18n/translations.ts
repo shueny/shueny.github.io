@@ -21,7 +21,6 @@ export interface Translations {
     contact: string;
     blog: string;
     common: {
-      downloadResume: string;
       changeLanguage: string;
     };
   };
@@ -214,7 +213,6 @@ export interface Translations {
     viewAll: string;
   };
   common: {
-    downloadResume: string;
     changeLanguage: string;
   };
 }
@@ -233,7 +231,6 @@ export const translations: Record<Language, Translations> = {
       projects: 'Projects',
       blog: 'Blog',
       common: {
-        downloadResume: 'Download Resume',
         changeLanguage: 'Change Language',
       },
     },
@@ -250,7 +247,7 @@ export const translations: Record<Language, Translations> = {
       description:
         'Nine years of React and TypeScript across automotive cybersecurity, B2B SaaS, and e-commerce, including three and a half years at VicOne (Trend Micro) as sole frontend engineer. Since 2025, independent: lead frontend on enterprise platforms, and LLM products shipped end to end — RAG pipelines, agent workflows, and interfaces people trust.',
       ctaPrimary: 'View Projects',
-      ctaSecondary: 'Download Resume',
+      ctaSecondary: 'Get in Touch',
       scroll: 'Scroll',
     },
     services: {
@@ -755,7 +752,6 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'View all posts',
     },
     common: {
-      downloadResume: 'Download Resume',
       changeLanguage: 'Change Language',
     },
   },
@@ -772,7 +768,6 @@ export const translations: Record<Language, Translations> = {
       projects: 'Projects',
       blog: 'Blog',
       common: {
-        downloadResume: 'Download Resume',
         changeLanguage: 'Change Language',
       },
     },
@@ -789,7 +784,7 @@ export const translations: Record<Language, Translations> = {
       description:
         'Neun Jahre React und TypeScript in Automotive-Cybersecurity, B2B-SaaS und E-Commerce, davon dreieinhalb Jahre bei VicOne (Trend Micro) als alleiniger Frontend-Engineer. Seit 2025 selbstständig: leitender Frontend-Engineer für Enterprise-Plattformen und LLM-Produkte von A bis Z — RAG-Pipelines, Agent-Workflows und Interfaces, denen Menschen vertrauen.',
       ctaPrimary: 'Projekte ansehen',
-      ctaSecondary: 'Lebenslauf herunterladen',
+      ctaSecondary: 'Kontakt aufnehmen',
       scroll: 'Scrollen',
     },
     services: {
@@ -1295,7 +1290,6 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'Alle Beiträge ansehen',
     },
     common: {
-      downloadResume: 'Lebenslauf herunterladen',
       changeLanguage: 'Sprache ändern',
     },
   },
@@ -1312,7 +1306,6 @@ export const translations: Record<Language, Translations> = {
       projects: '專案',
       blog: '文章',
       common: {
-        downloadResume: '下載履歷',
         changeLanguage: '切換語言',
       },
     },
@@ -1327,7 +1320,7 @@ export const translations: Record<Language, Translations> = {
       description:
         '九年 React 與 TypeScript 經驗，橫跨汽車網路安全、B2B SaaS 與電商，其中三年半在 VicOne（趨勢科技）以唯一前端工程師的身分打造安全平台。2025 年起獨立接案：擔任企業平台的前端主導，同時把 LLM 產品從頭做到上線——RAG pipeline、agent 工作流程，以及讓人信任的介面。',
       ctaPrimary: '查看專案',
-      ctaSecondary: '下載履歷',
+      ctaSecondary: '與我聯繫',
       scroll: '向下滾動',
     },
     services: {
@@ -1819,7 +1812,6 @@ export const translations: Record<Language, Translations> = {
       viewAll: '看所有文章',
     },
     common: {
-      downloadResume: '下載履歷',
       changeLanguage: '切換語言',
     },
   },
