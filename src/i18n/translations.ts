@@ -21,7 +21,6 @@ export interface Translations {
     contact: string;
     blog: string;
     common: {
-      downloadResume: string;
       changeLanguage: string;
     };
   };
@@ -214,7 +213,6 @@ export interface Translations {
     viewAll: string;
   };
   common: {
-    downloadResume: string;
     changeLanguage: string;
   };
 }
@@ -233,7 +231,6 @@ export const translations: Record<Language, Translations> = {
       projects: 'Projects',
       blog: 'Blog',
       common: {
-        downloadResume: 'Download Resume',
         changeLanguage: 'Change Language',
       },
     },
@@ -755,7 +752,6 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'View all posts',
     },
     common: {
-      downloadResume: 'Download Resume',
       changeLanguage: 'Change Language',
     },
   },
@@ -772,7 +768,6 @@ export const translations: Record<Language, Translations> = {
       projects: 'Projects',
       blog: 'Blog',
       common: {
-        downloadResume: 'Download Resume',
         changeLanguage: 'Change Language',
       },
     },
@@ -1295,7 +1290,6 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'Alle Beiträge ansehen',
     },
     common: {
-      downloadResume: 'Lebenslauf herunterladen',
       changeLanguage: 'Sprache ändern',
     },
   },
@@ -1312,7 +1306,6 @@ export const translations: Record<Language, Translations> = {
       projects: '專案',
       blog: '文章',
       common: {
-        downloadResume: '下載履歷',
         changeLanguage: '切換語言',
       },
     },
@@ -1819,7 +1812,6 @@ export const translations: Record<Language, Translations> = {
       viewAll: '看所有文章',
     },
     common: {
-      downloadResume: '下載履歷',
       changeLanguage: '切換語言',
     },
   },
