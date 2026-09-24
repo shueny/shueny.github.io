@@ -595,6 +595,60 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
+          id: 'p-dream-globe',
+          title: 'Dream Globe — Interactive 3D Night Earth',
+          description:
+            'An interactive 3D night-Earth globe where people pin their dreams at real places. Every country (258) and every state or province (4,596) is hoverable, clickable and searchable, offline, built on React and raw Three.js with no map SDK doing the hard parts.',
+          problem:
+            'Map SDKs make globes easy until you want something they did not plan for: custom night styling, borders that follow the sphere, a detail panel for every one of 4,596 states, and search that works without a network. I wanted the whole world explorable down to state level while staying a static site with no tile server and no API keys.',
+          solution:
+            'I built the globe directly on Three.js. Natural Earth 1:10m data is simplified at build time into a single TopoJSON topology, so country and state borders share arcs and line up exactly. Hover and click resolve through ray–sphere intersection → lat/lng → point-in-polygon, which drives highlights, fly-to framing, and a region panel with population, GDP, capital, neighbours, largest cities and the dreams pinned there. Search covers dreams, countries, states (English, local and Chinese names, ISO codes) and ~7k cities fully offline, with Open-Meteo geocoding as a fallback.',
+          techDeepDive:
+            'The scene is a pure Three.js module kept apart from the React shell: React owns state and selection, while the render loop never re-renders through React. A build script (mapshaper) turns Natural Earth sources into ~3.9 MB of TopoJSON (~1.2 MB gzipped) committed to the repo, so builds never need the network. Region fills are triangulated on the sphere; labels are laid out in the DOM, filtered by zoom using Natural Earth min_label / scalerank, and kept stable while the globe rotates. Geo math, search and the 3D layer builders are covered by Vitest, Playwright runs E2E against the production build, and every push to main deploys to GitHub Pages behind lint and tests.',
+          features: [
+            'Every country (258) and state / province (4,596) with sphere-following borders',
+            'Ray–sphere picking → point-in-polygon hover, click and fly-to framing',
+            'Zoom-aware labels for countries, states and ~7k cities with collision avoidance',
+            'Offline search, deep links (#/JPN), guided tour and mobile bottom sheets',
+          ],
+        },
+        {
+          id: 'p-rate-calendar',
+          title: 'Hotel Rate Calendar — Angular Pricing Engine',
+          description:
+            'A configurable hotel rate engine with a calendar UI, built in Angular 19 as a deliberate move from React to Angular. Weekend, holiday and peak-season rules compose through the Strategy Pattern, and an animated "How it works" page explains the system design using the real services, not mock numbers.',
+          problem:
+            'Hotel room rates shift with weekends, public holidays and peak seasons, and every new business rule tends to become one more if-statement in the pricing function. I wanted a model where adding a rule never means touching the existing ones, and I wanted to learn Angular properly by solving a real domain problem rather than a tutorial todo list.',
+          solution:
+            'Each rule implements a single PricingRule interface; the PricingEngineService applies enabled rules in order and multiplies their adjustments onto the base rate, so a new rule (say, a loyalty discount) is one class plus one registration. Holidays come from the Nager.Date API behind a HolidayService with a per-year cache, with loading and error state exposed as Signals, so the calendar never touches HTTP. Click any day for a line-by-line price breakdown; change the Reactive Forms config and every price updates immediately.',
+          techDeepDive:
+            'Standalone components, Signals and the new @if / @for control flow throughout, in TypeScript strict mode. The "How it works" figures are pure functions of a timeline, so play, step, scrub and speed come for free, and they run real instances of PricingEngineService and HolidayService fed by a simulated HttpHandler: holiday counts, error messages, cache hits and ignored stale responses all come from the actual code. Vitest (with Analog) covers rule stacking and edge cases such as a holiday on a weekend; Playwright E2E mocks the API with page.route(). CI runs lint → typecheck → test → build → E2E before deploying to GitHub Pages. Alongside it I wrote interactive learning notes, "From React to Angular", mapping React mental models onto Angular.',
+          features: [
+            'Composable rule engine (Strategy Pattern): weekend, holiday, peak season',
+            'Signals-based HolidayService with per-year cache and error states',
+            'Per-day price breakdown and live Reactive Forms configuration',
+            'Animated, scrubbable "How it works" system-design walkthrough (EN / 中文)',
+          ],
+        },
+        {
+          id: 'p-rag-explainer',
+          title: 'How RAG Works — 3D Animated Explainer',
+          description:
+            'A three-minute animated 3D walkthrough of Retrieval-Augmented Generation that follows one question, "How long is our refund window?", from document chunking to a grounded, cited answer, compared against an LLM guessing without RAG. Bilingual (EN / 中文) and fully offline.',
+          problem:
+            'Most RAG explanations are either a box-and-arrow diagram or a wall of jargon: embeddings, vector databases, top-K, cosine similarity. Stakeholders nod along and still expect the model to "just know" company policy. The gap is not intelligence; it is not being able to see where an answer comes from.',
+          solution:
+            'I turned the pipeline into a story around one concrete question. It opens with the failure case: without RAG, the model confidently answers "usually 30 days" with no source. Then six chapters follow the question through Prepare (chunk documents with overlap and sources), Embed (text becomes coordinates on a semantic map), Ask, Retrieve (cosine similarity, top-3 chunks with scores), Augment (question plus chunks as the prompt) and Generate (a grounded answer that cites its source). It closes with three safeguards against wrong retrieval: hybrid search, reranking and citations.',
+          techDeepDive:
+            'A 3D scene (document stack, embedding ring, vector-database sphere, the user and the LLM planet) is choreographed on a single 3:12 timeline, with HTML overlays for each close-up chapter so the text stays crisp and translatable. Every chapter reuses the same refund-policy example, so the numbers stay consistent end to end: 300–500 character chunks with overlap, a 1,536-dimension vector, similarity scores of 0.92 / 0.81 / 0.77 feeding a top-K of 3. It ships as one self-contained HTML file per language with scripts, styles and fonts inlined, so it runs offline and drops into any static host.',
+          features: [
+            'Six-chapter narrative: Prepare → Embed → Ask → Retrieve → Augment → Generate',
+            '"Without RAG" hallucination vs. grounded, cited answer',
+            'Semantic map showing why similar meaning lands close in vector space',
+            'Play / pause / chapter skip, with an EN ⇄ 中文 toggle that keeps the timeline',
+          ],
+        },
+        {
           id: 'p-tomato',
           title: 'Daily Tomato Todo',
           description:
@@ -1132,6 +1186,60 @@ export const translations: Record<Language, Translations> = {
           ],
         },
         {
+          id: 'p-dream-globe',
+          title: 'Dream Globe — Interaktive 3D-Nachterde',
+          description:
+            'Ein interaktiver 3D-Globus der Erde bei Nacht, auf dem Menschen ihre Träume an realen Orten markieren. Jedes Land (258) und jeder Bundesstaat bzw. jede Provinz (4.596) lässt sich hovern, anklicken und offline durchsuchen, gebaut mit React und reinem Three.js, ohne Karten-SDK.',
+          problem:
+            'Karten-SDKs machen Globen einfach, bis man etwas will, das sie nicht vorgesehen haben: eigenes Nacht-Styling, Grenzen, die der Kugel folgen, ein Detailpanel für jede der 4.596 Regionen und eine Suche, die ohne Netzwerk funktioniert. Ich wollte die ganze Welt bis auf Bundesstaat-Ebene erkundbar machen und dabei eine statische Seite ohne Tile-Server und ohne API-Keys bleiben.',
+          solution:
+            'Ich habe den Globus direkt auf Three.js gebaut. Natural-Earth-Daten (1:10m) werden beim Build zu einer einzigen TopoJSON-Topologie vereinfacht, sodass Länder- und Regionsgrenzen dieselben Bögen teilen und exakt übereinanderliegen. Hover und Klick laufen über Strahl-Kugel-Schnitt → Lat/Lng → Point-in-Polygon und steuern Highlights, Fly-to-Kamerafahrten und ein Regionspanel mit Einwohnerzahl, BIP, Hauptstadt, Nachbarn, größten Städten und den dort markierten Träumen. Die Suche umfasst Träume, Länder, Regionen (englische, lokale und chinesische Namen, ISO-Codes) und rund 7.000 Städte, komplett offline, mit Open-Meteo-Geocoding als Fallback.',
+          techDeepDive:
+            'Die Szene ist ein reines Three.js-Modul, getrennt von der React-Shell: React verwaltet Zustand und Auswahl, die Render-Loop rendert nie über React neu. Ein Build-Skript (mapshaper) erzeugt aus den Natural-Earth-Quellen rund 3,9 MB TopoJSON (~1,2 MB gzipped), die im Repo liegen, sodass Builds nie das Netzwerk brauchen. Regionsflächen werden auf der Kugel trianguliert; Labels werden im DOM gesetzt, per Zoom über Natural-Earth-min_label/scalerank gefiltert und beim Drehen stabil gehalten. Geo-Mathematik, Suche und 3D-Layer sind mit Vitest getestet, Playwright läuft E2E gegen den Production-Build, und jeder Push auf main wird nach Lint und Tests auf GitHub Pages deployt.',
+          features: [
+            'Alle Länder (258) und Regionen (4.596) mit kugelfolgenden Grenzen',
+            'Strahl-Kugel-Picking → Point-in-Polygon für Hover, Klick und Fly-to',
+            'Zoomabhängige Labels für Länder, Regionen und ~7.000 Städte mit Kollisionsvermeidung',
+            'Offline-Suche, Deep Links (#/JPN), geführte Tour und mobile Bottom Sheets',
+          ],
+        },
+        {
+          id: 'p-rate-calendar',
+          title: 'Hotel-Ratenkalender — Angular Pricing Engine',
+          description:
+            'Eine konfigurierbare Hotel-Preis-Engine mit Kalender-UI, gebaut in Angular 19 als bewusster Wechsel von React zu Angular. Wochenend-, Feiertags- und Hochsaison-Regeln werden über das Strategy Pattern kombiniert, und eine animierte „How it works“-Seite erklärt das Systemdesign mit den echten Services statt mit Fantasiezahlen.',
+          problem:
+            'Zimmerpreise ändern sich mit Wochenenden, Feiertagen und Hochsaison, und jede neue Geschäftsregel wird schnell zu einem weiteren if-Statement in der Preisfunktion. Ich wollte ein Modell, in dem eine neue Regel nie bestehende Regeln berührt, und Angular richtig lernen, indem ich ein echtes Domänenproblem löse statt einer Tutorial-Todo-Liste.',
+          solution:
+            'Jede Regel implementiert ein einziges PricingRule-Interface; der PricingEngineService wendet aktive Regeln der Reihe nach an und multipliziert ihre Anpassungen auf den Basispreis. Eine neue Regel (etwa ein Treuerabatt) ist also eine Klasse plus eine Registrierung. Feiertage kommen von der Nager.Date-API hinter einem HolidayService mit Cache pro Jahr; Lade- und Fehlerzustand sind als Signals verfügbar, der Kalender berührt nie HTTP. Ein Klick auf einen Tag zeigt die Preisaufschlüsselung Zeile für Zeile; Änderungen in der Reactive-Forms-Konfiguration aktualisieren sofort jeden Preis.',
+          techDeepDive:
+            'Durchgehend Standalone Components, Signals und die neue @if/@for-Syntax, TypeScript im Strict Mode. Die „How it works“-Grafiken sind reine Funktionen einer Timeline, dadurch gibt es Play, Step, Scrub und Geschwindigkeit ohne Zusatzaufwand, und sie laufen auf echten Instanzen von PricingEngineService und HolidayService, gespeist von einem simulierten HttpHandler: Feiertagszahlen, Fehlermeldungen, Cache-Treffer und verworfene veraltete Antworten stammen aus dem echten Code. Vitest (mit Analog) deckt Regel-Stacking und Randfälle wie einen Feiertag am Wochenende ab; Playwright-E2E mockt die API per page.route(). Die CI läuft Lint → Typecheck → Test → Build → E2E vor dem Deployment auf GitHub Pages. Dazu habe ich interaktive Lernnotizen „From React to Angular“ geschrieben, die React-Denkmodelle auf Angular abbilden.',
+          features: [
+            'Kombinierbare Regel-Engine (Strategy Pattern): Wochenende, Feiertag, Hochsaison',
+            'Signals-basierter HolidayService mit Cache pro Jahr und Fehlerzuständen',
+            'Preisaufschlüsselung pro Tag und Live-Konfiguration über Reactive Forms',
+            'Animierter, scrubbarer „How it works“-Walkthrough zum Systemdesign (EN / 中文)',
+          ],
+        },
+        {
+          id: 'p-rag-explainer',
+          title: 'Wie RAG funktioniert — 3D-Animationserklärung',
+          description:
+            'Ein dreiminütiger, animierter 3D-Walkthrough zu Retrieval-Augmented Generation, der einer einzigen Frage folgt („Wie lange ist unser Rückgabefenster?“), vom Aufteilen der Dokumente bis zur belegten Antwort mit Quelle, im Vergleich zu einem LLM, das ohne RAG rät. Zweisprachig (EN / 中文) und komplett offline.',
+          problem:
+            'Die meisten RAG-Erklärungen sind entweder ein Kästchen-und-Pfeile-Diagramm oder eine Wand aus Fachbegriffen: Embeddings, Vektordatenbanken, Top-K, Kosinus-Ähnlichkeit. Stakeholder nicken und erwarten trotzdem, dass das Modell die Firmenrichtlinien „einfach weiß“. Die Lücke ist nicht Intelligenz, sondern dass man nicht sieht, woher eine Antwort kommt.',
+          solution:
+            'Ich habe die Pipeline als Geschichte rund um eine konkrete Frage erzählt. Sie beginnt mit dem Fehlerfall: Ohne RAG antwortet das Modell selbstsicher „meist 30 Tage“, ohne Quelle. Danach folgen sechs Kapitel: Vorbereiten (Dokumente mit Überlappung und Quellenangabe aufteilen), Einbetten (Text wird zu Koordinaten auf einer semantischen Karte), Fragen, Abrufen (Kosinus-Ähnlichkeit, Top-3-Abschnitte mit Scores), Anreichern (Frage plus Abschnitte als Prompt) und Generieren (eine belegte Antwort mit Quelle). Zum Schluss drei Schutzmechanismen gegen falsche Treffer: hybride Suche, Reranking und Quellenangaben.',
+          techDeepDive:
+            'Eine 3D-Szene (Dokumentenstapel, Embedding-Ring, Vektordatenbank-Kugel, Nutzer und LLM-Planet) ist auf einer einzigen 3:12-Timeline choreografiert, mit HTML-Overlays für jedes Detailkapitel, damit Text scharf und übersetzbar bleibt. Jedes Kapitel nutzt dasselbe Rückgabe-Beispiel, sodass die Zahlen durchgehend stimmen: Abschnitte mit 300–500 Zeichen und Überlappung, ein Vektor mit 1.536 Dimensionen, Ähnlichkeitswerte von 0,92 / 0,81 / 0,77 für ein Top-K von 3. Ausgeliefert wird eine eigenständige HTML-Datei pro Sprache mit eingebetteten Skripten, Styles und Schriften, lauffähig offline und auf jedem statischen Host.',
+          features: [
+            'Sechs Kapitel: Vorbereiten → Einbetten → Fragen → Abrufen → Anreichern → Generieren',
+            'Halluzination „ohne RAG“ vs. belegte Antwort mit Quelle',
+            'Semantische Karte: warum ähnliche Bedeutung im Vektorraum nah beieinander liegt',
+            'Play / Pause / Kapitelsprung, EN ⇄ 中文-Umschalter, der die Timeline beibehält',
+          ],
+        },
+        {
           id: 'p-tomato',
           title: 'Daily Tomato Todo',
           description:
@@ -1653,6 +1761,60 @@ export const translations: Record<Language, Translations> = {
             '嚴格的 Swagger/OpenAPI 整合',
             '即時資產估值更新',
             '組件驅動的 UI 架構',
+          ],
+        },
+        {
+          id: 'p-dream-globe',
+          title: 'Dream Globe — 互動式 3D 夜間地球',
+          description:
+            '一顆互動式 3D 夜間地球，讓人把夢想釘在真實的地點上。全世界每個國家（258 個）與每個州／省（4,596 個）都能滑過、點選、離線搜尋，以 React 與原生 Three.js 打造，沒有任何地圖 SDK 代勞。',
+          problem:
+            '地圖 SDK 讓地球儀很好做，直到你想要它沒預料到的東西：自訂的夜間風格、貼合球面的邊界、4,596 個州省各自的資訊面板，以及不需要網路也能用的搜尋。我想讓整個世界能探索到州省層級，同時維持純靜態網站，不用圖磚伺服器、不用 API key。',
+          solution:
+            '我直接用 Three.js 打造地球。Natural Earth 1:10m 資料在建置時簡化成單一 TopoJSON 拓撲，國界與州界共用同一組弧線，完全對齊。滑過與點選透過「射線與球體求交 → 經緯度 → 點在多邊形內」判定，驅動高亮、飛行鏡頭框選，以及包含人口、GDP、首都、鄰國、主要城市和當地夢想的區域面板。搜尋涵蓋夢想、國家、州省（英文、當地語言、中文名稱與 ISO 代碼）及約 7 千個城市，完全離線，找不到時再以 Open-Meteo 地理編碼補上。',
+          techDeepDive:
+            '場景是純 Three.js 模組，與 React 外殼分離：React 管理狀態與選取，渲染迴圈永遠不經過 React 重繪。建置腳本（mapshaper）把 Natural Earth 原始資料轉成約 3.9 MB 的 TopoJSON（gzip 後約 1.2 MB）並提交進 repo，建置時完全不需網路。區域填色在球面上三角化；標籤以 DOM 排版，依 Natural Earth 的 min_label／scalerank 隨縮放過濾，旋轉時保持穩定。地理運算、搜尋與 3D 圖層以 Vitest 測試，Playwright 對正式建置跑 E2E，每次推上 main 都在 lint 與測試通過後部署到 GitHub Pages。',
+          features: [
+            '全部國家（258）與州／省（4,596），邊界貼合球面',
+            '射線球體拾取 → 點在多邊形判定，支援滑過、點選與飛行框選',
+            '國家、州省與約 7 千城市的縮放感知標籤，含碰撞避讓',
+            '離線搜尋、深層連結（#/JPN）、導覽模式與手機底部面板',
+          ],
+        },
+        {
+          id: 'p-rate-calendar',
+          title: '飯店房價日曆 — Angular 定價引擎',
+          description:
+            '一個可設定的飯店房價引擎與日曆介面，以 Angular 19 打造，是我從 React 刻意轉向 Angular 的實作。週末、假日、旺季規則透過策略模式組合，另有一頁動畫版「How it works」，用真實的 service 而非假數字來解釋系統設計。',
+          problem:
+            '飯店房價會隨週末、國定假日與旺季浮動，而每條新的商業規則往往就變成定價函式裡多一個 if。我想要一個「新增規則永遠不必動到既有規則」的模型，也想透過解決真實領域問題、而不是教學用的 todo list，把 Angular 真正學起來。',
+          solution:
+            '每條規則實作同一個 PricingRule 介面；PricingEngineService 依序套用啟用的規則，把調整倍率乘到基本房價上，所以新增一條規則（例如會員折扣）只需要一個類別加一次註冊。假日資料來自 Nager.Date API，包在具備逐年快取的 HolidayService 裡，載入與錯誤狀態以 Signals 對外提供，日曆元件從不直接碰 HTTP。點任一天即可看到逐行的價格拆解；修改 Reactive Forms 設定，所有價格立即更新。',
+          techDeepDive:
+            '全面使用 Standalone Components、Signals 與新的 @if／@for 控制流程，TypeScript strict 模式。「How it works」的每張圖都是時間軸的純函式，因此播放、逐步、拖曳與變速都是順帶得到的；而且它們執行的是 PricingEngineService 與 HolidayService 的真實實例，搭配模擬的 HttpHandler：假日數量、錯誤訊息、快取命中與被忽略的過期回應，全都來自真正的程式碼。Vitest（搭配 Analog）涵蓋規則疊加與「假日剛好是週末」等邊界情境；Playwright E2E 以 page.route() 模擬 API。CI 依序執行 lint → typecheck → test → build → E2E 後才部署到 GitHub Pages。另外我也寫了互動式學習筆記《從 React 到 Angular》，把 React 的思考模型對應到 Angular。',
+          features: [
+            '可組合的規則引擎（策略模式）：週末、假日、旺季',
+            '以 Signals 為基礎的 HolidayService，含逐年快取與錯誤狀態',
+            '每日價格拆解，搭配即時生效的 Reactive Forms 設定',
+            '可拖曳的動畫版「How it works」系統設計導覽（EN／中文）',
+          ],
+        },
+        {
+          id: 'p-rag-explainer',
+          title: 'RAG 解析 — 3D 動畫流程說明',
+          description:
+            '一支三分鐘的 3D 動畫，拆解 RAG（檢索增強生成）如何運作：跟著一個問題「我們的退款期限是多久？」，從文件切分一路走到有出處的回答，並對照沒有 RAG 時 LLM 憑記憶亂猜的情況。中英雙語、完全離線可用。',
+          problem:
+            '大多數 RAG 的解釋不是方框加箭頭的架構圖，就是一堆術語：embedding、向量資料庫、top-K、餘弦相似度。利害關係人聽完點頭，卻仍期待模型「本來就知道」公司規定。落差不在模型聰不聰明，而在於看不見答案從哪裡來。',
+          solution:
+            '我把整條流程說成一個故事，只圍繞一個具體問題。開場先演示失敗情境：沒有 RAG 時，模型自信地回答「通常是 30 天」，卻沒有任何出處。接著六個章節帶著問題走完全程：準備知識（切段、前後重疊、附上出處）、向量化（文字變成語意地圖上的座標）、提問、檢索（餘弦相似度，取前 3 段並顯示分數）、增強（問題＋段落組成 prompt）、生成（有根據、附出處的回答）。最後以三道防線收尾，避免撈錯資料：混合搜尋、重新排序與引用來源。',
+          techDeepDive:
+            '3D 場景（文件堆、embedding 圓環、向量資料庫球體、使用者與 LLM 星球）編排在一條 3:12 的時間軸上，每個特寫章節以 HTML 疊層呈現，讓文字清晰且可翻譯。每個章節都沿用同一份退款政策範例，數字前後一致：300–500 字的段落並保留重疊、1,536 維的向量、0.92／0.81／0.77 的相似度分數對應 top-K = 3。每個語言各輸出一個自包含的 HTML 檔，腳本、樣式與字型全部內嵌，離線可播放，也能直接放上任何靜態主機。',
+          features: [
+            '六章敘事：準備 → 向量化 → 提問 → 檢索 → 增強 → 生成',
+            '「沒有 RAG」的幻覺 vs. 有根據、附出處的回答',
+            '語意地圖：為什麼意思相近的內容在向量空間中彼此靠近',
+            '播放／暫停／章節跳轉，EN ⇄ 中文切換並保留目前時間',
           ],
         },
         {
