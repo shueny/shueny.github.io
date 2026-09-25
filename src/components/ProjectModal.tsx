@@ -149,7 +149,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
                     {t.projectModal.theChallenge}
                   </h3>
-                  <p className="text-lg text-stone-600 leading-relaxed">
+                  <p className="text-lg text-stone-600 leading-relaxed whitespace-pre-line">
                     {project.problem}
                   </p>
                 </div>
@@ -162,7 +162,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
                     {t.projectModal.theSolution}
                   </h3>
-                  <p className="text-lg text-stone-600 leading-relaxed">
+                  <p className="text-lg text-stone-600 leading-relaxed whitespace-pre-line">
                     {project.solution}
                   </p>
                 </div>
@@ -190,7 +190,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                       </svg>
                       {t.projectModal.technicalArchitecture}
                     </h3>
-                    <p className="text-stone-700 font-mono text-sm leading-7">
+                    <p className="text-stone-700 font-mono text-sm leading-7 whitespace-pre-line">
                       {project.techDeepDive}
                     </p>
                   </div>
