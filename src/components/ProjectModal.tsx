@@ -149,7 +149,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
                     {t.projectModal.theChallenge}
                   </h3>
-                  <p className="text-lg text-stone-600 leading-relaxed">
+                  <p className="text-lg text-stone-600 leading-relaxed whitespace-pre-line">
                     {project.problem}
                   </p>
                 </div>
@@ -162,7 +162,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-1"></span>
                     {t.projectModal.theSolution}
                   </h3>
-                  <p className="text-lg text-stone-600 leading-relaxed">
+                  <p className="text-lg text-stone-600 leading-relaxed whitespace-pre-line">
                     {project.solution}
                   </p>
                 </div>
@@ -190,7 +190,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                       </svg>
                       {t.projectModal.technicalArchitecture}
                     </h3>
-                    <p className="text-stone-700 font-mono text-sm leading-7">
+                    <p className="text-stone-700 font-mono text-sm leading-7 whitespace-pre-line">
                       {project.techDeepDive}
                     </p>
                   </div>
@@ -282,6 +282,17 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                   <button className="block w-full text-center px-6 py-3 bg-white text-stone-900 border-2 border-stone-900 text-sm font-bold uppercase tracking-wider rounded hover:bg-stone-900 hover:text-white transition-all duration-300">
                     {t.projectModal.contactForDemo}
                   </button>
+                )}
+
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 block w-full text-center px-6 py-3 bg-white text-stone-900 border-2 border-stone-900 text-sm font-bold uppercase tracking-wider rounded hover:bg-stone-900 hover:text-white transition-all duration-300"
+                  >
+                    {t.projectModal.viewSource}
+                  </a>
                 )}
               </div>
             </div>

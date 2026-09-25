@@ -396,6 +396,104 @@ export const PROJECTS_DATA: Project[] = [
       'Built as an Astro static page hosting a React island (mounted client:only to read the live theme with no flash). The interactive demo is a self-contained screen state machine animated with Framer Motion, driven by a single Palette abstraction so light/dark stay in lockstep. No backend coupling — the handoff for payments, credits and the odds engine stays clean.',
   },
   {
+    id: 'p-dream-globe',
+    title: 'Dream Globe — Interactive 3D Night Earth',
+    description:
+      'An interactive 3D night-Earth globe where people pin their dreams at real places. Every country (258) and every state or province (4,596) is hoverable, clickable and searchable, offline, built on React and raw Three.js with no map SDK doing the hard parts.',
+    tags: ['React 19', 'Three.js', 'TopoJSON', 'Natural Earth', 'Vite', 'Vitest', 'Playwright'],
+    image: getAssetUrl('images/dream-globe-cover.webp'),
+    banner: getAssetUrl('images/dream-globe-cover.webp'),
+    gallery: [
+      getAssetUrl('images/dream-globe-gallery-1.webp'),
+      getAssetUrl('images/dream-globe-gallery-2.webp'),
+      getAssetUrl('images/dream-globe-gallery-3.webp'),
+    ],
+    link: 'https://shueny.github.io/dream-globe/',
+    repo: 'https://github.com/shueny/dream-globe',
+    visualDescription:
+      'Night-Earth globe with glowing dream markers and arcs; Japan selected with prefecture borders and a country panel.',
+    category: 'frontend',
+    domains: ['consumer', 'data'],
+    problem:
+      'Map SDKs make globes easy until you want something they did not plan for: custom night styling, borders that follow the sphere, a detail panel for every one of 4,596 states, and search that works without a network. I wanted the whole world explorable down to state level while staying a static site with no tile server and no API keys.',
+    solution:
+      'I built the globe directly on Three.js. Natural Earth 1:10m data is simplified at build time into a single TopoJSON topology, so country and state borders share arcs and line up exactly. Hover and click resolve through ray–sphere intersection → lat/lng → point-in-polygon, which drives highlights, fly-to framing, and a region panel with population, GDP, capital, neighbours, largest cities and the dreams pinned there. Search covers dreams, countries, states (English, local and Chinese names, ISO codes) and ~7k cities fully offline, with Open-Meteo geocoding as a fallback.',
+    features: [
+      'Every country (258) and state / province (4,596) with sphere-following borders',
+      'Ray–sphere picking → point-in-polygon hover, click and fly-to framing',
+      'Zoom-aware labels for countries, states and ~7k cities with collision avoidance',
+      'Offline search, deep links (#/JPN), guided tour and mobile bottom sheets',
+    ],
+    techDeepDive:
+      'The scene is a pure Three.js module kept apart from the React shell: React owns state and selection, while the render loop never re-renders through React. A build script (mapshaper) turns Natural Earth sources into ~3.9 MB of TopoJSON (~1.2 MB gzipped) committed to the repo, so builds never need the network. Region fills are triangulated on the sphere; labels are laid out in the DOM, filtered by zoom using Natural Earth min_label / scalerank, and kept stable while the globe rotates. Geo math, search and the 3D layer builders are covered by Vitest, Playwright runs E2E against the production build, and every push to main deploys to GitHub Pages behind lint and tests.',
+  },
+  {
+    id: 'p-rate-calendar',
+    title: 'Hotel Rate Calendar — Angular Pricing Engine',
+    description:
+      'A configurable hotel rate engine with a calendar UI, built in Angular 19 as a deliberate move from React to Angular. Weekend, holiday and peak-season rules compose through the Strategy Pattern, and an animated "How it works" page explains the system design using the real services, not mock numbers.',
+    tags: ['Angular 19', 'Signals', 'TypeScript', 'Strategy Pattern', 'RxJS', 'Vitest', 'Playwright'],
+    image: getAssetUrl('images/rate-calendar-cover.webp'),
+    banner: getAssetUrl('images/rate-calendar-cover.webp'),
+    gallery: [
+      getAssetUrl('images/rate-calendar-gallery-1.webp'),
+      getAssetUrl('images/rate-calendar-gallery-2.webp'),
+    ],
+    link: 'https://shueny.github.io/angular-rate-calendar/',
+    repo: 'https://github.com/shueny/angular-rate-calendar',
+    visualDescription:
+      'Monthly rate calendar with weekend and holiday surcharges, a per-day price breakdown, and the animated system map.',
+    category: 'frontend',
+    domains: ['enterprise'],
+    problem:
+      'Hotel room rates shift with weekends, public holidays and peak seasons, and every new business rule tends to become one more if-statement in the pricing function. I wanted a model where adding a rule never means touching the existing ones, and I wanted to learn Angular properly by solving a real domain problem rather than a tutorial todo list.',
+    solution:
+      'Each rule implements a single PricingRule interface; the PricingEngineService applies enabled rules in order and multiplies their adjustments onto the base rate, so a new rule (say, a loyalty discount) is one class plus one registration. Holidays come from the Nager.Date API behind a HolidayService with a per-year cache, with loading and error state exposed as Signals, so the calendar never touches HTTP. Click any day for a line-by-line price breakdown; change the Reactive Forms config and every price updates immediately.',
+    features: [
+      'Composable rule engine (Strategy Pattern): weekend, holiday, peak season',
+      'Signals-based HolidayService with per-year cache and error states',
+      'Per-day price breakdown and live Reactive Forms configuration',
+      'Animated, scrubbable "How it works" system-design walkthrough (EN / 中文)',
+    ],
+    techDeepDive:
+      'Standalone components, Signals and the new @if / @for control flow throughout, in TypeScript strict mode. The "How it works" figures are pure functions of a timeline, so play, step, scrub and speed come for free, and they run real instances of PricingEngineService and HolidayService fed by a simulated HttpHandler: holiday counts, error messages, cache hits and ignored stale responses all come from the actual code. Vitest (with Analog) covers rule stacking and edge cases such as a holiday on a weekend; Playwright E2E mocks the API with page.route(). CI runs lint → typecheck → test → build → E2E before deploying to GitHub Pages. Alongside it I wrote interactive learning notes, "From React to Angular", mapping React mental models onto Angular.',
+  },
+  {
+    id: 'p-rag-explainer',
+    title: 'How RAG Works — 3D Animated Explainer',
+    description:
+      "An animated 3D explainer of Retrieval-Augmented Generation (RAG), told through Pilotfit, my AI job-search platform. One job posting travels through all six steps: the user's experiences are split, embedded and retrieved, and the analysis cites the experience it used, compared against an LLM that has never seen the user's background and can only guess. Bilingual (EN / 中文) and fully offline.",
+    tags: ['RAG', 'LLM', 'Embeddings', 'Vector Search', 'Reranking', '3D Animation', 'pgvector', 'i18n'],
+    image: getAssetUrl('images/rag-explainer-cover.webp'),
+    banner: getAssetUrl('images/rag-explainer-cover.webp'),
+    gallery: [
+      getAssetUrl('images/rag-explainer-gallery-1.webp'),
+      getAssetUrl('images/rag-explainer-gallery-2.webp'),
+      getAssetUrl('images/rag-explainer-gallery-3.webp'),
+    ],
+    link: 'https://shueny.github.io/rag-explainer/en.html',
+    repo: 'https://github.com/shueny/rag-explainer',
+    visualDescription:
+      'Warm 3D scene tracing a Pilotfit job posting: experience stack, embedding ring, vector-database sphere and the LLM planet, with close-up chapter overlays.',
+    category: 'design',
+    domains: ['ai'],
+    problem:
+      "What RAG is. A large language model answers from what it memorised during training. That knowledge is frozen at a cut-off date and has never seen private data, such as your company's documents or one job seeker's experience. So when it is asked about them, it does not say \"I don't know\". It produces a fluent, confident guess.\n\nRetrieval-Augmented Generation fixes this without retraining the model. At question time the system first retrieves the most relevant passages from your own data, then hands them to the model together with the question. The model answers from that evidence and cites where it came from.\n\nWhy an explainer. The idea is simple, but the vocabulary is not: embeddings, vector databases, top-K, cosine similarity. Most explanations are a box-and-arrow diagram or a wall of jargon, and people still expect the model to \"just know\". So this explainer uses a real product as its example: Pilotfit, where RAG matches a job posting against each user's own experience.",
+    solution:
+      "The explainer follows one job posting through Pilotfit: \"Which of my experiences fits this job best?\"\n\nIt opens with the failure case. Without RAG, the model has never seen the user's experience, yet answers \"You're a great fit!\". Then the same posting travels through six chapters:\n1. Prepare: the résumé, projects and notes are split into one entry per experience, each auto-tagged with its technologies and kept with its source.\n2. Embed: an embedding model turns each experience into a vector, its coordinates on a semantic map.\n3. Ask: the job posting is embedded with the same model.\n4. Retrieve: the job vector is compared with every experience; the three closest win, with their similarity scores.\n5. Augment: the job and those three experiences become one prompt.\n6. Generate: the analysis names the best match, the shared React component library, and cites where it came from.\n\nIt closes with the safeguards against wrong picks, including the one Pilotfit actually uses: hybrid retrieval that weighs exact tech tags alongside vector similarity.",
+    features: [
+      "Told through a real product: Pilotfit matching a job posting to a user's experiences",
+      'What RAG is, and why an LLM guesses without it, shown before any jargon',
+      'When RAG is worth it, and when it is overkill',
+      'Six-chapter pipeline: Prepare → Embed → Ask → Retrieve → Augment → Generate',
+      'Semantic map and cosine-similarity ranking with a visible top-K',
+      "Pilotfit's hybrid retrieval: 60% vector similarity + 40% tech-tag matching",
+      'Play / pause / chapter skip, with an EN ⇄ 中文 toggle that keeps the timeline',
+    ],
+    techDeepDive:
+      "RAG runs in two phases, shown here with Pilotfit's real setup.\n\nIndexing (whenever an experience is added or edited): extract plain text from the résumé and notes; store one entry per experience; auto-extract tech tags from a list of about 200 keywords; run each entry through a pre-trained embedding model (Gemini, 1,536 dimensions), in which similar meaning lands close together; store the vector, the original text, the tags and the source together in PostgreSQL with pgvector and an HNSW index.\n\nQuery time (every job analysis): embed the job posting with the same model; rank experiences by cosine similarity, where 1 means the same meaning and 0 means unrelated (HNSW is an approximate-nearest-neighbour index, so not every row is compared); combine that with exact tech-tag overlap; keep the top K (the animation shows 3, Pilotfit keeps the top 5 above a threshold); build an augmented prompt that tells the model to work only from those experiences; generate. Retrieval picks the relevant experiences, not the analysis. The LLM still writes it, but now from the user's real experience.\n\nWhere it goes wrong, and the fixes: vague experience notes give the embedding little to work with, and vectors alone can blur exact names (React and Vue sit close together). Hybrid search adds keyword matching; in Pilotfit the score is 60% embedding similarity and 40% tech-tag overlap. Reranking retrieves a wider set and lets a second model re-order it. Citations show which experience an analysis drew on, so users can check it.\n\nWhen to use it, and when not: RAG earns its complexity when the answer lives in private documents the model has never seen, when that information changes often, when answers need citations people can check, or when the material is too large to fit in one prompt. It is overkill for general knowledge the model already has, for a source of a few pages that can simply go into the prompt, for structured data (orders, stock), where a SQL query or an API call is more precise, and for rewriting, translating or changing tone, which involve no retrieval at all.\n\nHow the explainer is built: a single 3:12 timeline drives a 3D scene (document stack, embedding ring, vector-database sphere, the user and the LLM planet), with HTML overlays for each close-up chapter so the text stays sharp and translatable. Every chapter reuses the same Pilotfit example, so the numbers stay consistent end to end. Each language ships as one self-contained HTML file with scripts, styles and fonts inlined.",
+  },
+  {
     id: 'p-tomato',
     title: 'Daily Tomato Todo',
     description:
