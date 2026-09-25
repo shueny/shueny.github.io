@@ -409,6 +409,7 @@ export const PROJECTS_DATA: Project[] = [
       getAssetUrl('images/dream-globe-gallery-3.webp'),
     ],
     link: 'https://shueny.github.io/dream-globe/',
+    repo: 'https://github.com/shueny/dream-globe',
     visualDescription:
       'Night-Earth globe with glowing dream markers and arcs; Japan selected with prefecture borders and a country panel.',
     category: 'frontend',
@@ -439,6 +440,7 @@ export const PROJECTS_DATA: Project[] = [
       getAssetUrl('images/rate-calendar-gallery-2.webp'),
     ],
     link: 'https://shueny.github.io/angular-rate-calendar/',
+    repo: 'https://github.com/shueny/angular-rate-calendar',
     visualDescription:
       'Monthly rate calendar with weekend and holiday surcharges, a per-day price breakdown, and the animated system map.',
     category: 'frontend',
@@ -470,6 +472,7 @@ export const PROJECTS_DATA: Project[] = [
       getAssetUrl('images/rag-explainer-gallery-3.webp'),
     ],
     link: 'https://shueny.github.io/rag-explainer/en.html',
+    repo: 'https://github.com/shueny/rag-explainer',
     visualDescription:
       'Warm 3D scene: document stack, embedding ring, vector-database sphere and the LLM planet, with close-up chapter overlays.',
     category: 'design',

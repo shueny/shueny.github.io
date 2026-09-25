@@ -283,6 +283,17 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
                     {t.projectModal.contactForDemo}
                   </button>
                 )}
+
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 block w-full text-center px-6 py-3 bg-white text-stone-900 border-2 border-stone-900 text-sm font-bold uppercase tracking-wider rounded hover:bg-stone-900 hover:text-white transition-all duration-300"
+                  >
+                    {t.projectModal.viewSource}
+                  </a>
+                )}
               </div>
             </div>
           </div>

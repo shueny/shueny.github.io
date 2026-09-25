@@ -25,6 +25,7 @@ export interface Project {
   description: string;
   tags: string[];
   link?: string;
+  repo?: string; // Public source repository (e.g. GitHub)
   image: string;
   banner?: string; // Banner image for project card
   gallery?: string[]; // Array of screenshot URLs

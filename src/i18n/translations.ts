@@ -158,6 +158,7 @@ export interface Translations {
     liveDemoNote: string;
     contactForDemo: string;
     launchLiveApp: string;
+    viewSource: string;
     interestedInStack: string;
     checkOutLiveApp: string;
   };
@@ -792,6 +793,7 @@ export const translations: Record<Language, Translations> = {
       liveDemoNote: 'Live demo available upon request due to API costs.',
       contactForDemo: 'Contact for Demo',
       launchLiveApp: 'Launch Live App',
+      viewSource: 'View Source on GitHub',
       interestedInStack: 'Interested in this stack?',
       checkOutLiveApp:
         'Check out the live application to see the performance optimizations in action.',
@@ -1384,6 +1386,7 @@ export const translations: Record<Language, Translations> = {
       liveDemoNote: 'Live-Demo auf Anfrage verfügbar aufgrund von API-Kosten.',
       contactForDemo: 'Demo anfragen',
       launchLiveApp: 'Live-App öffnen',
+      viewSource: 'Quellcode auf GitHub',
       interestedInStack: 'Interessiert an diesem Stack?',
       checkOutLiveApp:
         'Schauen Sie sich die Live-Anwendung an, um die Performance-Optimierungen in Aktion zu sehen.',
@@ -1961,6 +1964,7 @@ export const translations: Record<Language, Translations> = {
       liveDemoNote: '由於 API 成本，可應要求提供即時演示。',
       contactForDemo: '聯絡以取得演示',
       launchLiveApp: '開啟即時應用',
+      viewSource: '在 GitHub 查看原始碼',
       interestedInStack: '對這個技術棧感興趣？',
       checkOutLiveApp: '查看即時應用程式，親眼見證效能優化的效果。',
     },
