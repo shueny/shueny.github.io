@@ -26,6 +26,7 @@ export interface Project {
   tags: string[];
   link?: string;
   repo?: string; // Public source repository (e.g. GitHub)
+  isNew?: boolean; // Shows a "New" label on the card
   image: string;
   banner?: string; // Banner image for project card
   gallery?: string[]; // Array of screenshot URLs

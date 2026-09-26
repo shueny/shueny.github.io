@@ -410,6 +410,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     link: 'https://shueny.github.io/dream-globe/',
     repo: 'https://github.com/shueny/dream-globe',
+    isNew: true,
     visualDescription:
       'Night-Earth globe with glowing dream markers and arcs; Japan selected with prefecture borders and a country panel.',
     category: 'frontend',
@@ -441,6 +442,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     link: 'https://shueny.github.io/angular-rate-calendar/',
     repo: 'https://github.com/shueny/angular-rate-calendar',
+    isNew: true,
     visualDescription:
       'Monthly rate calendar with weekend and holiday surcharges, a per-day price breakdown, and the animated system map.',
     category: 'frontend',
@@ -473,6 +475,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     link: 'https://shueny.github.io/rag-explainer/en.html',
     repo: 'https://github.com/shueny/rag-explainer',
+    isNew: true,
     visualDescription:
       'Warm 3D scene tracing a Pilotfit job posting: experience stack, embedding ring, vector-database sphere and the LLM planet, with close-up chapter overlays.',
     category: 'design',
