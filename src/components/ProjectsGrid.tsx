@@ -247,10 +247,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               loading="lazy"
               decoding="async"
             />
+            {project.isNew && (
+              <div className="absolute top-4 right-4 z-20">
+                <span className="px-3 py-1 bg-accent text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg">
+                  {t.projects.newBadge}
+                </span>
+              </div>
+            )}
             {/* Number Badge Overlay with enhanced hover effect */}
             <div className="absolute top-4 left-4 z-20 transition-transform duration-500 group-hover:scale-110">
               <span className="flex items-center justify-center w-8 h-8 bg-white/95 backdrop-blur-md text-primary text-xs font-bold font-serif rounded-full shadow-lg group-hover:shadow-xl transition-shadow duration-500">
-                0{index + 1}
+                {String(index + 1).padStart(2, '0')}
               </span>
             </div>
           </>
@@ -279,7 +286,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {/* Number Badge */}
             <div className="absolute top-4 left-4">
               <span className="flex items-center justify-center w-8 h-8 bg-white text-primary text-xs font-bold font-serif rounded-full shadow-md">
-                0{index + 1}
+                {String(index + 1).padStart(2, '0')}
               </span>
             </div>
           </>

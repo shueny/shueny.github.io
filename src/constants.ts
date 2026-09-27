@@ -410,6 +410,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     link: 'https://shueny.github.io/dream-globe/',
     repo: 'https://github.com/shueny/dream-globe',
+    isNew: true,
     visualDescription:
       'Night-Earth globe with glowing dream markers and arcs; Japan selected with prefecture borders and a country panel.',
     category: 'frontend',
@@ -441,6 +442,7 @@ export const PROJECTS_DATA: Project[] = [
     ],
     link: 'https://shueny.github.io/angular-rate-calendar/',
     repo: 'https://github.com/shueny/angular-rate-calendar',
+    isNew: true,
     visualDescription:
       'Monthly rate calendar with weekend and holiday surcharges, a per-day price breakdown, and the animated system map.',
     category: 'frontend',
@@ -460,10 +462,10 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'p-rag-explainer',
-    title: 'How RAG Works — 3D Animated Explainer',
+    title: 'RAG × pgvector — Animated Explainer',
     description:
-      "An animated 3D explainer of Retrieval-Augmented Generation (RAG), told through Pilotfit, my AI job-search platform. One job posting travels through all six steps: the user's experiences are split, embedded and retrieved, and the analysis cites the experience it used, compared against an LLM that has never seen the user's background and can only guess. Bilingual (EN / 中文) and fully offline.",
-    tags: ['RAG', 'LLM', 'Embeddings', 'Vector Search', 'Reranking', '3D Animation', 'pgvector', 'i18n'],
+      'A 6½-minute animated explainer of Retrieval-Augmented Generation with PostgreSQL + pgvector as the vector store. One support question, "I bought it 10 days ago. Can I still get a refund?", travels from chunked company documents to a cited answer, with two chapters on what pgvector actually stores and why it helps. Bilingual (EN / 中文), 10 chapters, runs offline.',
+    tags: ['RAG', 'pgvector', 'PostgreSQL', 'Embeddings', 'Vector Search', 'LLM', 'Claude Design', 'i18n'],
     image: getAssetUrl('images/rag-explainer-cover.webp'),
     banner: getAssetUrl('images/rag-explainer-cover.webp'),
     gallery: [
@@ -473,25 +475,26 @@ export const PROJECTS_DATA: Project[] = [
     ],
     link: 'https://shueny.github.io/rag-explainer/en.html',
     repo: 'https://github.com/shueny/rag-explainer',
+    isNew: true,
     visualDescription:
-      'Warm 3D scene tracing a Pilotfit job posting: experience stack, embedding ring, vector-database sphere and the LLM planet, with close-up chapter overlays.',
+      'Warm 2.5D scene: support chat, company documents, an embedding model, PostgreSQL + pgvector tables and the AI model, ending in a prompt and a cited answer.',
     category: 'design',
     domains: ['ai'],
     problem:
-      "What RAG is. A large language model answers from what it memorised during training. That knowledge is frozen at a cut-off date and has never seen private data, such as your company's documents or one job seeker's experience. So when it is asked about them, it does not say \"I don't know\". It produces a fluent, confident guess.\n\nRetrieval-Augmented Generation fixes this without retraining the model. At question time the system first retrieves the most relevant passages from your own data, then hands them to the model together with the question. The model answers from that evidence and cites where it came from.\n\nWhy an explainer. The idea is simple, but the vocabulary is not: embeddings, vector databases, top-K, cosine similarity. Most explanations are a box-and-arrow diagram or a wall of jargon, and people still expect the model to \"just know\". So this explainer uses a real product as its example: Pilotfit, where RAG matches a job posting against each user's own experience.",
+      "What RAG is. A large language model answers from what it memorised during training. It has never seen your company's internal documents, so when it is asked about your refund policy it does not say \"I don't know\". It gives a fluent, generic answer that may be wrong for your business.\n\nRetrieval-Augmented Generation fixes this without retraining the model. At question time the system first looks up the relevant passages in your own documents, then gives them to the model together with the question, so the answer is grounded in a source that can be checked. Grounded, not guaranteed: retrieval can miss, and documents can be out of date.\n\nWhy an explainer. The idea is simple, but the parts are not: chunks, embeddings, vector search, a database, an LLM. Most explanations blur which component does what. This one keeps three roles strictly apart: the embedding model makes vectors, PostgreSQL with pgvector stores and searches them, and the LLM writes the answer.",
     solution:
-      "The explainer follows one job posting through Pilotfit: \"Which of my experiences fits this job best?\"\n\nIt opens with the failure case. Without RAG, the model has never seen the user's experience, yet answers \"You're a great fit!\". Then the same posting travels through six chapters:\n1. Prepare: the résumé, projects and notes are split into one entry per experience, each auto-tagged with its technologies and kept with its source.\n2. Embed: an embedding model turns each experience into a vector, its coordinates on a semantic map.\n3. Ask: the job posting is embedded with the same model.\n4. Retrieve: the job vector is compared with every experience; the three closest win, with their similarity scores.\n5. Augment: the job and those three experiences become one prompt.\n6. Generate: the analysis names the best match, the shared React component library, and cites where it came from.\n\nIt closes with the safeguards against wrong picks, including the one Pilotfit actually uses: hybrid retrieval that weighs exact tech tags alongside vector similarity.",
+      'The explainer follows one customer-support question through ten chapters:\n1. Why look things up first: the same question without and with the refund policy.\n2. Chunking: the policy is split by section; every chunk keeps its source and version, with a little overlap.\n3. Why search is hard: "10 days" and "within 14 days" share a topic but not the words, while "ships within 3 days" shares a number but not the topic.\n4. Embeddings: text becomes a vector; similar meaning lands close together (values shown are illustrative).\n5. PostgreSQL and pgvector: what one chunk record stores (ID, text, source, section and version, vector).\n6. One query: question → vector → distance ranking → Top K = 3.\n7. How pgvector helps: sources through table relations, filters by product and version, and no separate vector database to keep in sync.\n8. Generating the answer: a prompt built from the retrieved chunks, and an answer that cites Refund Policy v2 §1.\n9. Recap.\n10. What could go wrong: no answer in the documents, outdated versions, and chunks that are similar but do not answer the question.',
     features: [
-      "Told through a real product: Pilotfit matching a job posting to a user's experiences",
-      'What RAG is, and why an LLM guesses without it, shown before any jargon',
+      '10 chapters, one question: from chunking to a cited answer',
+      'Two chapters on PostgreSQL + pgvector: what a chunk record stores and why it helps',
+      'Three roles kept apart: embedding model, database, LLM',
+      'Honest about limits: illustrative values, and a chapter on what can go wrong',
       'When RAG is worth it, and when it is overkill',
-      'Six-chapter pipeline: Prepare → Embed → Ask → Retrieve → Augment → Generate',
-      'Semantic map and cosine-similarity ranking with a visible top-K',
-      "Pilotfit's hybrid retrieval: 60% vector similarity + 40% tech-tag matching",
-      'Play / pause / chapter skip, with an EN ⇄ 中文 toggle that keeps the timeline',
+      'Real-world case: how Pilotfit uses pgvector for hybrid retrieval',
+      'Speed control, chapter menu, EN ⇄ 中文 switch that keeps the playback position',
     ],
     techDeepDive:
-      "RAG runs in two phases, shown here with Pilotfit's real setup.\n\nIndexing (whenever an experience is added or edited): extract plain text from the résumé and notes; store one entry per experience; auto-extract tech tags from a list of about 200 keywords; run each entry through a pre-trained embedding model (Gemini, 1,536 dimensions), in which similar meaning lands close together; store the vector, the original text, the tags and the source together in PostgreSQL with pgvector and an HNSW index.\n\nQuery time (every job analysis): embed the job posting with the same model; rank experiences by cosine similarity, where 1 means the same meaning and 0 means unrelated (HNSW is an approximate-nearest-neighbour index, so not every row is compared); combine that with exact tech-tag overlap; keep the top K (the animation shows 3, Pilotfit keeps the top 5 above a threshold); build an augmented prompt that tells the model to work only from those experiences; generate. Retrieval picks the relevant experiences, not the analysis. The LLM still writes it, but now from the user's real experience.\n\nWhere it goes wrong, and the fixes: vague experience notes give the embedding little to work with, and vectors alone can blur exact names (React and Vue sit close together). Hybrid search adds keyword matching; in Pilotfit the score is 60% embedding similarity and 40% tech-tag overlap. Reranking retrieves a wider set and lets a second model re-order it. Citations show which experience an analysis drew on, so users can check it.\n\nWhen to use it, and when not: RAG earns its complexity when the answer lives in private documents the model has never seen, when that information changes often, when answers need citations people can check, or when the material is too large to fit in one prompt. It is overkill for general knowledge the model already has, for a source of a few pages that can simply go into the prompt, for structured data (orders, stock), where a SQL query or an API call is more precise, and for rewriting, translating or changing tone, which involve no retrieval at all.\n\nHow the explainer is built: a single 3:12 timeline drives a 3D scene (document stack, embedding ring, vector-database sphere, the user and the LLM planet), with HTML overlays for each close-up chapter so the text stays sharp and translatable. Every chapter reuses the same Pilotfit example, so the numbers stay consistent end to end. Each language ships as one self-contained HTML file with scripts, styles and fonts inlined.",
+      "Why pgvector. pgvector is a PostgreSQL extension that adds a vector column type and distance operators. Its main advantage is not speed but placement: vectors live in the same database as the text, the document metadata and the rest of the application data. One SQL query can therefore rank by vector distance, filter by product, version or user at the same time, and join back to the source document, with no second system to keep in sync. It is one option, not a requirement: at very large scale a dedicated vector database can make sense.\n\nIn practice: Pilotfit. My AI job-search platform Pilotfit uses exactly this setup to match a job posting against a user's own experiences. Each experience is embedded with Gemini (1,536 dimensions) whenever it is created or edited, and stored in PostgreSQL with pgvector and an HNSW index. At query time a single SQL statement scores every experience of that user as 60% embedding similarity (1 − cosine distance) plus 40% exact tech-tag overlap, keeps rows above a threshold, and returns the top 5 to the LLM. If retrieval fails, the analysis falls back to all of the user's experiences.\n\nWhen to use it, and when not: RAG earns its complexity when the answer lives in private documents the model has never seen, when that information changes often, when answers need citations people can check, or when the material is too large to fit in one prompt. It is overkill for general knowledge the model already has, for a source of a few pages that can simply go into the prompt, for structured data (orders, stock), where a SQL query or an API call is more precise, and for rewriting, translating or changing tone, which involve no retrieval at all.\n\nHow the explainer is built: designed in Claude Design as one continuous 6:36 timeline with a 2.5D scene, playback speed control, a chapter menu and an EN ⇄ 中文 switch that keeps the playback position. Each language is one self-contained HTML file with scripts, styles and fonts inlined.",
   },
   {
     id: 'p-tomato',
