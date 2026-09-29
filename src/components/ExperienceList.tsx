@@ -106,6 +106,10 @@ const LABELS: Record<
   },
 };
 
+// Short, mirrored gradient so every screenful of the line shows the full
+// rose → orange → amber transition instead of one flat colour.
+const GRADIENT_SPAN = 720;
+
 const CURRENT_PATTERN = /present|heute|至今/i;
 
 type Point = { x: number; y: number };
@@ -285,14 +289,15 @@ const ExperienceList: React.FC = () => {
               <linearGradient
                 id="exp-line"
                 gradientUnits="userSpaceOnUse"
+                spreadMethod="reflect"
                 x1="0"
                 y1="0"
                 x2="0"
-                y2={size.h || 1}
+                y2={GRADIENT_SPAN}
               >
-                <stop offset="0%" stopColor="#ea580c" />
-                <stop offset="55%" stopColor="#f97316" />
-                <stop offset="100%" stopColor="#f59e0b" />
+                <stop offset="0%" stopColor="#e11d48" />
+                <stop offset="50%" stopColor="#f97316" />
+                <stop offset="100%" stopColor="#fbbf24" />
               </linearGradient>
             </defs>
             <path
