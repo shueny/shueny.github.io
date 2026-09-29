@@ -168,8 +168,19 @@ const ExperienceList: React.FC = () => {
     const glow = glowRef.current;
     if (!track || !solid || !glow || totalLength.current === 0) return;
 
-    const targetY =
+    // Near the bottom of the page there is no scroll left to carry the
+    // reading position past the last role, so ease it to the end of the path.
+    const readingY =
       window.innerHeight * 0.55 - track.getBoundingClientRect().top;
+    const remaining =
+      document.documentElement.scrollHeight -
+      window.innerHeight -
+      window.scrollY;
+    const easeZone = window.innerHeight * 0.6;
+    const ease = Math.min(1, Math.max(0, 1 - remaining / easeZone));
+    const endY = track.offsetHeight + 140;
+    const targetY =
+      readingY < endY ? readingY + (endY - readingY) * ease : readingY;
     const total = totalLength.current;
 
     let revealed = 0;
