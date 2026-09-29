@@ -29,10 +29,14 @@ import {
 import { SectionId } from '../types';
 import { useLanguage, type Language } from '../contexts/LanguageContext';
 
-// Language-neutral presentation data, keyed by experience id.
+// Language-neutral presentation data, keyed by experience id. `url` links the
+// timeline node and the organisation name; `logo` is a file in /public/logos
+// that replaces the node icon (the icon stays as the fallback).
+type StageMeta = { icon: LucideIcon; url?: string; logo?: string };
+
 const STAGE_META: Record<
   string,
-  { icon: LucideIcon; tags: string[]; stack: string[] }
+  StageMeta & { tags: string[]; stack: string[] }
 > = {
   exp0: {
     icon: Sparkles,
@@ -41,6 +45,7 @@ const STAGE_META: Record<
   },
   exp1: {
     icon: ShieldCheck,
+    url: 'https://vicone.com/',
     tags: ['Micro-frontends', 'Cybersecurity'],
     stack: ['React', 'Nx', 'Next.js', 'Cypress'],
   },
@@ -51,11 +56,13 @@ const STAGE_META: Record<
   },
   exp3: {
     icon: ShoppingBag,
+    url: 'https://www.citiesocial.com/',
     tags: ['E-commerce', 'Shopify'],
     stack: ['Shopify', 'Liquid', 'GA / GTM'],
   },
   exp4: {
     icon: Store,
+    url: 'https://www.momoshop.com.tw/',
     tags: ['E-commerce', 'SEO'],
     stack: ['JavaScript', 'GA', 'SEO'],
   },
@@ -68,9 +75,9 @@ const STAGE_META: Record<
 
 const FALLBACK_META = { icon: Sparkles, tags: [], stack: [] };
 
-const EDU_ICONS: Record<string, LucideIcon> = {
-  edu0: GraduationCap,
-  edu1: BookOpen,
+const EDU_META: Record<string, StageMeta> = {
+  edu0: { icon: GraduationCap, url: 'https://www.nutn.edu.tw/' },
+  edu1: { icon: BookOpen, url: 'https://www.usc.edu.tw/' },
 };
 
 type Stage = {
@@ -81,6 +88,8 @@ type Stage = {
   description: string;
   points: string[];
   icon: LucideIcon;
+  orgUrl?: string;
+  logo?: string;
   tags: string[];
   crumb: string;
   countLabel: string;
@@ -210,6 +219,8 @@ const ExperienceList: React.FC = () => {
         description: exp.description,
         points: exp.achievements,
         icon: meta.icon,
+        orgUrl: meta.url,
+        logo: meta.logo,
         tags: meta.tags,
         crumb: t.nav.experience,
         countLabel: labels.highlights,
@@ -224,12 +235,14 @@ const ExperienceList: React.FC = () => {
     const { education } = t.experience;
     const edu: Stage[] = education.items.map((item) => ({
       id: item.id,
+      orgUrl: EDU_META[item.id]?.url,
+      logo: EDU_META[item.id]?.logo,
       title: item.degree,
       org: item.school,
       period: item.period,
       description: item.description,
       points: item.focus,
-      icon: EDU_ICONS[item.id] ?? GraduationCap,
+      icon: EDU_META[item.id]?.icon ?? GraduationCap,
       tags: [education.label, ...item.areas.slice(0, 1)],
       crumb: education.label,
       countLabel: labels.focus,
@@ -250,7 +263,7 @@ const ExperienceList: React.FC = () => {
 
   const trackRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const nodeRefs = useRef<(HTMLElement | null)[]>([]);
   const dottedRef = useRef<SVGPathElement>(null);
   const solidRef = useRef<SVGPathElement>(null);
   const glowRef = useRef<SVGPathElement>(null);
@@ -262,6 +275,12 @@ const ExperienceList: React.FC = () => {
   // Orange at every node, fading to pale yellow in each sweep between roles.
   const [stops, setStops] = useState<{ offset: number; color: string }[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [brokenLogos, setBrokenLogos] = useState<Set<string>>(new Set());
+  const markLogoBroken = useCallback(
+    (id: string) =>
+      setBrokenLogos((prev) => (prev.has(id) ? prev : new Set(prev).add(id))),
+    []
+  );
 
   // Reveal the solid line up to the reading position (55% down the viewport).
   const updateProgress = useCallback(() => {
@@ -450,6 +469,7 @@ const ExperienceList: React.FC = () => {
           <div className="space-y-28 lg:space-y-56">
             {stages.map((exp, index) => {
               const Icon = exp.icon;
+              const showLogo = Boolean(exp.logo) && !brokenLogos.has(exp.id);
               const textLeft = index % 2 === 0;
               const reached = index <= activeIndex;
               const isCurrent = CURRENT_PATTERN.test(exp.period);
@@ -476,9 +496,20 @@ const ExperienceList: React.FC = () => {
                       {exp.title}
                     </h3>
                     <p className="mt-3 text-base text-stone-500">
-                      <span className="font-serif italic text-stone-700">
-                        {exp.org}
-                      </span>
+                      {exp.orgUrl ? (
+                        <a
+                          href={exp.orgUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-serif italic text-stone-700 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-orange-600 hover:decoration-orange-400"
+                        >
+                          {exp.org}
+                        </a>
+                      ) : (
+                        <span className="font-serif italic text-stone-700">
+                          {exp.org}
+                        </span>
+                      )}
                       <span className="mx-2 text-stone-300">·</span>
                       <span className="font-mono text-sm">{exp.period}</span>
                     </p>
@@ -511,16 +542,43 @@ const ExperienceList: React.FC = () => {
 
                   {/* Node */}
                   <div className="absolute left-0 top-0 lg:static lg:order-2 lg:col-span-1 lg:flex lg:justify-center">
-                    <div
-                      ref={(el) => (nodeRefs.current[index] = el)}
-                      className={`relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-500 ${
-                        reached
-                          ? 'bg-white text-orange-600 ring-2 ring-orange-500 shadow-[0_0_0_7px_rgba(249,115,22,0.14),0_0_22px_rgba(249,115,22,0.45)]'
-                          : 'bg-white text-stone-400 ring-2 ring-stone-300'
-                      }`}
-                    >
-                      <Icon className="h-4 w-4" strokeWidth={2.25} />
-                    </div>
+                    {React.createElement(
+                      exp.orgUrl ? 'a' : 'div',
+                      {
+                        ref: (el: HTMLElement | null) =>
+                          (nodeRefs.current[index] = el),
+                        ...(exp.orgUrl && {
+                          href: exp.orgUrl,
+                          target: '_blank',
+                          rel: 'noopener noreferrer',
+                          'aria-label': exp.org,
+                          title: exp.org,
+                        }),
+                        className: `relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white transition-all duration-500 ${
+                          exp.orgUrl ? 'hover:scale-110' : ''
+                        } ${
+                          reached
+                            ? 'text-orange-600 ring-2 ring-orange-500 shadow-[0_0_0_7px_rgba(249,115,22,0.14),0_0_22px_rgba(249,115,22,0.45)]'
+                            : 'text-stone-400 ring-2 ring-stone-300'
+                        }`,
+                      },
+                      showLogo ? (
+                        <img
+                          src={exp.logo}
+                          alt=""
+                          className="h-full w-full object-contain p-1.5"
+                          ref={(img) => {
+                            // A logo can fail before hydration attaches onError.
+                            if (img?.complete && img.naturalWidth === 0) {
+                              markLogoBroken(exp.id);
+                            }
+                          }}
+                          onError={() => markLogoBroken(exp.id)}
+                        />
+                      ) : (
+                        <Icon className="h-4 w-4" strokeWidth={2.25} />
+                      )
+                    )}
                   </div>
 
                   {/* Window card */}
@@ -600,6 +658,13 @@ const ExperienceList: React.FC = () => {
                               {exp.crumb} › {exp.org}
                             </p>
                             <div className="mb-4 flex flex-wrap items-center gap-2">
+                              {showLogo && (
+                                <img
+                                  src={exp.logo}
+                                  alt=""
+                                  className="h-5 w-5 rounded object-contain"
+                                />
+                              )}
                               <span className="text-sm font-semibold text-stone-800">
                                 {exp.org}
                               </span>
