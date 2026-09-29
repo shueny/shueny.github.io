@@ -126,10 +126,7 @@ const buildPath = (nodes: Point[], gapYs: number[], tail: number) => {
       d += ` L ${b.x} ${b.y}`;
       continue;
     }
-    const h = Math.max(
-      0,
-      Math.min(150, midY - a.y - 24, b.y - midY - 24)
-    );
+    const h = Math.max(0, Math.min(150, midY - a.y - 24, b.y - midY - 24));
     d += ` L ${a.x} ${midY - h}`;
     d += ` C ${a.x} ${midY} ${b.x} ${midY} ${b.x} ${midY + h}`;
     d += ` L ${b.x} ${b.y}`;
@@ -171,7 +168,8 @@ const ExperienceList: React.FC = () => {
     const glow = glowRef.current;
     if (!track || !solid || !glow || totalLength.current === 0) return;
 
-    const targetY = window.innerHeight * 0.55 - track.getBoundingClientRect().top;
+    const targetY =
+      window.innerHeight * 0.55 - track.getBoundingClientRect().top;
     const total = totalLength.current;
 
     let revealed = 0;
@@ -410,7 +408,9 @@ const ExperienceList: React.FC = () => {
                   >
                     <div
                       className={`rounded-[22px] border border-white/80 bg-white/50 p-2 shadow-[0_30px_60px_-30px_rgba(28,25,23,0.25)] backdrop-blur-sm transition-all duration-700 ${
-                        reached ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-80'
+                        reached
+                          ? 'translate-y-0 opacity-100'
+                          : 'translate-y-3 opacity-80'
                       }`}
                     >
                       <div className="overflow-hidden rounded-2xl border border-stone-200/80 bg-white">
@@ -446,10 +446,15 @@ const ExperienceList: React.FC = () => {
                                     {other.company}
                                   </div>
                                 ) : (
-                                  <div key={other.id} className="flex items-center justify-between">
+                                  <div
+                                    key={other.id}
+                                    className="flex items-center justify-between"
+                                  >
                                     <span
                                       className="h-1.5 rounded-full bg-stone-100"
-                                      style={{ width: `${55 + ((i * 17) % 35)}%` }}
+                                      style={{
+                                        width: `${55 + ((i * 17) % 35)}%`,
+                                      }}
                                     ></span>
                                     <span className="h-1 w-1 rounded-full bg-stone-200"></span>
                                   </div>
@@ -488,8 +493,16 @@ const ExperienceList: React.FC = () => {
                             {/* Stat cells */}
                             <div className="mb-3 grid grid-cols-3 gap-2">
                               {[
-                                { icon: LogIn, label: labels.from, value: from },
-                                { icon: LogOut, label: labels.to, value: to || '—' },
+                                {
+                                  icon: LogIn,
+                                  label: labels.from,
+                                  value: from,
+                                },
+                                {
+                                  icon: LogOut,
+                                  label: labels.to,
+                                  value: to || '—',
+                                },
                                 {
                                   icon: ListChecks,
                                   label: labels.highlights,
@@ -523,10 +536,21 @@ const ExperienceList: React.FC = () => {
                               </p>
                               <dl className="divide-y divide-stone-100 text-[10px]">
                                 {[
-                                  { icon: Building2, label: labels.company, value: exp.company },
-                                  { icon: BadgeCheck, label: labels.role, value: exp.role },
+                                  {
+                                    icon: Building2,
+                                    label: labels.company,
+                                    value: exp.company,
+                                  },
+                                  {
+                                    icon: BadgeCheck,
+                                    label: labels.role,
+                                    value: exp.role,
+                                  },
                                 ].map((row) => (
-                                  <div key={row.label} className="grid grid-cols-[5.5rem_1fr] items-center py-1.5">
+                                  <div
+                                    key={row.label}
+                                    className="grid grid-cols-[5.5rem_1fr] items-center py-1.5"
+                                  >
                                     <dt className="flex items-center gap-1.5 text-stone-400">
                                       <row.icon className="h-3 w-3" />
                                       {row.label}
