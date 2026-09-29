@@ -106,9 +106,8 @@ const LABELS: Record<
   },
 };
 
-// Short, mirrored gradient so every screenful of the line shows the full
-// rose → orange → amber transition instead of one flat colour.
-const GRADIENT_SPAN = 720;
+const LINE_ORANGE = '#ea580c';
+const LINE_YELLOW = '#fde68a';
 
 const CURRENT_PATTERN = /present|heute|至今/i;
 
@@ -161,6 +160,8 @@ const ExperienceList: React.FC = () => {
   const frame = useRef(0);
 
   const [size, setSize] = useState({ w: 0, h: 0 });
+  // Orange at every node, fading to pale yellow in each sweep between roles.
+  const [stops, setStops] = useState<{ offset: number; color: string }[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
 
   // Reveal the solid line up to the reading position (55% down the viewport).
@@ -228,7 +229,14 @@ const ExperienceList: React.FC = () => {
     );
     totalLength.current = solidRef.current?.getTotalLength() ?? 0;
     nodeYs.current = nodes.map((n) => n.y);
-    setSize({ w: trackBox.width, h: track.offsetHeight + 140 });
+    const h = track.offsetHeight + 140;
+    const marks = [
+      ...nodes.map((n) => ({ y: n.y, color: LINE_ORANGE })),
+      ...gapYs.map((y) => ({ y, color: LINE_YELLOW })),
+      { y: h, color: LINE_YELLOW },
+    ].sort((a, b) => a.y - b.y);
+    setStops(marks.map((m) => ({ offset: m.y / h, color: m.color })));
+    setSize({ w: trackBox.width, h });
     updateProgress();
   }, [updateProgress]);
 
@@ -289,15 +297,15 @@ const ExperienceList: React.FC = () => {
               <linearGradient
                 id="exp-line"
                 gradientUnits="userSpaceOnUse"
-                spreadMethod="reflect"
                 x1="0"
                 y1="0"
                 x2="0"
-                y2={GRADIENT_SPAN}
+                y2={size.h || 1}
               >
-                <stop offset="0%" stopColor="#e11d48" />
-                <stop offset="50%" stopColor="#f97316" />
-                <stop offset="100%" stopColor="#fbbf24" />
+                <stop offset="0" stopColor={LINE_ORANGE} />
+                {stops.map((stop, i) => (
+                  <stop key={i} offset={stop.offset} stopColor={stop.color} />
+                ))}
               </linearGradient>
             </defs>
             <path
