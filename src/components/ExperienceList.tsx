@@ -53,6 +53,7 @@ const STAGE_META: Record<
   exp1: {
     icon: ShieldCheck,
     url: 'https://vicone.com/',
+    logo: '/logos/vicone.webp',
     tags: ['Micro-frontends', 'Cybersecurity'],
     stack: ['React', 'Nx', 'Next.js', 'Cypress'],
   },
