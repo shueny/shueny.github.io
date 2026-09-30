@@ -196,8 +196,9 @@ const CURRENT_PATTERN = /present|heute|至今/i;
 type Point = { x: number; y: number };
 
 // One continuous path: vertical through each node, with an S-sweep in the gap
-// between rows whenever the next node sits on the other side.
-const buildPath = (nodes: Point[], gapYs: number[], tail: number) => {
+// between rows whenever the next node sits on the other side. The path ends
+// at the last node: the journey is complete there.
+const buildPath = (nodes: Point[], gapYs: number[]) => {
   if (nodes.length === 0) return '';
   let d = `M ${nodes[0].x} 0 L ${nodes[0].x} ${nodes[0].y}`;
   for (let i = 0; i < nodes.length - 1; i++) {
@@ -213,8 +214,6 @@ const buildPath = (nodes: Point[], gapYs: number[], tail: number) => {
     d += ` C ${a.x} ${midY} ${b.x} ${midY} ${b.x} ${midY + h}`;
     d += ` L ${b.x} ${b.y}`;
   }
-  const last = nodes[nodes.length - 1];
-  d += ` L ${last.x} ${last.y + tail}`;
   return d;
 };
 
@@ -321,7 +320,7 @@ const ExperienceList: React.FC = () => {
       window.scrollY;
     const easeZone = window.innerHeight * 0.6;
     const ease = Math.min(1, Math.max(0, 1 - remaining / easeZone));
-    const endY = track.offsetHeight + 140;
+    const endY = track.offsetHeight;
     const targetY =
       readingY < endY ? readingY + (endY - readingY) * ease : readingY;
     const total = totalLength.current;
@@ -375,13 +374,13 @@ const ExperienceList: React.FC = () => {
       }
     }
 
-    const d = buildPath(nodes, gapYs, 140);
+    const d = buildPath(nodes, gapYs);
     [dottedRef, solidRef, glowRef].forEach((ref) =>
       ref.current?.setAttribute('d', d)
     );
     totalLength.current = solidRef.current?.getTotalLength() ?? 0;
     nodeYs.current = nodes.map((n) => n.y);
-    const h = track.offsetHeight + 140;
+    const h = track.offsetHeight;
     const marks = [
       ...nodes.map((n) => ({ y: n.y, color: LINE_ORANGE })),
       ...gapYs.map((y) => ({ y, color: LINE_YELLOW })),
