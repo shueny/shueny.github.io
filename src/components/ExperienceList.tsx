@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   Layers,
   Palette,
@@ -13,15 +19,31 @@ import {
   Building2,
   BadgeCheck,
   Code2,
+  GraduationCap,
+  BookOpen,
+  ExternalLink,
+  School,
+  Target,
   type LucideIcon,
 } from 'lucide-react';
 import { SectionId } from '../types';
 import { useLanguage, type Language } from '../contexts/LanguageContext';
 
-// Language-neutral presentation data, keyed by experience id.
+// Language-neutral presentation data, keyed by experience id. `url` links the
+// timeline node and the organisation name; `logo` is a file in /public/logos
+// that replaces the node icon (the icon stays as the fallback).
+type StageMeta = {
+  icon: LucideIcon;
+  url?: string;
+  logo?: string;
+  // Full-bleed logos (a solid brand tile) fill the node instead of sitting
+  // inside it with padding.
+  logoFill?: boolean;
+};
+
 const STAGE_META: Record<
   string,
-  { icon: LucideIcon; tags: string[]; stack: string[] }
+  StageMeta & { tags: string[]; stack: string[] }
 > = {
   exp0: {
     icon: Sparkles,
@@ -30,6 +52,8 @@ const STAGE_META: Record<
   },
   exp1: {
     icon: ShieldCheck,
+    url: 'https://vicone.com/',
+    logo: '/logos/vicone.webp',
     tags: ['Micro-frontends', 'Cybersecurity'],
     stack: ['React', 'Nx', 'Next.js', 'Cypress'],
   },
@@ -40,11 +64,16 @@ const STAGE_META: Record<
   },
   exp3: {
     icon: ShoppingBag,
+    url: 'https://www.citiesocial.com/',
+    logo: '/logos/citiesocial.webp',
     tags: ['E-commerce', 'Shopify'],
     stack: ['Shopify', 'Liquid', 'GA / GTM'],
   },
   exp4: {
     icon: Store,
+    url: 'https://www.momoshop.com.tw/',
+    logo: '/logos/momo.webp',
+    logoFill: true,
     tags: ['E-commerce', 'SEO'],
     stack: ['JavaScript', 'GA', 'SEO'],
   },
@@ -56,6 +85,39 @@ const STAGE_META: Record<
 };
 
 const FALLBACK_META = { icon: Sparkles, tags: [], stack: [] };
+
+const EDU_META: Record<string, StageMeta> = {
+  edu0: {
+    icon: GraduationCap,
+    url: 'https://www.nutn.edu.tw/',
+    logo: '/logos/nutn.webp',
+  },
+  edu1: {
+    icon: BookOpen,
+    url: 'https://www.usc.edu.tw/',
+    logo: '/logos/shih-chien.webp',
+  },
+};
+
+type Stage = {
+  id: string;
+  title: string;
+  org: string;
+  period: string;
+  description: string;
+  points: string[];
+  icon: LucideIcon;
+  orgUrl?: string;
+  logo?: string;
+  logoFill?: boolean;
+  tags: string[];
+  crumb: string;
+  countLabel: string;
+  chipsLabel: string;
+  chips: string[];
+  rows: { icon: LucideIcon; label: string; value: string }[];
+  link?: { url: string; text: string; department: string };
+};
 
 const LABELS: Record<
   Language,
@@ -69,6 +131,11 @@ const LABELS: Record<
     role: string;
     stack: string;
     now: string;
+    school: string;
+    department: string;
+    degree: string;
+    focus: string;
+    areas: string;
   }
 > = {
   EN: {
@@ -81,6 +148,11 @@ const LABELS: Record<
     role: 'Role',
     stack: 'Stack',
     now: 'Now',
+    school: 'School',
+    department: 'Department',
+    degree: 'Degree',
+    focus: 'Focus',
+    areas: 'Areas',
   },
   DE: {
     search: 'Suchen…',
@@ -92,6 +164,11 @@ const LABELS: Record<
     role: 'Rolle',
     stack: 'Stack',
     now: 'Aktuell',
+    school: 'Hochschule',
+    department: 'Fachbereich',
+    degree: 'Abschluss',
+    focus: 'Schwerpunkte',
+    areas: 'Bereiche',
   },
   ZH: {
     search: '搜尋…',
@@ -103,6 +180,11 @@ const LABELS: Record<
     role: '職稱',
     stack: '技術',
     now: '目前',
+    school: '學校',
+    department: '系所',
+    degree: '學位',
+    focus: '重點',
+    areas: '領域',
   },
 };
 
@@ -144,11 +226,66 @@ const splitPeriod = (period: string) => {
 const ExperienceList: React.FC = () => {
   const { t, language } = useLanguage();
   const labels = LABELS[language] ?? LABELS.EN;
-  const experienceData = t.experience.items;
+
+  // Work history first, then education, as one continuous journey.
+  const stages = useMemo<Stage[]>(() => {
+    const work: Stage[] = t.experience.items.map((exp) => {
+      const meta = STAGE_META[exp.id] ?? FALLBACK_META;
+      return {
+        id: exp.id,
+        title: exp.role,
+        org: exp.company,
+        period: exp.period,
+        description: exp.description,
+        points: exp.achievements,
+        icon: meta.icon,
+        orgUrl: meta.url,
+        logo: meta.logo,
+        logoFill: meta.logoFill,
+        tags: meta.tags,
+        crumb: t.nav.experience,
+        countLabel: labels.highlights,
+        chipsLabel: labels.stack,
+        chips: meta.stack,
+        rows: [
+          { icon: Building2, label: labels.company, value: exp.company },
+          { icon: BadgeCheck, label: labels.role, value: exp.role },
+        ],
+      };
+    });
+    const { education } = t.experience;
+    const edu: Stage[] = education.items.map((item) => ({
+      id: item.id,
+      orgUrl: EDU_META[item.id]?.url,
+      logo: EDU_META[item.id]?.logo,
+      logoFill: EDU_META[item.id]?.logoFill,
+      title: item.degree,
+      org: item.school,
+      period: item.period,
+      description: item.description,
+      points: item.focus,
+      icon: EDU_META[item.id]?.icon ?? GraduationCap,
+      tags: [education.label, ...item.areas.slice(0, 1)],
+      crumb: education.label,
+      countLabel: labels.focus,
+      chipsLabel: labels.areas,
+      chips: item.areas,
+      rows: [
+        { icon: School, label: labels.school, value: item.school },
+        { icon: Target, label: labels.degree, value: item.degree },
+      ],
+      link: {
+        url: item.url,
+        text: education.website,
+        department: item.department,
+      },
+    }));
+    return [...work, ...edu];
+  }, [t, labels]);
 
   const trackRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const nodeRefs = useRef<(HTMLElement | null)[]>([]);
   const dottedRef = useRef<SVGPathElement>(null);
   const solidRef = useRef<SVGPathElement>(null);
   const glowRef = useRef<SVGPathElement>(null);
@@ -160,6 +297,12 @@ const ExperienceList: React.FC = () => {
   // Orange at every node, fading to pale yellow in each sweep between roles.
   const [stops, setStops] = useState<{ offset: number; color: string }[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [brokenLogos, setBrokenLogos] = useState<Set<string>>(new Set());
+  const markLogoBroken = useCallback(
+    (id: string) =>
+      setBrokenLogos((prev) => (prev.has(id) ? prev : new Set(prev).add(id))),
+    []
+  );
 
   // Reveal the solid line up to the reading position (55% down the viewport).
   const updateProgress = useCallback(() => {
@@ -168,8 +311,19 @@ const ExperienceList: React.FC = () => {
     const glow = glowRef.current;
     if (!track || !solid || !glow || totalLength.current === 0) return;
 
-    const targetY =
+    // Near the bottom of the page there is no scroll left to carry the
+    // reading position past the last role, so ease it to the end of the path.
+    const readingY =
       window.innerHeight * 0.55 - track.getBoundingClientRect().top;
+    const remaining =
+      document.documentElement.scrollHeight -
+      window.innerHeight -
+      window.scrollY;
+    const easeZone = window.innerHeight * 0.6;
+    const ease = Math.min(1, Math.max(0, 1 - remaining / easeZone));
+    const endY = track.offsetHeight + 140;
+    const targetY =
+      readingY < endY ? readingY + (endY - readingY) * ease : readingY;
     const total = totalLength.current;
 
     let revealed = 0;
@@ -257,7 +411,7 @@ const ExperienceList: React.FC = () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
     };
-  }, [measure, updateProgress, experienceData]);
+  }, [measure, updateProgress, stages]);
 
   return (
     <section
@@ -335,9 +489,9 @@ const ExperienceList: React.FC = () => {
           </svg>
 
           <div className="space-y-28 lg:space-y-56">
-            {experienceData.map((exp, index) => {
-              const meta = STAGE_META[exp.id] ?? FALLBACK_META;
-              const Icon = meta.icon;
+            {stages.map((exp, index) => {
+              const Icon = exp.icon;
+              const showLogo = Boolean(exp.logo) && !brokenLogos.has(exp.id);
               const textLeft = index % 2 === 0;
               const reached = index <= activeIndex;
               const isCurrent = CURRENT_PATTERN.test(exp.period);
@@ -356,23 +510,45 @@ const ExperienceList: React.FC = () => {
                     }`}
                   >
                     <p className="mb-5 flex flex-wrap gap-x-5 gap-y-1 text-[15px] font-medium text-stone-500">
-                      {meta.tags.map((tag) => (
+                      {exp.tags.map((tag) => (
                         <span key={tag}>#{tag}</span>
                       ))}
                     </p>
                     <h3 className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-3xl font-semibold leading-tight tracking-tight text-transparent md:text-4xl">
-                      {exp.role}
+                      {exp.title}
                     </h3>
                     <p className="mt-3 text-base text-stone-500">
-                      <span className="font-serif italic text-stone-700">
-                        {exp.company}
-                      </span>
+                      {exp.orgUrl ? (
+                        <a
+                          href={exp.orgUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-serif italic text-stone-700 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-orange-600 hover:decoration-orange-400"
+                        >
+                          {exp.org}
+                        </a>
+                      ) : (
+                        <span className="font-serif italic text-stone-700">
+                          {exp.org}
+                        </span>
+                      )}
                       <span className="mx-2 text-stone-300">·</span>
                       <span className="font-mono text-sm">{exp.period}</span>
                     </p>
+                    {exp.link && (
+                      <a
+                        href={exp.link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-orange-600 underline decoration-orange-200 underline-offset-4 transition-colors hover:text-orange-700 hover:decoration-orange-500"
+                      >
+                        {exp.link.department}
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    )}
 
                     <ol className="mt-8 space-y-5">
-                      {exp.achievements.map((ach, i) => (
+                      {exp.points.map((ach, i) => (
                         <li
                           key={i}
                           className="group/item flex gap-5 text-[15px] leading-relaxed text-stone-500 transition-colors duration-200 hover:text-stone-900"
@@ -388,16 +564,45 @@ const ExperienceList: React.FC = () => {
 
                   {/* Node */}
                   <div className="absolute left-0 top-0 lg:static lg:order-2 lg:col-span-1 lg:flex lg:justify-center">
-                    <div
-                      ref={(el) => (nodeRefs.current[index] = el)}
-                      className={`relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-500 ${
-                        reached
-                          ? 'bg-white text-orange-600 ring-2 ring-orange-500 shadow-[0_0_0_7px_rgba(249,115,22,0.14),0_0_22px_rgba(249,115,22,0.45)]'
-                          : 'bg-white text-stone-400 ring-2 ring-stone-300'
-                      }`}
-                    >
-                      <Icon className="h-4 w-4" strokeWidth={2.25} />
-                    </div>
+                    {React.createElement(
+                      exp.orgUrl ? 'a' : 'div',
+                      {
+                        ref: (el: HTMLElement | null) =>
+                          (nodeRefs.current[index] = el),
+                        ...(exp.orgUrl && {
+                          href: exp.orgUrl,
+                          target: '_blank',
+                          rel: 'noopener noreferrer',
+                          'aria-label': exp.org,
+                          title: exp.org,
+                        }),
+                        className: `relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white transition-all duration-500 ${
+                          exp.orgUrl ? 'hover:scale-110' : ''
+                        } ${
+                          reached
+                            ? 'text-orange-600 ring-2 ring-orange-500 shadow-[0_0_0_7px_rgba(249,115,22,0.14),0_0_22px_rgba(249,115,22,0.45)]'
+                            : 'text-stone-400 ring-2 ring-stone-300'
+                        }`,
+                      },
+                      showLogo ? (
+                        <img
+                          src={exp.logo}
+                          alt=""
+                          className={`h-full w-full ${
+                            exp.logoFill ? 'object-cover' : 'object-contain p-1'
+                          }`}
+                          ref={(img) => {
+                            // A logo can fail before hydration attaches onError.
+                            if (img?.complete && img.naturalWidth === 0) {
+                              markLogoBroken(exp.id);
+                            }
+                          }}
+                          onError={() => markLogoBroken(exp.id)}
+                        />
+                      ) : (
+                        <Icon className="h-4 w-4" strokeWidth={2.25} />
+                      )
+                    )}
                   </div>
 
                   {/* Window card */}
@@ -437,13 +642,13 @@ const ExperienceList: React.FC = () => {
                               {labels.search}
                             </div>
                             <div className="space-y-3 px-1">
-                              {experienceData.map((other, i) =>
+                              {stages.map((other, i) =>
                                 i === index ? (
                                   <div
                                     key={other.id}
                                     className="-mx-1 truncate rounded-md bg-orange-600 px-2 py-1.5 text-[10px] font-medium text-white"
                                   >
-                                    {other.company}
+                                    {other.org}
                                   </div>
                                 ) : (
                                   <div
@@ -474,11 +679,18 @@ const ExperienceList: React.FC = () => {
                           {/* Main panel */}
                           <div className="min-w-0 flex-1 bg-stone-50/40 p-4">
                             <p className="mb-3 truncate text-[10px] text-stone-400">
-                              {t.nav.experience} › {exp.company}
+                              {exp.crumb} › {exp.org}
                             </p>
                             <div className="mb-4 flex flex-wrap items-center gap-2">
+                              {showLogo && (
+                                <img
+                                  src={exp.logo}
+                                  alt=""
+                                  className="h-5 w-5 rounded object-contain"
+                                />
+                              )}
                               <span className="text-sm font-semibold text-stone-800">
-                                {exp.company}
+                                {exp.org}
                               </span>
                               {isCurrent && (
                                 <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-[9px] font-medium text-emerald-600">
@@ -486,7 +698,7 @@ const ExperienceList: React.FC = () => {
                                 </span>
                               )}
                               <span className="rounded bg-orange-50 px-1.5 py-0.5 text-[9px] font-medium text-orange-600">
-                                {exp.role}
+                                {exp.title}
                               </span>
                             </div>
 
@@ -505,8 +717,8 @@ const ExperienceList: React.FC = () => {
                                 },
                                 {
                                   icon: ListChecks,
-                                  label: labels.highlights,
-                                  value: String(exp.achievements.length),
+                                  label: exp.countLabel,
+                                  value: String(exp.points.length),
                                 },
                               ].map((cell) => (
                                 <div
@@ -535,18 +747,7 @@ const ExperienceList: React.FC = () => {
                                 {exp.description}
                               </p>
                               <dl className="divide-y divide-stone-100 text-[10px]">
-                                {[
-                                  {
-                                    icon: Building2,
-                                    label: labels.company,
-                                    value: exp.company,
-                                  },
-                                  {
-                                    icon: BadgeCheck,
-                                    label: labels.role,
-                                    value: exp.role,
-                                  },
-                                ].map((row) => (
+                                {exp.rows.map((row) => (
                                   <div
                                     key={row.label}
                                     className="grid grid-cols-[5.5rem_1fr] items-center py-1.5"
@@ -563,10 +764,10 @@ const ExperienceList: React.FC = () => {
                                 <div className="grid grid-cols-[5.5rem_1fr] items-start py-1.5">
                                   <dt className="flex items-center gap-1.5 pt-0.5 text-stone-400">
                                     <Code2 className="h-3 w-3" />
-                                    {labels.stack}
+                                    {exp.chipsLabel}
                                   </dt>
                                   <dd className="flex flex-wrap gap-1">
-                                    {meta.stack.map((s) => (
+                                    {exp.chips.map((s) => (
                                       <span
                                         key={s}
                                         className="rounded border border-stone-200 px-1.5 py-0.5 text-[9px] text-stone-600"
@@ -576,6 +777,24 @@ const ExperienceList: React.FC = () => {
                                     ))}
                                   </dd>
                                 </div>
+                                {exp.link && (
+                                  <div className="grid grid-cols-[5.5rem_1fr] items-start py-1.5">
+                                    <dt className="flex items-center gap-1.5 pt-0.5 text-stone-400">
+                                      <ExternalLink className="h-3 w-3" />
+                                      {labels.department}
+                                    </dt>
+                                    <dd>
+                                      <a
+                                        href={exp.link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-medium text-orange-600 underline decoration-orange-200 underline-offset-2 hover:decoration-orange-500"
+                                      >
+                                        {exp.link.text} ↗
+                                      </a>
+                                    </dd>
+                                  </div>
+                                )}
                               </dl>
                             </div>
                           </div>

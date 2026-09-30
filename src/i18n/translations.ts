@@ -116,6 +116,21 @@ export interface Translations {
       description: string;
       achievements: string[];
     }>;
+    education: {
+      label: string; // "Education", used as a hashtag and breadcrumb
+      website: string; // link text for the department site
+      items: Array<{
+        id: string;
+        degree: string;
+        school: string;
+        department: string;
+        url: string; // official department website
+        period: string;
+        description: string;
+        focus: string[]; // programme focus + personal thesis / capstone
+        areas: string[]; // short chips for the card
+      }>;
+    };
   };
   contact: {
     tagline: string; // "Open to opportunities"
@@ -415,6 +430,55 @@ export const translations: Record<Language, Translations> = {
           ],
         },
       ],
+      education: {
+        label: 'Education',
+        website: 'Department website',
+        items: [
+          {
+            id: 'edu0',
+            degree: 'M.S. Information & Learning Technology',
+            school: 'National University of Tainan',
+            department: 'Department of Information and Learning Technology',
+            url: 'http://ilt.nutn.edu.tw/',
+            period: '2009 - 2011',
+            description: 'A graduate programme that pairs information technology with learning theory, built around e-learning systems and digital learning content.',
+            focus: [
+              'Core training in research methods and quantitative data analysis, which every thesis in the programme is built on.',
+              'Two tracks: e-learning systems (learning platforms, web-based and adaptive learning) and digital learning content (instructional design, multimedia materials).',
+              'Applying technology to instructional design and courseware development, with the goal of measurably better learning.',
+              'Thesis: a first-person 3D virtual museum guide built in Unity, validated with quantitative user research (SUS and IPO models).',
+              'Degree recognised by the ZAB (Central Office for Foreign Education) in Germany.',
+            ],
+            areas: [
+              'HCI',
+              'E-learning systems',
+              'Instructional design',
+              'Research methods',
+            ],
+          },
+          {
+            id: 'edu1',
+            degree: 'B.S. Computer Simulation & Design',
+            school: 'Shih Chien University',
+            department: 'Department of Computer Simulation and Design (Kaohsiung Campus)',
+            url: 'https://csd.kh.usc.edu.tw/',
+            period: '2005 - 2009',
+            description: 'An applied-design degree in which programming, 3D graphics and visual design were taught as one curriculum.',
+            focus: [
+              'Information technology and creative design in a single curriculum: programming, 3D modelling, computer animation and interactive media.',
+              'Practice-first and project-based, with work produced for exhibitions and design competitions.',
+              'Capstone: built the front end of a fully working e-commerce platform, including the complete shopping flow.',
+              'The department has since been renamed Digital Multimedia & Game Design, keeping its focus on games, animation and digital content.',
+            ],
+            areas: [
+              '3D modelling',
+              'Computer animation',
+              'Interactive design',
+              'Programming',
+            ],
+          },
+        ],
+      },
     },
     projects: {
       label: 'Innovation & Impact',
@@ -1011,6 +1075,55 @@ export const translations: Record<Language, Translations> = {
           ],
         },
       ],
+      education: {
+        label: 'Ausbildung',
+        website: 'Website des Fachbereichs',
+        items: [
+          {
+            id: 'edu0',
+            degree: 'M.Sc. Information & Learning Technology',
+            school: 'National University of Tainan',
+            department: 'Department of Information and Learning Technology',
+            url: 'http://ilt.nutn.edu.tw/',
+            period: '2009 - 2011',
+            description: 'Ein Masterstudiengang, der Informationstechnologie mit Lerntheorie verbindet, aufgebaut um E-Learning-Systeme und digitale Lerninhalte.',
+            focus: [
+              'Kernausbildung in Forschungsmethoden und quantitativer Datenanalyse, auf der jede Masterarbeit im Studiengang aufbaut.',
+              'Zwei Schwerpunkte: E-Learning-Systeme (Lernplattformen, web-basiertes und adaptives Lernen) und digitale Lerninhalte (Instructional Design, multimediale Materialien).',
+              'Technologie gezielt für Instructional Design und die Entwicklung von Lernmaterialien einsetzen, mit messbar besserem Lernerfolg als Ziel.',
+              'Masterarbeit: ein virtueller 3D-Museumsführer aus der Ich-Perspektive in Unity, validiert mit quantitativer Nutzerforschung (SUS- und IPO-Modell).',
+              'Abschluss von der ZAB (Zentralstelle für ausländisches Bildungswesen) in Deutschland anerkannt.',
+            ],
+            areas: [
+              'HCI',
+              'E-Learning-Systeme',
+              'Instructional Design',
+              'Forschungsmethoden',
+            ],
+          },
+          {
+            id: 'edu1',
+            degree: 'B.Sc. Computer Simulation & Design',
+            school: 'Shih Chien University',
+            department: 'Department of Computer Simulation and Design (Campus Kaohsiung)',
+            url: 'https://csd.kh.usc.edu.tw/',
+            period: '2005 - 2009',
+            description: 'Ein angewandter Designstudiengang, in dem Programmierung, 3D-Grafik und visuelles Design ein gemeinsames Curriculum waren.',
+            focus: [
+              'Informationstechnologie und kreatives Design in einem Curriculum: Programmierung, 3D-Modellierung, Computeranimation und interaktive Medien.',
+              'Praxisorientiert und projektbasiert, mit Arbeiten für Ausstellungen und Designwettbewerbe.',
+              'Abschlussprojekt: das Frontend einer voll funktionsfähigen E-Commerce-Plattform inklusive des gesamten Kaufprozesses.',
+              'Der Fachbereich heißt heute Digital Multimedia & Game Design und bleibt auf Games, Animation und digitale Inhalte ausgerichtet.',
+            ],
+            areas: [
+              '3D-Modellierung',
+              'Computeranimation',
+              'Interaktionsdesign',
+              'Programmierung',
+            ],
+          },
+        ],
+      },
     },
     projects: {
       label: 'Innovation & Impact',
@@ -1594,6 +1707,55 @@ export const translations: Record<Language, Translations> = {
           ],
         },
       ],
+      education: {
+        label: '學歷',
+        website: '系所網站',
+        items: [
+          {
+            id: 'edu0',
+            degree: '數位學習科技學系 碩士',
+            school: '國立臺南大學',
+            department: '數位學習科技學系',
+            url: 'http://ilt.nutn.edu.tw/',
+            period: '2009 - 2011',
+            description: '結合資訊科技與學習理論的研究所，課程圍繞「數位學習系統」與「數位學習內容」兩大領域。',
+            focus: [
+              '核心課程為研究方法與資料分析，是系上每一篇碩士論文的量化研究基礎。',
+              '兩大領域：數位學習系統（學習平台、網路與適性化學習）與數位學習內容（教學設計、多媒體教材）。',
+              '將資訊科技運用於教學設計與教材開發，以提升教學品質與學習成效為目標。',
+              '碩士論文：以 Unity 3D 開發第一人稱沉浸式虛擬博物館導覽系統，並以 SUS 易用性量表與 IPO 模式進行量化實證研究。',
+              '學歷已通過德國 ZAB（外國教育中央辦公室）認證。',
+            ],
+            areas: [
+              '人機互動',
+              '數位學習系統',
+              '教學設計',
+              '研究方法',
+            ],
+          },
+          {
+            id: 'edu1',
+            degree: '電腦模擬與設計學系 學士',
+            school: '實踐大學',
+            department: '電腦模擬與設計學系（高雄校區）',
+            url: 'https://csd.kh.usc.edu.tw/',
+            period: '2005 - 2009',
+            description: '應用設計學位：程式、3D 圖學與視覺設計從第一天起就是同一套課程。',
+            focus: [
+              '資訊科技與創意設計整合的課程：程式設計、3D 建模、電腦動畫與互動多媒體。',
+              '以實務與專題為主，作品參與專題展演與設計競賽。',
+              '畢業專題：負責電子商務平台的網頁前端開發，實作完整購物流程。',
+              '系所現已更名為「數位多媒體遊戲設計學系」，延續遊戲、動畫與數位內容的核心方向。',
+            ],
+            areas: [
+              '3D 建模',
+              '電腦動畫',
+              '互動設計',
+              '程式設計',
+            ],
+          },
+        ],
+      },
     },
     projects: {
       label: '創新與影響力',
