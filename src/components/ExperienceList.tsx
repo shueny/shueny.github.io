@@ -32,7 +32,14 @@ import { useLanguage, type Language } from '../contexts/LanguageContext';
 // Language-neutral presentation data, keyed by experience id. `url` links the
 // timeline node and the organisation name; `logo` is a file in /public/logos
 // that replaces the node icon (the icon stays as the fallback).
-type StageMeta = { icon: LucideIcon; url?: string; logo?: string };
+type StageMeta = {
+  icon: LucideIcon;
+  url?: string;
+  logo?: string;
+  // Full-bleed logos (a solid brand tile) fill the node instead of sitting
+  // inside it with padding.
+  logoFill?: boolean;
+};
 
 const STAGE_META: Record<
   string,
@@ -57,12 +64,15 @@ const STAGE_META: Record<
   exp3: {
     icon: ShoppingBag,
     url: 'https://www.citiesocial.com/',
+    logo: '/logos/citiesocial.webp',
     tags: ['E-commerce', 'Shopify'],
     stack: ['Shopify', 'Liquid', 'GA / GTM'],
   },
   exp4: {
     icon: Store,
     url: 'https://www.momoshop.com.tw/',
+    logo: '/logos/momo.webp',
+    logoFill: true,
     tags: ['E-commerce', 'SEO'],
     stack: ['JavaScript', 'GA', 'SEO'],
   },
@@ -76,8 +86,16 @@ const STAGE_META: Record<
 const FALLBACK_META = { icon: Sparkles, tags: [], stack: [] };
 
 const EDU_META: Record<string, StageMeta> = {
-  edu0: { icon: GraduationCap, url: 'https://www.nutn.edu.tw/' },
-  edu1: { icon: BookOpen, url: 'https://www.usc.edu.tw/' },
+  edu0: {
+    icon: GraduationCap,
+    url: 'https://www.nutn.edu.tw/',
+    logo: '/logos/nutn.webp',
+  },
+  edu1: {
+    icon: BookOpen,
+    url: 'https://www.usc.edu.tw/',
+    logo: '/logos/shih-chien.webp',
+  },
 };
 
 type Stage = {
@@ -90,6 +108,7 @@ type Stage = {
   icon: LucideIcon;
   orgUrl?: string;
   logo?: string;
+  logoFill?: boolean;
   tags: string[];
   crumb: string;
   countLabel: string;
@@ -221,6 +240,7 @@ const ExperienceList: React.FC = () => {
         icon: meta.icon,
         orgUrl: meta.url,
         logo: meta.logo,
+        logoFill: meta.logoFill,
         tags: meta.tags,
         crumb: t.nav.experience,
         countLabel: labels.highlights,
@@ -237,6 +257,7 @@ const ExperienceList: React.FC = () => {
       id: item.id,
       orgUrl: EDU_META[item.id]?.url,
       logo: EDU_META[item.id]?.logo,
+      logoFill: EDU_META[item.id]?.logoFill,
       title: item.degree,
       org: item.school,
       period: item.period,
@@ -566,7 +587,9 @@ const ExperienceList: React.FC = () => {
                         <img
                           src={exp.logo}
                           alt=""
-                          className="h-full w-full object-contain p-1.5"
+                          className={`h-full w-full ${
+                            exp.logoFill ? 'object-cover' : 'object-contain p-1'
+                          }`}
                           ref={(img) => {
                             // A logo can fail before hydration attaches onError.
                             if (img?.complete && img.naturalWidth === 0) {
