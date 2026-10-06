@@ -50,9 +50,9 @@ const POST_GROUPS: PostVariants[] = [
     de: 'seo-content-prioritization-ai-search-de',
   },
   {
-    en: 'frontend-security-14',
-    zh: 'frontend-security-14-zh',
-    de: 'frontend-security-14-de',
+    en: 'frontend-security',
+    zh: 'frontend-security-zh',
+    de: 'frontend-security-de',
   },
 ];
 

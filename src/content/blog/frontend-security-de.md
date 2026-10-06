@@ -1,6 +1,6 @@
 ---
-title: 'Frontend-Sicherheit verstehen: 14 häufige Angriffe und ihre Abwehr, erklärt mit Animationen'
-description: 'Von XSS und CSRF über Token-Speicherung bis CSP: die 14 häufigsten Sicherheitsprobleme im Frontend, aufgeschlüsselt in „Wie denkt der Angreifer → Grundursache → richtige Lösung", jeweils mit einer interaktiven Schritt-für-Schritt-Animation.'
+title: 'Frontend-Sicherheit verstehen: Häufige Angriffe und ihre Abwehr, erklärt mit Animationen'
+description: 'Von XSS und CSRF über Token-Speicherung bis CSP: die häufigsten Sicherheitsprobleme im Frontend, aufgeschlüsselt in „Wie denkt der Angreifer → Grundursache → richtige Lösung", jeweils mit einer interaktiven Schritt-für-Schritt-Animation.'
 pubDate: 2026-10-06
 cover: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'
 category: 'Engineering & Insights'
@@ -8,17 +8,17 @@ lang: 'de'
 draft: false
 ---
 
-# Frontend-Sicherheit verstehen: 14 häufige Angriffe und ihre Abwehr, erklärt mit Animationen
+# Frontend-Sicherheit verstehen: Häufige Angriffe und ihre Abwehr, erklärt mit Animationen
 
 Viele Frontend-Entwickler halten Sicherheit für „Sache des Backends". In der Praxis passieren die meisten Angriffe aber **im Browser**: Ein bösartiges Skript läuft im Tab des Nutzers, der Browser schickt Cookies von sich aus mit, oder ein API-Schlüssel landet im Bundle und wird an jeden Besucher ausgeliefert.
 
-Das hier sind meine Lernnotizen zur Frontend-Sicherheit. Ich habe die 14 häufigsten Probleme als interaktive Animationen umgesetzt, und alle folgen derselben Struktur:
+Das hier sind meine Lernnotizen zur Frontend-Sicherheit. Ich habe die häufigsten Probleme als interaktive Animationen umgesetzt, und alle folgen derselben Struktur:
 
 1. **Fünf Schritte**: Schritt für Schritt sehen, wie der Angriff abläuft, mit einer „Hacker-Sicht" pro Schritt, die erklärt, was der Angreifer gerade denkt.
 2. **Grundursache**: warum das überhaupt möglich ist.
 3. **Die richtige Lösung**: Code, den man tatsächlich einsetzen kann.
 
-Hier ist die Übersicht aller 14 Animationen. Einfach auf eine Karte klicken. (Die Animationen selbst sind auf traditionellem Chinesisch; dieser Beitrag behandelt dieselben Inhalte auf Deutsch.)
+Hier ist die Übersicht aller Animationen. Einfach auf eine Karte klicken. (Die Animationen selbst sind auf traditionellem Chinesisch; dieser Beitrag behandelt dieselben Inhalte auf Deutsch.)
 
 <iframe
   src="/security/index.html"
@@ -31,7 +31,7 @@ Hier ist die Übersicht aller 14 Animationen. Einfach auf eine Karte klicken. (D
 
 ## Zuerst ein Denkmodell: vier Arten von Problemen
 
-Die 14 Probleme wirken verstreut, lassen sich aber auf vier Grundursachen zurückführen. Wer diese vier kennt, kann auch neue Schwachstellen leichter einordnen.
+Diese Probleme wirken verstreut, lassen sich aber auf vier Grundursachen zurückführen. Wer diese vier kennt, kann auch neue Schwachstellen leichter einordnen.
 
 | Kategorie | Kernidee | Themen |
 | --- | --- | --- |
@@ -460,7 +460,7 @@ Ergänzung: `upgrade-insecure-requests` stuft `http://`-Requests auf der Seite a
 
 ---
 
-## Zusammenfassung: alle 14 Probleme in einer Tabelle
+## Zusammenfassung: alle Probleme in einer Tabelle
 
 | # | Thema | Grundursache | Erste Abwehrmaßnahme |
 | --- | --- | --- | --- |
@@ -513,7 +513,7 @@ Danach mit [securityheaders.com](https://securityheaders.com) oder dem [Mozilla 
 
 ## Fazit
 
-Meine wichtigste Erkenntnis aus diesen 14 Problemen: **Frontend-Sicherheit ist kein Haufen unzusammenhängender Tricks, sondern ein paar Prinzipien, die immer wiederkehren.**
+Meine wichtigste Erkenntnis aus diesen Problemen: **Frontend-Sicherheit ist kein Haufen unzusammenhängender Tricks, sondern ein paar Prinzipien, die immer wiederkehren.**
 
 - Was der Nutzer hereinschickt, ist nicht vertrauenswürdig (XSS, Open Redirect, Frontend-Autorisierung).
 - Was an den Nutzer geht, ist öffentlich (Schlüssel, Console-Logs, Source Maps).

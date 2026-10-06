@@ -1,6 +1,6 @@
 ---
-title: 'Frontend Security Notes: 14 Common Attacks and Fixes, Explained with Animations'
-description: 'From XSS and CSRF to token storage and CSP, the 14 most common frontend security issues broken down into "how the attacker thinks → root cause → the right fix", each with an interactive step-by-step animation.'
+title: 'Frontend Security Notes: Common Attacks and Fixes, Explained with Animations'
+description: 'From XSS and CSRF to token storage and CSP, the most common frontend security issues broken down into "how the attacker thinks → root cause → the right fix", each with an interactive step-by-step animation.'
 pubDate: 2026-10-06
 cover: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'
 category: 'Engineering & Insights'
@@ -8,17 +8,17 @@ lang: 'en'
 draft: false
 ---
 
-# Frontend Security Notes: 14 Common Attacks and Fixes, Explained with Animations
+# Frontend Security Notes: Common Attacks and Fixes, Explained with Animations
 
 Frontend engineers often think of security as "the backend's job". In practice, most attacks end up happening **inside the browser**: a malicious script runs in the user's tab, the browser sends cookies along on its own, or an API key gets bundled and shipped to every visitor.
 
-These are my study notes on frontend security. I turned the 14 most common issues into interactive animations, and each one follows the same structure:
+These are my study notes on frontend security. I turned the most common issues into interactive animations, and each one follows the same structure:
 
 1. **Five steps**: walk through how the attack happens, with a "hacker's view" note at each step explaining what the attacker is thinking.
 2. **Root cause**: why this is possible in the first place.
 3. **The right fix**: code you can actually use.
 
-Here is the index of all 14 animations. Click any card to play it. (The animations themselves are in Traditional Chinese; this post covers the same content in English.)
+Here is the index of all the animations. Click any card to play it. (The animations themselves are in Traditional Chinese; this post covers the same content in English.)
 
 <iframe
   src="/security/index.html"
@@ -31,7 +31,7 @@ Here is the index of all 14 animations. Click any card to play it. (The animatio
 
 ## A mental model first: four kinds of problems
 
-The 14 issues look scattered, but they come down to four root causes. Once you know these four, it gets much easier to place a new vulnerability.
+These issues look scattered, but they come down to four root causes. Once you know these four, it gets much easier to place a new vulnerability.
 
 | Category | Core idea | Topics |
 | --- | --- | --- |
@@ -460,7 +460,7 @@ Note: `upgrade-insecure-requests` automatically upgrades `http://` requests on t
 
 ---
 
-## Summary: all 14 issues in one table
+## Summary: every issue in one table
 
 | # | Topic | Root cause | First defense to add |
 | --- | --- | --- | --- |
@@ -513,7 +513,7 @@ After setting them, check with [securityheaders.com](https://securityheaders.com
 
 ## Closing thoughts
 
-My biggest takeaway from going through these 14 issues: **frontend security isn't a pile of unrelated tricks. It's a few principles that keep coming back.**
+My biggest takeaway from going through these issues: **frontend security isn't a pile of unrelated tricks. It's a few principles that keep coming back.**
 
 - Anything the user sends in can't be trusted (XSS, open redirect, frontend authz).
 - Anything sent to the user is public (keys, console logs, source maps).
