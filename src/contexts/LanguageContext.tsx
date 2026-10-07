@@ -33,8 +33,14 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   const [language, setLanguageState] = useState<Language>('EN');
 
   // Load language from localStorage on mount
+  // (storage access throws when the browser blocks site data, so fall back to EN)
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('language');
+    let savedLanguage: string | null = null;
+    try {
+      savedLanguage = localStorage.getItem('language');
+    } catch {
+      return;
+    }
     if (savedLanguage && LANGUAGES.includes(savedLanguage as Language)) {
       setLanguageState(savedLanguage as Language);
     }
@@ -73,7 +79,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   // Save language to localStorage when it changes
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('language', lang);
+    try {
+      localStorage.setItem('language', lang);
+    } catch {
+      // Storage blocked: the choice still applies for this page view
+    }
     // Dispatch custom event for same-tab language changes
     window.dispatchEvent(new CustomEvent('languagechange', { detail: lang }));
   };
