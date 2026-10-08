@@ -9,6 +9,7 @@ draft: false
 ---
 
 import AttackFlow from '@/components/security/AttackFlow';
+import SecurityQuest from '@/components/security/SecurityQuest';
 import XssLab from '@/components/security/XssLab';
 import TokenLab from '@/components/security/TokenLab';
 import CorsLab from '@/components/security/CorsLab';
@@ -29,14 +30,9 @@ These are my study notes on frontend security. I turned the most common issues i
 2. **Root cause**: why this is possible in the first place.
 3. **The right fix**: code you can actually use.
 
-Here is the index of all the animations. Click any card to play it. (The animations themselves are in Traditional Chinese; this post covers the same content in English.)
+Start with this little pixel quest: press "Start quest" to play from the first stage to the last, or click a stage below to jump straight to it. Each stage links to its full animation. (The full animations are in Traditional Chinese; this post covers the same content in English.)
 
-<iframe
-  src="/security/index.html"
-  title="Frontend security animations index"
-  style={{ width: '100%', aspectRatio: '960 / 680', border: 0 }}
-  loading="lazy"
-></iframe>
+<SecurityQuest lang="en" client:visible />
 
 **How to read this post**: every topic has an attack flow that plays by itself. When it finishes, flip the "🛡 Turn on defense" switch and watch where the attack gets stopped. Seven topics also have a hands-on lab, and there is an interactive checklist and a quiz at the end.
 

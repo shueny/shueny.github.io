@@ -9,6 +9,7 @@ draft: false
 ---
 
 import AttackFlow from '@/components/security/AttackFlow';
+import SecurityQuest from '@/components/security/SecurityQuest';
 import XssLab from '@/components/security/XssLab';
 import TokenLab from '@/components/security/TokenLab';
 import CorsLab from '@/components/security/CorsLab';
@@ -29,14 +30,9 @@ Das hier sind meine Lernnotizen zur Frontend-Sicherheit. Ich habe die häufigste
 2. **Grundursache**: warum das überhaupt möglich ist.
 3. **Die richtige Lösung**: Code, den man tatsächlich einsetzen kann.
 
-Hier ist die Übersicht aller Animationen. Einfach auf eine Karte klicken. (Die Animationen selbst sind auf traditionellem Chinesisch; dieser Beitrag behandelt dieselben Inhalte auf Deutsch.)
+Starte mit diesem kleinen Pixel-Abenteuer: „Abenteuer starten" spielt alle Stages von vorn bis hinten ab, oder du springst unten direkt zu einer Stage. Jede Stage verlinkt ihre ganze Animation. (Die ganzen Animationen sind auf traditionellem Chinesisch; dieser Beitrag behandelt dieselben Inhalte auf Deutsch.)
 
-<iframe
-  src="/security/index.html"
-  title="Übersicht der Frontend-Sicherheitsanimationen"
-  style={{ width: '100%', aspectRatio: '960 / 680', border: 0 }}
-  loading="lazy"
-></iframe>
+<SecurityQuest lang="de" client:visible />
 
 **So liest du diesen Beitrag**: Jedes Thema hat einen Angriffsablauf, der von selbst abspielt. Danach den Schalter „🛡 Abwehr an" umlegen und sehen, an welcher Stelle der Angriff gestoppt wird. Sieben Themen haben zusätzlich ein Labor zum Ausprobieren, am Ende warten eine interaktive Checkliste und ein Quiz.
 

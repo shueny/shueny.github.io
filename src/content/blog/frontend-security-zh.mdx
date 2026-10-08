@@ -9,6 +9,7 @@ draft: false
 ---
 
 import AttackFlow from '@/components/security/AttackFlow';
+import SecurityQuest from '@/components/security/SecurityQuest';
 import XssLab from '@/components/security/XssLab';
 import TokenLab from '@/components/security/TokenLab';
 import CorsLab from '@/components/security/CorsLab';
@@ -29,14 +30,9 @@ import SecurityQuiz from '@/components/security/SecurityQuiz';
 2. **根本原因**：為什麼這件事會發生。
 3. **正確做法**：實際可以用的修正程式碼。
 
-下面是全部動畫的目錄，可以直接點進去玩：
+先從這個像素小冒險開始：按下「開始冒險」會從第一關一路播到最後，也可以點下方的關卡直接跳過去。每一關的完整版動畫，都能從對話框或各段落的連結打開。
 
-<iframe
-  src="/security/index.html"
-  title="前端資安動畫目錄"
-  style={{ width: '100%', aspectRatio: '960 / 680', border: 0 }}
-  loading="lazy"
-></iframe>
+<SecurityQuest lang="zh" client:visible />
 
 **怎麼玩這篇文章**：每一題都有一個會自己播放的攻擊流程，看完後打開右上角的「🛡 開啟防禦」，再看一次它在哪一步被擋下。其中七題附了可以直接動手的實驗，最後還有檢查清單和小測驗。
 
