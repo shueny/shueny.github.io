@@ -113,6 +113,16 @@ export function useFirstVisible<T extends Element>(ref: React.RefObject<T>) {
 
 const LAB_LABEL: L = { zh: '動手玩', en: 'Try it', de: 'Ausprobieren' };
 
+/** Pixel-art cloud drawn with box-shadows (8px "pixels"). */
+export function PixelCloud({ className = '' }: { className?: string }) {
+  return <span aria-hidden className={`sec-cloud pointer-events-none absolute ${className}`} />;
+}
+
+/** Brick floor strip used at the bottom of every board. */
+export function BrickFloor() {
+  return <div aria-hidden className="sec-bricks h-3.5 border-t-[3px] border-[#222034]" />;
+}
+
 /** Card wrapper for every lab. `not-prose` keeps the blog typography out. */
 export function LabFrame({
   lang,
@@ -130,16 +140,18 @@ export function LabFrame({
   return (
     <section
       data-testid={testId}
-      className="not-prose my-8 overflow-hidden rounded-xl border-2 border-[#2E382E] bg-[#DEDEDB] text-[#2E382E]"
+      className="sec-root not-prose relative my-10 border-4 border-[#222034] bg-[#A8E0FF] text-[#222034] shadow-[6px_6px_0_#222034]"
     >
-      <header className="flex flex-wrap items-center gap-3 border-b-2 border-[#2E382E] bg-[#F4F4F1] px-4 py-3">
-        <span className="bg-[#DDFF00] px-2 py-1 text-[11px] font-extrabold uppercase tracking-[0.08em] text-[#2E382E]">
-          {tr(LAB_LABEL, lang)}
+      <header className="relative flex flex-wrap items-center gap-3 overflow-hidden border-b-4 border-[#222034] bg-[#6EC6FF] px-4 py-3">
+        <PixelCloud className="right-16 top-2 hidden sm:block" />
+        <span className="sec-px border-[3px] border-[#222034] bg-[#FFC93C] px-2 py-1 text-[12px] text-[#222034] shadow-[3px_3px_0_#222034]">
+          ★ {tr(LAB_LABEL, lang)}
         </span>
-        <div className="m-0 text-base font-extrabold leading-snug">{title}</div>
+        <div className="relative m-0 text-base font-extrabold leading-snug text-[#222034] [text-shadow:2px_2px_0_#fff]">{title}</div>
       </header>
-      {hint && <div className="m-0 px-4 pt-3 text-sm leading-relaxed text-[#4A554A]">{hint}</div>}
+      {hint && <div className="m-0 px-4 pt-3 text-sm leading-relaxed text-[#4B3F72]">{hint}</div>}
       <div className="p-4">{children}</div>
+      <BrickFloor />
     </section>
   );
 }
@@ -156,7 +168,7 @@ export function Segmented<T extends string>({
   label: string;
 }) {
   return (
-    <div role="radiogroup" aria-label={label} className="flex flex-wrap gap-1.5">
+    <div role="radiogroup" aria-label={label} className="flex flex-wrap gap-2">
       {options.map((o) => {
         const on = o.value === value;
         return (
@@ -167,12 +179,11 @@ export function Segmented<T extends string>({
             aria-checked={on}
             onClick={() => onChange(o.value)}
             className={
-              'border-2 px-2.5 py-1.5 text-left text-xs font-bold transition-colors ' +
-              (on
-                ? 'border-[#2E382E] bg-[#3C4A3C] text-white'
-                : 'border-[#8E948E] bg-[#F4F4F1] text-[#2E382E] hover:border-[#2E382E]')
+              'sec-btn border-[3px] px-2.5 py-1.5 text-left text-xs font-bold ' +
+              (on ? 'border-[#222034] bg-[#2C2F6B] text-white' : 'border-[#222034] bg-[#FFF4D6] text-[#222034] hover:bg-white')
             }
           >
+            {on ? '▶ ' : ''}
             {o.label}
           </button>
         );
@@ -181,33 +192,59 @@ export function Segmented<T extends string>({
   );
 }
 
+/** RPG-style dialog box for a lab's outcome. */
 export function Verdict({ tone, children }: { tone: 'bad' | 'good' | 'warn'; children: React.ReactNode }) {
   const cls =
     tone === 'bad'
-      ? 'border-[#FF6A2B] bg-[#FBE3D7] text-[#6E2508]'
+      ? 'border-[#E43B44] bg-[#FFE0E3] text-[#8A1020]'
       : tone === 'good'
-        ? 'border-[#9DB800] bg-[#F3F9CF] text-[#2E382E]'
-        : 'border-[#C9A100] bg-[#FFF6CC] text-[#4A3B00]';
+        ? 'border-[#2E9E44] bg-[#DDF5D6] text-[#222034]'
+        : 'border-[#F28C28] bg-[#FFE9C7] text-[#7A3E00]';
   return (
-    <div role="status" aria-live="polite" className={`sec-pop border-2 px-3 py-2 text-sm font-semibold leading-relaxed ${cls}`}>
+    <div
+      role="status"
+      aria-live="polite"
+      className={`sec-pop border-4 px-3 py-2 text-sm font-semibold leading-relaxed shadow-[4px_4px_0_#222034] ${cls}`}
+    >
       {children}
     </div>
   );
 }
 
-/** Keyframes shared by every component; injected once per island, cheap. */
+/**
+ * Shared CSS for the retro pixel look, injected by every island (tiny).
+ * The pixel font only covers Latin; CJK falls back to the system font, and
+ * size-adjust keeps the two scripts at a similar visual size.
+ */
 export function SecStyles() {
-  return (
-    <style>{`
-@keyframes secPop{0%{transform:scale(.96);opacity:0}100%{transform:scale(1);opacity:1}}
-@keyframes secShake{0%,100%{transform:translate(-50%,0)}20%{transform:translate(calc(-50% - 6px),0)}40%{transform:translate(calc(-50% + 6px),0)}60%{transform:translate(calc(-50% - 4px),0)}80%{transform:translate(calc(-50% + 4px),0)}}
-@keyframes secPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,106,43,.55)}50%{box-shadow:0 0 0 8px rgba(255,106,43,0)}}
-@keyframes secType{from{max-width:0}to{max-width:100%}}
-.sec-pop{animation:secPop .28s ease-out both}
-.sec-shake{animation:secShake .5s ease-in-out both}
-.sec-pulse{animation:secPulse 1.2s ease-out infinite}
-.sec-type{display:inline-block;overflow:hidden;white-space:pre;vertical-align:bottom;animation:secType .5s steps(30,end) both}
-@media (prefers-reduced-motion: reduce){.sec-pop,.sec-shake,.sec-pulse,.sec-type{animation:none!important}}
-`}</style>
-  );
+  // A static constant (no user input). Injected as raw HTML so the server and
+  // client render byte-identical CSS; as a text child React would escape the quotes.
+  return <style dangerouslySetInnerHTML={{ __html: SEC_CSS }} />;
 }
+
+const SEC_CSS = `
+@font-face{font-family:'Press Start 2P';src:url('/security/fonts/press-start-2p-latin.woff2') format('woff2');font-display:swap;unicode-range:U+0000-00FF;size-adjust:72%}
+.sec-px{font-family:'Press Start 2P','PingFang TC','Noto Sans TC','Microsoft JhengHei',monospace;letter-spacing:0;line-height:1.5}
+.sec-btn{box-shadow:0 4px 0 #222034;transition:transform .08s steps(2),box-shadow .08s steps(2)}
+.sec-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 5px 0 #222034}
+.sec-btn:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 #222034}
+.sec-btn:disabled{box-shadow:0 4px 0 #9FA3E3;cursor:default}
+.sec-bricks{background-color:#C84C0C;background-image:linear-gradient(#222034 2px,transparent 2px),linear-gradient(90deg,#222034 2px,transparent 2px);background-size:28px 7px,28px 14px}
+.sec-cloud{width:8px;height:8px;top:0;box-shadow:8px 8px #fff,16px 8px #fff,24px 8px #fff,0 16px #fff,8px 16px #fff,16px 16px #fff,24px 16px #fff,32px 16px #fff,-8px 24px #fff,0 24px #fff,8px 24px #fff,16px 24px #fff,24px 24px #fff,32px 24px #fff,40px 24px #fff}
+.sec-coin{border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF6C7 0 18%,#FFC93C 19% 62%,#E6A800 63%);box-shadow:inset -2px -2px 0 rgba(0,0,0,.18)}
+@keyframes secPop{0%{transform:scale(.9);opacity:0}60%{transform:scale(1.04);opacity:1}100%{transform:scale(1)}}
+@keyframes secShake{0%,100%{transform:translate(-50%,-50%)}20%{transform:translate(calc(-50% - 6px),-50%)}40%{transform:translate(calc(-50% + 6px),-50%)}60%{transform:translate(calc(-50% - 4px),-50%)}80%{transform:translate(calc(-50% + 4px),-50%)}}
+@keyframes secPulse{0%,100%{box-shadow:0 4px 0 #222034,0 0 0 0 rgba(255,201,60,.9)}50%{box-shadow:0 4px 0 #222034,0 0 0 8px rgba(255,201,60,0)}}
+@keyframes secHop{0%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}}
+@keyframes secRise{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(-28px);opacity:0}}
+@keyframes secSpin{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.25)}}
+@keyframes secBlink{50%{opacity:0}}
+.sec-pop{animation:secPop .3s steps(4,end) both}
+.sec-shake{animation:secShake .5s steps(5,end) both}
+.sec-pulse{animation:secPulse 1.2s steps(6,end) infinite}
+.sec-hop{animation:secHop .45s steps(3,end) 1}
+.sec-rise{animation:secRise 1s steps(8,end) both}
+.sec-spin{animation:secSpin .8s steps(4,end) infinite}
+.sec-blink{animation:secBlink 1s steps(1,end) infinite}
+@media (prefers-reduced-motion: reduce){.sec-pop,.sec-shake,.sec-pulse,.sec-hop,.sec-rise,.sec-spin,.sec-blink{animation:none!important}.sec-btn{transition:none}}
+`;

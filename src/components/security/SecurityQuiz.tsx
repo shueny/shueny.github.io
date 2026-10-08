@@ -124,32 +124,40 @@ export default function SecurityQuiz({ lang = 'en' }: { lang?: Lang }) {
       <SecStyles />
       {done ? (
         <div className="sec-pop text-center" data-testid="quiz-result">
-          <div className="text-xs font-extrabold uppercase tracking-[0.08em] text-[#5A645A]">{tr(T.score, lang)}</div>
-          <div className="my-1 text-5xl font-extrabold">
+          <div className="sec-px mb-2 text-[18px] text-[#222034] [text-shadow:3px_3px_0_#fff]">
+            {score === QUESTIONS.length ? '★ STAGE CLEAR! ★' : 'NICE TRY!'}
+          </div>
+          <div className="text-xs font-extrabold uppercase tracking-[0.08em] text-[#5A4E7C]">{tr(T.score, lang)}</div>
+          <div className="sec-px my-2 text-4xl">
             {score}
-            <span className="text-2xl text-[#5A645A]"> / {QUESTIONS.length}</span>
+            <span className="text-xl text-[#5A4E7C]"> / {QUESTIONS.length}</span>
+          </div>
+          <div className="mb-2 flex justify-center gap-1.5" aria-hidden>
+            {QUESTIONS.map((_, j) => (
+              <span key={j} className={'inline-block h-5 w-5 border-2 border-[#222034] ' + (j < score ? 'sec-coin' : 'bg-[#C9CCEB]')} />
+            ))}
           </div>
           <div className="m-0 text-sm">{score === QUESTIONS.length ? tr(T.perfect, lang) : tr(T.good, lang)}</div>
-          <button type="button" onClick={restart} className="mt-3 border-2 border-[#2E382E] bg-[#DDFF00] px-4 py-2 text-xs font-extrabold">
+          <button type="button" onClick={restart} className="sec-btn mt-3 border-[3px] border-[#222034] bg-[#FFC93C] px-4 py-2 text-xs font-extrabold">
             {tr(T.retry, lang)}
           </button>
         </div>
       ) : (
         <div key={i} className="sec-pop">
           <div className="mb-2 flex items-center gap-2">
-            <span className="bg-[#3C4A3C] px-2 py-0.5 font-mono text-[11px] font-bold text-[#DDFF00]">
+            <span className="sec-px border-2 border-[#222034] bg-[#2C2F6B] px-2 py-0.5 text-[11px] text-[#FFC93C]">
               {lang === 'zh' ? `${tr(T.q, lang)} ${i + 1} / ${QUESTIONS.length} 題` : `${tr(T.q, lang)} ${i + 1} / ${QUESTIONS.length}`}
             </span>
             <div className="flex gap-1">
               {QUESTIONS.map((_, j) => (
-                <span key={j} className={'h-1.5 w-4 ' + (j < i ? 'bg-[#3C4A3C]' : j === i ? 'bg-[#DDFF00] ring-1 ring-[#2E382E]' : 'bg-[#B9BAB6]')} />
+                <span key={j} className={'h-3 w-3 border-2 border-[#222034] ' + (j < i ? 'bg-[#2C2F6B]' : j === i ? 'sec-coin' : 'bg-white')} />
               ))}
             </div>
           </div>
           <div className="m-0 mb-3 text-[15px] font-semibold leading-relaxed" data-testid="quiz-scene">
             {tr(q.scene, lang)}
           </div>
-          <div className="grid gap-1.5 sm:grid-cols-2">
+          <div className="grid gap-2.5 sm:grid-cols-2">
             {q.options.map((id) => {
               const isAns = id === q.answer;
               const chosen = id === pick;
@@ -161,14 +169,14 @@ export default function SecurityQuiz({ lang = 'en' }: { lang?: Lang }) {
                   disabled={!!pick}
                   data-testid={`quiz-opt-${id}`}
                   className={
-                    'border-2 px-3 py-2 text-left text-sm font-bold transition-colors ' +
+                    'sec-btn border-[3px] px-3 py-2 text-left text-sm font-bold ' +
                     (!pick
-                      ? 'border-[#8E948E] bg-[#F4F4F1] hover:border-[#2E382E] hover:bg-white'
+                      ? 'border-[#222034] bg-[#FFF4D6] hover:bg-white'
                       : isAns
-                        ? 'border-[#2E382E] bg-[#DDFF00]'
+                        ? 'border-[#222034] bg-[#FFC93C]'
                         : chosen
-                          ? 'border-[#FF6A2B] bg-[#FBE3D7] text-[#6E2508]'
-                          : 'border-[#C8CAC5] bg-[#F4F4F1] opacity-50')
+                          ? 'border-[#E43B44] bg-[#FFE0E3] text-[#8A1020]'
+                          : 'border-[#9FA3E3] bg-[#FFF4D6] opacity-50')
                   }
                 >
                   {name(id)}
@@ -177,16 +185,25 @@ export default function SecurityQuiz({ lang = 'en' }: { lang?: Lang }) {
             })}
           </div>
           {pick && (
-            <div className="sec-pop mt-3 border-2 border-[#2E382E] bg-[#3C4A3C] px-3 py-2 text-sm text-white" role="status" data-testid="quiz-feedback">
+            <div
+              className="sec-pop relative mt-4 border-4 border-white bg-[#2C2F6B] px-3 py-2 text-sm text-white shadow-[0_0_0_3px_#222034,6px_6px_0_3px_#222034]"
+              role="status"
+              data-testid="quiz-feedback"
+            >
+              {pick === q.answer && (
+                <span aria-hidden className="sec-px sec-rise absolute -top-6 right-4 text-[14px] text-[#FFC93C] [text-shadow:2px_2px_0_#222034]">
+                  +100
+                </span>
+              )}
               <div className="font-extrabold">
                 {pick === q.answer ? tr(T.right, lang) : `${tr(T.wrong, lang)} ${name(q.answer)}`}
               </div>
-              <div className="mt-1 text-[#DCE2D6]">{tr(q.why, lang)}</div>
+              <div className="mt-1 text-[#DCDDFF]">{tr(q.why, lang)}</div>
               <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-                <a href={`/security/${TOPICS[q.answer].file}`} className="text-xs font-bold text-[#DDFF00] underline underline-offset-4">
+                <a href={`/security/${TOPICS[q.answer].file}`} className="text-xs font-bold text-[#FFC93C] underline underline-offset-4">
                   ▶ {tr(T.anim, lang)}
                 </a>
-                <button type="button" onClick={next} data-testid="quiz-next" className="border-2 border-[#DDFF00] bg-[#DDFF00] px-3 py-1 text-xs font-extrabold text-[#2E382E]">
+                <button type="button" onClick={next} data-testid="quiz-next" className="sec-btn border-[3px] border-[#222034] bg-[#FFC93C] px-3 py-1 text-xs font-extrabold text-[#222034]">
                   {i === QUESTIONS.length - 1 ? tr(T.finish, lang) : tr(T.next, lang)}
                 </button>
               </div>

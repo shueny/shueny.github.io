@@ -51,7 +51,7 @@ function DiffHash({ a, b }: { a: string; b: string }) {
   return (
     <>
       {b.split('').map((ch, i) => (
-        <span key={i} className={ch !== a[i] ? 'bg-[#FF6A2B] text-[#2A1208]' : ''}>
+        <span key={i} className={ch !== a[i] ? 'bg-[#E43B44] text-[#FFFFFF]' : ''}>
           {ch}
         </span>
       ))}
@@ -94,11 +94,11 @@ export default function SriLab({ lang = 'en' }: { lang?: Lang }) {
             type="button"
             onClick={() => setCode((c) => (c.includes(INJECT) ? c : c + INJECT))}
             data-testid="sri-hack"
-            className="border-2 border-[#2E382E] bg-[#FF6A2B] px-2.5 py-1 text-xs font-extrabold text-[#2A1208]"
+            className="sec-btn border-[3px] border-[#222034] bg-[#E43B44] px-2.5 py-1 text-xs font-extrabold text-[#FFFFFF]"
           >
             {tr(T.hack, lang)}
           </button>
-          <button type="button" onClick={() => setCode(ORIGINAL)} className="border-2 border-[#2E382E] bg-white px-2.5 py-1 text-xs font-extrabold">
+          <button type="button" onClick={() => setCode(ORIGINAL)} className="sec-btn border-[3px] border-[#222034] bg-white px-2.5 py-1 text-xs font-extrabold">
             {tr(T.restore, lang)}
           </button>
         </div>
@@ -111,11 +111,11 @@ export default function SriLab({ lang = 'en' }: { lang?: Lang }) {
         onChange={(e) => setCode(e.target.value)}
         rows={6}
         spellCheck={false}
-        className="w-full resize-y border-2 border-[#2E382E] bg-[#2A332A] p-2 font-mono text-[12.5px] leading-relaxed text-[#EEF1E6] focus:outline-none focus:ring-2 focus:ring-[#DDFF00]"
+        className="w-full resize-y border-2 border-[#222034] bg-[#16183A] p-2 font-mono text-[12.5px] leading-relaxed text-[#F5F1FF] focus:outline-none focus:ring-2 focus:ring-[#FFC93C]"
       />
 
       <label className="mt-2 flex items-center gap-2 text-xs font-bold">
-        <input type="checkbox" checked={useSri} onChange={(e) => setUseSri(e.target.checked)} data-testid="sri-toggle" className="h-4 w-4 accent-[#9DB800]" />
+        <input type="checkbox" checked={useSri} onChange={(e) => setUseSri(e.target.checked)} data-testid="sri-toggle" className="h-4 w-4 accent-[#2E9E44]" />
         🛡 {tr(T.useSri, lang)}
       </label>
 
@@ -123,11 +123,11 @@ export default function SriLab({ lang = 'en' }: { lang?: Lang }) {
         <div className="mt-3 text-sm">{tr(T.noCrypto, lang)}</div>
       ) : (
         <div className="mt-3 space-y-1.5 font-mono text-[11.5px]">
-          <div className={'border-2 p-2 ' + (useSri ? 'border-[#9DB800] bg-[#F3F9CF]' : 'border-dashed border-[#B9BAB6] bg-[#F4F4F1] opacity-60')}>
+          <div className={'border-2 p-2 ' + (useSri ? 'border-[#2E9E44] bg-[#DDF5D6]' : 'border-dashed border-[#FFE7A3] bg-[#FFF4D6] opacity-60')}>
             <div className="mb-0.5 font-sans text-[10px] font-extrabold uppercase tracking-[0.08em]">{tr(T.expected, lang)}</div>
             <div className="break-all">{expected ?? '…'}</div>
           </div>
-          <div className={'border-2 p-2 ' + (same ? 'border-[#9DB800] bg-white' : 'border-[#FF6A2B] bg-white')}>
+          <div className={'border-2 p-2 ' + (same ? 'border-[#2E9E44] bg-white' : 'border-[#E43B44] bg-white')}>
             <div className="mb-0.5 font-sans text-[10px] font-extrabold uppercase tracking-[0.08em]">{tr(T.actual, lang)}</div>
             <div className="break-all" data-testid="sri-actual">
               {expected && actual ? <DiffHash a={expected} b={actual} /> : '…'}

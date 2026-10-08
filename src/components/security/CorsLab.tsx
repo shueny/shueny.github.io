@@ -102,24 +102,24 @@ export default function CorsLab({ lang = 'en' }: { lang?: Lang }) {
       </div>
 
       <div key={`${server}-${origin}`} className="mt-3 grid gap-2 font-mono text-[12px] sm:grid-cols-2">
-        <div className={'sec-pop border-2 p-2.5 ' + (evil ? 'border-[#E39A7C] bg-[#F7ECE5]' : 'border-[#9DB800] bg-[#F3F9CF]')}>
+        <div className={'sec-pop border-2 p-2.5 ' + (evil ? 'border-[#F27A85] bg-[#FFE0E3]' : 'border-[#2E9E44] bg-[#DDF5D6]')}>
           <div className="mb-1 font-sans text-[10px] font-extrabold uppercase tracking-[0.08em]">→ {tr(T.req, lang)}</div>
           <div>GET /api/me</div>
           <div>Origin: {origin}</div>
           <div>Cookie: session=abc123</div>
         </div>
-        <div className="sec-pop border-2 border-[#5B695B] bg-[#2A332A] p-2.5 text-[#EEF1E6]" style={{ animationDelay: '.15s' }}>
-          <div className="mb-1 font-sans text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#B9C3B2]">
+        <div className="sec-pop border-2 border-[#4A4E9C] bg-[#16183A] p-2.5 text-[#F5F1FF]" style={{ animationDelay: '.15s' }}>
+          <div className="mb-1 font-sans text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#A9ACE6]">
             ← {tr(T.res, lang)}
           </div>
-          <div className="text-[#B7D400]">HTTP/1.1 200 OK</div>
+          <div className="text-[#2E9E44]">HTTP/1.1 200 OK</div>
           {headers.map((h) => (
-            <div key={h} className={h.startsWith('Access-Control-Allow-Origin') && result === 'leak' ? 'text-[#FF9A6E]' : ''}>
+            <div key={h} className={h.startsWith('Access-Control-Allow-Origin') && result === 'leak' ? 'text-[#FF8A94]' : ''}>
               {h}
             </div>
           ))}
           {!headers.some((h) => h.startsWith('Access-Control-Allow-Origin')) && (
-            <div className="text-[#7C8A7C]">{tr(T.noHeader, lang)}</div>
+            <div className="text-[#8F92D8]">{tr(T.noHeader, lang)}</div>
           )}
         </div>
       </div>
@@ -128,7 +128,7 @@ export default function CorsLab({ lang = 'en' }: { lang?: Lang }) {
         <Verdict tone={tone}>
           {icon} {tr(T[result], lang)}
         </Verdict>
-        {origin === 'null' && result === 'leak' && <div className="m-0 text-xs text-[#4A554A]">{tr(T.nullNote, lang)}</div>}
+        {origin === 'null' && result === 'leak' && <div className="m-0 text-xs text-[#4B3F72]">{tr(T.nullNote, lang)}</div>}
       </div>
     </LabFrame>
   );

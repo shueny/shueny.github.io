@@ -81,21 +81,21 @@ export default function RedirectLab({ lang = 'en' }: { lang?: Lang }) {
     <LabFrame lang={lang} title={tr(T.title, lang)} hint={tr(T.hint, lang)} testId="lab-redirect">
       <SecStyles />
       <div className="mb-2 flex flex-wrap items-center gap-1.5">
-        <span className="text-xs font-bold text-[#4A554A]">{tr(T.presets, lang)}</span>
+        <span className="text-xs font-bold text-[#4B3F72]">{tr(T.presets, lang)}</span>
         {PRESETS.map((p) => (
           <button
             key={p}
             type="button"
             onClick={() => setValue(p)}
-            className="max-w-[230px] truncate border border-[#8E948E] bg-[#F4F4F1] px-2 py-1 font-mono text-[11px] hover:border-[#2E382E]"
+            className="max-w-[230px] truncate border-2 border-[#222034] bg-[#FFF4D6] px-2 py-1 font-mono text-[11px] shadow-[2px_2px_0_#222034] hover:bg-white"
           >
             {p}
           </button>
         ))}
       </div>
 
-      <div className="flex items-stretch border-2 border-[#2E382E] bg-white font-mono text-[13px]">
-        <span className="flex items-center whitespace-nowrap border-r-2 border-[#2E382E] bg-[#F4F4F1] px-2 text-[#5A645A]">
+      <div className="flex items-stretch border-2 border-[#222034] bg-white font-mono text-[13px]">
+        <span className="flex items-center whitespace-nowrap border-r-2 border-[#222034] bg-[#FFF4D6] px-2 text-[#5A4E7C]">
           …/login?redirect=
         </span>
         <input
@@ -105,7 +105,7 @@ export default function RedirectLab({ lang = 'en' }: { lang?: Lang }) {
           maxLength={200}
           spellCheck={false}
           onChange={(e) => setValue(e.target.value)}
-          className="min-w-0 flex-1 px-2 py-2 text-[#2E382E] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#DDFF00]"
+          className="min-w-0 flex-1 px-2 py-2 text-[#222034] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#FFC93C]"
         />
       </div>
 
@@ -120,21 +120,21 @@ export default function RedirectLab({ lang = 'en' }: { lang?: Lang }) {
       </div>
 
       <div key={`${value}-${check}`} className="sec-pop mt-3 space-y-2">
-        <div className="text-xs font-semibold text-[#4A554A]">
-          <span className="bg-[#F4F4F1] px-1 font-mono">{value || '""'}</span> {ok ? tr(T.passed, lang) : tr(T.rejected, lang)}
+        <div className="text-xs font-semibold text-[#4B3F72]">
+          <span className="bg-[#FFF4D6] px-1 font-mono">{value || '""'}</span> {ok ? tr(T.passed, lang) : tr(T.rejected, lang)}
         </div>
-        <div className="border-2 border-[#2E382E] bg-[#F4F4F1]">
-          <div className="flex items-center gap-1.5 border-b border-[#B9BAB6] px-2 py-1">
-            <span className="h-2 w-2 rounded-full bg-[#FF6A2B]" />
-            <span className="h-2 w-2 rounded-full bg-[#E0C400]" />
-            <span className="h-2 w-2 rounded-full bg-[#9DB800]" />
-            <span className="ml-2 text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#5A645A]">{tr(T.lands, lang)}</span>
+        <div className="border-2 border-[#222034] bg-[#FFF4D6]">
+          <div className="flex items-center gap-1.5 border-b border-[#FFE7A3] px-2 py-1">
+            <span className="h-2 w-2 rounded-full bg-[#E43B44]" />
+            <span className="h-2 w-2 rounded-full bg-[#FFC93C]" />
+            <span className="h-2 w-2 rounded-full bg-[#2E9E44]" />
+            <span className="ml-2 text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#5A4E7C]">{tr(T.lands, lang)}</span>
           </div>
           <div
             data-testid="redirect-final"
             className={
               'break-all px-3 py-2 font-mono text-[13px] font-bold ' +
-              (isJs || offsite ? 'bg-[#FBE3D7] text-[#8F3010]' : 'bg-white text-[#2E382E]')
+              (isJs || offsite ? 'bg-[#FFE0E3] text-[#9E1A2C]' : 'bg-white text-[#222034]')
             }
           >
             {final ? (isJs ? final.href : `${final.protocol}//${final.host}${final.pathname}`) : '—'}
@@ -151,7 +151,7 @@ export default function RedirectLab({ lang = 'en' }: { lang?: Lang }) {
             <Verdict tone="good">{tr(T.good, lang)}</Verdict>
           )}
         </div>
-        {sneaky && <div className="m-0 text-xs font-semibold text-[#8F3010]">{tr(T.bypass, lang)}</div>}
+        {sneaky && <div className="m-0 text-xs font-semibold text-[#9E1A2C]">{tr(T.bypass, lang)}</div>}
       </div>
     </LabFrame>
   );

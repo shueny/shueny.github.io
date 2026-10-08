@@ -84,7 +84,7 @@ function Highlight({ src }: { src: string }) {
     <>
       {parts.map((p, i) =>
         i % 2 === 1 ? (
-          <mark key={i} className="bg-[#FF6A2B] px-0.5 text-[#2A1208]">
+          <mark key={i} className="bg-[#E43B44] px-0.5 text-[#FFFFFF]">
             {p}
           </mark>
         ) : (
@@ -101,7 +101,7 @@ function Entities({ src }: { src: string }) {
     <>
       {parts.map((p, i) =>
         i % 2 === 1 ? (
-          <span key={i} className="bg-[#DDFF00] px-0.5 text-[#2E382E]">
+          <span key={i} className="bg-[#FFC93C] px-0.5 text-[#222034]">
             {p}
           </span>
         ) : (
@@ -128,13 +128,13 @@ export default function XssLab({ lang = 'en' }: { lang?: Lang }) {
     <LabFrame lang={lang} title={tr(T.title, lang)} hint={tr(T.hint, lang)} testId="lab-xss">
       <SecStyles />
       <div className="mb-2 flex flex-wrap items-center gap-1.5">
-        <span className="text-xs font-bold text-[#4A554A]">{tr(T.presets, lang)}</span>
+        <span className="text-xs font-bold text-[#4B3F72]">{tr(T.presets, lang)}</span>
         {PRESETS.map((p, i) => (
           <button
             key={i}
             type="button"
             onClick={() => setValue(p)}
-            className="max-w-[220px] truncate border border-[#8E948E] bg-[#F4F4F1] px-2 py-1 font-mono text-[11px] hover:border-[#2E382E]"
+            className="max-w-[220px] truncate border-2 border-[#222034] bg-[#FFF4D6] px-2 py-1 font-mono text-[11px] shadow-[2px_2px_0_#222034] hover:bg-white"
             title={p}
           >
             {p}
@@ -152,9 +152,9 @@ export default function XssLab({ lang = 'en' }: { lang?: Lang }) {
         onChange={(e) => setValue(e.target.value.slice(0, MAX))}
         rows={3}
         spellCheck={false}
-        className="w-full resize-y border-2 border-[#2E382E] bg-white p-2 font-mono text-[13px] leading-relaxed text-[#2E382E] focus:outline-none focus:ring-2 focus:ring-[#DDFF00]"
+        className="w-full resize-y border-2 border-[#222034] bg-white p-2 font-mono text-[13px] leading-relaxed text-[#222034] focus:outline-none focus:ring-2 focus:ring-[#FFC93C]"
       />
-      <div className="mt-1 text-right text-[11px] text-[#5A645A]">
+      <div className="mt-1 text-right text-[11px] text-[#5A4E7C]">
         {value.length} / {MAX}
       </div>
 
@@ -170,8 +170,8 @@ export default function XssLab({ lang = 'en' }: { lang?: Lang }) {
         />
       </div>
 
-      <div className="mt-3 border-2 border-[#5B695B] bg-[#2A332A] p-3 text-[#EEF1E6]">
-        <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#B9C3B2]">
+      <div className="mt-3 border-2 border-[#4A4E9C] bg-[#16183A] p-3 text-[#F5F1FF]">
+        <div className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#A9ACE6]">
           {tr(T.seen, lang)}
         </div>
         <div className="m-0 whitespace-pre-wrap break-all font-mono text-[12.5px] leading-relaxed" data-testid="xss-output">

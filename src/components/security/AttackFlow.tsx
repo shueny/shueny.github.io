@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { TOPICS } from './topics';
-import { ICONS, SecStyles, tr, useFirstVisible, useReducedMotion, type L, type Lang } from './ui';
+import { BrickFloor, ICONS, PixelCloud, SecStyles, tr, useFirstVisible, useReducedMotion, type L, type Lang } from './ui';
 
 const T: Record<string, L> = {
   attack: { zh: '攻擊流程', en: 'Attack flow', de: 'Angriffsablauf' },
+  stage: { zh: 'STAGE', en: 'STAGE', de: 'STAGE' },
+  hit: { zh: '攻擊命中！', en: 'ATTACK HIT!', de: 'TREFFER!' },
+  blockTag: { zh: 'BLOCK! +100', en: 'BLOCK! +100', de: 'BLOCK! +100' },
   play: { zh: '播放', en: 'Play', de: 'Abspielen' },
   pause: { zh: '暫停', en: 'Pause', de: 'Pause' },
   replay: { zh: '重播', en: 'Replay', de: 'Nochmal' },
@@ -101,16 +104,16 @@ export default function AttackFlow({ topic, lang = 'en' }: { topic: string; lang
       data-testid={`flow-${topic}`}
       data-step={step}
       data-defense={defense ? 'on' : 'off'}
-      className="not-prose my-6 overflow-hidden rounded-xl border-2 border-[#2E382E] bg-[#DEDEDB] text-[#2E382E]"
+      className="sec-root not-prose relative my-8 border-4 border-[#222034] bg-[#6EC6FF] text-[#222034] shadow-[6px_6px_0_#222034]"
     >
       <SecStyles />
-      {/* Header: title + defense switch */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#2E382E] bg-[#F4F4F1] px-4 py-3">
+      {/* Header: stage badge + defense switch */}
+      <div className="relative flex flex-wrap items-center justify-between gap-3 border-b-4 border-[#222034] bg-[#FFF4D6] px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-extrabold text-[#5A645A]">{t.num}</span>
-          <span className="bg-[#B9BAB6] px-2 py-1 text-[11px] font-extrabold uppercase tracking-[0.08em]">
-            {tr(T.attack, lang)}
+          <span className="sec-px border-[3px] border-[#222034] bg-[#FFC93C] px-2 py-1 text-[13px] shadow-[3px_3px_0_#222034]">
+            {tr(T.stage, lang)} {t.num}
           </span>
+          <span className="text-xs font-extrabold text-[#4B3F72]">{tr(T.attack, lang)}</span>
         </div>
         <button
           type="button"
@@ -119,136 +122,134 @@ export default function AttackFlow({ topic, lang = 'en' }: { topic: string; lang
           onClick={toggleDefense}
           data-testid="defense-toggle"
           className={
-            'flex items-center gap-2 border-2 px-2.5 py-1.5 text-xs font-extrabold transition-colors ' +
-            (defense
-              ? 'border-[#2E382E] bg-[#DDFF00] text-[#2E382E]'
-              : 'border-[#8E948E] bg-white text-[#2E382E] hover:border-[#2E382E]') +
+            'sec-btn flex items-center gap-2 border-[3px] border-[#222034] px-2.5 py-1.5 text-xs font-extrabold ' +
+            (defense ? 'bg-[#3CB043] text-white' : 'bg-white text-[#222034]') +
             (!defense && done && !playing ? ' sec-pulse' : '')
           }
         >
-          <span
-            aria-hidden
-            className={
-              'relative inline-block h-4 w-7 rounded-full transition-colors ' + (defense ? 'bg-[#3C4A3C]' : 'bg-[#B9BAB6]')
-            }
-          >
-            <span
-              className={
-                'absolute top-0.5 h-3 w-3 rounded-full bg-white transition-all ' + (defense ? 'left-3.5' : 'left-0.5')
-              }
-            />
+          <span aria-hidden className={'relative inline-block h-4 w-8 border-2 border-[#222034] ' + (defense ? 'bg-[#2C2F6B]' : 'bg-[#FFE7A3]')}>
+            <span className={'absolute top-0 h-3 w-3 bg-white shadow-[inset_-2px_-2px_0_#9FA3E3] ' + (defense ? 'left-4' : 'left-0')} />
           </span>
           🛡 {tr(T.defense, lang)}
           <span className="hidden font-mono text-[11px] font-semibold sm:inline">· {tr(t.defense.name, lang)}</span>
         </button>
       </div>
 
-      <div className="px-3 pb-4 pt-4 sm:px-5">
+      <div className="relative overflow-hidden px-3 pb-4 pt-5 sm:px-5">
+        <PixelCloud className="left-[12%] top-1 hidden opacity-90 sm:block" />
+        <PixelCloud className="right-[18%] top-0 opacity-90" />
         {/* Actors */}
-        <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
+        <div className="relative grid gap-2 pt-4 sm:gap-3" style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
           {t.actors.map((a, i) => {
             const on = activeSet.has(i);
             const shield = blocked && i === s.to;
             return (
               <div
-                key={i}
+                key={on ? `${i}-${step}-${defense}` : i}
                 className={
-                  'relative flex min-h-[78px] flex-col items-center justify-center gap-1 border-2 px-1 py-2 text-center transition-all duration-300 ' +
+                  'relative flex min-h-[80px] flex-col items-center justify-center gap-1 border-[3px] px-1 py-2 text-center shadow-[4px_4px_0_#222034] ' +
                   (on
-                    ? mal
-                      ? 'border-[#FF6A2B] bg-[#3C4A3C] text-white shadow-[0_0_14px_rgba(255,106,43,.5)]'
-                      : 'border-[#DDFF00] bg-[#3C4A3C] text-white shadow-[0_0_14px_rgba(221,255,0,.5)]'
+                    ? (mal ? 'border-[#E43B44] bg-[#2C2F6B] text-white' : 'border-[#FFC93C] bg-[#2C2F6B] text-white') + (reduced ? '' : ' sec-hop')
                     : a.bad
-                      ? 'border-dashed border-[#E39A7C] bg-[#F7ECE5] text-[#8F3010]'
-                      : 'border-dashed border-[#8E948E] bg-[#F4F4F1]')
+                      ? 'border-[#222034] bg-[#FFE0E3] text-[#9E1A2C]'
+                      : 'border-[#222034] bg-[#FFF4D6]')
                 }
               >
                 {ICONS[a.kind]}
                 <span className="text-[11px] font-bold leading-tight sm:text-xs">{tr(a.label, lang)}</span>
                 {shield && (
-                  <span className="sec-pop absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#2E382E] bg-[#DDFF00] text-[#2E382E]">
-                    {ICONS.shield}
-                  </span>
+                  <>
+                    <span className="sec-pop absolute -right-2.5 -top-2.5 flex h-9 w-9 items-center justify-center border-[3px] border-[#222034] bg-[#3CB043] text-white shadow-[3px_3px_0_#222034]">
+                      {ICONS.shield}
+                    </span>
+                    <span className="sec-px sec-rise absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-[13px] text-white [text-shadow:2px_2px_0_#222034]">
+                      BLOCK!
+                    </span>
+                  </>
                 )}
               </div>
             );
           })}
         </div>
 
-        {/* Track + packet */}
-        <div className="relative my-3 h-9" aria-hidden>
-          <div className="absolute left-0 right-0 top-1/2 border-t-2 border-dashed border-[#7C837C]" />
+        {/* Ground + packet */}
+        <div className="relative mb-3 mt-4 h-12" aria-hidden>
+          <div className="sec-bricks absolute inset-x-0 bottom-0 h-3.5 border-y-[3px] border-[#222034]" />
           <div
             key={`${step}-${defense}`}
             className={
-              'absolute top-1/2 whitespace-nowrap border-2 px-2 py-0.5 font-mono text-[11px] font-bold ' +
+              'sec-px absolute top-[42%] flex items-center gap-1.5 whitespace-nowrap border-[3px] px-2 py-1 text-[11px] shadow-[3px_3px_0_#222034] ' +
               (blocked
-                ? 'sec-shake border-[#5A645A] bg-[#B9BAB6] text-[#3A423A] line-through'
+                ? 'sec-shake border-[#222034] bg-[#C9CCEB] text-[#5A4E7C] line-through'
                 : mal
-                  ? 'border-[#2A1208] bg-[#FF6A2B] text-[#2A1208]'
-                  : 'border-[#2E382E] bg-[#DDFF00] text-[#2E382E]')
+                  ? 'border-[#222034] bg-[#E43B44] text-white'
+                  : 'border-[#222034] bg-[#FFF4D6] text-[#222034]')
             }
             style={{
               left: x(at),
               transform: 'translate(-50%, -50%)',
-              transition: phase === 'end' && !reduced ? 'left .75s cubic-bezier(.4,0,.2,1)' : 'none',
+              transition: phase === 'end' && !reduced ? 'left .75s steps(10, end)' : 'none',
             }}
           >
+            {mal || blocked ? <span>✸</span> : <span className="sec-coin sec-spin inline-block h-3 w-3" />}
             {s.pkt}
           </div>
         </div>
 
-        {/* Caption */}
+        {/* Caption: RPG dialog box */}
         <div
           key={`cap-${step}-${defense}`}
           aria-live="polite"
           className={
-            'sec-pop min-h-[96px] border-2 px-4 py-3 text-white ' +
-            (blocked ? 'border-[#DDFF00] bg-[#3C4A3C]' : mal ? 'border-[#FF6A2B] bg-[#3C4A3C]' : 'border-[#DDFF00] bg-[#3C4A3C]')
+            'sec-pop relative min-h-[100px] border-4 bg-[#2C2F6B] px-4 py-3 text-white shadow-[0_0_0_3px_#222034,6px_6px_0_3px_#222034] ' +
+            (blocked ? 'border-[#3CB043]' : mal ? 'border-[#E43B44]' : 'border-white')
           }
         >
-          <div className="mb-1 flex flex-wrap items-center gap-2">
-            <span className="bg-[#DDFF00] px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#2E382E]">
-              {tr(T.step, lang)} {step + 1} / {N}
+          <div className="mb-1.5 flex flex-wrap items-center gap-2">
+            <span className="sec-px border-2 border-[#222034] bg-[#FFC93C] px-1.5 py-0.5 text-[11px] text-[#222034]">
+              {tr(T.step, lang)} {step + 1}/{N}
             </span>
             {blocked && (
-              <span className="bg-[#DDFF00] px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-[0.08em] text-[#2E382E]">
-                🛡 {tr(T.blocked, lang)}
+              <span className="sec-px flex items-center gap-1 border-2 border-[#222034] bg-[#3CB043] px-1.5 py-0.5 text-[11px] text-white">
+                <span className="sec-coin inline-block h-2.5 w-2.5" /> {tr(T.blockTag, lang)}
               </span>
+            )}
+            {blocked && <span className="text-[11px] font-bold text-[#DDF5D6]">🛡 {tr(T.blocked, lang)}</span>}
+            {!defense && done && !playing && (
+              <span className="sec-px border-2 border-[#222034] bg-[#E43B44] px-1.5 py-0.5 text-[11px] text-white">{tr(T.hit, lang)}</span>
             )}
           </div>
           {blocked ? (
             <>
-              <div className="m-0 text-sm text-[#B9C3B2] line-through">{tr(s.text, lang)}</div>
-              <div className="m-0 mt-1 text-[15px] font-semibold leading-relaxed text-[#E8F5A8]">
+              <div className="m-0 text-sm text-[#A9ACE6] line-through">{tr(s.text, lang)}</div>
+              <div className="m-0 mt-1 text-[15px] font-semibold leading-relaxed text-[#FFE58A]">
                 {tr(t.defense.name, lang)}: {tr(t.defense.msg, lang)}
               </div>
             </>
           ) : (
             <div className="m-0 text-[15px] font-semibold leading-relaxed">{tr(s.text, lang)}</div>
           )}
-          {!defense && done && !playing && (
-            <div className="sec-pop m-0 mt-2 text-sm text-[#FFD3BE]">{tr(T.success, lang)}</div>
-          )}
+          {!defense && done && !playing && <div className="sec-pop m-0 mt-2 text-sm text-[#FFB3B8]">{tr(T.success, lang)}</div>}
+          {!done && <span aria-hidden className="sec-blink absolute bottom-1.5 right-3 text-xs text-[#FFC93C]">▼</span>}
         </div>
 
         {/* Controls */}
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={() => go(step - 1)}
               disabled={step === 0}
               aria-label={tr(T.prev, lang)}
-              className="border-2 border-[#2E382E] px-2.5 py-1.5 text-xs font-extrabold disabled:opacity-30"
+              className="sec-btn border-[3px] border-[#222034] bg-white px-3 py-1.5 text-sm font-extrabold disabled:opacity-40"
             >
-              ‹
+              ◀
             </button>
             <button
               type="button"
               onClick={onPlay}
               data-testid="play"
-              className="min-w-[84px] border-2 border-[#2E382E] bg-[#DDFF00] px-3 py-1.5 text-xs font-extrabold"
+              className="sec-btn min-w-[96px] border-[3px] border-[#222034] bg-[#FFC93C] px-3 py-1.5 text-xs font-extrabold"
             >
               {playing ? `❚❚ ${tr(T.pause, lang)}` : done ? `↻ ${tr(T.replay, lang)}` : `▶ ${tr(T.play, lang)}`}
             </button>
@@ -258,9 +259,9 @@ export default function AttackFlow({ topic, lang = 'en' }: { topic: string; lang
               disabled={done}
               aria-label={tr(T.next, lang)}
               data-testid="next"
-              className="border-2 border-[#2E382E] px-2.5 py-1.5 text-xs font-extrabold disabled:opacity-30"
+              className="sec-btn border-[3px] border-[#222034] bg-white px-3 py-1.5 text-sm font-extrabold disabled:opacity-40"
             >
-              ›
+              ▶
             </button>
           </div>
           <div className="flex items-center gap-1.5">
@@ -275,12 +276,14 @@ export default function AttackFlow({ topic, lang = 'en' }: { topic: string; lang
                   aria-label={`${tr(T.goto, lang)} ${i + 1}`}
                   aria-current={i === step ? 'step' : undefined}
                   className={
-                    'h-2.5 transition-all ' +
+                    'h-3.5 w-3.5 border-2 border-[#222034] ' +
                     (i === step
-                      ? 'w-7 border-[1.5px] border-[#2E382E] bg-[#DDFF00]'
+                      ? 'sec-coin scale-125'
                       : unreachable
-                        ? 'w-2.5 bg-[#C8CAC5] opacity-50'
-                        : 'w-2.5 bg-[#A9ADA6] hover:bg-[#7C837C]')
+                        ? 'bg-[#C9CCEB] opacity-50'
+                        : i < step
+                          ? 'bg-[#FFC93C]'
+                          : 'bg-white hover:bg-[#FFE7A3]')
                   }
                 />
               );
@@ -289,11 +292,12 @@ export default function AttackFlow({ topic, lang = 'en' }: { topic: string; lang
         </div>
         <a
           href={`/security/${t.file}`}
-          className="mt-3 inline-block text-xs font-bold text-[#3C4A3C] underline decoration-[#9DB800] decoration-2 underline-offset-4 hover:text-[#2E382E]"
+          className="mt-4 inline-block border-b-[3px] border-[#222034] text-xs font-extrabold text-[#222034] hover:text-[#2C2F6B]"
         >
           ▶ {tr(T.full, lang)} →
         </a>
       </div>
+      <BrickFloor />
     </div>
   );
 }

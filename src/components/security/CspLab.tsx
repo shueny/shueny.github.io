@@ -83,9 +83,9 @@ export default function CspLab({ lang = 'en' }: { lang?: Lang }) {
         onChange={setP}
         options={(Object.keys(POLICIES) as P[]).map((k) => ({ value: k, label: k === 'none' ? tr(T.none, lang) : POLICIES[k] }))}
       />
-      <div className="mt-3 break-all border-2 border-[#5B695B] bg-[#2A332A] px-3 py-2 font-mono text-[12px] text-[#EEF1E6]">
-        <span className="text-[#B9C3B2]">Content-Security-Policy: </span>
-        {POLICIES[p] || <span className="text-[#7C8A7C]">—</span>}
+      <div className="mt-3 break-all border-2 border-[#4A4E9C] bg-[#16183A] px-3 py-2 font-mono text-[12px] text-[#F5F1FF]">
+        <span className="text-[#A9ACE6]">Content-Security-Policy: </span>
+        {POLICIES[p] || <span className="text-[#8F92D8]">—</span>}
       </div>
       <ul className="m-0 mt-3 list-none space-y-1.5 p-0" data-testid="csp-rows">
         {RES.map((r, i) => {
@@ -97,7 +97,7 @@ export default function CspLab({ lang = 'en' }: { lang?: Lang }) {
               key={`${p}-${i}`}
               className={
                 'sec-pop flex items-center gap-2 border-2 px-2.5 py-1.5 ' +
-                (bad ? 'border-[#FF6A2B] bg-[#FBE3D7]' : broken ? 'border-[#C9A100] bg-[#FFF6CC]' : 'border-[#B9BAB6] bg-[#F4F4F1]')
+                (bad ? 'border-[#E43B44] bg-[#FFE0E3]' : broken ? 'border-[#F28C28] bg-[#FFE9C7]' : 'border-[#FFE7A3] bg-[#FFF4D6]')
               }
               style={{ animationDelay: `${i * 0.06}s` }}
               data-allowed={ok ? 'yes' : 'no'}
@@ -105,13 +105,13 @@ export default function CspLab({ lang = 'en' }: { lang?: Lang }) {
               <span
                 className={
                   'shrink-0 px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-[0.06em] ' +
-                  (r.mine ? 'bg-[#DDFF00] text-[#2E382E]' : 'bg-[#FF6A2B] text-[#2A1208]')
+                  (r.mine ? 'bg-[#FFC93C] text-[#222034]' : 'bg-[#E43B44] text-[#FFFFFF]')
                 }
               >
                 {r.mine ? tr(T.yours, lang) : tr(T.attacker, lang)}
               </span>
-              <span className="min-w-0 flex-1 break-all font-mono text-[12px] text-[#2E382E]">{r.code}</span>
-              <span className={'shrink-0 text-xs font-extrabold ' + (ok ? (r.mine ? 'text-[#5A7A00]' : 'text-[#B83A12]') : 'text-[#5A645A]')}>
+              <span className="min-w-0 flex-1 break-all font-mono text-[12px] text-[#222034]">{r.code}</span>
+              <span className={'shrink-0 text-xs font-extrabold ' + (ok ? (r.mine ? 'text-[#1F7A33]' : 'text-[#B5172B]') : 'text-[#5A4E7C]')}>
                 {ok ? `▶ ${tr(T.run, lang)}` : `⛔ ${tr(T.block, lang)}`}
               </span>
             </li>

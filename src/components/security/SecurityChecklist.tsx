@@ -66,13 +66,23 @@ export default function SecurityChecklist({ lang = 'en' }: { lang?: Lang }) {
     <LabFrame lang={lang} title={tr(T.title, lang)} hint={tr(T.hint, lang)} testId="checklist">
       <SecStyles />
       <div className="mb-3 flex items-center gap-3">
-        <div className="h-3 flex-1 overflow-hidden border-2 border-[#2E382E] bg-white" role="progressbar" aria-valuenow={count} aria-valuemin={0} aria-valuemax={ITEMS.length}>
-          <div className="h-full bg-[#DDFF00] transition-all duration-500" style={{ width: `${pct}%` }} />
+        <span className="sec-px text-[12px]">HP</span>
+        <div
+          className="flex flex-1 gap-[3px] border-[3px] border-[#222034] bg-[#2C2F6B] p-[3px]"
+          role="progressbar"
+          aria-valuenow={count}
+          aria-valuemin={0}
+          aria-valuemax={ITEMS.length}
+          aria-label={`${pct}%`}
+        >
+          {ITEMS.map((_, i) => (
+            <span key={i} className={'h-3 flex-1 ' + (i < count ? (count === ITEMS.length ? 'bg-[#3CB043]' : 'bg-[#FFC93C]') : 'bg-[#4A4E9C]')} />
+          ))}
         </div>
-        <span className="whitespace-nowrap font-mono text-xs font-bold" data-testid="checklist-count">
+        <span className="sec-px whitespace-nowrap text-[11px]" data-testid="checklist-count">
           {count} / {ITEMS.length} {tr(T.done, lang)}
         </span>
-        <button type="button" onClick={() => update(ITEMS.map(() => false))} className="border-2 border-[#2E382E] px-2 py-0.5 text-xs font-extrabold">
+        <button type="button" onClick={() => update(ITEMS.map(() => false))} className="sec-btn border-[3px] border-[#222034] bg-white px-2 py-0.5 text-xs font-extrabold">
           {tr(T.reset, lang)}
         </button>
       </div>
@@ -81,23 +91,26 @@ export default function SecurityChecklist({ lang = 'en' }: { lang?: Lang }) {
           <li key={i}>
             <label
               className={
-                'flex cursor-pointer items-start gap-2.5 border-2 px-3 py-2 text-sm leading-snug transition-colors ' +
-                (checked[i] ? 'border-[#9DB800] bg-[#F3F9CF] text-[#5A645A]' : 'border-[#B9BAB6] bg-[#F4F4F1] hover:border-[#2E382E]')
+                'flex cursor-pointer items-start gap-2.5 border-[3px] px-3 py-2 text-sm leading-snug ' +
+                (checked[i] ? 'border-[#2E9E44] bg-[#DDF5D6] text-[#5A4E7C]' : 'border-[#FFE7A3] bg-[#FFF4D6] hover:border-[#222034]')
               }
             >
               <input
                 type="checkbox"
                 checked={checked[i]}
                 onChange={() => update(checked.map((c, j) => (j === i ? !c : c)))}
-                className="mt-0.5 h-4 w-4 shrink-0 accent-[#3C4A3C]"
+                className="mt-0.5 h-4 w-4 shrink-0 accent-[#2C2F6B]"
               />
-              <span className={checked[i] ? 'line-through decoration-[#9DB800] decoration-2' : ''}>{tr(item, lang)}</span>
+              <span className={checked[i] ? 'line-through decoration-[#2E9E44] decoration-2' : ''}>{tr(item, lang)}</span>
             </label>
           </li>
         ))}
       </ul>
       {count === ITEMS.length && (
-        <div className="sec-pop m-0 mt-3 border-2 border-[#2E382E] bg-[#DDFF00] px-3 py-2 text-sm font-extrabold">{tr(T.all, lang)}</div>
+        <div className="sec-pop m-0 mt-3 border-4 border-[#222034] bg-[#FFC93C] px-3 py-2 text-sm font-extrabold shadow-[4px_4px_0_#222034]">
+          <div className="sec-px mb-1 text-[15px]">★ STAGE CLEAR! ★</div>
+          {tr(T.all, lang)}
+        </div>
       )}
     </LabFrame>
   );

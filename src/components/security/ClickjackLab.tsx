@@ -48,11 +48,11 @@ export default function ClickjackLab({ lang = 'en' }: { lang?: Lang }) {
   return (
     <LabFrame lang={lang} title={tr(T.title, lang)} hint={tr(T.hint, lang)} testId="lab-clickjacking">
       <SecStyles />
-      <div className="relative h-56 overflow-hidden border-2 border-[#2E382E] bg-gradient-to-br from-[#FFF3D6] to-[#FFD9C2]">
+      <div className="relative h-56 overflow-hidden border-4 border-[#222034] shadow-[4px_4px_0_#222034] bg-gradient-to-br from-[#BDE6FF] to-[#FFE7A3]">
         {/* Bait page (what the user sees) */}
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-4 text-center">
-          <div className="m-0 text-lg font-extrabold text-[#6E2508]">{tr(T.bait, lang)}</div>
-          <span className="inline-block w-44 rounded-full bg-[#FF6A2B] px-6 py-3 text-base font-extrabold text-white shadow-lg">
+          <div className="m-0 text-lg font-extrabold text-[#8A1020]">{tr(T.bait, lang)}</div>
+          <span className="inline-block w-44 rounded-full bg-[#E43B44] px-6 py-3 text-base font-extrabold text-white shadow-lg">
             {tr(T.claim, lang)} 🎁
           </span>
         </div>
@@ -65,7 +65,7 @@ export default function ClickjackLab({ lang = 'en' }: { lang?: Lang }) {
         >
           {protect ? (
             <>
-              <div className="m-0 text-sm font-bold text-[#5A645A]">⛔ {tr(T.refused, lang)}</div>
+              <div className="m-0 text-sm font-bold text-[#5A4E7C]">⛔ {tr(T.refused, lang)}</div>
               <button
                 type="button"
                 onClick={click}
@@ -79,15 +79,15 @@ export default function ClickjackLab({ lang = 'en' }: { lang?: Lang }) {
           ) : (
             <>
               <div>
-                <div className="m-0 text-sm font-extrabold text-[#2E382E]">🏦 {tr(T.bank, lang)}</div>
-                <div className="m-0 mt-1 font-mono text-xs text-[#4A554A]">{tr(T.to, lang)}</div>
+                <div className="m-0 text-sm font-extrabold text-[#222034]">🏦 {tr(T.bank, lang)}</div>
+                <div className="m-0 mt-1 font-mono text-xs text-[#4B3F72]">{tr(T.to, lang)}</div>
               </div>
               <button
                 type="button"
                 onClick={click}
                 aria-label={tr(T.claim, lang)}
                 data-testid="cj-target"
-                className="w-44 rounded-full border-2 border-[#2E382E] bg-[#3C4A3C] px-6 py-3 text-base font-extrabold text-white"
+                className="w-44 rounded-full border-2 border-[#222034] bg-[#2C2F6B] px-6 py-3 text-base font-extrabold text-white"
               >
                 {tr(T.confirm, lang)}
               </button>
@@ -106,7 +106,7 @@ export default function ClickjackLab({ lang = 'en' }: { lang?: Lang }) {
             value={opacity}
             onChange={(e) => setOpacity(Number(e.target.value))}
             data-testid="cj-slider"
-            className="w-full accent-[#3C4A3C]"
+            className="w-full accent-[#2C2F6B]"
           />
           <span className="w-9 text-right font-mono">{opacity}%</span>
         </label>
@@ -119,7 +119,7 @@ export default function ClickjackLab({ lang = 'en' }: { lang?: Lang }) {
               setResult('none');
             }}
             data-testid="cj-protect"
-            className="h-4 w-4 accent-[#9DB800]"
+            className="h-4 w-4 accent-[#2E9E44]"
           />
           🛡 <span className="font-mono text-[11px]">{tr(T.protect, lang)}</span>
         </label>
@@ -130,7 +130,7 @@ export default function ClickjackLab({ lang = 'en' }: { lang?: Lang }) {
           <div className="min-w-0 flex-1">
             <Verdict tone={result === 'stolen' ? 'bad' : 'good'}>{tr(T[result], lang)}</Verdict>
           </div>
-          <button type="button" onClick={reset} className="border-2 border-[#2E382E] px-3 py-1.5 text-xs font-extrabold">
+          <button type="button" onClick={reset} className="sec-btn border-[3px] border-[#222034] bg-white px-3 py-1.5 text-xs font-extrabold">
             ↻ {tr(T.again, lang)}
           </button>
         </div>

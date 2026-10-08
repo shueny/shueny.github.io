@@ -96,16 +96,16 @@ export default function TokenLab({ lang = 'en' }: { lang?: Lang }) {
           onClick={run}
           disabled={ran && !finished}
           data-testid="token-run"
-          className="border-2 border-[#2E382E] bg-[#FF6A2B] px-3 py-1.5 text-xs font-extrabold text-[#2A1208] disabled:opacity-50"
+          className="sec-btn border-[3px] border-[#222034] bg-[#E43B44] px-3 py-1.5 text-xs font-extrabold text-[#FFFFFF] disabled:opacity-60"
         >
           {ran && !finished ? tr(T.running, lang) : tr(T.run, lang)}
         </button>
       </div>
 
-      <div className="mt-3 border-2 border-[#5B695B] bg-[#1F271F] font-mono text-[12.5px]">
-        <div className="flex gap-1.5 border-b border-[#3A463A] px-3 py-1.5 text-[10px] font-bold">
+      <div className="mt-3 border-4 border-[#222034] bg-[#12142E] font-mono text-[12.5px] shadow-[4px_4px_0_#222034]">
+        <div className="flex gap-1.5 border-b border-[#2E3170] px-3 py-1.5 text-[10px] font-bold">
           {['Elements', 'Console', 'Application'].map((tab) => (
-            <span key={tab} className={tab === 'Console' ? 'bg-[#DDFF00] px-2 py-0.5 text-[#2E382E]' : 'px-2 py-0.5 text-[#C9D1C4]'}>
+            <span key={tab} className={tab === 'Console' ? 'bg-[#FFC93C] px-2 py-0.5 text-[#222034]' : 'px-2 py-0.5 text-[#B9BCF0]'}>
               {tab}
             </span>
           ))}
@@ -117,19 +117,19 @@ export default function TokenLab({ lang = 'en' }: { lang?: Lang }) {
               className={
                 'sec-pop break-all ' +
                 (ln.kind === 'in'
-                  ? 'text-[#EEF1E6]'
+                  ? 'text-[#F5F1FF]'
                   : ln.kind === 'bad'
-                    ? 'text-[#FF9A6E]'
+                    ? 'text-[#FF8A94]'
                     : ln.kind === 'muted'
-                      ? 'text-[#7C8A7C]'
-                      : 'text-[#B7D400]')
+                      ? 'text-[#8F92D8]'
+                      : 'text-[#2E9E44]')
               }
             >
               {ln.kind === 'in' ? '> ' : ln.kind === 'muted' ? '' : '← '}
               {ln.text}
             </div>
           ))}
-          {!ran && <div className="text-[#7C8A7C]">&gt; _</div>}
+          {!ran && <div className="text-[#8F92D8]">&gt; _</div>}
         </div>
       </div>
 
