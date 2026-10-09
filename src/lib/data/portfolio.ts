@@ -135,19 +135,6 @@ export const portfolioData = {
         technologies: ['Astro', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
       },
       {
-        title: 'Security Quest — Frontend Security Explainer',
-        description: [
-          'An interactive learning post on the most common frontend security issues, in English, Chinese and German.',
-          'Security Quest: a pixel-art explainer laid out like a video player, with original sprites, a seekable timeline, chapter jumps, speed control and a typing dialog box. Each stage plays the attack step by step, then shows where the defense stops it.',
-          'Per-topic attack players with a defense switch, plus hands-on labs: an XSS simulator, CORS and CSP switchers, a redirect validator using the real URL parser, a clickjacking overlay and live SHA-384 SRI checks.',
-          'Cute retro 8-bit look across React islands and 15 standalone animations; respects reduced motion and works down to 375px.',
-          'Covered by Playwright suites (animations, islands, player, blocked storage) with mutation checks.',
-        ],
-        image: '/images/security-quest-cover.svg',
-        url: '/blog/frontend-security/',
-        technologies: ['Astro', 'React', 'TypeScript', 'MDX', 'SVG', 'Playwright'],
-      },
-      {
         title: 'AI Job Scraper Integration',
         description: [
           'Developed an AI-powered job scraping tool that extracts job descriptions from various sources, summarizes key takeaways using Gemini AI, and stores the data in Google Sheets.',
