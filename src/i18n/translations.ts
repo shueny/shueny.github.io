@@ -515,6 +515,25 @@ export const translations: Record<Language, Translations> = {
       showingOne: '{index} of {total}',
       data: [
         {
+          id: 'p-security-quest',
+          title: "Security Quest — Pixel-Art Frontend Security Explainer",
+          description:
+            "An interactive, cute 8-bit learning post on the most common frontend security issues. A pixel-art player walks through every attack and the defense that stops it, with hands-on labs, in English, Chinese and German.",
+          problem:
+            "Frontend security is usually taught as a list of acronyms: XSS, CSRF, CORS, CSP. People memorise the names but cannot picture what actually travels between the browser, the server and the attacker, so the fixes feel like rules to follow rather than consequences of how the web works.\n\nI wanted a format where you can watch each attack happen step by step, then see exactly which step the right defense breaks, and try it yourself without anything ever executing for real.",
+          solution:
+            "The post groups the issues into four root causes (injection, abused browser defaults, trust boundaries in the wrong place, supply chain and transport). At the top, Security Quest plays them as a pixel-art game: START, four worlds of stages, CLEAR. Each stage shows a title card, five attack steps where a coin or a bomb hops between the actors, and then the defense: a shield, BLOCK!, and the attack knocked back.\n\nEvery topic below has its own attack player with a defense switch, and seven have hands-on labs: an XSS simulator, a token theft console, a CORS test bench, a redirect validator built on the real URL parser, a CSP switcher, a clickjacking overlay you can reveal, and an SRI check with live SHA-384 hashes. The post ends with an interactive checklist and a scenario quiz.",
+          techDeepDive:
+            "Built as React islands inside Astro MDX, hydrated with client:visible so the long post stays light. The player is driven by a single playhead: one timeline of beats (title, attack steps, defense) is derived from shared topic data, and the scene, dialog text, typing and controls are all pure functions of the current time, which makes seeking, chapter jumps and speed changes trivial. The scene is a 320×180 SVG rendered with crisp edges; sprites are character grids with palette swaps for attacker-owned actors, and labels sit in HTML with container-query units so CJK text stays readable at any width.\n\nThe redirect lab uses the WHATWG URL parser, so //evil.com and /\\evil.com behave exactly as in a browser, and the SRI lab hashes with Web Crypto. Playwright suites cover the player, every attack flow in all three languages, every lab outcome, blocked localStorage and mobile layout, with mutation checks to prove the tests fail when the logic breaks. Building it also surfaced and fixed a site-wide bug where blocked localStorage blanked every multilingual post.",
+          features: [
+            "Video-player style explainer: play, chapter jumps, 1x–2x speed, a keyboard-seekable timeline and a typing dialog box",
+            "Original pixel sprites drawn as SVG, cute retro 8-bit look across the post and 15 standalone animations",
+            "Per-topic attack players with a defense switch that stops the flow at the step the fix blocks",
+            "Seven hands-on labs; the XSS lab only parses input and never runs it",
+            "English, Chinese and German, reduced-motion support, works down to 375px",
+          ],
+        },
+        {
           id: 'p-dream-globe',
           title: 'Dream Globe — Interactive 3D Night Earth',
           description:
@@ -1160,6 +1179,25 @@ export const translations: Record<Language, Translations> = {
       showingOne: '{index} von {total}',
       data: [
         {
+          id: 'p-security-quest',
+          title: "Security Quest — Frontend-Sicherheit als Pixel-Art-Abenteuer",
+          description:
+            "Ein interaktiver Lernbeitrag im niedlichen 8-Bit-Stil zu den häufigsten Sicherheitsproblemen im Frontend. Ein Pixel-Art-Player zeigt jeden Angriff und die Abwehr, die ihn stoppt, dazu Labore zum Ausprobieren, auf Englisch, Chinesisch und Deutsch.",
+          problem:
+            "Frontend-Sicherheit wird meist als Liste von Abkürzungen gelehrt: XSS, CSRF, CORS, CSP. Man lernt die Namen, kann sich aber nicht vorstellen, was zwischen Browser, Server und Angreifer tatsächlich hin- und hergeht. Die Lösungen wirken dann wie Regeln statt wie Folgen davon, wie das Web funktioniert.\n\nIch wollte ein Format, in dem man jeden Angriff Schritt für Schritt ablaufen sieht, genau erkennt, an welcher Stelle die richtige Abwehr ansetzt, und es selbst ausprobieren kann, ohne dass jemals etwas wirklich ausgeführt wird.",
+          solution:
+            "Der Beitrag ordnet die Probleme vier Grundursachen zu (Injection, missbrauchtes Browser-Verhalten, falsch gesetzte Vertrauensgrenzen, Lieferkette und Transport). Ganz oben spielt Security Quest sie als Pixel-Spiel ab: START, vier Welten mit Stages, CLEAR. Jede Stage zeigt eine Titelkarte, fünf Angriffsschritte, bei denen eine Münze oder eine Bombe zwischen den Figuren hüpft, und dann die Abwehr: ein Schild, BLOCK! und der zurückgeschleuderte Angriff.\n\nJedes Thema hat einen eigenen Angriffs-Player mit Abwehr-Schalter, sieben haben Labore: ein XSS-Simulator, eine Token-Diebstahl-Konsole, ein CORS-Prüfstand, ein Weiterleitungs-Prüfer mit dem echten URL-Parser, ein CSP-Umschalter, ein aufdeckbares Clickjacking-Overlay und ein SRI-Check mit echten SHA-384-Hashes. Am Ende stehen eine interaktive Checkliste und ein Szenario-Quiz.",
+          techDeepDive:
+            "Umgesetzt als React-Islands in Astro-MDX mit client:visible, damit der lange Beitrag leicht bleibt. Der Player hängt an einem einzigen Abspielkopf: Aus gemeinsamen Themendaten entsteht eine Zeitleiste aus Beats (Titel, Angriffsschritte, Abwehr), und Szene, Dialogtext, Tippeffekt und Steuerung sind reine Funktionen der aktuellen Zeit. Dadurch sind Springen, Kapitelwechsel und Geschwindigkeit trivial. Die Szene ist ein 320×180-SVG mit scharfen Kanten; Sprites sind Zeichenraster mit Paletten-Tausch für Angreifer-Figuren, Beschriftungen liegen im HTML mit Container-Query-Einheiten, damit CJK-Text überall lesbar bleibt.\n\nDas Weiterleitungs-Labor nutzt den WHATWG-URL-Parser, sodass //evil.com und /\\evil.com sich genau wie im Browser verhalten; das SRI-Labor hasht mit Web Crypto. Playwright-Suites prüfen den Player, jeden Angriffsablauf in allen drei Sprachen, jedes Labor-Ergebnis, blockiertes localStorage und das Mobil-Layout, mit Mutationstests als Nachweis, dass die Tests bei kaputter Logik fehlschlagen. Nebenbei wurde ein seitenweiter Fehler behoben, bei dem blockiertes localStorage jeden mehrsprachigen Beitrag leerte.",
+          features: [
+            "Erklärstück im Video-Player-Stil: Abspielen, Kapitelsprünge, 1x–2x, per Tastatur bedienbare Zeitleiste und tippende Dialogbox",
+            "Eigene Pixel-Sprites als SVG, niedlicher Retro-8-Bit-Look im Beitrag und in 15 eigenständigen Animationen",
+            "Angriffs-Player pro Thema mit Abwehr-Schalter, der den Ablauf an der richtigen Stelle stoppt",
+            "Sieben Labore; das XSS-Labor analysiert Eingaben nur und führt nie etwas aus",
+            "Englisch, Chinesisch und Deutsch, reduzierte Bewegung, funktioniert ab 375px",
+          ],
+        },
+        {
           id: 'p-dream-globe',
           title: 'Dream Globe — Interaktive 3D-Nachterde',
           description:
@@ -1791,6 +1829,25 @@ export const translations: Record<Language, Translations> = {
       showingRange: '第 {from}–{to} 個，共 {total} 個',
       showingOne: '第 {index} 個，共 {total} 個',
       data: [
+        {
+          id: 'p-security-quest',
+          title: "Security Quest — 像素風前端資安大冒險",
+          description:
+            "一篇可愛 8-bit 風格的互動學習文章，介紹前端最常見的資安問題。像素動畫播放器帶你走過每一種攻擊、看防禦在哪一步把它擋下，還有可以動手玩的實驗，提供英文、中文、德文三種語言。",
+          problem:
+            "前端資安通常被教成一串縮寫：XSS、CSRF、CORS、CSP。大家記得名字，卻想像不出瀏覽器、伺服器和攻擊者之間到底傳了什麼，於是防禦方法變成要背的規則，而不是「網頁就是這樣運作，所以要這樣防」。\n\n我想做一種形式：可以一步步看攻擊怎麼發生，清楚看到正確的防禦在哪一步把它切斷，還能自己動手試，而且任何東西都不會真的被執行。",
+          solution:
+            "文章把這些問題歸納成四種根本原因（注入與執行、瀏覽器的自動行為被濫用、信任邊界放錯地方、供應鏈與傳輸）。最上方的 Security Quest 把它們做成像素遊戲：START、四個世界的關卡、CLEAR。每一關先出現標題卡，接著五步攻擊，金幣或炸彈在角色之間跳來跳去，最後是防禦：盾牌跳出、BLOCK!、攻擊被打回去。\n\n下面每一個主題都有自己的攻擊流程播放器和防禦開關，其中七個附上動手實驗：XSS 模擬器、偷 Token 的主控台、CORS 試驗台、用真正網址解析器的重導向驗證器、CSP 切換器、可以揭開的點擊劫持圖層，以及即時算出 SHA-384 的 SRI 比對。文章最後是互動檢查清單和情境小測驗。",
+          techDeepDive:
+            "以 Astro MDX 裡的 React islands 實作，用 client:visible 延後載入，讓長文章依然輕巧。播放器只由一個播放時間驅動：從共用的主題資料產生一條由片段組成的時間軸（標題、攻擊步驟、防禦），畫面、對話文字、打字效果和控制列都是「目前時間」的純函式，所以跳轉、換關和調速都很簡單。場景是 320×180 的 SVG，用 crisp edges 保持像素清晰；角色是字元格子，攻擊者的角色會換成紅色調色盤；標籤放在 HTML 並使用 container query 單位，讓中文在任何寬度都清楚。\n\n重導向實驗使用 WHATWG URL 解析器，//evil.com 和 /\\evil.com 的行為跟瀏覽器完全一樣；SRI 實驗用 Web Crypto 計算雜湊。Playwright 測試涵蓋播放器、三種語言的每一個攻擊流程、每個實驗的結果、localStorage 被封鎖的情況和手機版面，並用 mutation 檢查證明邏輯壞掉時測試會失敗。製作過程中也順便修好一個全站問題：localStorage 被封鎖時，所有多語言文章都會變成空白。",
+          features: [
+            "像影片播放器的教學動畫：播放、跳關、1x–2x 速度、可用鍵盤操作的時間軸、逐字打出的對話框",
+            "自己畫的 SVG 像素角色，整篇文章和 15 個獨立動畫都是可愛的復古 8-bit 風格",
+            "每個主題都有攻擊流程播放器，打開防禦會停在被擋下的那一步",
+            "七個動手實驗；XSS 實驗只解析輸入，從不真的執行",
+            "英文、中文、德文，支援減少動態效果，手機 375px 也能用",
+          ],
+        },
         {
           id: 'p-dream-globe',
           title: 'Dream Globe — 互動式 3D 夜間地球',

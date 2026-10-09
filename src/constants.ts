@@ -497,6 +497,39 @@ export const PROJECTS_DATA: Project[] = [
       "Why pgvector. pgvector is a PostgreSQL extension that adds a vector column type and distance operators. Its main advantage is not speed but placement: vectors live in the same database as the text, the document metadata and the rest of the application data. One SQL query can therefore rank by vector distance, filter by product, version or user at the same time, and join back to the source document, with no second system to keep in sync. It is one option, not a requirement: at very large scale a dedicated vector database can make sense.\n\nIn practice: Pilotfit. My AI job-search platform Pilotfit uses exactly this setup to match a job posting against a user's own experiences. Each experience is embedded with Gemini (1,536 dimensions) whenever it is created or edited, and stored in PostgreSQL with pgvector and an HNSW index. At query time a single SQL statement scores every experience of that user as 60% embedding similarity (1 − cosine distance) plus 40% exact tech-tag overlap, keeps rows above a threshold, and returns the top 5 to the LLM. If retrieval fails, the analysis falls back to all of the user's experiences.\n\nWhen to use it, and when not: RAG earns its complexity when the answer lives in private documents the model has never seen, when that information changes often, when answers need citations people can check, or when the material is too large to fit in one prompt. It is overkill for general knowledge the model already has, for a source of a few pages that can simply go into the prompt, for structured data (orders, stock), where a SQL query or an API call is more precise, and for rewriting, translating or changing tone, which involve no retrieval at all.\n\nHow the explainer is built: designed in Claude Design as one continuous 6:36 timeline with a 2.5D scene, playback speed control, a chapter menu and an EN ⇄ 中文 switch that keeps the playback position. Each language is one self-contained HTML file with scripts, styles and fonts inlined.",
   },
   {
+    id: 'p-security-quest',
+    title: "Security Quest — Pixel-Art Frontend Security Explainer",
+    description:
+      "An interactive, cute 8-bit learning post on the most common frontend security issues. A pixel-art player walks through every attack and the defense that stops it, with hands-on labs, in English, Chinese and German.",
+    tags: ['React', 'TypeScript', 'Astro MDX', 'SVG Pixel Art', 'Web Security', 'Playwright', 'i18n'],
+    image: getAssetUrl('images/security-quest-cover.svg'),
+    banner: getAssetUrl('images/security-quest-cover.svg'),
+    gallery: [
+      getAssetUrl('images/security-quest-gallery-1.webp'),
+      getAssetUrl('images/security-quest-gallery-2.webp'),
+      getAssetUrl('images/security-quest-gallery-3.webp'),
+    ],
+    link: '/blog/frontend-security/',
+    isNew: true,
+    visualDescription:
+      'Retro pixel stage with a hero, servers and a bug attacker; a coin or bomb hops between them and a shield blocks the attack.',
+    category: 'design',
+    domains: ['mvp'],
+    problem:
+      "Frontend security is usually taught as a list of acronyms: XSS, CSRF, CORS, CSP. People memorise the names but cannot picture what actually travels between the browser, the server and the attacker, so the fixes feel like rules to follow rather than consequences of how the web works.\n\nI wanted a format where you can watch each attack happen step by step, then see exactly which step the right defense breaks, and try it yourself without anything ever executing for real.",
+    solution:
+      "The post groups the issues into four root causes (injection, abused browser defaults, trust boundaries in the wrong place, supply chain and transport). At the top, Security Quest plays them as a pixel-art game: START, four worlds of stages, CLEAR. Each stage shows a title card, five attack steps where a coin or a bomb hops between the actors, and then the defense: a shield, BLOCK!, and the attack knocked back.\n\nEvery topic below has its own attack player with a defense switch, and seven have hands-on labs: an XSS simulator, a token theft console, a CORS test bench, a redirect validator built on the real URL parser, a CSP switcher, a clickjacking overlay you can reveal, and an SRI check with live SHA-384 hashes. The post ends with an interactive checklist and a scenario quiz.",
+    features: [
+      "Video-player style explainer: play, chapter jumps, 1x–2x speed, a keyboard-seekable timeline and a typing dialog box",
+      "Original pixel sprites drawn as SVG, cute retro 8-bit look across the post and 15 standalone animations",
+      "Per-topic attack players with a defense switch that stops the flow at the step the fix blocks",
+      "Seven hands-on labs; the XSS lab only parses input and never runs it",
+      "English, Chinese and German, reduced-motion support, works down to 375px",
+    ],
+    techDeepDive:
+      "Built as React islands inside Astro MDX, hydrated with client:visible so the long post stays light. The player is driven by a single playhead: one timeline of beats (title, attack steps, defense) is derived from shared topic data, and the scene, dialog text, typing and controls are all pure functions of the current time, which makes seeking, chapter jumps and speed changes trivial. The scene is a 320×180 SVG rendered with crisp edges; sprites are character grids with palette swaps for attacker-owned actors, and labels sit in HTML with container-query units so CJK text stays readable at any width.\n\nThe redirect lab uses the WHATWG URL parser, so //evil.com and /\\evil.com behave exactly as in a browser, and the SRI lab hashes with Web Crypto. Playwright suites cover the player, every attack flow in all three languages, every lab outcome, blocked localStorage and mobile layout, with mutation checks to prove the tests fail when the logic breaks. Building it also surfaced and fixed a site-wide bug where blocked localStorage blanked every multilingual post.",
+  },
+  {
     id: 'p-tomato',
     title: 'Daily Tomato Todo',
     description:
