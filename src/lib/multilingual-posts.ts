@@ -49,6 +49,11 @@ const POST_GROUPS: PostVariants[] = [
     zh: 'seo-content-prioritization-ai-search-zh',
     de: 'seo-content-prioritization-ai-search-de',
   },
+  {
+    en: 'frontend-security',
+    zh: 'frontend-security-zh',
+    de: 'frontend-security-de',
+  },
 ];
 
 export const MULTILINGUAL_POSTS: MultilingualPostMap = Object.fromEntries(
