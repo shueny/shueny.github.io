@@ -13,6 +13,7 @@ import '@fontsource/playfair-display/latin-700.css';
 
 import { SEO } from "astro-seo";
 import { siteConfig } from "@/config/site";
+import Clarity from "@/components/analytics/clarity.astro";
 
 interface Props {
   title?: string
@@ -175,6 +176,8 @@ const imageURL = image.startsWith("http")
       gtag('js', new Date());
       gtag('config', 'G-T8S9M00FCN');
     </script>
+    <!-- Microsoft Clarity -->
+    <Clarity />
   </head>
   <body class="text-stone-900 antialiased overflow-x-hidden">
     <slot />
