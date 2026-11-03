@@ -59,7 +59,10 @@ export default defineConfig({
         },
         // Enable aggressive tree-shaking to remove unused code
         treeshake: {
-          moduleSideEffects: false, // Enable aggressive tree-shaking
+          // Aggressive tree-shaking, except for modules whose whole job is a side
+          // effect (Microsoft Clarity injects its tracking script on init).
+          moduleSideEffects: (id) =>
+            id.includes('@microsoft/clarity') || id.includes('analytics/clarity.astro'),
           propertyReadSideEffects: false,
           tryCatchDeoptimization: false,
         },

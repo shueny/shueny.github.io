@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 import "@/styles/globals.css";
 import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
+import Clarity from "@/components/analytics/clarity.astro";
 
 interface Props {
   title: string;
@@ -284,5 +285,8 @@ document.addEventListener("astro:after-swap", setDarkMode);
     });
   });
 </script>
+
+<!-- Microsoft Clarity -->
+<Clarity />
 
 <ViewTransitions />

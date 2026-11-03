@@ -1,0 +1,15 @@
+---
+// Microsoft Clarity (heatmaps + session recordings).
+// The project ID is public by design; it ships to the browser like the GA ID.
+---
+<script>
+  import Clarity from "@microsoft/clarity";
+
+  const CLARITY_PROJECT_ID = "z81d03it8v";
+
+  // Astro bundles this as a module script, so it runs once per full page load,
+  // even with ViewTransitions. Clarity tracks client-side navigations itself.
+  if (import.meta.env.PROD) {
+    Clarity.init(CLARITY_PROJECT_ID);
+  }
+</script>

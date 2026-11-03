@@ -2,6 +2,7 @@
 import { getPosts } from "@/lib/fetchers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Clarity from "@/components/analytics/clarity.astro";
 import "@/styles/globals.css";
 
 // 1. 取得所有文章
@@ -37,6 +38,8 @@ const posts = allPosts.filter((post) => {
         display: none !important;
       }
     </style>
+    <!-- Microsoft Clarity -->
+    <Clarity />
   </head>
   
   <body class="bg-surface text-custom-primary font-sans antialiased selection:bg-orange-100 selection:text-custom-accent">
